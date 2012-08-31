@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.out
+*.bbl
+*.RData
+*.blg
+*.toc
+sims/
+Word/
+Presentations/
+auto/
