@@ -4,6 +4,7 @@
 \usepackage[mathlines,displaymath]{lineno}
 \usepackage{setspace}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage[round,colon,authoryear]{natbib}
 \usepackage{color, soul}
@@ -86,7 +87,7 @@ which differs from  due to observation error ($\zeta$). A simple state
 space model that includes exponential growth and process variation
 ($\grave{o}$) could be written as:
 \begin{gather}
-N_t = N_{t-1}\exp(r)+\grave{o}_t \\
+N_t = N_{t-1}\exp(r)+\grave{o}_t \nonumber \\
 X_t = N_t + \zeta_t
 \end{gather}
 Here   is the intrinsic rate of increase. Typically, both random
@@ -172,36 +173,57 @@ useful in many cases.  We demonstrate the usefulness of these new
 models with simulated and real BBS data.
 
 
-\section{Methods}
+\section{Model Development}
 
-\subsection{Model Development}
+\subsection{Original Formulation}
 
 As originally formulated, the DM model includes submodels for four
 conditionally related processes: the initial abundance state, apparent
-survival, recruitment, and detection probability. Dail and Madsen
-proposed two options for initial abundance (Poisson and negative
-binomial):
-(2)
-(3)
-where $N_{i1}$  is the abundance at site $i$  during year 1 and $\Lambda$ is
-the expected abundance. The negative binomial model includes the
-overdispersion parameter $\alpha$.  The survival and recruitment terms allow
-abundance to change over time:
-(4)
-where $\omega$ is the survival probability and $\gamma$ is the arrival rate (which
-can depend on Nit-1). Dail and Madsen propose three models for $\gamma$: the
-constant model, where $\gamma$ does not depend on Nit-1, and which simulates
-a ``propagule rain'' of recruitment; the autoregressive model , which
+survival, recruitment, and detection probability. \citet{dail_madsen:2011}
+proposed two distributions for initial abundance, the Poisson and negative
+binomial:
+\begin{gather}
+N_{it} \sim \mathrm{Pois}(\Lambda) \nonumber \\
+N_{it} \sim \mathrm{NB}(\Lambda, \alpha)
+\label{eq:N1}
+\end{gather}
+where $N_{i1}$ is the abundance at site $i=1,\hdots,R$ during year 1
+and $\Lambda=\mathbb{E}[N_{i1}]$ is the expected abundance. The negative
+binomial model includes the overdispersion parameter $\alpha$.  The
+survival and recruitment terms allow abundance to change over time:
+\begin{equation}
+\left.\begin{aligned}
+S_{it}|N_{it-1} &\sim \mathrm{Bin}(N_{it-1}, \omega) \\
+G_{it}|N_{it-1} &\sim \mathrm{Pois}(\gamma(N_{it-1})) \\
+N_{it} &= S_{it}+G_{it}
+\end{aligned}\right\} \quad \text{for} \; t=2,\hdots,T
+\label{eq:Nt}
+\end{equation}
+where $\omega$ is the survival probability and $\gamma$ is the arrival
+rate (which can depend on $N_{it-1}$). Dail and Madsen propose three models
+for $\gamma$: the constant model, where $\gamma$ does not depend on
+$N_{it-1}$, and which simulates a ``propagule rain'' of recruitment; the
+autoregressive model , which
 simulates geometric or density independent growth; and the ``no-trend''
 model, which keeps abundance fixed over time.
-The number seen is a function of detection probability:
-(5)
+
+Eqs.~\ref{eq:N1} and \ref{eq:Nt} fully specify the state model---the
+model for spatial and temporal variation in abundance. The observation
+model assumes that individuals are missed due to imperfect
+detection. The simplest model for imperfect detection is
+\begin{equation}
+  \label{eq:2}
+  n_{it} \sim \mathrm{Bin}(N_{it}, p)
+\end{equation}
+
 Initial abundance, apparent survival, recruitment, and detection can
 all be modeled as functions of covariates, allowing fairly
 sophisticated inference about population processes and dynamics from
 point count data.
-Range model of initial abundance
-Dail and Madsen (2011) suggested two distributions for modeling
+
+\subsection{Range model of initial abundance}
+
+\citet{dail_madsen:2011} suggested two distributions for modeling
 initial abundance: Poisson and negative binomial.  We have extended
 their model to include another distribution, the zero-inflated
 Poisson.  This could be useful when, for example, one is modeling the
@@ -209,8 +231,16 @@ abundance of several bird species with the same set of BBS routespoint
 count surveys for all species, but this set includes routes sites
 outside the range of some of the bird species.  The distribution of
 initial abundances can be represented as:
-(6)
+\begin{equation}
+N_{i1} \sim \left\{
+\begin{aligned}
+0 &\; \text{with probability} \; \psi \\
+\Lambda &\; \text{with probability} \; (1-\psi)
+\end{aligned} \right.
+\label{eq:ZIP}
+\end{equation}
 where $\psi$ represents the proportion of extra zeros.
+
 These models allow three sources of zero counts by observers: a
 species was at a route but not detected; the route was within the
 species' range but there were no birds at that site in that year; and
@@ -222,7 +252,9 @@ forest type and weather, and zero-inflation upon elevation and
 climate.  This approach combines elements of occupancy modeling
 (MacKenzie et al. 2006) and abundance modeling, and could prove useful
 for distinguishing species' fundamental and realized niches
-(Hutchinson 1957).   The zero inflation factor can also affect
+(Hutchinson 1957).
+
+The zero inflation factor can also affect
 recruitment or population dynamics (see below).
 We also considered a zero-inflated negative binomial model of initial
 abundance, but this model did not perform well in preliminary tests.
