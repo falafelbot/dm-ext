@@ -90,20 +90,23 @@ N_t = N_{t-1}\exp(r)+\grave{o}_t \\
 X_t = N_t + \zeta_t
 \end{gather}
 Here   is the intrinsic rate of increase. Typically, both random
-effects are assumed to follow normal distributions:   and   (de
-Valpine and Hastings 2002, Dennis et al. 2006). Even though this is
+effects are assumed to follow normal distributions: $\grave{o}_t \sim
+\mathrm{N}(0, \sigma)$ and $\zeta_t \sim \mathrm{N}(0, \tau)$
+\citep{devalpine_hastings:2002,dennis_etal:2006}. Even though this is
 the most widespread approach for modeling population dynamics using
 time-series data, several problems are immediately evident. First, if
 abundance is a non-negative integer, as it always is, there is clearly
 a problem with this formulation because the normally distributed
 random effects violate this constraint. To avoid this issue,
-ecologists often replace   with   where A is the area surveyed---i.e.,
+ecologists often replace $N_t$ with $\log(Y_t/A)$   where $A$ is the
+area surveyed---i.e.,
 abundance is replaced by the natural log of population density, which
 is assumed to normally distributed. This is desirable because this
 allows for the fitting of models assuming normally distributed
 residuals, which are computationally much less intensive than most
 alternatives. However, this transformation is problematic since
-abundance may be zero and thus . Generally, zeros are replaced with
+abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
+zeros are replaced with
 some small, but positive number, although the effect of this is rarely
 discussed.
 
@@ -115,7 +118,7 @@ the following likelihood
 LIKELIHOOD
 \]
 The first term is the probability density for the first observation in
-the time series,  , yet it is intuitively not possible to estimate the
+the time series, $Y_t$, yet it is intuitively not possible to estimate the
 parameter(s) of this distribution using only a single
 observation. This problem has resulted in several papers with
 interesting names like ``multi-modal likelihoods and ridges etc...''
@@ -134,13 +137,14 @@ fragmentation or climate change on a population without
 considering spatial variation. Indeed many populations are
 regulated by spatial processes such as source-sink dynamics.
 
-Dail and Madsen (2011) developed a model (henceforth the DM model)
+\citet{dail_madsen:2011} developed a model (henceforth the DM model)
 that resolves each of these problems with traditional state-space
 models. The DM model allows for inference about spatial and temporal
 dynamics in abundance while accounting for observation error using
 only spatially and temporally replicated count data.  Their model is
-an extension of the closed-population N-mixture model (Royle
-2004)(2004), which was designed specifically to address the problem of
+an extension of the closed-population N-mixture model
+\citep{royle:2004biom}, which was designed specifically to address the
+problem of
 modeling spatial variation in abundance when detection probability is
 less than unity. The DM extension relaxes the assumption of population
 closure and includes explicit parameters describing population change
@@ -150,8 +154,9 @@ as a first-order Markovian process. [more details]
 number of problems confronting basic and applied ecological
 research. Answering questions about climate change etc... require
 spatially and temporally extensive datasets such as result from the
-North American Breeding Bird Survey (BBS) (Robbins et
-al. 1986). However, most of the datasets of the appropriate scale are
+North American Breeding Bird Survey (BBS)
+\citep{robbins_etal:1986}. However, most of the datasets of the
+appropriate scale are
 collected by volunteers and using protocols that are not amenable to
 traditional approaches of modeling abundance and detection probability
 based on standard capture-recapture methods. Instead they have, at
