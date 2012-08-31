@@ -1,6 +1,6 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
-\usepackage[a4paper, hmargin={2.4cm,2.4cm}, vmargin={2.4cm,2.4cm}]{geometry}
+\usepackage[a4paper,hmargin={2.4cm,2.4cm},vmargin={2.4cm,2.4cm}]{geometry}
 \usepackage[mathlines,displaymath]{lineno}
 \usepackage{setspace}
 \usepackage{amsmath}
@@ -27,7 +27,8 @@ in many common situations, (2) they do not admit spatial variation in
 population dynamics, and (3) there is no clear interpretation of the
 observation error. We demonstrate how each of these problems can be
 resolved using a class of hierarchical models for spatially-replicated
-time-series data recently proposed by \citet{dail_madsen:2011}. We
+time-series data recently proposed by
+\citet[Biometrics]{dail_madsen:2011}. We
 expand this class of models to accommodate classical growth
 models, zero-inflation, and random effects such as observer-specific
 detection probabilities. Furthermore, we describe classical and
@@ -64,25 +65,30 @@ error can bias the estimators of abundance and related parameters.
 
 State-space models have become the most widespread approach for
 studying population dynamics while accounting for process variation
-and observation error (de Valpine and Hastings 2002, Buckland et
-al. 2004, Dennis et al. 2006). Conventional state-space models are
+and observation error \citep{devalpine_hastings:2002,
+  buckland_etal:2004, dennis_taper:1994,
+  dennis_etal:2006}. Conventional state-space models are
 simply time-series models in which the true state of the system is
 observed imperfectly. Originally developed for xxx (cite Kalman filter
 papers), the ability to model both the ecological state process and
 the observation process has made them relevant in numerous ecological
 applications [need to clean this up]. State-space models have been
-defined differently by different authors, but we follow Buckland et
-al. (2004) using the definition : ``xxx'' . Typically, the ecological
+defined differently by different authors, but we follow
+\citet{buckland_etal:2004} the definition : ``xxx'' . Typically, the
+ecological
 process is described by a Markovian model that includes a
 deterministic description of population change as well as two random
 sources of variation for ``process variation''. The model for the
 observation process is typically phenomenological in the sense that
-observation error is not defined explicitly. As an example, let  be
-the abundance of a species during year  , and   be the observed data,
-which differs from  due to observation error ( ). A simple state space
-model that includes exponential growth and process variation ( ) could
-be written as
-	 	(1)
+observation error is not defined explicitly. As an example, let $N_t$ be
+the abundance of a species during year $t$, and $X_t$ be the observed data,
+which differs from  due to observation error ($\zeta$). A simple state
+space model that includes exponential growth and process variation
+($\grave{o}$) could be written as:
+\begin{gather}
+N_t = N_{t-1}\exp(r)+\grave{o}_t \\
+X_t = N_t + \zeta_t
+\end{gather}
 Here   is the intrinsic rate of increase. Typically, both random
 effects are assumed to follow normal distributions:   and   (de
 Valpine and Hastings 2002, Dennis et al. 2006). Even though this is
