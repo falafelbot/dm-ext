@@ -5,6 +5,8 @@
 *.RData
 *.blg
 *.toc
+*.doc
+*.docx
 sims/
 Word/
 Presentations/

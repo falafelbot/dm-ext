@@ -9,6 +9,7 @@
 \usepackage[round,colon,authoryear]{natbib}
 \usepackage{color, soul}
 \usepackage{fancyvrb}
+\usepackage{verbatim}
 
 \bibliographystyle{ecology}
 
@@ -250,89 +251,121 @@ of different (or the same) covariates.  For example, detection of
 species x at site y in year z might depend on wind speed, abundance on
 forest type and weather, and zero-inflation upon elevation and
 climate.  This approach combines elements of occupancy modeling
-(MacKenzie et al. 2006) and abundance modeling, and could prove useful
-for distinguishing species' fundamental and realized niches
-(Hutchinson 1957).
+\citep{mackenzie_etal:2006} and abundance modeling.
+%, and could prove useful
+%for distinguishing species' fundamental and realized niches
+%(Hutchinson 1957).
 
 The zero inflation factor can also affect
 recruitment or population dynamics (see below).
 We also considered a zero-inflated negative binomial model of initial
 abundance, but this model did not perform well in preliminary tests.
-Population growth models
+
+\subsection{Population growth models}
+
 Preliminary DM model runs for several species tended to lead to
 estimates of survival that were unrealistically high and recruitment
 that were unrealistically low, or the reverse (compared to independent
 demographic analyses).  The DM models are able to partition changes in
 abundance to survival and recruitment in part by making strong
-distributional assumptions (Dail and Madsen 2011).  When those
-assumptions are heavily violated the models may proportion population
-growth incorrectly into survival and recruitment, even if they
-estimates population growth accurately.
+distributional assumptions. % (Dail and Madsen 2011).
+When those assumptions are heavily violated the models may proportion
+population growth incorrectly into survival and recruitment, even if
+they estimates population growth accurately.
+
 Although partitioning population growth into survival and recruitment
 is informative, it is not needed for all applications.  Furthermore, a
 simpler model would have several merits: faster running time, fewer
 total model combinations, and possibly more realistic estimates.
 Therefore, we developed a version of the DM model that estimates and
-models population growth directly.  In this model, equation 4 is
+models population growth directly.  In this model, Eq.\ref{eq:Nt} is
 simplified to:
-(7)
-where r represents the instantaneous population growth rate.  This,
+\begin{equation}
+  N_{it} \sim \text{Pois}(\exp(r)N_{it-1})
+\label{eq:exp}
+\end{equation}
+where $r$ represents the instantaneous population growth rate.  This,
 like the autoregressive version of the model, is a variant on a simple
 density-independent exponential model of population growth.
 Density-dependent versions of the model are also possible.  For
 example:
-(8)
-where K is the stable equilibrium of the population and r is the
+\begin{equation}
+  N_{it} \sim \text{Pois}(N_{it-1}\exp(r(1-N_{it-1}/K))
+\label{eq:rick}
+\end{equation}
+where $K$ is the stable equilibrium of the population and $r$ is the
 instantaneous population growth rate at low population densities, and
 both parameters are constrained to be positive.  This model is based
-on Ricker's (1954) discrete time version of the logistic population
-growth model.  We also implemented Gompertz's (1825) density-dependent
+on the \citet{ricker:1954} discrete time version of the logistic population
+growth model.  We also implemented the \citet{gompertz:1825} density-dependent
 model:
-(9)
-where the log of Nit-1 is only taken when Nit-1 is greater than 0
-(when Nit-1 is 0, the full expression simplifies to 0 anyway).  Here
-the interpretations of r and K are similar to in the Ricker model, but
-K is constrained to be greater than one.
+\begin{equation}
+  N_{it} \sim \text{Pois}(N_{it-1}\exp(r(1-\log(N_{it-1})/\log(K)))
+\label{eq:gomp}
+\end{equation}
+where the log of $N_{it-1}$ is only taken when $N_{it-1}>0$
+(when $N_{it-1} \equiv 0$, the full expression simplifies to 0 anyway).  Here
+the interpretations of $r$ and $K$ are similar to in the Ricker model, but
+$K$ is constrained to be greater than one.
+
 Because a single Poisson distribution controls the
-distribution of Nit in each of these models, the discrete
-convolution used by Dail and Madsen (2011) is not required,
+distribution of $N_{it}$ in each of these models, the discrete
+convolution used by \citet{dail_madsen:2011} is not required,
 speeding up processing time.
-Immigration and colonization models
+
+\subsection{Immigration models}
+
 The autoregressive, population growth, Ricker, and Gompertz
 versions of the DM models all share a common feature (or bug):
 once the population at a site reaches 0, it must remain at 0.
 This is because all contributions to population growth are
 local in these models.  We generalized each these models that
 include both internal and external (immigration) contributions
-to population growth.  The population growth + immigration
+to population growth.  The population growth plus immigration
 model is:
-(10)
-or
-(11)
-where $\iota$ represents the immigration rate (equations 10 and 11 are
-equivalent).  This model is close to the constant DM model (equation
-4), with exp(r) instead of $\omega$ and $\iota$ instead of $\gamma$, except that the first
-process is Poisson distributed instead of binomial.  Similarly, the
-Ricker + immigration model can be represented as:
-(12)
-the Gompertz + immigration model as:
-(13)
-and the autoregressive + immigration model as:
-(14)
-These immigration models are based on the assumption that numbers
-of immigrants are not dependent on local density.  Other versions
-of these models with different assumptions are possible. The
-Ricker + immigration and Gompertz + immigration models can be
-justified by the further assumption that immigrants arrive as
-adults immediately before the point-count survey (so that
-density-dependent processes do not have a chance to act on the
-numbers of immigrants; Otto and Day 2007 p. 161).  Deterministic
-versions of these models do reach stable equilibriums, but the
-equilibriums are not at K and cannot be solved for analytically
-(Otto and Day 2007).  We have implemented all preceding models in
-a maximum likelihood framework by extending the unmarked package
-(Fiske and Chandler 2011) in R (R Development Core Team 2011).
-Random eEffects of oObservers
+\begin{equation}
+  N_{it} \sim \text{Poisson}(\exp(r)N_{it-1}) + \text{Poisson}(\iota)
+  \label{eq:expimm1}
+\end{equation}
+or equivalently
+\begin{equation}
+  N_{it} \sim \text{Poisson}(\exp(r)N_{it-1} + \iota)
+  \label{eq:expimm2}
+\end{equation}
+where $\iota$ represents the immigration rate.  This model is close to
+the constant DM model (equation 4), with $\exp(r)$ instead of $\omega$
+and $\iota$ instead of $\gamma$, except that the first
+process is Poisson distributed instead of binomial. The Ricker and
+Gompertz models can be extended to allow for immigration in the same
+way.
+\begin{comment}
+  Similarly, the Ricker + immigration model can be represented as: the
+  Gompertz + immigration model as: (13) and the autoregressive +
+  immigration model as: (14)
+\end{comment}
+
+% Save for discussion
+\begin{comment}
+  These immigration models are based on the assumption that number of
+  immigrant is not dependent on local density; however, extending
+  these models in this way is conceptually straight-forward, a Other
+  versions of these models with different assumptions are
+  possible. The Ricker + immigration and Gompertz + immigration models
+  can be justified by the further assumption that immigrants arrive as
+  adults immediately before the point-count survey (so that
+  density-dependent processes do not have a chance to act on the
+  numbers of immigrants; Otto and Day 2007 p. 161).  Deterministic
+  versions of these models do reach stable equilibriums, but the
+  equilibriums are not at K and cannot be solved for analytically
+  (Otto and Day 2007).
+\end{comment}
+
+We have implemented all preceding models in
+a maximum likelihood framework by extending the \texttt{unmarked} package
+\citep{fiske_chandler:2011} in \textbf{R} \citep{R-2012}.
+
+\subsection{Random effects of observers}
+
 Differences in observers' ability to see, hear, or identify
 birds has long been recognized as a potential source of error
 in avian point count surveys such as the BBS (Robbins et
@@ -344,6 +377,7 @@ of interest.  This problem is compounded by the fact that
 observers differ greatly in the number of surveys they have
 run (so that many observers' separate detection probabilities
 could not be accurately estimated).
+
 Current BBS trend estimators deal with this problem by
 treating observer identity as a random (as opposed to a fixed)
 effect (Link and Sauer 2002, Sauer and Link 2011).  This
@@ -354,6 +388,7 @@ fixed effects are referred to as mixed models.  Often in mixed
 models (as in this case), the random effect is modeled not
 because it of interest in itself, but to avoid bias in the
 estimates of the fixed effects.
+
 To include random observer effects in DM models and these extensions,
 equation 5 can be modified to:
 (15)
@@ -366,7 +401,9 @@ We have implemented random observer effects in the Bayesian framework
 using program JAGS (version 3.2.0; Plummer 2003) with the R (R
 Development Core Team 2011) package rjags (Plummer 2011) as an
 interface.
-Dynamic range models
+
+\subsection{Dynamic range models}
+
 The zero-inflated Poisson distribution can be applied to not only
 initial abundance but also to recruitment and population growth terms.
 For example, the recruitment term of the constant DM model (equation
@@ -484,7 +521,7 @@ Markov chains for each model (Gelman and Rubin 1992).  For each chain
 we sampled the MCMC for Y iterations, after Z tuning samples.  Latent
 inclusion factors for temperature effects?
 
-Results
+\section{Results}
 
 The negative binomial distribution was strongly supported for ovenbird
 initial abundance over the Poisson and zero-inflated Poisson (Table
@@ -565,20 +602,20 @@ for both models).
 
 
 
-	We made four important developments of the open population
-        N-mixture model proposed by Dail and Madsen that make the
-        model more applicable to long-term data such as is collected
-        by the North American Breeding Bird Survey. First, we have
-        reconciled the objectives of traditional state-space models
-        with open population N-mixture models by illustrating how
-        classical models of population dynamics can be embedded within
-        the framework. Second, we have demonstrated methods of
-        accounting for zero-inflation in the time-series. Third, we
-        have illustrated how additional random effects such as
-        observer-specific detection probabilities can be
-        accommodated. Fourth, we presented a Bayesian analysis of the
-        model, which makes it much easier to estimate parameters and
-        to fine tune the model for specific purposes.
+We made four important developments of the open population
+N-mixture model proposed by Dail and Madsen that make the
+model more applicable to long-term data such as is collected
+by the North American Breeding Bird Survey. First, we have
+reconciled the objectives of traditional state-space models
+with open population N-mixture models by illustrating how
+classical models of population dynamics can be embedded within
+the framework. Second, we have demonstrated methods of
+accounting for zero-inflation in the time-series. Third, we
+have illustrated how additional random effects such as
+observer-specific detection probabilities can be
+accommodated. Fourth, we presented a Bayesian analysis of the
+model, which makes it much easier to estimate parameters and
+to fine tune the model for specific purposes.
 
 A unique aspect of the Dail and Madsen model as originally devised was
 that it allowed for the estimation of demographic parameters under
@@ -606,7 +643,7 @@ of sites outside of the range of a species.  This could be especially
 useful when different factors control the range than the abundance or
 dynamics within the range.  [some examples where that is the case?]
 
- [paragraph on random effects]
+[paragraph on random effects]
 [paragraph on Bayesian]
 In spite of the new extensions we have proposed, several aspects of
 the model could be improved. First, the precision with which the
@@ -636,10 +673,10 @@ abundance.   Show some equations for the alternative observation
 models.
 
 [paragraph on spatially-explicit dispersal]
- [Other possible extensions we could mention:
-	Spatially hierarchical model (so can use individual stops)
-	Other models of variability in growth or recruitment (such as negative binomial)
-	Add density dependence to survival and recruitment models]
+[Other possible extensions we could mention:
+Spatially hierarchical model (so can use individual stops)
+Other models of variability in growth or recruitment (such as negative binomial)
+Add density dependence to survival and recruitment models]
 [Discuss causes of low p values (and other BBS results) here or in BBS
 results?]
 
