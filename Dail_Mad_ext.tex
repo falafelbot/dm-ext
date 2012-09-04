@@ -10,6 +10,7 @@
 \usepackage{color, soul}
 \usepackage{fancyvrb}
 \usepackage{verbatim}
+\usepackage[colorlinks=true,citecolor=black,linkcolor=black,pdftex,pdfstartview=FitH,bookmarks=true]{hyperref}
 
 \bibliographystyle{ecology}
 
@@ -213,8 +214,8 @@ model for spatial and temporal variation in abundance. The observation
 model assumes that individuals are missed due to imperfect
 detection. The simplest model for imperfect detection is
 \begin{equation}
-  \label{eq:2}
   n_{it} \sim \mathrm{Bin}(N_{it}, p)
+  \label{eq:p1}
 \end{equation}
 
 Initial abundance, apparent survival, recruitment, and detection can
@@ -368,10 +369,9 @@ a maximum likelihood framework by extending the \texttt{unmarked} package
 
 Differences in observers' ability to see, hear, or identify
 birds has long been recognized as a potential source of error
-in avian point count surveys such as the BBS (Robbins et
-al. 1986, Sauer et al. 1994, Diefenbach et al. 2003, Alldredge
-et al. 2007, Campbell and Francis 2011).  Estimating a
-separate detection probability for each observer can be
+in avian point count surveys such as the BBS
+\citep{robbins_etal:1986,diefenbach_etal:2003,sauer_etal:1994auk,alldredge_etal:2007auk,campbell_francis:2011}.
+Estimating a separate detection probability for each observer can be
 difficult and reduces one's ability to estimate the quantities
 of interest.  This problem is compounded by the fact that
 observers differ greatly in the number of surveys they have
@@ -380,8 +380,9 @@ could not be accurately estimated).
 
 Current BBS trend estimators deal with this problem by
 treating observer identity as a random (as opposed to a fixed)
-effect (Link and Sauer 2002, Sauer and Link 2011).  This
-allows observer-specific differences in detection probability,
+effect \citep{link_sauer:2002,sauer_link:2011}.
+%(Link and Sauer 2002, Sauer and Link 2011).
+This allows observer-specific differences in detection probability,
 but assumes that observers are selected at random from a pool
 of potential observers.  Models that contain both random and
 fixed effects are referred to as mixed models.  Often in mixed
@@ -390,16 +391,22 @@ because it of interest in itself, but to avoid bias in the
 estimates of the fixed effects.
 
 To include random observer effects in DM models and these extensions,
-equation 5 can be modified to:
-(15)
-(16)
-where nijt is the number of bird recorded at site i by observer j in
-year t, pj is observer-specific detection probability, $\mu_p$ is the mean
+Eq.~\ref{eq:p1} can be modified to:
+\begin{gather}
+n_{ijt} \sim \mathrm{Bin}(N_{it}, p_j) \nonumber \\
+\mathrm{logit}(p_j) \sim \mathrm{Normal}(\mu_p, \sigma_p)
+\label{eq:pobs}
+\end{gather}
+where $n_{ijt}$ is the number of bird recorded at site $i$ by observer $j$ in
+year $t$, $p_j$ is observer-specific detection probability, $\mu_p$ is the mean
 detection probability (on the logit scale), and $\sigma_p$ is the standard
 deviation of the random observer effects (also on the logit scale).
 We have implemented random observer effects in the Bayesian framework
-using program JAGS (version 3.2.0; Plummer 2003) with the R (R
-Development Core Team 2011) package rjags (Plummer 2011) as an
+using program \textbf{JAGS} \citep[version 3.2.0]{plummer:2003}
+% (version 3.2.0; Plummer 2003)
+with the \textbf{R} (R
+Development Core Team 2011) package \texttt{rjags} \citep{plummer:2011}
+%(Plummer 2011)
 interface.
 
 \subsection{Dynamic range models}
@@ -408,7 +415,14 @@ The zero-inflated Poisson distribution can be applied to not only
 initial abundance but also to recruitment and population growth terms.
 For example, the recruitment term of the constant DM model (equation
 4) can be modified as follows:
-(17)
+\begin{equation}
+G_{it} \sim \left\{
+\begin{aligned}
+0 &\; \text{with probability} \; \psi \\
+\mathrm{Poisson}(\gamma) &\; \text{with probability} \; (1-\psi)
+\end{aligned} \right.
+\label{eq:ZIPts}
+\end{equation}
 When both initial abundance and dynamics are modeled as zero-inflated,
 $\psi$ can be modeled as time-varying or not (in either case, $\psi$ can also be
 modeled as varying over space).  In the latter case, it makes sense
@@ -419,8 +433,9 @@ dynamics of the autoregressive, trend, Ricker, or Gompertz models
 (without immigration) should have no effect when initial abundance is
 also zero-inflated unless $\psi$ is time-varying (because these dynamic
 models cannot recover from zero abundance).  We have implemented
-zero-inflated dynamics in the Bayesian framework using program JAGS
-(version 3.2.0; Plummer 2003)
+zero-inflated dynamics in the Bayesian framework using program
+\textrm{JAGS} \citep[version 3.2.0]{plummer:2003}.
+%(version 3.2.0; Plummer 2003)
 
 
 \section{Applications}
@@ -432,9 +447,10 @@ We simulated data for 100 sites over 40 years.  All
 simulations assumed initial abundance was Poisson distributed
 and no covariates affected initial abundance, dynamics, or
 detection probability.  Our first series of simulations
-assumed dynamics were exponential.  We ran 500 simulations for
-each combination of low, medium, and high $\Lambda$, $r$, and
-$p$ (Table 1; 27 total combinations).
+assumed dynamics were exponential.  We ran 1000 simulations for
+each combination of low, medium, and high $\Lambda \in \{1,5,10\}$, $r
+\in \{-0.005, 0, 0.005\}$, and
+$p \in \{0.05, 0.25, 0.5\}$. % (Table 1; 27 total combinations).
 
 Our second series of simulations changed dynamics to the
 Ricker model.  We used an initial abundance of 10, a maximum
@@ -449,13 +465,16 @@ values of immigration rate with 500 simulation each (Table
 
 We estimated the parameters for each simulation using the same
 initial abundance (Poisson) and dynamics models as were
-simulated, implemented in the unmarked library in R.  When run
+simulated, implemented in the unmarked library in \textbf{R}.  When run
 in a maximum likelihood framework, these models require a
-maximum abundance to integrate over (Royle 2004, Dail and
-Madsen 2011); we used 150.  We report bias of estimates, root
-mean squared error, and coverage (percentage of 95% confidence
-% intervals for parameters that
-% overlap the true values).
+maximum abundance to integrate over
+\citep{royle:2004biom,dail_madsen:2011};
+%(Royle 2004, Dail and Madsen 2011);
+we used 200.  We report bias of estimates, root
+mean squared error, and coverage (percentage of 95\% confidence
+intervals for parameters that
+overlap the true values).
+
 Ideas:
 I.	Test importance of random effects modeling, and other differences between JAGS and unmarked
 II.	Model with low p values, or a range of p values
@@ -472,9 +491,9 @@ over the wrong DID model?
 We applied these models to North American Breeding Bird Survey (BBS)
 data from 1966-2010 for two species in the bordering US states
 Maryland and Virginia.  For our focal species, we selected ovenbirds
-(Seiurus aurocapilla), an abundant and widespread forest breeding
+(\textit{Seiurus aurocapilla}), an abundant and widespread forest breeding
 migrant with a stable or increasing trend in the region (CITE) and
-golden-winged warblers (Vermivora chrysoptera), which only breeds in
+golden-winged warblers (\textit{Vermivora chrysoptera}), which only breeds in
 the western parts of these states and has been declining in the region
 (CITE).  MORE INFORMATION ABOUT THE SPECIES?
 
@@ -483,15 +502,19 @@ use in the annual BBS analysis.  We summed the total birds of each
 species seen on each route and year and used the routes (rather than
 the individual stops) as our sites.
 Strong winds can interfere with point count observers' ability to hear
-birds (Simons et al. 2007)(cite); we tested the effects of wind speed
+birds (\citep{simons_etal:2007}); we tested the effects of wind speed
 on detection probability.  BBS volunteers record wind conditions at
-the beginning and end of each route on the Beaufort Scale (start and
-end wind; Robbins et al. 1986)(start and end wind; 0-9; cite).  When
+the beginning and end of each route on the Beaufort Scale
+\citep[start and end wind 0-9]{robbins_etal:1986}.
+%(start and end wind; Robbins et al. 1986)(start and end wind; 0-9; cite).
+When
 start or end wind was not recorded we imputed those values with the
 start or end mean.  We took the mean of start and end wind for each
 route and put this average wind scale value into four categories: 0 $\leq$
 wind $<$ 1; 1 $\geq$ wind $<$ 2; 2 $\leq$ wind $<$ 3; and wind $\geq$ 3 (maximum of 3.5).
-Following Link and Sauer (2002), we also included the first time an
+Following \citet{link_sauer:2002},
+%Link and Sauer (2002),
+we also included the first time an
 observer ran a route as a predictor variable for detection
 probability.
 
@@ -517,7 +540,9 @@ We ran the top ranked models from the maximum likelihood analyses in a
 Bayesian framework.  We added random observer effects and, where
 appropriate, zero-inflated dynamics.  WILL ADD MORE HEREWe used
 non-informative priors.  We tested for lack of convergence using X
-Markov chains for each model (Gelman and Rubin 1992).  For each chain
+Markov chains for each model \citep{gelman_rubin:1992}.
+%(Gelman and Rubin 1992).
+For each chain
 we sampled the MCMC for Y iterations, after Z tuning samples.  Latent
 inclusion factors for temperature effects?
 
@@ -597,6 +622,12 @@ for both models).
 
 
 
+\begin{figure}
+  \centering
+  \includegraphics[height=8in]{figs/exp_hists}
+  \caption{Histograms of 1000 parameter estimates for each of 27 simulation cases. The verticle lines are the data-generating values.}
+\label{fig:exp_hists}
+\end{figure}
 
 \section{Discussion}
 
