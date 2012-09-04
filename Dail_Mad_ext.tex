@@ -10,18 +10,35 @@
 \usepackage{color, soul}
 \usepackage{fancyvrb}
 \usepackage{verbatim}
-\usepackage[colorlinks=true,citecolor=black,linkcolor=black,pdftex,pdfstartview=FitH,bookmarks=true]{hyperref}
+\usepackage[colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,pdftex,pdfstartview=FitH,bookmarks=true]{hyperref}
 
 \bibliographystyle{ecology}
 
+
+
 \begin{document}
+
+\title{Improved state-space models for inference about spatial and
+  temporal variation in abundance}
+
+\author{Richard B. Chandler  \\
+        \small USGS Patuxent Wildlife Research Center \\
+        \small Laurel, MD 20708
+   \and Jeffrey A. Hostetler \footnote{Contact:
+     \url{HostetlerJ@si.edu}, +001-202-633-4205}\\
+%        \small Migratory Bird Center \\
+        \small Smithsonian Conservation Biology Institute \\
+        \small National Zoological Park, MRC 5503 \\
+        \small Washington, DC 20013-7012}
+\maketitle
+
 
 \abstract{
 Models of population dynamics play a central role in theoretical and
 applied ecology where they are used for purposes such as testing
 hypotheses about density dependence and predicting species' responses
 to future environmental change or management actions. State-space
-models, are widely used for these purposes, and they allow for
+models are widely used for these purposes because they allow for
 estimating parameters of classical growth models, such as exponential,
 logistic, and Gompertz, while accounting for demographic stochasticity
 and observation error. Conventional state-space models, however, have
@@ -40,8 +57,11 @@ allow researchers to apply these methods to address important
 questions regarding the factors affecting spatial and temporal
 variation in abundance. We demonstrate these developments by analyzing
 data from the North American Breeding Bird Survey. Code to fit these
-models using the R package unmarked and JAGS is also provided.
+models using the \textbf{R} package \texttt{unmarked} and
+\textbf{JAGS} is also provided.
 }
+
+\vspace{0.5cm}
 
 \textbf{Key words}: abundance, Dail and Madsen model, density-dependence,
 Gompertz model, immigration, open population point count models,
@@ -49,21 +69,25 @@ random observer effects, range, Ricker model, zero-inflated
 
 \newpage
 
-Theoretical ecology requires robust models for testing hypotheses
-regarding density dependence and spatial variation in population
-dynamics. Such models are also required in applied ecological research
+Theoretical ecology requires models of population dynamics for testing
+hypotheses regarding spatial and temporal variation in abundance, for
+example to test for the existence of density-dependence population
+growth \citep{dennis_taper:1994,viljugrein_etal:2005}. Such models are
+also required in applied ecological research
 for predicting species' responses to environmental change or
-management actions. For example, many researchers are currently
-investigating the influence of weather on population dynamics so that
-predictions can be made about the effects of future climate
-change. Several complicating factors must be confronted when
+conservation actions. For example, %many researchers are currently
+models of population dynamics allow for inference about the effects of
+of climate change on population viability.
+%investigations of the influence of climate on population dynamics so that
+%predictions can be made about the effects of climate change.
+Several complicating factors must be confronted when
 addressing these questions. First, deterministic models of population
-dynamics are virtually always inadequate due to ``process variation'',
+dynamics are virtually always inadequate due to process variation,
 the inherent stochasticity in demographic parameters and environmental
 conditions. Second, abundance---the natural state variable in studies
 of population dynamics---can rarely be observed perfectly in field
-studies because of ``observation error'', such as imperfect
-detection. Failure to account for  and heterogeneity in observation
+studies because of observation error, such as imperfect
+detection. Failure to account for process variation and observation
 error can bias the estimators of abundance and related parameters.
 
 State-space models have become the most widespread approach for
