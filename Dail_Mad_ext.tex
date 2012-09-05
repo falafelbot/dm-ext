@@ -19,7 +19,7 @@
 \begin{document}
 
 \title{Improved state-space models for inference about spatial and
-  temporal variation in abundance}
+  temporal variation in abundance from count data}
 
 \author{Richard B. Chandler  \\
         \small USGS Patuxent Wildlife Research Center \\
@@ -74,22 +74,12 @@ hypotheses regarding spatial and temporal variation in
 abundance---hypotheses relating to the importance and existence of
 phenomenon such as density-dependent population regulation, population
 cycling, and spatial synchrony
-\citep{royama:1977,turchin:1990,dennis_taper:1994,bjornstad_etal:1999}.
-%growth ,viljugrein_etal:2005}.
-In applied contexts, population models are used for %population viability
-%analysis, including the estimation of
+\citep{may:1975,royama:1977,turchin:1990,dennis_taper:1994,bjornstad_etal:1999}.
+In applied contexts, population models are used for
 estimating extinction probabilities
-\citep{nadeem_lele:2011} and for predicting the effects of future
-environmental conditions or conservation actions on population size
-\citep{jamieson_brooks:2004}.
-%Such models are
-%also required in applied ecological research
-%for predicting species' responses to environmental change or
-%conservation actions. For example, %many researchers are currently
-%models of population dynamics allow for inference about the effects of
-%of climate change on population viability.
-%investigations of the influence of climate on population dynamics so that
-%predictions can be made about the effects of climate change.
+\citep{schoener_spiller:1992,nadeem_lele:2011} and for predicting the
+effects of future environmental conditions or conservation actions on
+population size \citep{jamieson_brooks:2004}.
 In order to address these questions, several complicating factors must
 be confronted when fitting population models to data.
 First, deterministic models of population
@@ -99,31 +89,46 @@ conditions \citep{bjornstad_grenfell:2001}. %clark_bjornstad:2004}.
 Second, abundance---the natural state variable in studies
 of population dynamics---can rarely be observed perfectly in field
 studies because of observation error, such as imperfect
-detection \citep{kery_etal:2009}. Failure to account for process
-variation and observation error can bias the estimators of abundance
-and related parameters.
+detection \citep{link_nichols:1994,kery_etal:2009}.
+%Failure to account for process
+%variation and observation error can bias the estimators of abundance
+%and related parameters.
 
 State-space models are a widely used approach for
 studying population dynamics while accounting for process variation
 and observation error \citep{devalpine_hastings:2002,
-  buckland_etal:2004, dennis_taper:1994,
-  dennis_etal:2006}. Conventional state-space models are
-simply time-series models in which the true state of the system
-(e.g. population size during each year) is
-observed imperfectly. Originally developed for xxx (cite Kalman filter
-papers), the ability to model both the ecological state process and
-the observation process has made them relevant in numerous ecological
-applications [need to clean this up]. State-space models have been
-defined differently by different authors, but we follow
-\citet{buckland_etal:2004} the definition : ``xxx'' . Typically, the
-ecological
-process is described by a Markovian model that includes a
-deterministic description of population change as well as two random
-sources of variation for ``process variation''. The model for the
-observation process is typically phenomenological in the sense that
-observation error is not defined explicitly. As an example, let $N_t$ be
-the abundance of a species during year $t$, and $X_t$ be the observed data,
-which differs from  due to observation error ($\zeta$). A simple state
+  buckland_etal:2004, dennis_etal:2006}. Conventional state-space
+models are simply time-series models in which the true state of the
+system (e.g. population size during each year) is observed
+imperfectly. One reason for the widespread adoption of state-space
+models in ecology is that failure to account for process variation and
+observation error can bias estimators of abundance and population
+growth parameters \citep{kery_etal:2009}. For instance, the strength of
+density dependence will be over-estimated if observation error is
+ignored \citep{link_nichols:1994,shenk_etal:1998}.
+%Originally developed for xxx (cite Kalman filter papers),
+%The ability to model both the ecological state process and
+%the observation process has made them relevant in numerous ecological
+%applications [need to clean this up]. State-space models have been
+%defined differently by different authors, but we follow
+%\citet{buckland_etal:2004} the definition : ``xxx'' .
+
+One of the simplest state-space models can be described as follows.
+% In their simplest form, state-space models include a Markovian model
+%for the ecological process of interestTypically, the
+%ecological
+%process is described by a Markovian model that includes a
+%deterministic description of population change as well as two random
+%sources of variation for ``process variation''. The model for the
+%Robservation process is typically phenomenological in the sense that
+%observation error is not defined explicitly. As an example,
+Let $N_t$ be the abundance of a species during year $t$, for
+$t=1,\hdots,T$, and $X_t$ be
+the observed data, which differs from $N_t$ due to observation error
+($\zeta$). Temporal variation in $N_t$ is modeled using a
+deterministic population growth model (e.g. exponential, logistic, etc
+\dots) and stochastic model allowing for random process variation. A
+simple state
 space model that includes exponential growth and process variation
 ($\grave{o}$) could be written as:
 \begin{gather}
