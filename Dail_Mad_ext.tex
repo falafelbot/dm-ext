@@ -79,7 +79,7 @@ In applied contexts, population models are used for
 estimating extinction probabilities
 \citep{schoener_spiller:1992,nadeem_lele:2011} and for predicting the
 effects of future environmental conditions or conservation actions on
-population size \citep{jamieson_brooks:2004}.
+population size \citep{jamieson_brooks:2004,hatfield_etal:2012}.
 In order to address these questions, several complicating factors must
 be confronted when fitting population models to data.
 First, deterministic models of population
@@ -106,69 +106,69 @@ observation error can bias estimators of abundance and population
 growth parameters \citep{kery_etal:2009}. For instance, the strength of
 density dependence will be over-estimated if observation error is
 ignored \citep{link_nichols:1994,shenk_etal:1998}.
-%Originally developed for xxx (cite Kalman filter papers),
-%The ability to model both the ecological state process and
-%the observation process has made them relevant in numerous ecological
-%applications [need to clean this up]. State-space models have been
-%defined differently by different authors, but we follow
-%\citet{buckland_etal:2004} the definition : ``xxx'' .
 
 One of the simplest state-space models can be described as follows.
-% In their simplest form, state-space models include a Markovian model
-%for the ecological process of interestTypically, the
-%ecological
-%process is described by a Markovian model that includes a
-%deterministic description of population change as well as two random
-%sources of variation for ``process variation''. The model for the
-%Robservation process is typically phenomenological in the sense that
-%observation error is not defined explicitly. As an example,
 Let $N_t$ be the abundance of a species during year $t$, for
-$t=1,\hdots,T$, and $X_t$ be
+$t=1,\hdots,T$, and let $X_t$ be
 the observed data, which differs from $N_t$ due to observation error,
 a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
 modeled using a deterministic population growth model
-(e.g. exponential, logistic, etc \dots) and stochastic model allowing
-for random process variation, which we denote $\grave{o}$ . As an
+(e.g. exponential, logistic, etc \dots) and a stochastic model allowing
+for random process variation, which we denote $\grave{o}_t$ . As an
 example, under exponential population growth, the model could be
 written as:
 \begin{gather}
 N_t = N_{t-1}\exp(r)+\grave{o}_t \nonumber \\
 X_t = N_t + \zeta_t
+\label{eq:ss1}
 \end{gather}
-where $r$ is the intrinsic rate of increase. Typically, both random
-effects are assumed to follow normal distributions: $\grave{o}_t \sim
-\mathrm{N}(0, \sigma)$ and $\zeta_t \sim \mathrm{N}(0, \tau)$
-\citep{devalpine_hastings:2002,dennis_etal:2006}. Even though this is
-the most widespread approach for modeling population dynamics using
-time-series data, several problems are immediately evident. First, if
-abundance is a non-negative integer, as it always is, there is clearly
-a problem with this formulation because the normally distributed
-random effects violate this constraint. To avoid this issue,
-ecologists often replace $N_t$ with $\log(Y_t/A)$   where $A$ is the
-area surveyed---i.e.,
-abundance is replaced by the natural log of population density, which
-is assumed to normally distributed. This is desirable because this
-allows for the fitting of models assuming normally distributed
-residuals, which are computationally much less intensive than most
-alternatives. However, this transformation is problematic since
-abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
-zeros are replaced with
-some small, but positive number, although the effect of this is rarely
-discussed.
+where $r$ is the intrinsic rate of increase. Typically, both error terms
+are assumed to be i.i.d random effects distrubted as
+$\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
+$\zeta_t \sim \mathrm{N}(0, \tau)$. The Gaussian assumption allows for parameter
+estimation using the Kalman filter \citep{dennis_etal:2006}, which is
+much more computationally efficient than estimation methods when
+random effects are not Gaussian distributed
+\citep{devalpine_hastings:2002}.
 
-The problems mentioned thus far are minor in comparison to the more
-serious issue that the parameters of the model are often not
-identifiable. Specifically, the Markovian nature of the model implies
-the following likelihood
-\[
-LIKELIHOOD
-\]
+Exponential growth without density-dependence is rarely observed in
+natural populations, and thus $\exp(r)$ is often substituted for other
+population growth models such as the Ricker or Gompertz. Nonetheless,
+the basic structure shown in Eq.~\ref{eq:ss1} is common to most
+traditional state-space models. However, even though this is
+the most widespread approach for modeling population dynamics using
+time-series data, several problems are immediately evident. First,
+both $N_t$ and $X_t$ are typically non-negative integers, and hence
+the the Gaussian assumption is not justified.
+%is clearly a problem with this formulation because the normally distributed
+%random effects violate this constraint.
+One approach to circumventing this problem in hopes of adhering to the
+Gaussian assumption is to tranform abundance to
+density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
+area surveyed. However, this transformation is problematic since
+abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
+zeros are replaced with some small number, although the
+effect of this is rarely discussed.
+
+A more serious problem than the ones associated with the Gaussian
+assumptions is that the parameters of the simple state-space models
+such as Eq~\ref{eq:ss1} are not identifiable in many
+circumstances \citep{polansky_etal:2009}. Specifically, the Markovian
+nature of the model implies the following likelihood
+\begin{equation}
+\mathcal{L}(\Theta|\{X_t\}) = [N_1|\Theta]\prod_{t=2}^T
+[N_t|N_{t-1},\Theta]
+\label{eq:L1}
+\end{equation}
 The first term is the probability density for the first observation in
-the time series, $Y_t$, yet it is intuitively not possible to estimate the
+the time series, $X_1$, yet it is intuitively not possible to estimate the
 parameter(s) of this distribution using only a single
-observation. This problem has resulted in several papers with
-interesting names like ``multi-modal likelihoods and ridges etc...''
-The workaround here is to assume that the population is at equilibrium
+observation.
+%This problem has resulted in several papers with
+%interesting names like ``multi-modal likelihoods and ridges etc...''
+Two options have been proposed handling the identifiability
+problem. First, one can assume that the first observation in the time
+series is made without error. Second, one can assume that the population is at equilibrium
 so that that the x can be replaced with the equilibrium
 distribution. However, assuming equilibrium defeats the objective of
 many studies of population dynamics, namely determining if and why a
