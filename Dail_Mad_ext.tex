@@ -80,7 +80,7 @@ estimating extinction probabilities
 \citep{schoener_spiller:1992,nadeem_lele:2011} and for predicting the
 effects of future environmental conditions or conservation actions on
 population size \citep{jamieson_brooks:2004,hatfield_etal:2012}.
-In order to address these questions, several complicating factors must
+In order to address these questions, two complicating factors must
 be confronted when fitting population models to data.
 First, deterministic models of population
 dynamics are virtually always inadequate due to process variation,
@@ -114,16 +114,26 @@ the observed data, which differs from $N_t$ due to observation error,
 a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
 modeled using a deterministic population growth model
 (e.g. exponential, logistic, etc \dots) and a stochastic model allowing
-for random process variation, which we denote $\grave{o}_t$ . As an
+for random process variation, which we denote $\grave{o}_t$. As an
 example, under exponential population growth, the model could be
 written as:
-\begin{gather}
-N_t = N_{t-1}\exp(r)+\grave{o}_t \nonumber \\
-X_t = N_t + \zeta_t
-\label{eq:ss1}
-\end{gather}
-where $r$ is the intrinsic rate of increase. Typically, both error terms
-are assumed to be i.i.d random effects distrubted as
+%\begin{gather}
+%N_t = N_{t-1}\exp(r)+\grave{o}_t \nonumber \\
+%X_t = N_t + \zeta_t
+%\label{eq:ss1}
+%\end{gather}
+\begin{subequations}
+  \label{eq:ss1}
+  \begin{gather}
+    \mu_t = N_{t-1}\exp(r) \label{eq:ss1a} \\ \label{eq:ss1b}
+    N_t \sim \text{N}(\mu_t, \grave{o}_t) \\ \label{eq:ss1c}
+    X_t \sim \text{N}(N_t, \zeta_t)
+  \end{gather}
+\end{subequations}
+where $r$ is the intrinsic rate of increase. Although the exponential
+growth model shown here is often replaced with density dependent
+models, most state-space models share the common feature that the
+error terms are assumed to be i.i.d random effects distrubted as
 $\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
 $\zeta_t \sim \mathrm{N}(0, \tau)$. The Gaussian assumption allows for parameter
 estimation using the Kalman filter \citep{dennis_etal:2006}, which is
@@ -131,24 +141,45 @@ much more computationally efficient than estimation methods when
 random effects are not Gaussian distributed
 \citep{devalpine_hastings:2002}.
 
-Exponential growth without density-dependence is rarely observed in
-natural populations, and thus $\exp(r)$ is often substituted for other
-population growth models such as the Ricker or Gompertz. Nonetheless,
-the basic structure shown in Eq.~\ref{eq:ss1} is common to most
-traditional state-space models. However, even though this is
-the most widespread approach for modeling population dynamics using
-time-series data, several problems are immediately evident. First,
-both $N_t$ and $X_t$ are typically non-negative integers, and hence
-the the Gaussian assumption is not justified.
+Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
+are the most widespread approach for modeling population dynamics
+using time-series data, several problems are evident. Namely, (1)
+time-series data and the underlying abundance parameters of interest
+are typically integer-valued, raising concerns about the use of
+Gaussian distribution shown in Eq~\ref{eq:ss1b}, (2) the model for
+observatoin error (Eq.~\ref{eq:ss1c}) has little biological basis, (3)
+spatial variation in abundance is not allowed, and (4) some of the
+paramters of the model are not estimable. We briefly discuss each of
+these points before describing a general approach to resolving these
+shortcomings.
+
+The fact that both abundance ($N_t$) and the observed data ($X_t$) are
+typically non-negative integers suggests that the
+Gaussian assumption in Eq.~\ref{eq:ss1b} is not justified.
 %is clearly a problem with this formulation because the normally distributed
 %random effects violate this constraint.
-One approach to circumventing this problem in hopes of adhering to the
-Gaussian assumption is to tranform abundance to
+Even so, efforts are often made to adhere to the
+Gaussian assumption by tranforming abundance to
 density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
 area surveyed. However, this transformation is problematic since
 abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
 zeros are replaced with some small number, although the
 effect of this is rarely discussed.
+
+Another problem with standard state-space models is that the
+observation error has no clear interpretation. The use of a mean zero
+Gaussian distribution implies that the observed data $X_t$ will be
+higher than $N_t$ as often as it is lower than $N_t$. It is hard
+to identify a mechanism that would cause such errors. A more likely
+form of observation error, and one that has been recognized for well
+over a century, results from failing to detect individuals that are
+present. Imperfect detection may be attributable to
+characteristics of the species under study, such as its elusiveness,
+or to the failings of the ecologist collecting the data in the field.
+Although a vast number of methods have been devised for accounting for
+this form of observation error, rarely have these methods been
+integrated into state-space models \citep[but
+see][]{buckland_etal:2004}.
 
 A more serious problem than the ones associated with the Gaussian
 assumptions is that the parameters of the simple state-space models
@@ -175,28 +206,38 @@ many studies of population dynamics, namely determining if and why a
 population is at equilibrium.
 
 A third problem with these models is that they do not admit
-spatial variation. This is not a fair criticism because this
-lies beyond the scope of traditional state-space models, but
-it does restrict the utility of their since it is typically
+spatial variation, which
+%. Recent work has sought to remedy this deficiencyThis is not a fair criticism because this
+%lies beyond the scope of traditional state-space models, but
+%it does
+restrict the utility of their since it is typically
 impossible assess the impacts of factors such as habitat
-fragmentation or climate change on a population without
-considering spatial variation. Indeed many populations are
+fragmentation or climate change on population dynamics without
+considering spatial variation in abundance. Indeed many populations are
 regulated by spatial processes such as source-sink dynamics.
 
+Although numerous extensions have been proposed to allow for spatial
+variation in abundance, in this paper we focus on the model of
 \citet{dail_madsen:2011} developed a model (henceforth the DM model)
-that resolves each of these problems with traditional state-space
-models. The DM model allows for inference about spatial and temporal
+that simultaneous resolves each of these problems with traditional state-space
+models. Specifically, the model (1) recognizes the discrete nature of
+count data and the underlying true abundance state, (2) has estimable
+parameters, including those describing the initial state at time
+$t=1$, and (3) allows for inference about both temporal and spatial
+variation in abundance.
+The DM model allows for inference about spatial and temporal
 dynamics in abundance while accounting for observation error using
 only spatially and temporally replicated count data.  Their model is
-an extension of the closed-population N-mixture model
+an extension of the closed-population $N$-mixture model
 \citep{royle:2004biom}, which was designed specifically to address the
 problem of
-modeling spatial variation in abundance when detection probability is
-less than unity. The DM extension relaxes the assumption of population
+modeling spatial variation in abundance in the presence of observation
+error, specifically, when detection probability is less than one. The
+DM extension relaxes the assumption of population
 closure and includes explicit parameters describing population change
 as a first-order Markovian process. [more details]
 
-[applications / potential etc... ] The DM model is relevant to a huge
+[applications / potential etc... ] The DM model is relevant to a vast
 number of problems confronting basic and applied ecological
 research. Answering questions about climate change etc... require
 spatially and temporally extensive datasets such as result from the
