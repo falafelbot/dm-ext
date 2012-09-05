@@ -124,18 +124,18 @@ One of the simplest state-space models can be described as follows.
 %observation error is not defined explicitly. As an example,
 Let $N_t$ be the abundance of a species during year $t$, for
 $t=1,\hdots,T$, and $X_t$ be
-the observed data, which differs from $N_t$ due to observation error
-($\zeta$). Temporal variation in $N_t$ is modeled using a
-deterministic population growth model (e.g. exponential, logistic, etc
-\dots) and stochastic model allowing for random process variation. A
-simple state
-space model that includes exponential growth and process variation
-($\grave{o}$) could be written as:
+the observed data, which differs from $N_t$ due to observation error,
+a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
+modeled using a deterministic population growth model
+(e.g. exponential, logistic, etc \dots) and stochastic model allowing
+for random process variation, which we denote $\grave{o}$ . As an
+example, under exponential population growth, the model could be
+written as:
 \begin{gather}
 N_t = N_{t-1}\exp(r)+\grave{o}_t \nonumber \\
 X_t = N_t + \zeta_t
 \end{gather}
-Here   is the intrinsic rate of increase. Typically, both random
+where $r$ is the intrinsic rate of increase. Typically, both random
 effects are assumed to follow normal distributions: $\grave{o}_t \sim
 \mathrm{N}(0, \sigma)$ and $\zeta_t \sim \mathrm{N}(0, \tau)$
 \citep{devalpine_hastings:2002,dennis_etal:2006}. Even though this is
