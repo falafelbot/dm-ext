@@ -316,26 +316,76 @@ application to existing datasets such the Breeding Bird Survey.
   probability. A simulation study
 \end{comment}
 
+
 \section{The Dail-Madsen Model}
 \label{sec:dm}
 
+\subsection{The Data}
 
-%\subsection{Original Formulation}
+The DM model requires count data collected at $R$ sites, each of which
+is surveyed on $T$ time periods, such as years. A site is ideally, but
+not necessarily, a
+well-defined region of a study area, such as a wetland or a patch of
+early-successional habitat. In some cases, a site may not have a clear
+biological significance, for instance in the case of randomly located
+survey plots. The timeframe of the study is arbitrary, but the general
+situation is one in which the time period is sufficiently long such
+that abundance changes at each site. We will call
+these time periods primary sampling periods to distinguish them from
+secondary sampling periods, which are repeated surveys within a
+primary period. In the case where no secondary sampling was conducted,
+let $n_{it}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data at site
+$i$ and primary period $t$. If $J$ secondary sampling periods were used, $n_{ijt}:
+j=1,\hdots,J$ is the count at site $i$ during secondary sampling
+occasion $j$ within year $t$. These are the observed data, which
+typically will less than the actual quantitiy of interest, abundance,
+denoted $N_{it}$. In cases where detection probability is perfect,
+abundance is observed directly such that $\{N_{it}\}$ are the data.
+
+\subsection{The Model}
 
 As originally formulated, the DM model includes submodels for four
 conditionally related processes: the initial abundance state, apparent
-survival, recruitment, and detection probability. \citet{dail_madsen:2011}
-proposed two distributions for initial abundance, the Poisson and negative
-binomial:
+survival (the number of individuals that survive and do not
+emmigrate), recruitment (the number of new individuals entering
+the population), and detection probability \citet{dail_madsen:2011}.
+Taken together, the first 3 processes describe the state process---the
+variation in abundance in space and time. The forth item in the list
+is the observation process, which describes the relationship between
+the true state, abundance, and the observed count data.
+
+\subsubsection{Initial abundance}
+
+In the original formulation,
+initial abundance---abundance at site $i$ during primary period 1, was
+modeled using either the Poisson or negative binomial distributions:
 \begin{gather}
-N_{it} \sim \mathrm{Pois}(\Lambda) \nonumber \\
-N_{it} \sim \mathrm{NB}(\Lambda, \alpha)
+N_{i1} \sim \mathrm{Pois}(\Lambda_i) \nonumber \\
+N_{i1} \sim \mathrm{NB}(\Lambda_i, \alpha)
 \label{eq:N1}
 \end{gather}
-where $N_{i1}$ is the abundance at site $i=1,\hdots,R$ during year 1
-and $\Lambda=\mathbb{E}[N_{i1}]$ is the expected abundance. The negative
-binomial model includes the overdispersion parameter $\alpha$.  The
-survival and recruitment terms allow abundance to change over time:
+where
+%$N_{i1}$ is the abundance at site $i=1,\hdots,R$ during year 1 and
+$\Lambda_i$ is the expected abundance at site $i$ during year 1. The
+Poisson distribution assumes that the mean of $N_{i1}$ is equal to its
+variance---an assumption relaxed when using the negative binomial
+distribution, which includes the overdispersion parameter $\alpha$.
+
+In either case, the model for initial abundance has two distinguising
+features. First, it allows one to model spatial variation in
+abundance. For instance, one might consider the influence of some
+environmental covariate on abundance using a simple generalized linear
+model such as $\log(\Lambda_i) = \beta^{\Lambda}_0 + \beta^{\Lambda}_1
+x_{i}$ which is a log-linear function with an intercept and slope
+parameter for the effect of $x_i$ on the logarithm of $\Lambda$.
+
+The second thing to note is that the spatial replicates resolve the
+problem of parameter non-identifiability that are common to standard
+state-space models.
+
+\subsubsection{Abundance after $t=1$}
+
+The survival and recruitment terms allow abundance to change over time:
 \begin{equation}
 \left.\begin{aligned}
 S_{it}|N_{it-1} &\sim \mathrm{Bin}(N_{it-1}, \omega) \\
