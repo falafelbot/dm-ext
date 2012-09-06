@@ -320,11 +320,22 @@ application to existing datasets such the Breeding Bird Survey.
 \section{The Dail-Madsen Model}
 \label{sec:dm}
 
+The DM model is an extension of the $N$-mixture model
+\citep{royle:2004biom}, which allows for inference about spatial
+variation in abundance when individuals cannot be detected with
+certainty. To estimate both abundance parameters and parameters of the
+detection process, the model uses replicate observations at each site,
+which are collected during sufficiently short time intervals such that
+the population can safely be assumed to be closed with respect to
+births, deaths, and movement. The DM model relaxes this closure
+assumption and includes explicit parameters
+describing population change over time.
+
+
 \subsection{The Data}
 
 The DM model requires count data collected at $R$ sites, each of which
-is surveyed on $T$ time periods, such as years. A site is ideally, but
-not necessarily, a
+is surveyed on $T$ time periods. A site is ideally, but not necessarily, a
 well-defined region of a study area, such as a wetland or a patch of
 early-successional habitat. In some cases, a site may not have a clear
 biological significance, for instance in the case of randomly located
@@ -344,23 +355,24 @@ abundance is observed directly such that $\{N_{it}\}$ are the data.
 
 \subsection{The Model}
 
-As originally formulated, the DM model includes submodels for four
-conditionally related processes: the initial abundance state, apparent
-survival (the number of individuals that survive and do not
-emmigrate), recruitment (the number of new individuals entering
-the population), and detection probability \citet{dail_madsen:2011}.
-Taken together, the first 3 processes describe the state process---the
-variation in abundance in space and time. The forth item in the list
+As originally formulated, the DM model includes submodels for three
+conditionally related processes: (1) initial abundance, i.e. the
+abundance at site $i$ during the first primary period,
+denoted $[N_{i1}]$, (2) subsequent abundance, which is dependent upon
+abundance in previous years $[N_{it}|N_{it-1}]$, and (3) the
+detection process, $[n_{it}|N_{it}]$ \citep{dail_madsen:2011}.
+The first two processes describe the state process---the
+variation in abundance in space and time. The third item in the list
 is the observation process, which describes the relationship between
 the true state, abundance, and the observed count data.
 
 \subsubsection{Initial abundance}
 
-In the original formulation,
-initial abundance---abundance at site $i$ during primary period 1, was
+In the original formulation, initial abundance was
 modeled using either the Poisson or negative binomial distributions:
 \begin{gather}
 N_{i1} \sim \mathrm{Pois}(\Lambda_i) \nonumber \\
+\text{or} \nonumber \\
 N_{i1} \sim \mathrm{NB}(\Lambda_i, \alpha)
 \label{eq:N1}
 \end{gather}
@@ -368,24 +380,34 @@ where
 %$N_{i1}$ is the abundance at site $i=1,\hdots,R$ during year 1 and
 $\Lambda_i$ is the expected abundance at site $i$ during year 1. The
 Poisson distribution assumes that the mean of $N_{i1}$ is equal to its
-variance---an assumption relaxed when using the negative binomial
-distribution, which includes the overdispersion parameter $\alpha$.
+variance, whereas the negative binomial distribution allows the
+variance to be greater than the mean with the amount of overdispersion
+determined by the parameter $\alpha$.
 
-In either case, the model for initial abundance has two distinguising
-features. First, it allows one to model spatial variation in
-abundance. For instance, one might consider the influence of some
-environmental covariate on abundance using a simple generalized linear
+Regardless of the specified distribution, the model for initial
+abundance has two distinguising features. First, it provides a
+mechanism for characterizing spatial variation in abundance. For
+instance, one might consider the influence of some environmental
+covariate ($x_i$) on abundance using a log-linear
 model such as $\log(\Lambda_i) = \beta^{\Lambda}_0 + \beta^{\Lambda}_1
-x_{i}$ which is a log-linear function with an intercept and slope
-parameter for the effect of $x_i$ on the logarithm of $\Lambda$.
-
-The second thing to note is that the spatial replicates resolve the
+x_{i}$. The second important point is that the spatial replicates resolve the
 problem of parameter non-identifiability that are common to standard
-state-space models.
+state-space models because, as demonstrated by \citet{royle:2004biom},
+process variation and observation error can be estimated from
+spatially-replicated count data. Hence, the first component of the
+model addresses issues (1) and (2) identified in the introduction.
 
-\subsubsection{Abundance after $t=1$}
+\subsubsection{Abundance in subsequent time periods}
 
-The survival and recruitment terms allow abundance to change over time:
+The DM model assumes that abundance in time $t$ is a function of
+abundance in time $t-1$, i.e. abundance at each site evolves as a
+first order Markovian process, although
+higher order processes are also possible.  \citet{dail_madsen:2011}
+considered several models to describe the temporal dynamics; however,
+in each case they modeled $N_t$ as the sum of two random variables:
+$S_t$, the number of indivduals surviving from $t-1$ and not
+emigrating; and $G_t$ the number of new individuals entering the
+population. Their most general model was
 \begin{equation}
 \left.\begin{aligned}
 S_{it}|N_{it-1} &\sim \mathrm{Bin}(N_{it-1}, \omega) \\
@@ -394,13 +416,38 @@ N_{it} &= S_{it}+G_{it}
 \end{aligned}\right\} \quad \text{for} \; t=2,\hdots,T
 \label{eq:Nt}
 \end{equation}
-where $\omega$ is the survival probability and $\gamma$ is the arrival
-rate (which can depend on $N_{it-1}$). Dail and Madsen propose three models
-for $\gamma$: the constant model, where $\gamma$ does not depend on
-$N_{it-1}$, and which simulates a ``propagule rain'' of recruitment; the
-autoregressive model , which
-simulates geometric or density independent growth; and the ``no-trend''
-model, which keeps abundance fixed over time.
+where $\omega$ is the apparent survival probability and $\gamma$ is
+the recruitment rate (which can depend on $N_{it-1}$). In the absence
+of movement, $\omega$ is exactly the probability of surviving from
+year $t$ to $t-1$, and $\gamma$ is the per-capita birth rate. However,
+in the more common scenario when immigration and emigration occur,
+$\omega$ is the probability of surviving and not emigrating, and
+$\gamma$ is product of the birth rate and the emigration rate,
+i.e. the recruitment rate. \citet{dail_madsen:2011} proposed three
+models for $\gamma$: the constant model,
+$G_t \sim \mathrm{Pois}(\gamma)$ where recruitment does not depend on
+$N_{it-1}$, and which simulates a ``propagule rain'' of new individuals; the
+autoregressive model, $G_t \sim \mathrm{Pois}(\gamma(N_{it-1}))$, which
+simulates geometric or density independent growth; and the
+``no-trend'' model, $\gamma = (1-\omega)\Lambda$, which keeps
+expected abundance constant over time. As before, covariates of
+$\omega$ and $\gamma$ can be easily accomodated, for example using
+logit- and log-linear models respectively.
+
+In cases where no movement occurs, the DM model can directly estimate
+demographich parameters, and this mechanistic description of
+population change is much more appealing than classical
+population growth models such as the logistic model. However, movement
+complicates the interpretation of the the parameters, reducing the
+connection to specific population processes. In such cases, the model
+of dynamics shown in Eq~\ref{eq:Nt} can be replaced with standard
+population models as described in Sect~\ref{sec:ext}. Irrespective of
+the model for population dynamics, it is worthwhile to note that the
+discrete distributions used in the DM model avoid the issues
+associated with the Gaussian distribution used to model process
+variation in standard state-space models.
+
+\subsubsection{Observation process}
 
 Eqs.~\ref{eq:N1} and \ref{eq:Nt} fully specify the state model---the
 model for spatial and temporal variation in abundance. The observation
@@ -410,53 +457,15 @@ detection. The simplest model for imperfect detection is
   n_{it} \sim \mathrm{Bin}(N_{it}, p)
   \label{eq:p1}
 \end{equation}
-
-Initial abundance, apparent survival, recruitment, and detection can
-all be modeled as functions of covariates, allowing fairly
-sophisticated inference about population processes and dynamics from
-point count data.
+Surprsingly detection probability, $p$, can be estimated without
+secondary sampling occasions. However, this is only possible because
+if the parameteric assumptions of the population dynamics are met
+exactly. In practice, it is preferable to obtain direct information
+about $p$ using secondary sampling occassions or some other auxiliary
+data, as is demonstrated in section
 
 \section{Model Extensions}
 \label{sec:ext}
-
-\subsection{Range model of initial abundance}
-
-\citet{dail_madsen:2011} suggested two distributions for modeling
-initial abundance: Poisson and negative binomial.  We have extended
-their model to include another distribution, the zero-inflated
-Poisson.  This could be useful when, for example, one is modeling the
-abundance of several bird species with the same set of BBS routespoint
-count surveys for all species, but this set includes routes sites
-outside the range of some of the bird species.  The distribution of
-initial abundances can be represented as:
-\begin{equation}
-N_{i1} \sim \left\{
-\begin{aligned}
-0 &\; \text{with probability} \; \psi \\
-\Lambda &\; \text{with probability} \; (1-\psi)
-\end{aligned} \right.
-\label{eq:ZIP}
-\end{equation}
-where $\psi$ represents the proportion of extra zeros.
-
-These models allow three sources of zero counts by observers: a
-species was at a route but not detected; the route was within the
-species' range but there were no birds at that site in that year; and
-the route was outside the species' range.  Furthermore, detection,
-abundance, and zero-inflation can be modeled separately as functions
-of different (or the same) covariates.  For example, detection of
-species x at site y in year z might depend on wind speed, abundance on
-forest type and weather, and zero-inflation upon elevation and
-climate.  This approach combines elements of occupancy modeling
-\citep{mackenzie_etal:2006} and abundance modeling.
-%, and could prove useful
-%for distinguishing species' fundamental and realized niches
-%(Hutchinson 1957).
-
-The zero inflation factor can also affect
-recruitment or population dynamics (see below).
-We also considered a zero-inflated negative binomial model of initial
-abundance, but this model did not perform well in preliminary tests.
 
 \subsection{Population growth models}
 
@@ -561,6 +570,76 @@ We have implemented all preceding models in
 a maximum likelihood framework by extending the \texttt{unmarked} package
 \citep{fiske_chandler:2011} in \textbf{R} \citep{R-2012}.
 
+
+%\subsection{Range model of initial abundance}
+\subsection{Excess zeros}
+
+\citet{dail_madsen:2011} suggested two distributions for modeling
+initial abundance: Poisson and negative binomial.  We have extended
+their model to include another distribution, the zero-inflated
+Poisson.  This could be useful when, for example, one is modeling the
+abundance of several bird species with the same set of BBS routespoint
+count surveys for all species, but this set includes routes sites
+outside the range of some of the bird species.  The distribution of
+initial abundances can be represented as:
+\begin{equation}
+N_{i1} \sim \left\{
+\begin{aligned}
+0 &\; \text{with probability} \; \psi \\
+\Lambda &\; \text{with probability} \; (1-\psi)
+\end{aligned} \right.
+\label{eq:ZIP}
+\end{equation}
+where $\psi$ represents the proportion of extra zeros.
+
+These models allow three sources of zero counts by observers: a
+species was at a route but not detected; the route was within the
+species' range but there were no birds at that site in that year; and
+the route was outside the species' range.  Furthermore, detection,
+abundance, and zero-inflation can be modeled separately as functions
+of different (or the same) covariates.  For example, detection of
+species x at site y in year z might depend on wind speed, abundance on
+forest type and weather, and zero-inflation upon elevation and
+climate.  This approach combines elements of occupancy modeling
+\citep{mackenzie_etal:2006} and abundance modeling.
+%, and could prove useful
+%for distinguishing species' fundamental and realized niches
+%(Hutchinson 1957).
+
+The zero inflation factor can also affect
+recruitment or population dynamics (see below).
+We also considered a zero-inflated negative binomial model of initial
+abundance, but this model did not perform well in preliminary tests.
+
+%\subsection{Dynamic range models}
+
+The zero-inflated Poisson distribution can be applied to not only
+initial abundance but also to recruitment and population growth terms.
+For example, the recruitment term of the constant DM model (equation
+4) can be modified as follows:
+\begin{equation}
+G_{it} \sim \left\{
+\begin{aligned}
+0 &\; \text{with probability} \; \psi \\
+\mathrm{Poisson}(\gamma) &\; \text{with probability} \; (1-\psi)
+\end{aligned} \right.
+\label{eq:ZIPts}
+\end{equation}
+When both initial abundance and dynamics are modeled as zero-inflated,
+$\psi$ can be modeled as time-varying or not (in either case, $\psi$ can also be
+modeled as varying over space).  In the latter case, it makes sense
+for the model to "remember" which sites are inside the range of the
+species between the initial abundance stage and each time step of the
+dynamics stage (see code sample?).  Adding zero-inflation to the
+dynamics of the autoregressive, trend, Ricker, or Gompertz models
+(without immigration) should have no effect when initial abundance is
+also zero-inflated unless $\psi$ is time-varying (because these dynamic
+models cannot recover from zero abundance).  We have implemented
+zero-inflated dynamics in the Bayesian framework using program
+\textrm{JAGS} \citep[version 3.2.0]{plummer:2003}.
+%(version 3.2.0; Plummer 2003)
+
+
 \subsection{Random effects of observers}
 
 Differences in observers' ability to see, hear, or identify
@@ -605,34 +684,10 @@ Development Core Team 2011) package \texttt{rjags} \citep{plummer:2011}
 %(Plummer 2011)
 interface.
 
-\subsection{Dynamic range models}
 
-The zero-inflated Poisson distribution can be applied to not only
-initial abundance but also to recruitment and population growth terms.
-For example, the recruitment term of the constant DM model (equation
-4) can be modified as follows:
-\begin{equation}
-G_{it} \sim \left\{
-\begin{aligned}
-0 &\; \text{with probability} \; \psi \\
-\mathrm{Poisson}(\gamma) &\; \text{with probability} \; (1-\psi)
-\end{aligned} \right.
-\label{eq:ZIPts}
-\end{equation}
-When both initial abundance and dynamics are modeled as zero-inflated,
-$\psi$ can be modeled as time-varying or not (in either case, $\psi$ can also be
-modeled as varying over space).  In the latter case, it makes sense
-for the model to "remember" which sites are inside the range of the
-species between the initial abundance stage and each time step of the
-dynamics stage (see code sample?).  Adding zero-inflation to the
-dynamics of the autoregressive, trend, Ricker, or Gompertz models
-(without immigration) should have no effect when initial abundance is
-also zero-inflated unless $\psi$ is time-varying (because these dynamic
-models cannot recover from zero abundance).  We have implemented
-zero-inflated dynamics in the Bayesian framework using program
-\textrm{JAGS} \citep[version 3.2.0]{plummer:2003}.
-%(version 3.2.0; Plummer 2003)
+\subsection{Bayesian inference}
 
+priors are good
 
 \section{Applications}
 \label{sec:app}
