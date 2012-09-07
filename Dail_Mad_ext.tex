@@ -71,10 +71,11 @@ random observer effects, range, Ricker model, zero-inflated
 
 Theoretical ecology requires models of population dynamics for testing
 hypotheses regarding spatial and temporal variation in
-abundance---hypotheses relating to the importance and existence of
-phenomenon such as density-dependent population regulation, population
-cycling, and spatial synchrony
-\citep{may:1975,royama:1977,turchin:1990,dennis_taper:1994,bjornstad_etal:1999}.
+abundance. For example, much theoretical work has focused on
+understanding the importance and existence of phenomenon such as
+density-dependent population regulation, population cycling, and spatial synchrony
+\citep{may:1975,royama:1977,turchin:1990,dennis_taper:1994,bjornstad_etal:1999},
+and population models are required to evaluate associated hypotheses.
 In applied contexts, population models are used for
 estimating extinction probabilities
 \citep{schoener_spiller:1992,nadeem_lele:2011} and for predicting the
@@ -97,13 +98,15 @@ detection \citep{link_nichols:1994,kery_etal:2009}.
 State-space models are a widely used approach for
 studying population dynamics while accounting for process variation
 and observation error \citep{devalpine_hastings:2002,
-  buckland_etal:2004, dennis_etal:2006}. Conventional state-space
-models are simply time-series models in which the true state of the
+  buckland_etal:2004, dennis_etal:2006}. Classical state-space
+models are time-series models in which the true state of the
 system (e.g. population size during each year) is observed
 imperfectly. One reason for the widespread adoption of state-space
 models in ecology is that failure to account for process variation and
 observation error can bias estimators of abundance and population
-growth parameters \citep{kery_etal:2009}. For instance, the strength of
+growth parameters.
+% \citep{kery_etal:2009}.
+For instance, the strength of
 density dependence will be over-estimated if observation error is
 ignored \citep{link_nichols:1994,shenk_etal:1998}.
 
@@ -113,7 +116,7 @@ $t=1,\hdots,T$, and let $X_t$ be
 the observed data, which differs from $N_t$ due to observation error,
 a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
 modeled using a deterministic population growth model
-(e.g. exponential, logistic, etc \dots) and a stochastic model allowing
+(e.g. exponential, logistic, etc \dots)~and a stochastic model allowing
 for random process variation, which we denote $\grave{o}_t$. As an
 example, under exponential population growth, the model could be
 written as:
@@ -186,11 +189,19 @@ assumptions is that the parameters of the simple state-space models
 such as Eq~\ref{eq:ss1} are not identifiable in many
 circumstances \citep{polansky_etal:2009}. Specifically, the Markovian
 nature of the model implies the following likelihood
-\begin{equation}
-\mathcal{L}(\Theta|\{X_t\}) = [N_1|\Theta]\prod_{t=2}^T
-[N_t|N_{t-1},\Theta]
-\label{eq:L1}
-\end{equation}
+\begin{subequations}
+  \label{eq:ss1}
+  \begin{align}
+    [N_1&] \\ \label{eq:ss1b}
+    [N_t&|N_{t-1}] &\text{for} \; t=2,\hdots,T \\ \label{eq:ss1c}
+    [X_t&|N_t]  &\text{for} \; t=1,\hdots,T
+  \end{align}
+\end{subequations}
+%\begin{equation}
+%\mathcal{L}(\Theta|\{X_t\}) = [N_1|\Theta]\prod_{t=2}^T
+%[N_t|N_{t-1},\Theta]
+%\label{eq:L1}
+%\end{equation}
 The first term is the probability density for the first observation in
 the time series, $X_1$, yet it is intuitively not possible to estimate the
 parameter(s) of this distribution using only a single
@@ -218,36 +229,57 @@ regulated by spatial processes such as source-sink dynamics.
 
 Several extensions of state-space models have been proposed to
 overcome the limitations described
-above. \citet{devalpine_hastings:2002} described methods for fitting
-models with non-Gaussian distributions for the process and observation
-errors. Observation models with more intuitive interpretations have
-been proposed by \citet{kery_etal:2009}. \citet{lele_etal:1998} developed
-models allowing for inference about spatial and temporal variation in
-abundance, and their developments also resolved the problems of
-non-identifiability for the parameters of the initial state at time
-$t=1$. In spite of these improvements, until recently, few methods
-existed to address each issue simultaneously, and even fewer of these
-methods have been made readily available to applied ecologists.
+above. \citet{devalpine_hastings:2002} and \citet{kery_etal:2009}
+described methods for fitting models with non-Gaussian distributions
+for the process and observation errors. Observation models with more
+intuitive interpretations, such as those that explicitly model
+detection probability, have been proposed by
+\citet{kery_etal:2009}. \citet{lele_etal:1998} and
+\citep{kery_etal:2009} developed models allowing for inference about
+spatial and temporal variation in abundance, and their developments
+also resolved the problems of non-identifiability for the parameters
+of the initial state at time $t=1$. Of these extensions, the work by
+\citet{kery_etal:2009} is unique in that it addressed multiple limitations
+simultaneously. However, their models did not include any serial
+depedence, which is a hallmark of population models. This limits the
+utility of their model for making inferences about explicit population
+processes. To do so, recent work has sought to combine multiple
+sources of information, such as counts and mark-recapture data, to
+allow for inferences about population processes such as mortality and
+survival, rather than just population growth \citep{besbeas_etal:2002,
+  buckland_etal:2004, schaub_etal:2007}. Although these integrated
+population models may be viewed as the gold standard in state-space
+modeling, ecologists are not always so fortunate to have direct
+information about vital rates, especially when inferences are required
+at large spatial scales. Rather, count data are much more common, and
+are produced by many of the largest monitoring programs in the world,
+such as the North American Breeding Bird Survey
+\citep[BBS;][]{robbins_etal:1986}.
 
 In this paper, we focus on the model of
 \citet{dail_madsen:2011} %developed a model (henceforth the DM model)
 that simultaneous resolves each of the abovementioned problems with
-traditional state-space models. Specifically, the model (1) recognizes
+traditional state-space models, and is designed for simple count
+data. The model (1) recognizes
 the discrete nature of count data and the underlying true abundance
 state, (2) includes a realistic observation model with explicit
 detection probability parameters (3) has estimable parameters,
 including those describing the initial state at time $t=1$, and (4)
 allows for inference about both temporal and spatial variation in
-abundance. In some respects, the DM model can be viewed as a specific
-manifestation of the general state-space model formulated by
-\citep{buckland_etal:2004}. However, their model was designed to allow
-for inference about demographic parameters, which will typically
-require mark-recapture data. Although this may be viewed as the
-gold standard in many studies of wildlife populations, in this paper,
-we focus on the analysis of count data, which is the typical source of
-information used in state-state modeling applications, and one of the
-most widely available forms of ecological data---it is also the data
-required by the DM model.
+abundance.
+
+\begin{comment}
+  In some respects, the DM model can be viewed as a specific
+  manifestation of the general state-space model formulated by
+  \citep{buckland_etal:2004}. However, their model was designed to
+  allow for inference about demographic parameters, which will
+  typically require mark-recapture data. Although this may be viewed
+  as the gold standard in many studies of wildlife populations, in
+  this paper, we focus on the analysis of count data, which is the
+  typical source of information used in state-state modeling
+  applications, and one of the most widely available forms of
+  ecological data---it is also the data required by the DM model.
+\end{comment}
 
 In the following section, we describe the DM model in its original
 form, and we explain how it resolves each of the deficieinces with
