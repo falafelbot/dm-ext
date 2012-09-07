@@ -91,9 +91,6 @@ Second, abundance---the natural state variable in studies
 of population dynamics---can rarely be observed perfectly in field
 studies because of observation error, such as imperfect
 detection \citep{link_nichols:1994,kery_etal:2009}.
-%Failure to account for process
-%variation and observation error can bias the estimators of abundance
-%and related parameters.
 
 State-space models are a widely used approach for
 studying population dynamics while accounting for process variation
@@ -104,9 +101,7 @@ system (e.g. population size during each year) is observed
 imperfectly. One reason for the widespread adoption of state-space
 models in ecology is that failure to account for process variation and
 observation error can bias estimators of abundance and population
-growth parameters.
-% \citep{kery_etal:2009}.
-For instance, the strength of
+growth parameters. For instance, the strength of
 density dependence will be over-estimated if observation error is
 ignored \citep{link_nichols:1994,shenk_etal:1998}.
 
@@ -118,25 +113,37 @@ a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
 modeled using a deterministic population growth model
 (e.g. exponential, logistic, etc \dots)~and a stochastic model allowing
 for random process variation, which we denote $\grave{o}_t$. As an
-example, under exponential population growth, the model could be
-written as:
-%\begin{gather}
-%N_t = N_{t-1}\exp(r)+\grave{o}_t \nonumber \\
-%X_t = N_t + \zeta_t
-%\label{eq:ss1}
-%\end{gather}
-\begin{subequations}
-  \label{eq:ss1}
-  \begin{gather}
-    \mu_t = N_{t-1}\exp(r) \label{eq:ss1a} \\ \label{eq:ss1b}
-    N_t \sim \text{N}(\mu_t, \grave{o}_t) \\ \label{eq:ss1c}
-    X_t \sim \text{N}(N_t, \zeta_t)
-  \end{gather}
-\end{subequations}
-where $r$ is the intrinsic rate of increase. Although the exponential
-growth model shown here is often replaced with density dependent
-models, most state-space models share the common feature that the
-error terms are assumed to be i.i.d random effects distrubted as
+example, under density-independent exponential population growth, the
+model could be written as:
+\begin{equation}
+%  \label{eq:ss1}
+  \left.
+  \begin{aligned}
+    \mu_t &= N_{t-1}\exp(r) \label{eq:ss1a} \\ %\label{eq:ss1b}
+    N_t &\sim \text{N}(\mu_t, \grave{o}_t) \\ %\label{eq:ss1c}
+    X_t &\sim \text{N}(N_t, \zeta_t)
+  \end{aligned} \;
+  \right\} \; \text{for} \; t=2,\hdots,T
+\end{equation}
+%\begin{subequations}
+%  \label{eq:ss1}
+%  \left.
+%  \begin{gather}
+%    \mu_t = N_{t-1}\exp(r) \label{eq:ss1a} \\ \label{eq:ss1b}
+%    N_t \sim \text{Normal}(\mu_t, \grave{o}_t) \\ \label{eq:ss1c}
+%    X_t \sim \text{Normal}(N_t, \zeta_t)
+%  \end{gather}
+%  \right\} \text{for}
+%\end{subequations}
+where $r$ is the intrinsic rate of increase. Note that no model is
+presented for the initial state at $t=1$---this issue will be
+discussed subsequently. Note also that the exponential
+growth model shown in Eq.~\ref{eq:ss1a} can be easily replaced with
+any population growth model, including density-depedent models. This
+flexibility is an appealing feature of state-space models. One feature
+that is common to classical state-space models is that the
+error terms are assumed to be i.i.d random effects following Gaussian
+(Normal) distributions:
 $\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
 $\zeta_t \sim \mathrm{N}(0, \tau)$. The Gaussian assumption allows for parameter
 estimation using the Kalman filter \citep{dennis_etal:2006}, which is
