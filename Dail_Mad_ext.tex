@@ -5,6 +5,7 @@
 \usepackage{setspace}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{bm}
 \usepackage{graphicx}
 \usepackage[round,colon,authoryear]{natbib}
 \usepackage{color, soul}
@@ -115,33 +116,37 @@ modeled using a deterministic population growth model
 for random process variation, which we denote $\grave{o}_t$. As an
 example, under density-independent exponential population growth, the
 model could be written as:
-\begin{equation}
-%  \label{eq:ss1}
-  \left.
-  \begin{aligned}
-    \mu_t &= N_{t-1}\exp(r) \label{eq:ss1a} \\ %\label{eq:ss1b}
-    N_t &\sim \text{N}(\mu_t, \grave{o}_t) \\ %\label{eq:ss1c}
-    X_t &\sim \text{N}(N_t, \zeta_t)
-  \end{aligned} \;
-  \right\} \; \text{for} \; t=2,\hdots,T
-\end{equation}
-%\begin{subequations}
-%  \label{eq:ss1}
-%  \left.
-%  \begin{gather}
-%    \mu_t = N_{t-1}\exp(r) \label{eq:ss1a} \\ \label{eq:ss1b}
-%    N_t \sim \text{Normal}(\mu_t, \grave{o}_t) \\ \label{eq:ss1c}
-%    X_t \sim \text{Normal}(N_t, \zeta_t)
-%  \end{gather}
-%  \right\} \text{for}
-%\end{subequations}
-where $r$ is the intrinsic rate of increase. Note that no model is
-presented for the initial state at $t=1$---this issue will be
-discussed subsequently. Note also that the exponential
-growth model shown in Eq.~\ref{eq:ss1a} can be easily replaced with
-any population growth model, including density-depedent models. This
-flexibility is an appealing feature of state-space models. One feature
-that is common to classical state-space models is that the
+% \begin{equation}
+%   \left.
+%   \begin{aligned}
+%     \mu_t &= N_{t-1}\exp(r) \\ %\label{eq:ss1b}
+%     N_t &= \mu_t + \grave{o}_t \\ %\text{N}(\mu_t, \grave{o}_t) \\ %\label{eq:ss1c}
+%     X_t &= N_t + \zeta_t %\text{N}(N_t, \zeta_t)
+%   \end{aligned} \;
+%   \right\} \; \text{for} \; t=2,\hdots,T
+%   \label{eq:ss1}
+% \end{equation}
+\begin{subequations}
+  \begin{align}
+%    \mu_t &= N_{t-1}\exp(r) \quad \text{for} \; t=2,\hdots,T
+    N_1 &= X_1 \label{ss1a} \\
+    N_t &= \mu_t + \grave{o}_{t-1} \quad \text{for} \; t=2,\hdots,T \label{eq:ss1b} \\
+    X_t &= N_t + \zeta_t \quad\;\;\; \text{for} \; t=1,\hdots,T \label{eq:ss1c}
+  \end{align}
+  \label{eq:ss1}
+\end{subequations}
+where $\mu_t$ is a deterministic function describing population
+growth. For instance, under exponential growth, $\mu_t =
+N_{t-1}e^{r}$ where $r$ is the intrinsic rate of
+increase. Alternatively, one might consider density-dependent models,
+and.  This
+flexibility is an appealing feature of state-space models.
+Note that no model is
+presented for the initial state at $t=1$; we will return to this issue
+subsequently. Note also that the exponential
+growth model shown in Eq.~\ref{eq:ss1} can be easily replaced with
+any population growth model, including density-depedent models. One feature
+that is common to most classical state-space models is that the
 error terms are assumed to be i.i.d random effects following Gaussian
 (Normal) distributions:
 $\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
@@ -156,20 +161,18 @@ are the most widespread approach for modeling population dynamics
 using time-series data, several problems are evident. Namely, (1)
 time-series data and the underlying abundance parameters of interest
 are typically integer-valued, raising concerns about the use of
-Gaussian distribution shown in Eq~\ref{eq:ss1b}, (2) the model for
-observatoin error (Eq.~\ref{eq:ss1c}) has little biological basis, (3)
+Gaussian distribution for the random effects, (2) the model for
+observatoin error has little biological basis, (3)
 spatial variation in abundance is not allowed, and (4) some of the
 paramters of the model are not estimable. We briefly discuss each of
 these points before describing a general approach to resolving these
 shortcomings.
 
 The fact that both abundance ($N_t$) and the observed data ($X_t$) are
-typically non-negative integers suggests that the
-Gaussian assumption in Eq.~\ref{eq:ss1b} is not justified.
-%is clearly a problem with this formulation because the normally distributed
-%random effects violate this constraint.
-Even so, efforts are often made to adhere to the
-Gaussian assumption by tranforming abundance to
+typically non-negative integers suggests that it is inappropriate to
+model process variation and observation error using Gaussian
+distributions. Nonetheless, efforts have been made to adhere to the
+Gaussian assumptions by tranforming abundance to
 density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
 area surveyed. However, this transformation is problematic since
 abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
@@ -194,21 +197,31 @@ see][]{buckland_etal:2004}.
 A more serious problem than the ones associated with the Gaussian
 assumptions is that the parameters of the simple state-space models
 such as Eq~\ref{eq:ss1} are not identifiable in many
-circumstances \citep{polansky_etal:2009}. Specifically, the Markovian
-nature of the model implies the following likelihood
+circumstances \citep{polansky_etal:2009}. Recall that the
+Eq.~\ref{eq:ss1} did not specify distributions for $N_1$ or
+$X_1$; however, such distributions are needed to fully specify the
+model. Indeed, a fully-specified state-space model requires the
+specification of three probability distributions, which we denote
+using bracket notation:
 \begin{subequations}
-  \label{eq:ss1}
+  \label{eq:ss2}
   \begin{align}
-    [N_1&] \\ \label{eq:ss1b}
-    [N_t&|N_{t-1}] &\text{for} \; t=2,\hdots,T \\ \label{eq:ss1c}
-    [X_t&|N_t]  &\text{for} \; t=1,\hdots,T
+    [N_1&|\bm{\theta}] \\ \label{eq:ss2b}
+    [N_t&|N_{t-1},\bm{\Theta}] \quad \text{for} \; t=2,\hdots,T \\ \label{eq:ss2c}
+    [X_t&|N_t,\bm{p}]  \qquad \; \text{for} \; t=1,\hdots,T
   \end{align}
 \end{subequations}
-%\begin{equation}
-%\mathcal{L}(\Theta|\{X_t\}) = [N_1|\Theta]\prod_{t=2}^T
-%[N_t|N_{t-1},\Theta]
-%\label{eq:L1}
-%\end{equation}
+where $\bm{\theta}$ are the process variation parameters governing
+initial abundance, $\bm{\Theta}$ are the process variation parameters
+influencing how abundance changes over time, and $\bm{p}$ are the
+observation error parameters. In our first example, Eq.~\ref{eq:ss1},
+But what should these distributions be, and how could
+parameters of the distributions be
+estimated since there is only a single observation available? In fact,
+they cannotThe reason they were omitted is that it is not possible to
+estimate the parameters of the i
+However, a completSpecifically, the Markovian
+nature of the model implies the following likelihood
 The first term is the probability density for the first observation in
 the time series, $X_1$, yet it is intuitively not possible to estimate the
 parameter(s) of this distribution using only a single
