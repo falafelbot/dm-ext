@@ -106,55 +106,44 @@ growth parameters. For instance, the strength of
 density dependence will be over-estimated if observation error is
 ignored \citep{link_nichols:1994,shenk_etal:1998}.
 
-One of the simplest state-space models can be described as follows.
+A simple state-space models can be described as follows.
 Let $N_t$ be the abundance of a species during year $t$, for
 $t=1,\hdots,T$, and let $X_t$ be
 the observed data, which differs from $N_t$ due to observation error,
 a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
-modeled using a deterministic population growth model
-(e.g. exponential, logistic, etc \dots)~and a stochastic model allowing
-for random process variation, which we denote $\grave{o}_t$. As an
-example, under density-independent exponential population growth, the
-model could be written as:
-% \begin{equation}
-%   \left.
-%   \begin{aligned}
-%     \mu_t &= N_{t-1}\exp(r) \\ %\label{eq:ss1b}
-%     N_t &= \mu_t + \grave{o}_t \\ %\text{N}(\mu_t, \grave{o}_t) \\ %\label{eq:ss1c}
-%     X_t &= N_t + \zeta_t %\text{N}(N_t, \zeta_t)
-%   \end{aligned} \;
-%   \right\} \; \text{for} \; t=2,\hdots,T
-%   \label{eq:ss1}
-% \end{equation}
+modeled using a deterministic population growth model, $\mu(N_{t-1})$,
+coupled with a stochastic model allowing
+for random process variation. %, which we denote $\grave{o}_t$.
+The deterministic model may be density-dependent, for example
+logistic, or it might be density-independent, as in the case of
+exponential growth, in which $\mu(N_{t-1}) = N_{t-1}e^{r}$ where $r$
+is the intrinsic rate of increase. The full model can now be written
+as:
+%As an example, under
+%density-independent exponential population growth, the
+%model could be written as:
 \begin{subequations}
+  \label{eq:ss1}
   \begin{align}
 %    \mu_t &= N_{t-1}\exp(r) \quad \text{for} \; t=2,\hdots,T
-    N_1 &= X_1 \label{ss1a} \\
-    N_t &= \mu_t + \grave{o}_{t-1} \quad \text{for} \; t=2,\hdots,T \label{eq:ss1b} \\
-    X_t &= N_t + \zeta_t \quad\;\;\; \text{for} \; t=1,\hdots,T \label{eq:ss1c}
+    N_1 &= X_1 \label{eq:ss1a} \\
+    N_t &= \mu(N_{t-1}) + \grave{o}_{t-1} \quad \text{for} \; t=2,\hdots,T \label{eq:ss1b} \\
+    X_t &= N_t + \zeta_t \qquad \qquad \;\, \text{for} \; t=1,\hdots,T \label{eq:ss1c}
   \end{align}
-  \label{eq:ss1}
 \end{subequations}
-where $\mu_t$ is a deterministic function describing population
-growth. For instance, under exponential growth, $\mu_t =
-N_{t-1}e^{r}$ where $r$ is the intrinsic rate of
-increase. Alternatively, one might consider density-dependent models,
-and.  This
-flexibility is an appealing feature of state-space models.
-Note that no model is
-presented for the initial state at $t=1$; we will return to this issue
-subsequently. Note also that the exponential
-growth model shown in Eq.~\ref{eq:ss1} can be easily replaced with
-any population growth model, including density-depedent models. One feature
-that is common to most classical state-space models is that the
-error terms are assumed to be i.i.d random effects following Gaussian
-(Normal) distributions:
+%{\flushleft where} $\mu(N_{t-1})$ is the deterministic population
+%growth model. %One might alternatively consider density-dependent models
+%for $\mu(N_{t-1})$, and this flexibility is an appealing feature of
+%state-space models.
+In classical state-space models, the two sets of random effects %In most classical state-space models both sets of parameters
+are assumed to be i.i.d Gaussian deviates:
 $\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
-$\zeta_t \sim \mathrm{N}(0, \tau)$. The Gaussian assumption allows for parameter
-estimation using the Kalman filter \citep{dennis_etal:2006}, which is
-much more computationally efficient than estimation methods when
-random effects are not Gaussian distributed
-\citep{devalpine_hastings:2002}.
+$\zeta_t \sim \mathrm{N}(0, \tau)$.
+Note that Eq~\ref{eq:ss1a} indicates that no process variation is
+present in year 1. This assumption is often made
+due to parameter identifiability problems, which we will describe
+shortly. First, we turn our attention to the models for the random
+effects.
 
 Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
 are the most widespread approach for modeling population dynamics
@@ -168,7 +157,14 @@ paramters of the model are not estimable. We briefly discuss each of
 these points before describing a general approach to resolving these
 shortcomings.
 
-The fact that both abundance ($N_t$) and the observed data ($X_t$) are
+These assumptions are motivated by
+convenience rather than biology. Specifically, the Gaussian assumption
+allows for parameter estimation using the Kalman filter
+\citep{dennis_etal:2006}, which is much more computationally efficient
+than estimation methods when random effects are not Gaussian distributed
+\citep{devalpine_hastings:2002}. The problem with this is that it
+allows for negative values of the state-variable, which is
+inconsistent with the observed data. The fact that both abundance ($N_t$) and the observed data ($X_t$) are
 typically non-negative integers suggests that it is inappropriate to
 model process variation and observation error using Gaussian
 distributions. Nonetheless, efforts have been made to adhere to the
