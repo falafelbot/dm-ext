@@ -119,55 +119,54 @@ logistic, or it might be density-independent, as in the case of
 exponential growth, in which $\mu(N_{t-1}) = N_{t-1}e^{r}$ where $r$
 is the intrinsic rate of increase. The full model can now be written
 as:
-%As an example, under
-%density-independent exponential population growth, the
-%model could be written as:
 \begin{subequations}
   \label{eq:ss1}
   \begin{align}
-%    \mu_t &= N_{t-1}\exp(r) \quad \text{for} \; t=2,\hdots,T
     N_1 &= X_1 \label{eq:ss1a} \\
     N_t &= \mu(N_{t-1}) + \grave{o}_{t-1} \quad \text{for} \; t=2,\hdots,T \label{eq:ss1b} \\
     X_t &= N_t + \zeta_t \qquad \qquad \;\, \text{for} \; t=1,\hdots,T \label{eq:ss1c}
   \end{align}
 \end{subequations}
-%{\flushleft where} $\mu(N_{t-1})$ is the deterministic population
-%growth model. %One might alternatively consider density-dependent models
-%for $\mu(N_{t-1})$, and this flexibility is an appealing feature of
-%state-space models.
-In classical state-space models, the two sets of random effects %In most classical state-space models both sets of parameters
+where $\grave{o}_t$ is the random effect allowing for process
+variation unaccounted for by the deterministic model. In classical
+state-space models, the two sets of random effects
 are assumed to be i.i.d Gaussian deviates:
 $\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
-$\zeta_t \sim \mathrm{N}(0, \tau)$.
-Note that Eq~\ref{eq:ss1a} indicates that no process variation is
-present in year 1. This assumption is often made
-due to parameter identifiability problems, which we will describe
-shortly. First, we turn our attention to the models for the random
-effects.
+$\zeta_t \sim \mathrm{N}(0, \tau)$. It is also standard practice to
+act as though there is no process variation associated with $N_1$, as
+indicated by Eq~\ref{eq:ss1a}.
+% indicates that no process variation is
+%present in year 1. This assumption is often made
+%due to parameter identifiability problems, which we will describe
+%shortly. First, we turn our attention to the models for the random
+%effects.
 
 Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
 are the most widespread approach for modeling population dynamics
 using time-series data, several problems are evident. Namely, (1)
 time-series data and the underlying abundance parameters of interest
-are typically integer-valued, raising concerns about the use of
-Gaussian distribution for the random effects, (2) the model for
-observatoin error has little biological basis, (3)
+are typically integer-valued, as in the case of count data, raising
+concerns about the use of Gaussian distribution for the random
+effects, (2) the model for observation error has little biological basis, (3)
 spatial variation in abundance is not allowed, and (4) some of the
 paramters of the model are not estimable. We briefly discuss each of
 these points before describing a general approach to resolving these
 shortcomings.
 
-These assumptions are motivated by
-convenience rather than biology. Specifically, the Gaussian assumption
-allows for parameter estimation using the Kalman filter
+Use of the Gaussian distribution for modeling random process variation
+and observation error is motivated by convenience rather than
+biology. Specifically, the Gaussian assumptions
+allow for parameter estimation using the Kalman filter
 \citep{dennis_etal:2006}, which is much more computationally efficient
 than estimation methods when random effects are not Gaussian distributed
 \citep{devalpine_hastings:2002}. The problem with this is that it
 allows for negative values of the state-variable, which is
-inconsistent with the observed data. The fact that both abundance ($N_t$) and the observed data ($X_t$) are
-typically non-negative integers suggests that it is inappropriate to
-model process variation and observation error using Gaussian
-distributions. Nonetheless, efforts have been made to adhere to the
+inconsistent with the observed data.
+%The fact that both abundance ($N_t$) and the observed data ($X_t$) are
+%typically non-negative integers suggests that it is inappropriate to
+%model process variation and observation error using Gaussian
+%distributions.
+Nonetheless, efforts have been made to adhere to the
 Gaussian assumptions by tranforming abundance to
 density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
 area surveyed. However, this transformation is problematic since
@@ -177,9 +176,9 @@ effect of this is rarely discussed.
 
 Another problem with standard state-space models is that the
 observation error has no clear interpretation. The use of a mean zero
-Gaussian distribution implies that the observed data $X_t$ will be
+Gaussian distribution implies that $X_t$ will be
 higher than $N_t$ as often as it is lower than $N_t$. It is hard
-to identify a mechanism that would cause such errors. A more likely
+to identify a mechanism that would cause such symmetric errors. A more likely
 form of observation error, and one that has been recognized for well
 over a century, results from failing to detect individuals that are
 present. Imperfect detection may be attributable to
@@ -194,10 +193,12 @@ A more serious problem than the ones associated with the Gaussian
 assumptions is that the parameters of the simple state-space models
 such as Eq~\ref{eq:ss1} are not identifiable in many
 circumstances \citep{polansky_etal:2009}. Recall that the
-Eq.~\ref{eq:ss1} did not specify distributions for $N_1$ or
-$X_1$; however, such distributions are needed to fully specify the
-model. Indeed, a fully-specified state-space model requires the
-specification of three probability distributions, which we denote
+Eq.~\ref{eq:ss1} did not specify distributions for $N_1$; % or $X_1$;
+however, $N_1$ is a random variable and hence there is uncertainty
+that should be accounted for.
+%are needed to fully specify the model.
+To be more specific, a fully-specified state-space model requires at least
+three probability distributions, which we represent
 using bracket notation:
 \begin{subequations}
   \label{eq:ss2}
@@ -207,30 +208,38 @@ using bracket notation:
     [X_t&|N_t,\bm{p}]  \qquad \; \text{for} \; t=1,\hdots,T
   \end{align}
 \end{subequations}
-where $\bm{\theta}$ are the process variation parameters governing
-initial abundance, $\bm{\Theta}$ are the process variation parameters
+where $\bm{\theta}$ are the process variation parameters for the
+initial state, $\bm{\Theta}$ are the process variation parameters
 influencing how abundance changes over time, and $\bm{p}$ are the
-observation error parameters. In our first example, Eq.~\ref{eq:ss1},
-But what should these distributions be, and how could
-parameters of the distributions be
-estimated since there is only a single observation available? In fact,
-they cannotThe reason they were omitted is that it is not possible to
-estimate the parameters of the i
-However, a completSpecifically, the Markovian
-nature of the model implies the following likelihood
-The first term is the probability density for the first observation in
-the time series, $X_1$, yet it is intuitively not possible to estimate the
-parameter(s) of this distribution using only a single
-observation.
-%This problem has resulted in several papers with
-%interesting names like ``multi-modal likelihoods and ridges etc...''
-Two options have been proposed handling the identifiability
-problem. First, one can assume that the first observation in the time
-series is made without error. Second, one can assume that the population is at equilibrium
-so that that the x can be replaced with the equilibrium
-distribution. However, assuming equilibrium defeats the objective of
-many studies of population dynamics, namely determining if and why a
-population is at equilibrium.
+observation error parameters. The three lines of general model
+described by Eq.~\ref{eq:ss2} correspond to the three equations shown
+for the specific example in Eq~\ref{eq:ss1}.  However, in this case,
+we allow $N_1$ to be a random variable. But what should its
+distribution, $[N_1]$ be? And how could $\bm{\theta}$ be
+estimated since there is only a single observation available?
+One approach to estimating the $\bm{\theta}$ is to assume that the
+population is in equlibrium, i.e. that the expected value of $N_t$ is
+constant through time. Althought this makes the parameters
+identifiable, assuming equlibrium defeats the objective of many
+studies of population dynamics, namely determining why a population
+varies over time.
+
+\begin{comment}
+  However, a completSpecifically, the Markovian nature of the model
+  implies the following likelihood The first term is the probability
+  density for the first observation in the time series, $X_1$, yet it
+  is intuitively not possible to estimate the parameter(s) of this
+  distribution using only a single observation.
+  % This problem has resulted in several papers with interesting names
+  % like ``multi-modal likelihoods and ridges etc...''
+  Two options have been proposed handling the identifiability
+  problem. First, one can assume that the first observation in the
+  time series is made without error. Second, one can assume that the
+  population is at equilibrium so that that the x can be replaced with
+  the equilibrium distribution. However, assuming equilibrium defeats
+  the objective of many studies of population dynamics, namely
+  determining if and why a population is at equilibrium.
+\end{comment}
 
 A fourth problem with these models is that they do not admit
 spatial variation, which
@@ -251,23 +260,24 @@ for the process and observation errors. Observation models with more
 intuitive interpretations, such as those that explicitly model
 detection probability, have been proposed by
 \citet{kery_etal:2009}. \citet{lele_etal:1998} and
-\citep{kery_etal:2009} developed models allowing for inference about
+\citet{kery_etal:2009} developed models allowing for inference about
 spatial and temporal variation in abundance, and their developments
 also resolved the problems of non-identifiability for the parameters
 of the initial state at time $t=1$. Of these extensions, the work by
 \citet{kery_etal:2009} is unique in that it addressed multiple limitations
-simultaneously. However, their models did not include any serial
+simultaneously. However, their model did not include serial
 depedence, which is a hallmark of population models. This limits the
 utility of their model for making inferences about explicit population
-processes. To do so, recent work has sought to combine multiple
-sources of information, such as counts and mark-recapture data, to
-allow for inferences about population processes such as mortality and
-survival, rather than just population growth \citep{besbeas_etal:2002,
-  buckland_etal:2004, schaub_etal:2007}. Although these integrated
+processes. In contrast, recent work has sought to use state-space
+models fot inference about population processes such as mortality and
+recruitment. To do so, methods have been developed to combine multiple
+sources of information, such as counts and mark-recapture data
+\citep{besbeas_etal:2002, buckland_etal:2004,
+  schaub_etal:2007}. Although these integrated
 population models may be viewed as the gold standard in state-space
 modeling, ecologists are not always so fortunate to have direct
-information about vital rates, especially when inferences are required
-at large spatial scales. Rather, count data are much more common, and
+information about vital rates, especially at large spatial scales.
+Rather, count data are much more common, and
 are produced by many of the largest monitoring programs in the world,
 such as the North American Breeding Bird Survey
 \citep[BBS;][]{robbins_etal:1986}.
@@ -276,15 +286,16 @@ In this paper, we focus on the model of
 \citet{dail_madsen:2011} %developed a model (henceforth the DM model)
 that simultaneous resolves each of the abovementioned problems with
 traditional state-space models, and is designed for simple count
-data. The model (1) recognizes
-the discrete nature of count data and the underlying true abundance
-state, (2) includes a realistic observation model with explicit
-detection probability parameters (3) has estimable parameters,
-including those describing the initial state at time $t=1$, and (4)
-allows for inference about both temporal and spatial variation in
-abundance.
-
+data.
 \begin{comment}
+  The model (1) recognizes
+  the discrete nature of count data and the underlying true abundance
+  state, (2) includes a realistic observation model with explicit
+  detection probability parameters (3) has estimable parameters,
+  including those describing the initial state at time $t=1$, and (4)
+  allows for inference about both temporal and spatial variation in
+  abundance.
+
   In some respects, the DM model can be viewed as a specific
   manifestation of the general state-space model formulated by
   \citep{buckland_etal:2004}. However, their model was designed to
@@ -296,29 +307,29 @@ abundance.
   applications, and one of the most widely available forms of
   ecological data---it is also the data required by the DM model.
 \end{comment}
-
 In the following section, we describe the DM model in its original
-form, and we explain how it resolves each of the deficieinces with
+form and explain how it resolves each of the deficieinces with
 standard state-space models. In Section~\ref{sec:ext}, we extend the
 model to accomodate classical models of population growth and to
 handle several features common to ecological
 time-series. Specifically, we describe methods for accomodating excess
 zeros and nuisance variables such as random observer effects. Both
 frquentist and Bayesian methods of inference are discussed, and code
-for fitting models is presented in the appendices. The Bayesian method
-is attractive in that it can accomodate prior information about
-detection parameters, which is available for many species, yet not
-collected as part of many existing monitoring programs. In
-Section~\ref{sec:app}, we evaluate the performance of the model
+for fitting models is presented in the appendices.
+%The Bayesian method
+%is attractive in that it can accomodate prior information about
+%detection parameters, which is available for many species, yet not
+%collected as part of many existing monitoring programs.
+In Section~\ref{sec:app}, we evaluate the performance of the model
 extensions using a simulation study and by analyzing data from the
 North American Breeding Bird Survey (BBS), one of
 the most spatially and temporally extensive sets of count data on
 vertebrate populations \citep{robbins_etal:1986}. The overarching aim
-of  the paper is to provide ecologists with a flexible and accessible means of
+of  the paper is to provide ecologists with flexible and accessible means of
 adressing important questions related to the variaion of abundance in
 space and time.
-believe these extensions will increase the utility of the model for
-application to existing datasets such the Breeding Bird Survey.
+%believe these extensions will increase the utility of the model for
+%application to existing datasets such the Breeding Bird Survey.
 
 \begin{comment}
   The DM model allows for inference about spatial and temporal
@@ -372,11 +383,11 @@ The DM model is an extension of the $N$-mixture model
 \citep{royle:2004biom}, which allows for inference about spatial
 variation in abundance when individuals cannot be detected with
 certainty. To estimate both abundance parameters and parameters of the
-detection process, the model uses replicate observations at each site,
-which are collected during sufficiently short time intervals such that
-the population can safely be assumed to be closed with respect to
-births, deaths, and movement. The DM model relaxes this closure
-assumption and includes explicit parameters
+detection process, the original $N$-mixture model uses replicate
+observations at each site, which are collected during sufficiently
+short time intervals such that the population can safely be assumed to
+be closed with respect to births, deaths, and movement. The DM model
+relaxes this closure assumption and includes explicit parameters
 describing population change over time.
 
 
