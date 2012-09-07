@@ -746,7 +746,31 @@ interface.
 
 \subsection{Bayesian inference}
 
-priors are good
+Bayesian inference has several appealing features. First, it allows
+direct probability statements to be made about a hypothesis given
+data. Second, priors are cool. We can combine data from multiple
+sources or use existing estimates of parameters as prior
+distributions. MCMC has a bad rap for being slow, but actually, in the
+case of state-space models it may be one of the few options for
+estimation, and in fact may be faster than maximizing likelihoods.
+
+Here is some BUGS code:
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 5)
+r ~ dunif(-5, 5)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    mu[i,t-1] = N[i,t-1]*exp(r)
+    N[i,t] ~ dpois(mu[i,t-1])
+    n[i,t] ~ dbin(p, N[i,1])
+    }
+  }
+}
+\end{verbatim}
 
 \section{Applications}
 \label{sec:app}
@@ -859,6 +883,8 @@ inclusion factors for temperature effects?
 
 \section{Results}
 
+
+
 The negative binomial distribution was strongly supported for ovenbird
 initial abundance over the Poisson and zero-inflated Poisson (Table
 1A, models A.1 - A.3).  Even compared to the Poisson, there was no
@@ -942,22 +968,27 @@ for both models).
 
 \section{Discussion}
 
-
+Our work has highlighted the limitations of classical state-space
+models as applied to ecological time series data, and we have
+demonstrated how open population $N$-mixture models overcome these
+limitations. We extended this class of models in several important
+ways, while keeping in mind the practical issues ...
 
 We made four important developments of the open population
-N-mixture model proposed by Dail and Madsen that make the
+N-mixture model proposed by \citep{dail_madsen:2011} that make the
 model more applicable to long-term data such as is collected
 by the North American Breeding Bird Survey. First, we have
 reconciled the objectives of traditional state-space models
-with open population N-mixture models by illustrating how
+with open population $N$-mixture models by illustrating how
 classical models of population dynamics can be embedded within
 the framework. Second, we have demonstrated methods of
 accounting for zero-inflation in the time-series. Third, we
 have illustrated how additional random effects such as
 observer-specific detection probabilities can be
 accommodated. Fourth, we presented a Bayesian analysis of the
-model, which makes it much easier to estimate parameters and
-to fine tune the model for specific purposes.
+model, which, makes it possible to incorporate prior information when
+available, and in some cases, facilitates parameter estimation.
+
 
 A unique aspect of the Dail and Madsen model as originally devised was
 that it allowed for the estimation of demographic parameters under
@@ -986,7 +1017,12 @@ useful when different factors control the range than the abundance or
 dynamics within the range.  [some examples where that is the case?]
 
 [paragraph on random effects]
+
+
 [paragraph on Bayesian]
+The ability to fit this class of models using freely available MCMC
+software offers non-statisticians a powerful means .
+
 In spite of the new extensions we have proposed, several aspects of
 the model could be improved. First, the precision with which the
 parameters of the state process can be estimated ultimately depends
@@ -997,7 +1033,7 @@ about population dynamics. Thus, without direct information about
 detection probability, the estimates will be determined by model based
 assumptions. Furthermore, there are multiple components of detection
 probability that should be accounted for to minimize bias and yield
-valid estimates of population size. [Nichols EURING paper] .
+valid estimates of population size \citep{nichols_etal:2009}.
 
 Fortunately, it is easy to incorporate direct information about
 detection probability and we recommend that this be done whenever
@@ -1021,6 +1057,12 @@ Other models of variability in growth or recruitment (such as negative binomial)
 Add density dependence to survival and recruitment models]
 [Discuss causes of low p values (and other BBS results) here or in BBS
 results?]
+Our emphasis was on increasing the practical utility of this class of
+models, and so we avoided several conceptually-interesting extensions
+that we belive would be computationally prohibitive in many
+cases. Nonetheless, we will discuss one---spatially-explict models of
+immigration.
+
 
 The modeling framework we described can be used to address many of the
 most pressing issue in ecology and conservation biology. For example,
@@ -1035,8 +1077,6 @@ viability analysis is trivial because projecting populations into the
 future can be done as a component of the MCMC analysis. This allows
 for the computation of posterior distributions of parameters such as
 quasi-extinction probability.
-
-
 
 
 \bibliography{Dail_Mad_ext}
