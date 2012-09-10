@@ -58,7 +58,7 @@ time-series data recently proposed by \citet[Biometrics]{dail_madsen:2011}.
 We expand this class of models to accommodate classical growth
 models, zero-inflation, and random effects such as observer-specific
 detection probabilities. We also present methods for forecasting
-populaiton size under future environmental conditions. Implementation
+population size under future environmental conditions. Implementation
 of these ideas is possible using either frequentist or Bayesian
 methods, and code to fit these models using the  \textbf{R} package
 \texttt{unmarked} or
@@ -72,10 +72,9 @@ methods, and code to fit these models using the  \textbf{R} package
 %allow researchers to apply these methods to address important
 %questions regarding the factors affecting spatial and temporal
 %variation in abundance.
-A simulation study was used to assess bias and accurrancy of parameter
-estimators, and an analysis of %We demonstrate these developments by analyzing
-%data from the
-North American Breeding Bird Survey is presented for illustration.
+A simulation study indicated that bias was negligible and coverage nominal
+and an analysis of North American Breeding Bird Survey is presented
+for illustration.
 }
 
 \vspace{0.5cm}
@@ -127,7 +126,7 @@ Let $N_t$ be the abundance of a species during year $t$, for
 $t=1,\hdots,T$, and let $X_t$ be
 the observed data, which differs from $N_t$ due to observation error,
 a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
-modeled using a deterministic population growth model, $\mu(N_{t-1})$,
+modeled using a population growth model, $\mu(N_{t-1})$,
 coupled with a stochastic model allowing
 for random process variation. %, which we denote $\grave{o}_t$.
 The deterministic model may be density-dependent, for example
@@ -149,13 +148,8 @@ state-space models, the two sets of random effects
 are assumed to be i.i.d Gaussian deviates:
 $\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
 $\zeta_t \sim \mathrm{N}(0, \tau)$. It is also standard practice to
-act as though there is no process variation associated with $N_1$, as
+ignore process variation associated with $N_1$, as
 indicated by Eq~\ref{eq:ss1a}.
-% indicates that no process variation is
-%present in year 1. This assumption is often made
-%due to parameter identifiability problems, which we will describe
-%shortly. First, we turn our attention to the models for the random
-%effects.
 
 Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
 are the most widespread approach for modeling population dynamics
@@ -186,7 +180,7 @@ Nonetheless, efforts have been made to adhere to the
 Gaussian assumptions by tranforming abundance to
 density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
 area surveyed. However, this transformation is problematic since
-abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
+local abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
 zeros are replaced with some small number, although the
 effect of this is rarely discussed.
 
@@ -231,7 +225,7 @@ observation error parameters. The three lines of general model
 described by Eq.~\ref{eq:ss2} correspond to the three equations shown
 for the specific example in Eq~\ref{eq:ss1}.  However, in this case,
 we allow $N_1$ to be a random variable. But what should its
-distribution, $[N_1]$ be? And how could $\bm{\theta}$ be
+distribution, $[N_1|\bm{\theta}]$ be? And how could $\bm{\theta}$ be
 estimated since there is only a single observation available?
 One approach to estimating the $\bm{\theta}$ is to assume that the
 population is in equlibrium, i.e. that the expected value of $N_t$ is
@@ -258,15 +252,15 @@ varies over time.
 \end{comment}
 
 A fourth problem with these models is that they do not admit
-spatial variation, which
-%. Recent work has sought to remedy this deficiencyThis is not a fair criticism because this
-%lies beyond the scope of traditional state-space models, but
-%it does
-restrict the utility of their since it is typically
-impossible assess the impacts of factors such as habitat
-fragmentation or climate change on population dynamics without
-considering spatial variation in abundance. Indeed many populations are
-regulated by spatial processes such as source-sink dynamics.
+spatial variation. This reduces the scope of the inferences that can
+be drawn from the models and it ignores the importance of space in
+population regulation.
+%, which
+%restrict the utility of their since it is typically
+%impossible assess the impacts of factors such as habitat
+%fragmentation or climate change on population dynamics without
+%considering spatial variation in abundance. Indeed many populations are
+%regulated by spatial processes such as source-sink dynamics.
 
 Several extensions of state-space models have been proposed to
 overcome the limitations described
@@ -285,7 +279,7 @@ simultaneously. However, their model did not include serial
 depedence, which is a hallmark of population models. This limits the
 utility of their model for making inferences about explicit population
 processes. In contrast, recent work has sought to use state-space
-models fot inference about population processes such as mortality and
+models for inference about population processes such as mortality and
 recruitment. To do so, methods have been developed to combine multiple
 sources of information, such as counts and mark-recapture data
 \citep{besbeas_etal:2002, buckland_etal:2004,
@@ -545,7 +539,8 @@ data, as is demonstrated in section
 \subsection{Maximum likelihood}
 
 Maximum likelihood estimation of parameters in models with random
-effects requires removing the random effects
+effects requires removing the random effects by integration or
+summation.
 
 
 
@@ -798,6 +793,12 @@ with the \textbf{R} (R
 Development Core Team 2011) package \texttt{rjags} \citep{plummer:2011}
 %(Plummer 2011)
 interface.
+
+
+\section{Forecasting Future Population Size}
+
+
+
 
 
 \section{Applications}
