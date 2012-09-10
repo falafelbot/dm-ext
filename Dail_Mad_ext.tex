@@ -38,28 +38,44 @@
 Models of population dynamics play a central role in theoretical and
 applied ecology where they are used for purposes such as testing
 hypotheses about density dependence and predicting species' responses
-to future environmental change or management actions. State-space
-models are widely used for these purposes because they allow for
-estimating parameters of classical growth models, such as exponential,
-logistic, and Gompertz, while accounting for demographic stochasticity
-and observation error. Conventional state-space models, however, have
+to future environmental change or conservation actions. Accounting for
+process variation and observation error in such efforts is necessary
+to achieve unbiasedness, and doing so is possible using recently
+developed state-space models.
+%for estimators of population change to be unbiased, and state-space
+%models have been developed for this
+%models are widely used for these purposes because they allow for
+%estimating parameters of classical growth models, such as exponential,
+%logistic, and Gompertz, while accounting for demographic stochasticity
+%and observation error.
+Conventional state-space models, however, have
 three important limitations: (1) the parameters are not identifiable
 in many common situations, (2) they do not admit spatial variation in
 population dynamics, and (3) there is no clear interpretation of the
 observation error. We demonstrate how each of these problems can be
 resolved using a class of hierarchical models for spatially-replicated
-time-series data recently proposed by
-\citet[Biometrics]{dail_madsen:2011}. We
-expand this class of models to accommodate classical growth
+time-series data recently proposed by \citet[Biometrics]{dail_madsen:2011}.
+We expand this class of models to accommodate classical growth
 models, zero-inflation, and random effects such as observer-specific
-detection probabilities. Furthermore, we describe classical and
-Bayesian methods of parameter estimation. These new developments will
-allow researchers to apply these methods to address important
-questions regarding the factors affecting spatial and temporal
-variation in abundance. We demonstrate these developments by analyzing
-data from the North American Breeding Bird Survey. Code to fit these
-models using the \textbf{R} package \texttt{unmarked} and
+detection probabilities. We also present methods for forecasting
+populaiton size under future environmental conditions. Implementation
+of these ideas is possible using either frequentist or Bayesian
+methods, and code to fit these models using the  \textbf{R} package
+\texttt{unmarked} or
 \textbf{JAGS} is also provided.
+%is provided for doing so.
+%Furthermore, we describe classical and
+%Bayesian methods of parameter estimation, and we present methods of
+%forecasting population size under future environmental
+%conditions.
+%These new developments will
+%allow researchers to apply these methods to address important
+%questions regarding the factors affecting spatial and temporal
+%variation in abundance.
+A simulation study was used to assess bias and accurrancy of parameter
+estimators, and an analysis of %We demonstrate these developments by analyzing
+%data from the
+North American Breeding Bird Survey is presented for illustration.
 }
 
 \vspace{0.5cm}
@@ -87,7 +103,7 @@ be confronted when fitting population models to data.
 First, deterministic models of population
 dynamics are virtually always inadequate due to process variation,
 the inherent stochasticity in demographic parameters and environmental
-conditions \citep{bjornstad_grenfell:2001}. %clark_bjornstad:2004}.
+conditions \citep{bjornstad_grenfell:2001,saether_engen:2002}.
 Second, abundance---the natural state variable in studies
 of population dynamics---can rarely be observed perfectly in field
 studies because of observation error, such as imperfect
@@ -523,6 +539,46 @@ exactly. In practice, it is preferable to obtain direct information
 about $p$ using secondary sampling occassions or some other auxiliary
 data, as is demonstrated in section
 
+
+\section{Statistical Inference}
+
+\subsection{Maximum likelihood}
+
+Maximum likelihood estimation of parameters in models with random
+effects requires removing the random effects
+
+
+
+\subsection{Bayesian inference}
+
+Bayesian inference has several appealing features. First, it allows
+direct probability statements to be made about a hypothesis given
+data. Second, priors are cool. We can combine data from multiple
+sources or use existing estimates of parameters as prior
+distributions. MCMC has a bad rap for being slow, but actually, in the
+case of state-space models it may be one of the few options for
+estimation, and in fact may be faster than maximizing likelihoods.
+
+Here is some BUGS code:
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 5)
+r ~ dunif(-5, 5)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    mu[i,t-1] = N[i,t-1]*exp(r)
+    N[i,t] ~ dpois(mu[i,t-1])
+    n[i,t] ~ dbin(p, N[i,1])
+    }
+  }
+}
+\end{verbatim}
+
+
+
 \section{Model Extensions}
 \label{sec:ext}
 
@@ -743,34 +799,6 @@ Development Core Team 2011) package \texttt{rjags} \citep{plummer:2011}
 %(Plummer 2011)
 interface.
 
-
-\subsection{Bayesian inference}
-
-Bayesian inference has several appealing features. First, it allows
-direct probability statements to be made about a hypothesis given
-data. Second, priors are cool. We can combine data from multiple
-sources or use existing estimates of parameters as prior
-distributions. MCMC has a bad rap for being slow, but actually, in the
-case of state-space models it may be one of the few options for
-estimation, and in fact may be faster than maximizing likelihoods.
-
-Here is some BUGS code:
-\begin{verbatim}
-model {
-lambda ~ dunif(0, 5)
-r ~ dunif(-5, 5)
-p ~ dunif(0,1)
-for(i in 1:nSites) {
-  N[i,1] ~ dpois(lambda)
-  y[i,1] ~ dbin(p, N[i,1])
-  for(t in 2:nYears) {
-    mu[i,t-1] = N[i,t-1]*exp(r)
-    N[i,t] ~ dpois(mu[i,t-1])
-    n[i,t] ~ dbin(p, N[i,1])
-    }
-  }
-}
-\end{verbatim}
 
 \section{Applications}
 \label{sec:app}
