@@ -40,7 +40,8 @@ applied ecology where they are used for purposes such as testing
 hypotheses about density dependence and predicting species' responses
 to future environmental change or conservation actions. Accounting for
 process variation and observation error in such efforts is necessary
-to achieve unbiasedness, and doing so is possible using recently
+to achieve unbiasedness \hl{[may be too strange sounding a term for
+  abstract]}, and doing so is possible using recently
 developed state-space models.
 %for estimators of population change to be unbiased, and state-space
 %models have been developed for this
@@ -209,7 +210,9 @@ that should be accounted for.
 %are needed to fully specify the model.
 To be more specific, a fully-specified state-space model requires at least
 three probability distributions, which we represent
-using bracket notation:
+using bracket notation: \hl{[I'm not familiar with bracket notation,
+  so these equations are confusing to me.  How widely used is this
+  notation in ecology?  Will others likely understand this?]}
 \begin{subequations}
   \label{eq:ss2}
   \begin{align}
@@ -276,7 +279,7 @@ also resolved the problems of non-identifiability for the parameters
 of the initial state at time $t=1$. Of these extensions, the work by
 \citet{kery_etal:2009} is unique in that it addressed multiple limitations
 simultaneously. However, their model did not include serial
-depedence, which is a hallmark of population models. This limits the
+dependence, which is a hallmark of population models. This limits the
 utility of their model for making inferences about explicit population
 processes. In contrast, recent work has sought to use state-space
 models for inference about population processes such as mortality and
@@ -293,7 +296,8 @@ such as the North American Breeding Bird Survey
 \citep[BBS;][]{robbins_etal:1986}.
 
 In this paper, we focus on the model of
-\citet{dail_madsen:2011} %developed a model (henceforth the DM model)
+\citet[henceforth the DM model;]{dail_madsen:2011}
+%developed a model (henceforth the DM model)
 that simultaneous resolves each of the abovementioned problems with
 traditional state-space models, and is designed for simple count
 data.
@@ -318,13 +322,13 @@ data.
   ecological data---it is also the data required by the DM model.
 \end{comment}
 In the following section, we describe the DM model in its original
-form and explain how it resolves each of the deficieinces with
+form and explain how it resolves each of the deficiencies with
 standard state-space models. In Section~\ref{sec:ext}, we extend the
 model to accomodate classical models of population growth and to
 handle several features common to ecological
 time-series. Specifically, we describe methods for accomodating excess
 zeros and nuisance variables such as random observer effects. Both
-frquentist and Bayesian methods of inference are discussed, and code
+frequentist and Bayesian methods of inference are discussed, and code
 for fitting models is presented in the appendices.
 %The Bayesian method
 %is attractive in that it can accomodate prior information about
@@ -336,7 +340,7 @@ North American Breeding Bird Survey (BBS), one of
 the most spatially and temporally extensive sets of count data on
 vertebrate populations \citep{robbins_etal:1986}. The overarching aim
 of  the paper is to provide ecologists with flexible and accessible means of
-adressing important questions related to the variaion of abundance in
+adressing important questions related to the variation of abundance in
 space and time.
 %believe these extensions will increase the utility of the model for
 %application to existing datasets such the Breeding Bird Survey.
