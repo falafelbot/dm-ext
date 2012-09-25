@@ -1254,7 +1254,7 @@ quasi-extinction probability.
 \newpage
 
 % Perhaps stack the species
-
+\begin{comment}
 \begin{sidewaystable}
   \centering
   \small
@@ -1300,9 +1300,9 @@ A.10. NB[$\Lambda$(.)$\alpha$(.)]Growth+Imm.[$r$(.)$\iota$(.)]$p$(wind+1st)
 A.11. NB[$\Lambda$(.)$\alpha$(.)]AR+Imm.[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(wind+1st)
 &10	&38.6
 &B.11. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz+Imm.[$r$(.)$K$(.)$\iota$(.)]$p$(1st)
-&7	&2.6 \\
+&7	&2.5 \\
 A.12. NB[$\Lambda$(.)$\alpha$(.)]Gompertz[$r$(.)$K$(.)]$p$(wind+1st)
-&9	&190.9
+&9	&192.8
 &B.12. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz[$r$(.)$K$(.)]$p$(1st)	&6
 &3.0 \\
 A.13. NB[$\Lambda$(.)$\alpha$(.)]Ricker[$r$(.)$K$(.)]$p$(wind+1st)
@@ -1324,5 +1324,111 @@ A.16. NB[$\Lambda$(.)$\alpha$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
 \hline
 \end{tabular}
 \end{sidewaystable}
+\end{comment}
+
+% How about separate tables?  Also updated the Gompertz results.
+\begin{table}
+  \centering
+  \small
+  \caption{Model selection table for ovenbirds in Maryland and Virginia, 
+    1966-2010.  We present model name
+    and number, number of parameters (Par.), and difference in Akaike's
+    information criterion between each model and the top model of that
+    set ($\Delta$AIC).  The first section compares
+    models for initial abundance, the second for detection probability,
+    and the third for dynamics.}
+  \begin{tabular}[h]{lcc}
+\hline
+Model	&Par.	&$\Delta$AIC	\\
+\hline
+A. Initial Abundance && \\
+A.1. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(.)	&4	&0\\
+A.2. P[$\Lambda$(.)]Growth[$r$(.)]$p$(.)	&3	&1262.7\\
+A.3. ZIP[$\Lambda$(.)$\psi$(.)]Growth[$r$(.)]$p$(.)	&4 &1264.7\\
+\hline
+B. Detection Probability && \\
+B.1. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(wind+1st)	&8
+&0	\\
+B.2. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(wind)	&7	&0.9\\
+B.3. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(1st)	&5	&5.0\\
+B.4. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(.)	&4	&6.4\\
+\hline
+C. Dynamics && \\
+C.1. NB[$\Lambda$(.)$\alpha$(.)]Ricker+Imm.[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st)
+&10	&0	\\
+C.2. NB[$\Lambda$(.)$\alpha$(.)]Gompertz+Imm.[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st)
+&10	&8.4 \\
+C.3. NB[$\Lambda$(.)$\alpha$(.)]Growth+Imm.[$r$(.)$\iota$(.)]$p$(wind+1st)
+&9	&36.5\\
+C.4. NB[$\Lambda$(.)$\alpha$(.)]AR+Imm.[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(wind+1st)
+&10	&38.6\\
+C.5. NB[$\Lambda$(.)$\alpha$(.)]Gompertz[$r$(.)$K$(.)]$p$(wind+1st)
+&9	&192.8\\
+C.6. NB[$\Lambda$(.)$\alpha$(.)]Ricker[$r$(.)$K$(.)]$p$(wind+1st)
+&9	&195.1\\
+C.7. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(wind+1st)	&8
+&271.3\\
+C.8. NB[$\Lambda$(.)$\alpha$(.)]AR[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
+&9	&273.7\\
+C.9. NB[$\Lambda$(.)$\alpha$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
+&9	&1856.7\\
+\hline
+\end{tabular}
+\end{table}
+
+\vfill
+%\clearpage
+\newpage
+
+\begin{table}
+  \centering
+  \small
+  \caption{Model selection table for golden-winged
+    warblers in Maryland and Virginia, 1966-2010.  We present model name
+    and number, number of parameters (Par.), and difference in Akaike's
+    information criterion between each model and the top model of that
+    set ($\Delta$AIC).  The first section compares
+    models for initial abundance, the second for detection probability,
+    and the third for dynamics.}
+  \begin{tabular}[h]{lcc}
+\hline
+Model	&Par.	&$\Delta$AIC\\
+\hline
+A. Initial Abundance && \\
+A.1. ZIP[$\Lambda$(.)$\psi$(.)]Growth[$r$(.)]$p$(.)	&4	&0 \\
+A.2. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(.)	&4	&0.4 \\
+A.3. P[$\Lambda$(.)]Growth[$r$(.)]$p$(.)	&3	&37.8 \\
+\hline
+B. Detection Probability && \\
+B.1. ZIP[$\Lambda$(.)$\psi$(.)]Growth[$r$(.)]$p$(1st)	&5
+&0 \\
+B.2. ZIP[$\Lambda$(.)$\psi$(.)]Growth[$r$(.)]$p$(.)	&4	&3.5 \\
+B.3. ZIP[$\Lambda$(.)$\psi$(.)]Growth[$r$(.)]$p$(wind+1st)	&8
+&5.9 \\
+B.4. ZIP[$\Lambda$(.)$\psi$(.)]Growth[$r$(.)]$p$(wind)	&7	&9.3 \\
+\hline
+C. Dynamics && \\
+C.1. ZIP[$\Lambda$(.)$\psi$(.)]Growth[$r$(.)]$p$(1st)
+&5	&0 \\
+C.2. ZIP[$\Lambda$(.)$\psi$(.)]AR[$\gamma$(.)$\omega$(.)]$p$(1st)
+&6	&1.7 \\
+C.3. ZIP[$\Lambda$(.)$\psi$(.)]Growth+Imm.[$r$(.)$\iota$(.)]$p$(1st)
+&6	&2.0 \\
+C.4. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz+Imm.[$r$(.)$K$(.)$\iota$(.)]$p$(1st)
+&7	&2.5 \\
+C.5. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz[$r$(.)$K$(.)]$p$(1st)	&6
+&3.0 \\
+C.6. ZIP[$\Lambda$(.)$\psi$(.)]AR+Imm.[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(1st)
+&7	&3.7 \\
+C.7. ZIP[$\Lambda$(.)$\psi$(.)]Ricker+Imm.[$r$(.)$K$(.)$\iota$(.)]$p$(1st)
+&7	&4.2 \\
+C.8. ZIP[$\Lambda$(.)$\psi$(.)]Ricker[$r$(.)$K$(.)]$p$(1st)	&7
+&5.2 \\
+C.9. ZIP[$\Lambda$(.)$\psi$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(1st)
+&6	&12.5 \\
+\hline
+\end{tabular}
+\end{table}
+
 
 \end{document}
