@@ -443,14 +443,6 @@ N_{it} &= S_{it}+G_{it}
 \end{equation}
 where $\omega$ is the apparent survival probability and $\gamma$ is
 the recruitment rate (which can depend on $N_{it-1}$).
-%%%% I agree with your comment, but I think we need to distinguish
-%%%% between things like actual and apparent survival probs.
-%\hl{[Feels a little repetitious with the material
-%before the equation, although I understand you're describing S and G
-%there and omega and gamma here.  In general, these sections
-%describing the DM models are clear and well written, but we could
-%possibly spend less time on them b/c it's already published.
-%Possibly it's better this way, though.]}
 \citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
 $G_{it} \sim \mathrm{Pois}(\gamma)$ where recruitment does not depend on
@@ -469,13 +461,14 @@ in the more common scenario when immigration and emigration occur,
 $\omega$ is the probability of surviving and not emigrating, and
 $\gamma$ is the sum %\hl{[I think!]}
 of the birth rate and the immigration rate,
-i.e. the recruitment rate. In cases where no movement occurs, the DM model can directly estimate
+i.e. the recruitment rate. In the former case where no movement
+occurs, the DM model can directly estimate
 demographich parameters, and this mechanistic description of
 population change is much more appealing than classical
 population growth models such as the logistic model. However, movement
 complicates the interpretation of the the parameters, reducing the
 connection to specific population processes. In such cases, the model
-of dynamics shown in Eq~\ref{eq:Nt} can be replaced with standard
+of dynamics shown in Eq.~\ref{eq:Nt} can be replaced with standard
 population models as described in Sect~\ref{sec:ext}. Irrespective of
 the model for population dynamics, it is worthwhile to note that the
 discrete distributions used in the DM model avoid the issues
@@ -487,17 +480,18 @@ variation in standard state-space models.
 Eqs.~\ref{eq:N1} and \ref{eq:Nt} fully specify the state model---the
 model for spatial and temporal variation in abundance. The observation
 model assumes that individuals are missed due to imperfect
-detection. The simplest model for imperfect detection is
+detection. The simplest model for imperfect detection, and the one
+considered in the original formulation, is
 \begin{equation}
   n_{it} \sim \mathrm{Bin}(N_{it}, p)
   \label{eq:p1}
 \end{equation}
 Surprsingly detection probability, $p$, can be estimated without
-secondary sampling occasions. However, this is only possible because
+secondary sampling occasions. However, this is only possible
 if the parameteric assumptions of the population dynamics are met
 exactly. In practice, it is preferable to obtain direct information
 about $p$ using secondary sampling occassions or some other auxiliary
-data, as is demonstrated in section
+data, \hl{as is demonstrated in section....}
 
 
 \section{Statistical Inference}
@@ -506,7 +500,16 @@ data, as is demonstrated in section
 
 Maximum likelihood estimation of parameters in models with random
 effects requires removing the random effects by integration or
-summation.
+summation. For Markovian models, this can be done recursively, making
+the likelihood tractible. A general expression for the likelihood of
+the DM model is:
+\begin{equation}
+  \mathcal{L}(\Lambda, \Phi, \mathbf{p} | \{n_{it}\}) =
+  \prod_{i=1}^R \left\{ \sum_{N_{i1}=0}^{\infty}
+  [n_{i1}|N_{i1}][N_{i1}|\Lambda] \left\{ \prod_{t=T}^2 \left\{ \sum_{N_{it}=0}^{\infty}
+  [n_{it}|N_{it}][N_{it}|N_{it-1}] \right\} \right\} \right\}
+  \label{eq:like}
+\end{equation}
 
 
 
@@ -520,8 +523,8 @@ distributions. MCMC has a bad rap for being slow, but actually, in the
 case of state-space models it may be one of the few options for
 estimation, and in fact may be faster than maximizing likelihoods.
 
-Here is some BUGS code: \hl{[This is code for a model we haven't
-presented yet.  Could we move these sections after model extensions?]}
+Here is some BUGS code:
+
 \begin{verbatim}
 model {
 lambda ~ dunif(0, 5)
@@ -531,8 +534,9 @@ for(i in 1:nSites) {
   N[i,1] ~ dpois(lambda)
   y[i,1] ~ dbin(p, N[i,1])
   for(t in 2:nYears) {
-    mu[i,t-1] = N[i,t-1]*exp(r)
-    N[i,t] ~ dpois(mu[i,t-1])
+    S[i,t-1] ~ dbin(omega, N[i,t-1])
+    G[i,t-1] ~ dpois(gamma)
+    N[i,t] <- S[i,t-1] + G[i,t-1]
     n[i,t] ~ dbin(p, N[i,1])
     }
   }
@@ -592,6 +596,25 @@ Because a single Poisson distribution controls the
 distribution of $N_{it}$ in each of these models, the discrete
 convolution used by \citet{dail_madsen:2011} is not required,
 speeding up processing time.
+
+
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 5)
+r ~ dunif(-5, 5)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    mu[i,t-1] = N[i,t-1]*exp(r)
+    N[i,t] ~ dpois(mu[i,t-1])
+    n[i,t] ~ dbin(p, N[i,1])
+    }
+  }
+}
+\end{verbatim}
+
 
 \subsection{Immigration models}
 
