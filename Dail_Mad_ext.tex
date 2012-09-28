@@ -39,44 +39,35 @@
 Models of population dynamics play a central role in theoretical and
 applied ecology where they are used for purposes such as testing
 hypotheses about density dependence and predicting species' responses
-to future environmental change or conservation actions. Accounting for
-process variation and observation error in such efforts is necessary
-to achieve unbiasedness \hl{[may be too strange sounding a term for
-  abstract]}, and doing so is possible using recently
-developed state-space models.
-%for estimators of population change to be unbiased, and state-space
-%models have been developed for this
-%models are widely used for these purposes because they allow for
-%estimating parameters of classical growth models, such as exponential,
-%logistic, and Gompertz, while accounting for demographic stochasticity
-%and observation error.
+to future environmental change or conservation actions. Failure to
+account for observation error in such models can result in
+bias, and thus ecologists have increasingly relied on state-space
+models to directly model both the observation error and the ecological
+process of interest.
 Conventional state-space models, however, have
 three important limitations: (1) the parameters are not identifiable
 in many common situations, (2) they do not admit spatial variation in
 population dynamics, and (3) there is no clear interpretation of the
 observation error. We demonstrate how each of these problems can be
-resolved using a class of hierarchical models for spatially-replicated
-time-series data recently proposed by \citet[Biometrics]{dail_madsen:2011}.
+resolved using a class of hierarchical models proposed by
+\citet[Biometrics]{dail_madsen:2011} for spatially-replicated
+time-series data that attributes observation error to imperfect
+detection.
 We expand this class of models to accommodate classical growth
-models, zero-inflation, and random effects such as observer-specific
+models (e.g. exponential, Ricker, etc $\dots$), zero-inflation, and
+random effects such as observer-specific
 detection probabilities. We also present methods for forecasting
 population size under future environmental conditions. Implementation
 of these ideas is possible using either frequentist or Bayesian
-methods, and code to fit these models using the  \textbf{R} package
-\texttt{unmarked} or
-\textbf{JAGS} is also provided.
-%is provided for doing so.
-%Furthermore, we describe classical and
-%Bayesian methods of parameter estimation, and we present methods of
-%forecasting population size under future environmental
-%conditions.
-%These new developments will
-%allow researchers to apply these methods to address important
-%questions regarding the factors affecting spatial and temporal
-%variation in abundance.
-A simulation study indicated that bias was negligible and coverage nominal
-and an analysis of North American Breeding Bird Survey is presented
-for illustration.
+methods, and code to fit these models using the \textbf{R} package
+\texttt{unmarked} or \textbf{JAGS} is also provided.
+A simulation study indicated that bias was negligible and coverage
+nominal for the proposed model extensions. An analysis of data from
+the North American Breeding Bird Survey highlighted how these methods
+can be readily applied to existing data, but it also suggested the
+that precision will be low when direct information about detection
+probability (such as is collected using distance sampling or
+replicated counts) is unavailable.
 }
 
 \vspace{0.5cm}
@@ -498,11 +489,11 @@ year $t$ to $t-1$, and $\gamma$ is the per-capita birth rate. However,
 in the more common scenario when immigration and emigration occur,
 $\omega$ is the probability of surviving and not emigrating, and
 $\gamma$ is the sum\hl{[I think!]} of the birth rate and the emigration rate,
-i.e. the recruitment rate. \hl{[Feels a little repetitious with the material 
-before the equation, although I understand you're describing S and G 
-there and omega and gamma here.  In general, these sections 
-describing the DM models are clear and well written, but we could 
-possibly spend less time on them b/c it's already published.  
+i.e. the recruitment rate. \hl{[Feels a little repetitious with the material
+before the equation, although I understand you're describing S and G
+there and omega and gamma here.  In general, these sections
+describing the DM models are clear and well written, but we could
+possibly spend less time on them b/c it's already published.
 Possibly it's better this way, though.]} \citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
 $G_t \sim \mathrm{Pois}(\gamma)$ where recruitment does not depend on
@@ -624,7 +615,7 @@ example:
 where $K$ is the stable equilibrium of the population and $r$ is the
 instantaneous population growth rate at low population densities, and
 both parameters are constrained to be positive.  This is a stochastic version
-of the Ricker-logistic population growth model \citep{ricker:1954}.  We also 
+of the Ricker-logistic population growth model \citep{ricker:1954}.  We also
 implemented a modified Gompertz-logistic density-dependent
 model \citep{hart_gotelli:2011}:
 \begin{equation}
@@ -652,8 +643,8 @@ model is:
   N_{it} \sim \text{Poisson}(\exp(r)N_{it-1} + \iota)
   \label{eq:expimm2}
 \end{equation}
-where $\iota$ represents the immigration rate, and is constrained to be 
-positive (this is equivalent to separate Poisson processes for growth and 
+where $\iota$ represents the immigration rate, and is constrained to be
+positive (this is equivalent to separate Poisson processes for growth and
 immigration).  This model is close to
 the constant DM model (Eq.~\ref{eq:Nt}), with $\exp(r)$ instead of $\omega$
 and $\iota$ instead of $\gamma$, except that the first
@@ -731,7 +722,7 @@ abundance, but this model did not perform well in preliminary tests.
 
 The zero-inflated Poisson distribution can be applied to not only
 initial abundance but also to recruitment and population growth terms.
-For example, the recruitment term of the constant DM model 
+For example, the recruitment term of the constant DM model
 (Eq.~\ref{eq:Nt}) can be modified as follows:
 \begin{equation}
 G_{it} \sim \left\{
@@ -751,7 +742,7 @@ dynamics stage (see code sample?).  Adding zero-inflation to the
 dynamics of the autoregressive, trend, Ricker, or Gompertz models
 (without immigration) should have no effect when initial abundance is
 also zero-inflated unless $\psi$ is time-varying (because these dynamic
-models cannot recover from zero abundance).  
+models cannot recover from zero abundance).
 \end{comment}
 We have implemented
 zero-inflated dynamics in the Bayesian framework using program
@@ -825,14 +816,14 @@ each combination of low, medium, and high $\Lambda \in \{1,5,10\}$, $r
 \in \{-0.005, 0, 0.005\}$, and
 $p \in \{0.05, 0.25, 0.5\}$. % (Table 1; 27 total combinations).
 
-Our second series of simulations changed dynamics to the Ricker model.  
-We used an initial abundance of 10 and a detection probability of 0.25, 
-and simulated low, medium, and high values of equilibrium abundance 
-and maximum growth rate, each with 1000 simulations (Table 1; 
-9 total combinations).  Our third series of simulations was based on the 
-Ricker + immigration dynamics model; here we fixed all parameters the 
-same as the Ricker model (with r = 0.05 and K = 10) and simulated 
-low, medium, and high values of immigration rate with 1000 simulation 
+Our second series of simulations changed dynamics to the Ricker model.
+We used an initial abundance of 10 and a detection probability of 0.25,
+and simulated low, medium, and high values of equilibrium abundance
+and maximum growth rate, each with 1000 simulations (Table 1;
+9 total combinations).  Our third series of simulations was based on the
+Ricker + immigration dynamics model; here we fixed all parameters the
+same as the Ricker model (with r = 0.05 and K = 10) and simulated
+low, medium, and high values of immigration rate with 1000 simulation
 each (Table 1).
 
 We estimated the parameters for each simulation using the same
@@ -871,11 +862,11 @@ golden-winged warblers (\textit{Vermivora chrysoptera}), which only breeds in
 the western parts of these states and has been declining in the region
 (CITE).  %MORE INFORMATION ABOUT THE SPECIES?
 
-%GENERAL ABOUT BBS DATA.  
-The BBS is an annual roadside survey implemented by trained observers 
-in the United States and Canada. An observer conducts 50 3-minute point counts, 
-with 400 m radiuses and 0.8 km apart from each other along a 39.4 km route. 
-We only used data marked as acceptable for use in the annual BBS analysis 
+%GENERAL ABOUT BBS DATA.
+The BBS is an annual roadside survey implemented by trained observers
+in the United States and Canada. An observer conducts 50 3-minute point counts,
+with 400 m radiuses and 0.8 km apart from each other along a 39.4 km route.
+We only used data marked as acceptable for use in the annual BBS analysis
 \citep{sauer_etal:1994auk}.  We summed the total birds of each
 species seen on each route and year and used the routes (rather than
 the individual stops) as our sites.
@@ -909,7 +900,7 @@ constant, autoregressive, Ricker, Gompertz, autoregressive +
 immigration, population growth + immigration, Ricker + immigration,
 and Gompertz + immigration.  %We then tested the effect of average
 %minimum temperature for June and July on all dynamics parameters from
-%the minimum AIC dynamics model.  
+%the minimum AIC dynamics model.
 As above, these models require a maximum abundance to integrate over
 when run in a maximum likelihood
 framework; we used 600 for ovenbirds and 350
@@ -922,7 +913,7 @@ non-informative priors.  We tested for lack of convergence using 5
 Markov chains for each model \citep{gelman_rubin:1992}.
 %(Gelman and Rubin 1992).
 For each chain
-we sampled the MCMC for at least 40,000 iterations, after at least 3,000 tuning samples.  
+we sampled the MCMC for at least 40,000 iterations, after at least 3,000 tuning samples.
 %Latent inclusion factors for temperature effects?
 
 \section{Results}
@@ -954,7 +945,7 @@ added, estimates for $\Lambda$ and K increased dramatically (from 31.6 $\pm$ 4.9
 to 42.5 $\pm$ 7.3 and from 56.2 $\pm$ 18.2 to 101.8 $\pm$ 21.1, respectively), and
 the estimate for r was intermediate (0.018 $\pm$ 0.006).  The estimate of
 the intercept for p (on the logit scale) dropped from -1.5 $\pm$ 0.1 to
--2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.  
+-2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.
 %[Richard, I ran
 %the temperature model in the Bayesian framework (w/ and w/o random
 %effect) too.  Should we include those results?  As earlier, very
@@ -985,27 +976,27 @@ negative binomial initial abundance.  Rankings of subsequent models
 were similar, but with a p covariate (first) the negative binomial
 distribution outranked the ZIP.
 
-Estimates for the top ranked model for GWWA (ZIP[Λ(.)α(.)]Trend[r(.)]p(1st)) 
-were similar when run in the Bayesian framework.  When random observer 
-effects were added, the estimate for Λ  increased dramatically 
-(from 22.4 ± 7.6 to 55.5 ± 30.9).  The estimate of the intercept for p (on the 
-logit scale) dropped from -3.5 ± 0.2 to -5.6 ± 1.1, and the estimate of σp 
-was 1.7 ± 0.7.  Adding zero-inflation to the dynamics (as well as the initial 
-abundance) has no effect for trend models, because populations that started 
-at 0 would stay at 0 in any case.  Therefore, we tested zero-inflated dynamics 
-on the Trend + Imm. model.  Adding zero-inflation to the dynamics increased 
-the estimate of ι from 0 to 0.091 ± 0.049, but had only minor effects on the 
-other parameters.  Gelman and Rubin diagnostics and visual examination of 
-the ? plots provided evidence for a lack of convergence in estimates of Λ 
-for all Bayesian models ran, and for most parameters when random effects 
+Estimates for the top ranked model for GWWA (ZIP[Λ(.)α(.)]Trend[r(.)]p(1st))
+were similar when run in the Bayesian framework.  When random observer
+effects were added, the estimate for Λ  increased dramatically
+(from 22.4 ± 7.6 to 55.5 ± 30.9).  The estimate of the intercept for p (on the
+logit scale) dropped from -3.5 ± 0.2 to -5.6 ± 1.1, and the estimate of σp
+was 1.7 ± 0.7.  Adding zero-inflation to the dynamics (as well as the initial
+abundance) has no effect for trend models, because populations that started
+at 0 would stay at 0 in any case.  Therefore, we tested zero-inflated dynamics
+on the Trend + Imm. model.  Adding zero-inflation to the dynamics increased
+the estimate of ι from 0 to 0.091 ± 0.049, but had only minor effects on the
+other parameters.  Gelman and Rubin diagnostics and visual examination of
+the ? plots provided evidence for a lack of convergence in estimates of Λ
+for all Bayesian models ran, and for most parameters when random effects
 were included.
 
-Estimated detection probabilities were generally low.  The estimated probability 
-of detecting an OVEN in the top model (A.8) varied between 0.157 ± 0.014 
-and 0.184 ± 0.015, depending on wind speed and whether the observer had 
-run that route before.  The estimated probability of detecting a GWWA went 
-from 0.013 ± 0.006 for first time observers to 0.028 ± 0.008 for repeat 
-observers for the top model (B.8).  Accounting for random observer effects 
+Estimated detection probabilities were generally low.  The estimated probability
+of detecting an OVEN in the top model (A.8) varied between 0.157 ± 0.014
+and 0.184 ± 0.015, depending on wind speed and whether the observer had
+run that route before.  The estimated probability of detecting a GWWA went
+from 0.013 ± 0.006 for first time observers to 0.028 ± 0.008 for repeat
+observers for the top model (B.8).  Accounting for random observer effects
 decreased average detection probability for both species.
 
 For both species, constant dynamics models estimated very high
@@ -1110,7 +1101,7 @@ to collected replicated counts within the primary periods during a
 period in which the populations could be assumed to be closed.  A
 robust design could be used to combine multiple surveys per primary
 period to increase the precision of the estimates. We envision that
-multiple other options are available as well, such as removal, time of 
+multiple other options are available as well, such as removal, time of
 detection, and distance modeling ([cites]).
 %For instance, there
 %should be no difficulty extending the model to accommodate traditional
@@ -1330,7 +1321,7 @@ A.16. NB[$\Lambda$(.)$\alpha$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
 \begin{table}
   \centering
   \small
-  \caption{Model selection table for ovenbirds in Maryland and Virginia, 
+  \caption{Model selection table for ovenbirds in Maryland and Virginia,
     1966-2010.  We present model name
     and number, number of parameters (Par.), and difference in Akaike's
     information criterion between each model and the top model of that
