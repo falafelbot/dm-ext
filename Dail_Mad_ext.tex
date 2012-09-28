@@ -371,32 +371,40 @@ abundance is observed directly such that $n_{it} \equiv N_{it}$.
 
 \subsection{The Model}
 
-As originally formulated, the DM model includes submodels for three
-conditionally related processes: (1) initial abundance, i.e. the
+As with traditional state-space models, the DM model includes the
+three conditionally related processes shown in Eq.~\ref{eq:ss2}, which
+correspond to (1) initial abundance, i.e. the
 abundance at site $i$ during the first primary period,
-denoted $[N_{i1}]$, (2) subsequent abundance, which is dependent upon
-abundance in previous years $[N_{it}|N_{it-1}]$, and (3) the
-detection process, $[n_{it}|N_{it}]$ \citep{dail_madsen:2011}.
+denoted (2) abundance at time $t$ (for $t>1$) which depends upon
+abundance at $t-1$, and (3) the
+detection process \citep{dail_madsen:2011}.
 The first two processes describe the state process---the
-variation in abundance in space and time. The third item in the list
-is the observation process, which describes the relationship between
-the true state, abundance, and the observed count data.
+variation in abundance in space and time. The third process simply
+describes the the relationship between
+abundance and the observed count data.
 
 \subsubsection{Initial abundance}
 
 In the original formulation, initial abundance was
-modeled using either the Poisson or negative binomial distributions:
-\begin{gather}
-N_{i1} \sim \mathrm{Pois}(\Lambda_i) \nonumber \\
-\text{or} \nonumber \\
-N_{i1} \sim \mathrm{NB}(\Lambda_i, \alpha)
-\label{eq:N1}
-\end{gather}
-where
-%$N_{i1}$ is the abundance at site $i=1,\hdots,R$ during year 1 and
-$\Lambda_i$ is the expected abundance at site $i$ during year 1. The
-Poisson distribution assumes that the mean of $N_{i1}$ is equal to its
-variance, whereas the negative binomial distribution allows the
+modeled using either the Poisson or negative binomial
+distributions. Hence, in the Poisson case, we have
+\begin{equation}
+  [N_{i1} | \Lambda] = \frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}.
+  \label{eq:N1br}
+\end{equation}
+where $\Lambda_i$ is the expected abundance at site $i$ during year 1.
+From hereout, we will reserve bracket notation for arbitrary
+probability distributions, and for simplicity, use the equivalent notation $N_{i1}
+\sim \text{Pois}(\Lambda_i)$ when referencing specific distributions.
+%\begin{gather}
+%N_{i1} \sim \mathrm{Pois}(\Lambda) \nonumber \\
+%\text{or} \nonumber \\
+%N_{i1} \sim \mathrm{NB}(\Lambda, \alpha)
+%\label{eq:N1}
+%\end{gather}
+The Poisson distribution assumes that the mean of $N_{i1}$ is equal to its
+variance, whereas the negative binomial distribution, $N_{i1} \sim
+\text{NB}(\Lambda, \alpha)$, allows the
 variance to be greater than the mean with the amount of overdispersion
 determined by the parameter $\alpha$.
 
@@ -411,7 +419,8 @@ problem of parameter non-identifiability that are common to standard
 state-space models because, as demonstrated by \citet{royle:2004biom},
 process variation and observation error can be estimated from
 spatially-replicated count data. Hence, the first component of the
-model addresses issues (1) and (2) identified in the introduction.
+model addresses both the issues of spatial inference and parameter
+identifiability discussed previously.
 
 \subsubsection{Abundance in subsequent time periods}
 
@@ -421,8 +430,8 @@ first order Markovian process, although
 higher order processes are also possible.  \citet{dail_madsen:2011}
 considered several models to describe the temporal dynamics; however,
 in each case they modeled $N_t$ as the sum of two random variables:
-$S_t$, the number of indivduals surviving from $t-1$ and not
-emigrating; and $G_t$ the number of new individuals entering the
+$S_{it}$, the number of indivduals surviving from $t-1$ and not
+emigrating; and $G_{it}$ the number of new individuals entering the
 population. Their most general model was
 \begin{equation}
 \left.\begin{aligned}
@@ -433,29 +442,34 @@ N_{it} &= S_{it}+G_{it}
 \label{eq:Nt}
 \end{equation}
 where $\omega$ is the apparent survival probability and $\gamma$ is
-the recruitment rate (which can depend on $N_{it-1}$). In the absence
-of movement, $\omega$ is exactly the probability of surviving from
-year $t$ to $t-1$, and $\gamma$ is the per-capita birth rate. However,
-in the more common scenario when immigration and emigration occur,
-$\omega$ is the probability of surviving and not emigrating, and
-$\gamma$ is the sum\hl{[I think!]} of the birth rate and the emigration rate,
-i.e. the recruitment rate. \hl{[Feels a little repetitious with the material
-before the equation, although I understand you're describing S and G
-there and omega and gamma here.  In general, these sections
-describing the DM models are clear and well written, but we could
-possibly spend less time on them b/c it's already published.
-Possibly it's better this way, though.]} \citet{dail_madsen:2011} proposed three
+the recruitment rate (which can depend on $N_{it-1}$).
+%%%% I agree with your comment, but I think we need to distinguish
+%%%% between things like actual and apparent survival probs.
+%\hl{[Feels a little repetitious with the material
+%before the equation, although I understand you're describing S and G
+%there and omega and gamma here.  In general, these sections
+%describing the DM models are clear and well written, but we could
+%possibly spend less time on them b/c it's already published.
+%Possibly it's better this way, though.]}
+\citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
-$G_t \sim \mathrm{Pois}(\gamma)$ where recruitment does not depend on
+$G_{it} \sim \mathrm{Pois}(\gamma)$ where recruitment does not depend on
 $N_{it-1}$, and which simulates a ``propagule rain'' of new individuals; the
-autoregressive model, $G_t \sim \mathrm{Pois}(\gamma(N_{it-1}))$, which
+autoregressive model, $G_{it} \sim \mathrm{Pois}(\gamma(N_{it-1}))$, which
 simulates geometric or density independent growth; and the
 ``no-trend'' model, $\gamma = (1-\omega)\Lambda$, which keeps
 expected abundance constant over time. As before, covariates of
 $\omega$ and $\gamma$ can be easily accomodated, for example using
 logit- and log-linear models respectively.
 
-In cases where no movement occurs, the DM model can directly estimate
+In the absence
+of movement, $\omega$ is exactly the probability of surviving from
+year $t$ to $t-1$, and $\gamma$ is the per-capita birth rate. However,
+in the more common scenario when immigration and emigration occur,
+$\omega$ is the probability of surviving and not emigrating, and
+$\gamma$ is the sum %\hl{[I think!]}
+of the birth rate and the immigration rate,
+i.e. the recruitment rate. In cases where no movement occurs, the DM model can directly estimate
 demographich parameters, and this mechanistic description of
 population change is much more appealing than classical
 population growth models such as the logistic model. However, movement
