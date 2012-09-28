@@ -119,12 +119,11 @@ Let $N_t$ be the abundance of a species during year $t$, for
 $t=1,\hdots,T$, and let $X_t$ be
 the observed data, which differs from $N_t$ due to observation error,
 a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
-modeled using a population growth model, $\mu(N_{t-1})$,
-coupled with a stochastic model allowing
-for random process variation. %, which we denote $\grave{o}_t$.
-The deterministic model may be density-dependent, for example
-logistic, or it might be density-independent, as in the case of
-exponential growth.
+modeled using a population growth model, $\mu(N_{t-1})$
+and random process variation denoted $\grave{o}_t$.
+The growth model may be density-dependent, as in the case of the
+Ricker model, or it might be density-independent, such as when growth
+is exponential.
 %, in which $\mu(N_{t-1}) = N_{t-1}e^{r}$ where $r$ is the intrinsic rate of increase.
 The full model can now be written as:
 \begin{subequations}
@@ -147,7 +146,7 @@ assumed to be at equilibrium such that the $N_1$ can be regarded as an
 outcom of the equilibrium distribution.
 
 Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
-are the most widespread approach for modeling population dynamics
+are among the most widespread approaches for modeling population dynamics
 using time-series data, several problems are evident. Namely, (1)
 time-series data and the underlying abundance parameters of interest
 are typically integer-valued, as in the case of count data, raising
@@ -167,19 +166,8 @@ than estimation methods when random effects are not Gaussian distributed
 \citep{devalpine_hastings:2002}. The problem with this is that it
 allows for negative and non-integer values of the state-variable, which is
 inconsistent with the observed data, and may result in implausible predictions.
-%The fact that both abundance ($N_t$) and the observed data ($X_t$) are
-%typically non-negative integers suggests that it is inappropriate to
-%model process variation and observation error using Gaussian
-%distributions.
 Transforming the count data and the underlying abundance variables do
-not fully resolve these issues \citep{ohara_kotze:2010}.
-%Nonetheless, efforts have been made to adhere to the
-%Gaussian assumptions by tranforming abundance to
-%density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
-%area surveyed. However, this transformation is problematic since
-%local abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
-%zeros are replaced with some small number, although the
-%effect of this is rarely discussed.
+little to resolve these issues \citep{ohara_kotze:2010}.
 
 Another problem with standard state-space models is that the
 observation error has no clear interpretation. The use of a mean zero
@@ -206,10 +194,14 @@ that should be accounted for.
 %are needed to fully specify the model.
 To be more specific, a fully-specified state-space model requires at least
 three probability distributions, which we represent
-using bracket notation: \hl{[I'm not familiar with bracket notation,
-  so these equations are confusing to me.  How widely used is this
-  notation in ecology?  Will others likely understand this?  Also, we might want
-to save space by trimming a bunch of this discussion back down.]}
+using bracket notation (i.e., $[Y|\Omega]$ is interpretted
+as the probability distribution of the random variable $Y$ given the
+parameter $\Omega$). The three probability distributions required for a
+state-space model are:
+%\hl{[I'm not familiar with bracket notation,
+%  so these equations are confusing to me.  How widely used is this
+%  notation in ecology?  Will others likely understand this?  Also, we might want
+%to save space by trimming a bunch of this discussion back down.]}
 \begin{subequations}
   \label{eq:ss2}
   \begin{align}
@@ -221,35 +213,24 @@ to save space by trimming a bunch of this discussion back down.]}
 where $\bm{\theta}$ are the process variation parameters for the
 initial state, $\bm{\Theta}$ are the process variation parameters
 influencing how abundance changes over time, and $\bm{p}$ are the
-observation error parameters. The three lines of general model
-described by Eq.~\ref{eq:ss2} correspond to the three equations shown
-for the specific example in Eq~\ref{eq:ss1}.  However, in this case,
-we allow $N_1$ to be a random variable. But what should its
-distribution, $[N_1|\bm{\theta}]$ be? And how could $\bm{\theta}$ be
-estimated since there is only a single observation available?
-One approach to estimating the $\bm{\theta}$ is to assume that the
-population is in equlibrium, i.e. that the expected value of $N_t$ is
-constant through time. Althought this makes the parameters
-identifiable, assuming equlibrium defeats the objective of many
-studies of population dynamics, namely determining why a population
-varies over time.
-
-\begin{comment}
-  However, a completSpecifically, the Markovian nature of the model
-  implies the following likelihood The first term is the probability
-  density for the first observation in the time series, $X_1$, yet it
-  is intuitively not possible to estimate the parameter(s) of this
-  distribution using only a single observation.
-  % This problem has resulted in several papers with interesting names
-  % like ``multi-modal likelihoods and ridges etc...''
-  Two options have been proposed handling the identifiability
-  problem. First, one can assume that the first observation in the
-  time series is made without error. Second, one can assume that the
-  population is at equilibrium so that that the x can be replaced with
-  the equilibrium distribution. However, assuming equilibrium defeats
-  the objective of many studies of population dynamics, namely
-  determining if and why a population is at equilibrium.
-\end{comment}
+observation error parameters. As mentioned previously, Eq.~\ref{eq:ss2b}
+and Eq.~\ref{eq:ss2c} are assumed to be Gaussian in classical state-space
+models, but what should be the distribution for Eq.~\ref{eq:ss2}?
+%The three lines of general model
+%described by Eq.~\ref{eq:ss2} correspond to the three equations shown
+%for the specific example in Eq~\ref{eq:ss1}.  However, in this case,
+%we allow $N_1$ to be a random variable. But what should its
+%istribution, $[N_1|\bm{\theta}]$ be?
+And how could $\bm{\theta}$ be
+estimated given that there is only a single observation available?
+Often, these problems are simply assumed away. For
+example, sometimes researchers assume that there is no process variation in
+the first year, although this seems unjustified. Alternatively, the
+population may be assumed to be at equilibrium such that the expected
+value of $N_t$ is constant through time. Although this
+makes the parameters $\bm{\theta}$ identifiable, assuming equlibrium
+defeats the objective of many studies of population dynamics, namely
+determining why a population varies over time.
 
 A fourth problem with these models is that they do not admit
 spatial variation. This reduces the scope of the inferences that can
@@ -278,19 +259,7 @@ of the initial state at time $t=1$. Of these extensions, the work by
 simultaneously. However, their model did not include serial
 dependence, which is a hallmark of population models. This limits the
 utility of their model for making inferences about explicit population
-processes. In contrast, recent work has sought to use state-space
-models for inference about population processes such as mortality and
-recruitment. To do so, methods have been developed to combine multiple
-sources of information, such as counts and mark-recapture data
-\citep{besbeas_etal:2002, buckland_etal:2004,
-  schaub_etal:2007}. Although these integrated
-population models may be viewed as the gold standard in state-space
-modeling, ecologists are not always so fortunate to have direct
-information about vital rates, especially at large spatial scales.
-Rather, count data are much more common, and
-are produced by many of the largest monitoring programs in the world,
-such as the North American Breeding Bird Survey
-\citep[BBS;][]{robbins_etal:1986}.
+processes.
 
 In this paper, we focus on the model of
 \citet[henceforth the DM model;]{dail_madsen:2011}
@@ -1138,6 +1107,22 @@ Bayesian framework.
 
 \begin{comment}
 Should we include these possible extensions as well?
+
+
+In contrast, recent work has sought to use state-space
+models for inference about population processes such as mortality and
+recruitment. To do so, methods have been developed to combine multiple
+sources of information, such as counts and mark-recapture data
+\citep{besbeas_etal:2002, buckland_etal:2004,
+  schaub_etal:2007}. Although these integrated
+population models may be viewed as the gold standard in state-space
+modeling, ecologists are not always so fortunate to have direct
+information about vital rates, especially at large spatial scales.
+Rather, count data are much more common, and
+are produced by many of the largest monitoring programs in the world,
+such as the North American Breeding Bird Survey
+\citep[BBS;][]{robbins_etal:1986}.
+
 
 For data sources such as the BBS, where stops are nested within
 routes, spatially hierarchical versions of these models could be
