@@ -124,9 +124,9 @@ coupled with a stochastic model allowing
 for random process variation. %, which we denote $\grave{o}_t$.
 The deterministic model may be density-dependent, for example
 logistic, or it might be density-independent, as in the case of
-exponential growth, in which $\mu(N_{t-1}) = N_{t-1}e^{r}$ where $r$
-is the intrinsic rate of increase. The full model can now be written
-as:
+exponential growth.
+%, in which $\mu(N_{t-1}) = N_{t-1}e^{r}$ where $r$ is the intrinsic rate of increase.
+The full model can now be written as:
 \begin{subequations}
   \label{eq:ss1}
   \begin{align}
@@ -138,11 +138,13 @@ as:
 where $\grave{o}_t$ is the random effect allowing for process
 variation unaccounted for by the deterministic model. In classical
 state-space models, the two sets of random effects
-are assumed to be i.i.d Gaussian deviates:
+are assumed to be i.i.d. Gaussian deviates:
 $\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
 $\zeta_t \sim \mathrm{N}(0, \tau)$. It is also standard practice to
 ignore process variation associated with $N_1$, as
-indicated by Eq~\ref{eq:ss1a}.
+indicated by Eq~\ref{eq:ss1a}. Alternatively, the population is
+assumed to be at equilibrium such that the $N_1$ can be regarded as an
+outcom of the equilibrium distribution.
 
 Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
 are the most widespread approach for modeling population dynamics
@@ -163,19 +165,21 @@ allow for parameter estimation using the Kalman filter
 \citep{dennis_etal:2006}, which is much more computationally efficient
 than estimation methods when random effects are not Gaussian distributed
 \citep{devalpine_hastings:2002}. The problem with this is that it
-allows for negative values of the state-variable, which is
-inconsistent with the observed data.
+allows for negative and non-integer values of the state-variable, which is
+inconsistent with the observed data, and may result in implausible predictions.
 %The fact that both abundance ($N_t$) and the observed data ($X_t$) are
 %typically non-negative integers suggests that it is inappropriate to
 %model process variation and observation error using Gaussian
 %distributions.
-Nonetheless, efforts have been made to adhere to the
-Gaussian assumptions by tranforming abundance to
-density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
-area surveyed. However, this transformation is problematic since
-local abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
-zeros are replaced with some small number, although the
-effect of this is rarely discussed.
+Transforming the count data and the underlying abundance variables do
+not fully resolve these issues \citep{ohara_kotze:2010}.
+%Nonetheless, efforts have been made to adhere to the
+%Gaussian assumptions by tranforming abundance to
+%density by replacing $N_t$ with $Y_t = \log(N_t/A)$ where $A$ is the
+%area surveyed. However, this transformation is problematic since
+%local abundance may be zero and thus $Y_t = \log(0) = -\infty$. Generally,
+%zeros are replaced with some small number, although the
+%effect of this is rarely discussed.
 
 Another problem with standard state-space models is that the
 observation error has no clear interpretation. The use of a mean zero
