@@ -361,15 +361,15 @@ month long breeding season, which could be surveyed once per year for
 $T$ years. If the a site is surveyed on $J$ occassions during a
 primary period, these are called secondary sampling occasions.
 In the case where no secondary sampling was conducted, i.e. $J=1$,
-let $n_{it}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data at site
+let $X_{it}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data at site
 $i$ and primary period $t$. If secondary sampling periods were used,
-an extra dimension is added so tha twe have $n_{ijt}:
-j=1,\hdots,J$. Typically, we $n_{it}$ will be lower than the actual
+an extra dimension is added so tha twe have $X_{ijt}:
+j=1,\hdots,J$. Typically, we $X_{it}$ will be lower than the actual
 quantitiy of interest, abundance,
-denoted $N_{it}$. In cases where detection probability is perfect,
-abundance is observed directly such that $n_{it} \equiv N_{it}$.
+denoted $X_{it}$. In cases where detection probability is perfect,
+abundance is observed directly such that $X_{it} \equiv N_{it}$.
 
-\subsection{The Model}
+\subsection{The Original Formulation of the Model}
 
 As with traditional state-space models, the DM model includes the
 three conditionally related processes shown in Eq.~\ref{eq:ss2}, which
@@ -495,42 +495,70 @@ population models.
 
 \subsubsection{Observation process}
 
-Eqs.~\ref{eq:N1} and \ref{eq:Nt} fully specify the state model---the
-model for spatial and temporal variation in abundance. The observation
+Eqs.~\ref{eq:N1} and \ref{eq:Nt} fully specify the state model, i.e. the
+model for abundance dynamics. This state
+model has allowed us to replace the initial abundance distribution and
+transition models of conventional state-space models, with
+alternatives that (1) allow for modeling spatial variation in
+abundance, (2) respect the discrete nature of the counts, and (3) have
+parameters that are estimable. The one
+remaining task is to replace the observation model
+$[X_t|N_t, \bm{p}]$ (Eq.~\ref{eq:ss2c}) with one that can be more
+easily interpretted. The observation
 model assumes that individuals are missed due to imperfect
 detection. The simplest model for imperfect detection, and the one
 considered in the original formulation, is
 \begin{equation}
-  n_{it} \sim \mathrm{Bin}(N_{it}, p)
+  X_{it} \sim \mathrm{Bin}(N_{it}, p)
   \label{eq:p1}
 \end{equation}
-Surprsingly detection probability, $p$, can be estimated without
-secondary sampling occasions. However, this is only possible
-if the parameteric assumptions of the population dynamics are met
-exactly. In practice, it is preferable to obtain direct information
-about $p$ using secondary sampling occassions or some other auxiliary
-data, \hl{as is demonstrated in section....}
+or equivalently,
+\begin{equation}
+  [X_{it} | N_{it}, \bm{p}] = \binom{N_{it}}{X_{it}} \bm{p}^{X_{it}}(1-\bm{p})^{N_{it}-X_{it}}.
+  \label{eq:1}
+\end{equation}
+Under this model, $\bm{p}$ are interpretted as detection probability
+parameters...
 
+%%%% Save for discussion?
+%Surprsingly detection probability, $p$, can be estimated without
+%secondary sampling occasions. However, this is only possible
+%if the parameteric assumptions of the population dynamics are met
+%exactly. In practice, it is preferable to obtain direct information
+%about $p$ using secondary sampling occassions or some other auxiliary
+%data, \hl{as is demonstrated in section....}
+
+The entire model can now be written:
+\begin{gather}
+  N_{i1} \sim \text{Pois}(\Lambda) \nonumber \\
+  S_{it}|N_{it-1} \sim \mathrm{Bin}(N_{it-1}, \omega) \nonumber \\
+  G_{it}|N_{it-1}\sim \mathrm{Pois}(\gamma(N_{it-1})) \\
+  N_{it} = S_{it}+G_{it} \nonumber \\
+  X_{it} \sim \text{Bin}(N_{it}, p) \nonumber
+  \label{eq:hm}
+\end{gather}
 
 \section{Statistical Inference}
 
 \subsection{Maximum likelihood}
 
-Maximum likelihood estimation of parameters in models with random
-effects requires removing the random effects by integration or
+Maximum likelihood estimation of parameters in models with discrete random
+effects requires removing them by
 summation. For Markovian models, this can be done recursively, making
-the likelihood tractible, the general expression of which can be written:
-\begin{equation}
-  \mathcal{L}(\Lambda, \Phi, \mathbf{p} | \{n_{it}\}) =
+the likelihood tractible. A general expression of the likelihood can be written:
+\begin{multline}
+  \mathcal{L}(\Lambda, \bm{\Theta}, p | \{X_{it}\}) = \\
   \prod_{i=1}^R \left\{ \sum_{N_{i1}=0}^{\infty}
-  [n_{i1}|N_{i1}][N_{i1}|\Lambda] \left\{
+  [X_{i1}|N_{i1}, p][N_{i1}|\Lambda] \left\{
 %  \prod_{t=T}^2 \left\{
-  \sum_{N_{i1}=0}^{\infty} \dotsm \sum_{N_{iT}=0}^\infty
-  [n_{it}|N_{it}][N_{it}|N_{it-1}] %\right\}
+  \sum_{N_{i2}=0}^{\infty} \dotsm \sum_{N_{iT}=0}^\infty
+  [X_{it}|N_{it}, p][N_{it}|N_{it-1}, \bm{\Theta}] %\right\}
   \right\} \right\}
   \label{eq:like}
-\end{equation}
-This likelihood can be maximized numerically using the \textbf{R}
+\end{multline}
+where $\infty$ is replaced by a finite upper bound $K$, which should
+be high enough such that the MLEs are not affected by increasint it
+further. This likelihood can be maximized numerically using the \textbf{R}
 package \texttt{unmarked} \citep{fiske_chandler:2011}. Examples are
 given in the Appendix.
 
@@ -557,8 +585,8 @@ Writeing custom MCMC algorthims is often tedious and foreign to
 ecologists, but software packages such as \textbf{WinBUGS} and
 \textbf{JAGS} overcome the technical difficulties by allowing users to
 specify the model using a simple symbolic descriptions. For example,
-here is \textbf{BUGS} code for the ``constant'' model described above.
-
+here is \textbf{BUGS} code for the ``geometric'' model described shown
+in Eq.~\ref{eq:hm}:
 \begin{verbatim}
 model {
 lambda ~ dunif(0, 5)
@@ -570,7 +598,7 @@ for(i in 1:nSites) {
   y[i,1] ~ dbin(p, N[i,1])
   for(t in 2:nYears) {
     S[i,t-1] ~ dbin(omega, N[i,t-1])
-    G[i,t-1] ~ dpois(gamma)
+    G[i,t-1] ~ dpois(gamma*N[i,t-1])
     N[i,t] <- S[i,t-1] + G[i,t-1]
     n[i,t] ~ dbin(p, N[i,1])
     }
