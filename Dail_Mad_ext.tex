@@ -385,28 +385,36 @@ abundance and the observed count data.
 
 \subsubsection{Initial abundance}
 
-In the original formulation, initial abundance was
-modeled using either the Poisson or negative binomial
-distributions. Hence, in the Poisson case, we have
-\begin{equation}
-  [N_{i1} | \Lambda] = \frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}.
-  \label{eq:N1br}
-\end{equation}
-where $\Lambda_i$ is the expected abundance at site $i$ during year 1.
-From hereout, we will reserve bracket notation for arbitrary
-probability distributions, and for simplicity, use the equivalent notation $N_{i1}
-\sim \text{Pois}(\Lambda_i)$ when referencing specific distributions.
-%\begin{gather}
-%N_{i1} \sim \mathrm{Pois}(\Lambda) \nonumber \\
-%\text{or} \nonumber \\
-%N_{i1} \sim \mathrm{NB}(\Lambda, \alpha)
-%\label{eq:N1}
-%\end{gather}
+Recall that conventional state-space models assume that the
+distribution for the initial time period,
+$[N_1 | \bm{\theta}]$, is either the equilibrium
+distribution, or has zero variance.
+In contrast, \citet{dail_madsen:2011} proposed modeling $N_{i1}$
+as either a Poisson or negative binomial random variable:
+\begin{gather}
+N_{i1} \sim \mathrm{Pois}(\Lambda) \nonumber \\
+\text{or} \nonumber \\
+N_{i1} \sim \mathrm{NB}(\Lambda, \alpha)
+\label{eq:N1}
+\end{gather}
+%\begin{equation}
+%  [N_{i1} | \Lambda] = \frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}.
+%  \label{eq:N1br}
+%\end{equation}
+where $\Lambda_i$ is the expected abundance at site $i$ during year
+1. In the Poisson case, the eqivalent expression of
+Eq.~\ref{eq:ss2a} is $[N_{i1} | \Lambda] =
+\frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}$.
+%From hereout, we will reserve bracket notation for arbitrary
+%probability distributions, and for simplicity, use the equivalent notation $N_{i1}
+%\sim \text{Pois}(\Lambda_i)$ when referencing specific distributions.
 The Poisson distribution assumes that the mean of $N_{i1}$ is equal to its
 variance, whereas the negative binomial distribution, $N_{i1} \sim
 \text{NB}(\Lambda, \alpha)$, allows the
 variance to be greater than the mean with the amount of overdispersion
 determined by the parameter $\alpha$.
+Note that $N_{i1} \sim \text{Pois}(\Lambda)$ is equivalent to
+$[N_{i1} | ] = \frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}$.
 
 Regardless of the specified distribution, the model for initial
 abundance has two distinguising features. First, it provides a
@@ -505,8 +513,11 @@ the likelihood tractible, the general expression of which can be written:
 \begin{equation}
   \mathcal{L}(\Lambda, \Phi, \mathbf{p} | \{n_{it}\}) =
   \prod_{i=1}^R \left\{ \sum_{N_{i1}=0}^{\infty}
-  [n_{i1}|N_{i1}][N_{i1}|\Lambda] \left\{ \prod_{t=T}^2 \left\{ \sum_{N_{it}=0}^{\infty}
-  [n_{it}|N_{it}][N_{it}|N_{it-1}] \right\} \right\} \right\}
+  [n_{i1}|N_{i1}][N_{i1}|\Lambda] \left\{
+%  \prod_{t=T}^2 \left\{
+  \sum_{N_{i1}=0}^{\infty} \dotsm \sum_{N_{iT}=0}^\infty
+  [n_{it}|N_{it}][N_{it}|N_{it-1}] %\right\}
+  \right\} \right\}
   \label{eq:like}
 \end{equation}
 This likelihood can be maximized numerically using the \textbf{R}
