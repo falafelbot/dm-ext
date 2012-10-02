@@ -1092,16 +1092,6 @@ for both models).
   allows for inference about both temporal and spatial variation in
   abundance.
 
-  In some respects, the DM model can be viewed as a specific
-  manifestation of the general state-space model formulated by
-  \citep{buckland_etal:2004}. However, their model was designed to
-  allow for inference about demographic parameters, which will
-  typically require mark-recapture data. Although this may be viewed
-  as the gold standard in many studies of wildlife populations, in
-  this paper, we focus on the analysis of count data, which is the
-  typical source of information used in state-state modeling
-  applications, and one of the most widely available forms of
-  ecological data---it is also the data required by the DM model.
 \end{comment}
 
 
@@ -1109,7 +1099,9 @@ Our work has highlighted the limitations of classical state-space
 models as applied to ecological time series data, and we have
 demonstrated how open population $N$-mixture models overcome these
 limitations. We extended this class of models in several important
-ways, while keeping in mind the practical issues ...
+ways that should make them more suitable to typical ecological
+datasets that are characterized by sparse counts, zero-inflation, and
+observation error due to imperfect detection.
 
 We made four important developments of the open population
 N-mixture model proposed by \citep{dail_madsen:2011} that make the
@@ -1150,6 +1142,33 @@ often referred to as integrated population models (IPM; CITE),
 and we believe that a DM model would provide an effective part
 of an IPM.
 
+
+In contrast, recent work has sought to use state-space
+models for inference about population processes such as mortality and
+recruitment. To do so, methods have been developed to combine multiple
+sources of information, such as counts and mark-recapture data
+\citep{besbeas_etal:2002, buckland_etal:2004,
+  schaub_etal:2007}. Although these integrated
+population models may be viewed as the gold standard in state-space
+modeling, ecologists are not always so fortunate to have direct
+information about vital rates, especially at large spatial scales.
+Rather, count data are much more common, and
+are produced by many of the largest monitoring programs in the world,
+such as the North American Breeding Bird Survey
+\citep[BBS;][]{robbins_etal:1986}.
+
+In the context of IPMs, the DM model can be viewed as a specific
+manifestation of the general state-space model formulated by
+\citep{buckland_etal:2004}. However, their model was designed to
+allow for inference about demographic parameters, which will
+typically require mark-recapture data. Although this may be viewed
+as the gold standard in many studies of wildlife populations, in
+this paper, we focus on the analysis of count data, which is the
+typical source of information used in state-state modeling
+applications, and one of the most widely available forms of
+ecological data---it is also the data required by the DM model.
+
+
 In the absence of direct information about demographic parameters, and
 when the original assumptions of the model do not hold, we have
 offered extensions of the model to estimate derived parameters such as
@@ -1157,12 +1176,13 @@ population growth rate. This has been the traditional emphasis of
 state-space models, and our approach resolves many of the factors
 limiting ...
 
-The zero-inflated models for initial
-abundance and dynamics allow one to estimate and model the proportion
-of sites outside of the range of a species.  This could be especially
-useful when different factors control the range than the abundance or
-dynamics within the range.  [some examples where that is the case?]
-
+\begin{comment}
+  The zero-inflated models for initial abundance and dynamics allow
+  one to estimate and model the proportion of sites outside of the
+  range of a species.  This could be especially useful when different
+  factors control the range than the abundance or dynamics within the
+  range.  [some examples where that is the case?]
+\end{comment}
 [paragraph on random effects]
 
 
@@ -1221,24 +1241,7 @@ possible to fit some or all of these models, at least in the
 Bayesian framework.
 
 \begin{comment}
-Should we include these possible extensions as well?
 
-
-
-
-In contrast, recent work has sought to use state-space
-models for inference about population processes such as mortality and
-recruitment. To do so, methods have been developed to combine multiple
-sources of information, such as counts and mark-recapture data
-\citep{besbeas_etal:2002, buckland_etal:2004,
-  schaub_etal:2007}. Although these integrated
-population models may be viewed as the gold standard in state-space
-modeling, ecologists are not always so fortunate to have direct
-information about vital rates, especially at large spatial scales.
-Rather, count data are much more common, and
-are produced by many of the largest monitoring programs in the world,
-such as the North American Breeding Bird Survey
-\citep[BBS;][]{robbins_etal:1986}.
 
 
 For data sources such as the BBS, where stops are nested within
@@ -1309,6 +1312,11 @@ future can be done as a component of the MCMC analysis. This allows
 for the computation of posterior distributions of parameters such as
 quasi-extinction probability.
 
+
+\section{Acknowledgements}
+
+We thank J. Andrew Royle and T. Scott Sillett for helpful comments
+throughout this process.
 
 \bibliography{Dail_Mad_ext}
 
