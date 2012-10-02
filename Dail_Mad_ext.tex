@@ -1091,64 +1091,81 @@ for both models).
   including those describing the initial state at time $t=1$, and (4)
   allows for inference about both temporal and spatial variation in
   abundance.
-
 \end{comment}
 
 
 Our work has highlighted the limitations of classical state-space
 models as applied to ecological time series data, and we have
-demonstrated how open population $N$-mixture models overcome these
+demonstrated how a class of open population $N$-mixture models
+proposed by \citet{dail_madsen:2011} overcomes these
 limitations. We extended this class of models in several important
-ways that should make them more suitable to typical ecological
-datasets that are characterized by sparse counts, zero-inflation, and
-observation error due to imperfect detection.
+ways to accomodate common features of ecological
+datasets, including sparse counts, zero-inflation, demographic
+stochasticity, and random variation in observation error.
+%We made four important developments of the open population
+%N-mixture model proposed by \citet{dail_madsen:2011} that make the
+%model more applicable to long-term data such as is collected
+%by the North American Breeding Bird Survey.
+%First, we have
+%reconciled the objectives of traditional state-space models
+%with open population $N$-mixture models by illustrating how
+%classical models of population dynamics can be embedded within
+%the framework. Second, we have demonstrated methods of
+%accounting for zero-inflation in the time-series. Third, we
+%have illustrated how additional random effects such as
+%observer-specific detection probabilities can be
+%accommodated. Fourth, we presented a Bayesian analysis of the
+%model, which, makes it possible to incorporate prior information when
+%available, and in some cases, facilitates parameter estimation.
 
-We made four important developments of the open population
-N-mixture model proposed by \citep{dail_madsen:2011} that make the
-model more applicable to long-term data such as is collected
-by the North American Breeding Bird Survey. First, we have
-reconciled the objectives of traditional state-space models
-with open population $N$-mixture models by illustrating how
-classical models of population dynamics can be embedded within
-the framework. Second, we have demonstrated methods of
-accounting for zero-inflation in the time-series. Third, we
-have illustrated how additional random effects such as
-observer-specific detection probabilities can be
-accommodated. Fourth, we presented a Bayesian analysis of the
-model, which, makes it possible to incorporate prior information when
-available, and in some cases, facilitates parameter estimation.
-
-
-A unique aspect of the Dail and Madsen model as originally
-devised was that it allowed for the estimation of demographic
-parameters under strict distributional assumptions and with the
-assumption of geographic closure. Clearly, estimating
+We also demonstrated how many of the objectives of classical
+state-space models can be met using this. For example, one of the
+primary aims of our paper was to demonstrate how classical
+population growth models can be embedded in the DM model.
+In some ways, such population growth models are more phenomenological
+than mechanistic, and this runs counter to the motivation for the DM
+model. However,
+%A unique aspect of the Dail and Madsen model as originally
+%devised was that it allowed for the estimation of demographic
+%parameters under strict distributional assumptions and with the
+%assumption of geographic closure. Clearly,
+estimating
 demographic parameters from count data is an ambitious goal, and
-the required assumption will not be valid in many cases. One
-advantage of the original DM models over our extensions here is
-that they model population dynamics more mechanistically, by
-focusing on survival and recruitment. As we report here, these
-models often provide unrealistic estimates of these vital rates
-and are generally less supported in model selection. Adding
-density dependence directly to one or both vital rates may solve
-both of these problems, although this might require very good
-data. Another strategy would be to use estimates of vital rates
-from demographic studies as priors in a Bayesian analysis using
-DM models. Finally, count data could be combined with other data
-types such as capture-recapture data, which offers a means of
+the required assumption will not be valid in many cases, especially
+when immigration and emigration occur. This was supported by the
+unrealistic estimates of vital rates reported here and by the lack of
+support for the mechanistic models relative to the population growth
+models.
+%One
+%advantage of the original DM models over our extensions here is
+%that they model population dynamics more mechanistically, by
+%focusing on survival and recruitment. As we report here, these
+%models often provide unrealistic estimates of these vital rates
+%and are generally less supported in model selection.
+%Adding
+%density dependence directly to one or both vital rates may solve
+%both of these problems, although this might require very good
+%data.
+One strategy for adhereing to the explicit model would be to use
+estimates of vital rates from demographic studies as priors in a
+Bayesian analysis. Alternatively, count data could be combined with
+other data types such as capture-recapture data, which offers a means of
 making inferences about demographic processes at broad spatial
-scales. Models combining count data and demographic data are
-often referred to as integrated population models (IPM; CITE),
-and we believe that a DM model would provide an effective part
-of an IPM.
+scales. Models that are fitted to count data and demographic data are
+often referred to as integrated population models
+\citep[][IPM]{besbeas_etal:2002, buckland_etal:2004,schaub_etal:2007}
+and we believe that a DM model would provide an framework for an
+IPM. However, we caution that when count data are affected by movement
+and vital rates, IPMs would need to model
 
+%In contrast, recent work has sought to use state-space
+%models for inference about population processes such as mortality and
+%recruitment. To do so, methods have been developed to combine multiple
+%sources of information, such as counts and mark-recapture data
+%\citep{besbeas_etal:2002, buckland_etal:2004,
+%  schaub_etal:2007}.
 
-In contrast, recent work has sought to use state-space
-models for inference about population processes such as mortality and
-recruitment. To do so, methods have been developed to combine multiple
-sources of information, such as counts and mark-recapture data
-\citep{besbeas_etal:2002, buckland_etal:2004,
-  schaub_etal:2007}. Although these integrated
+Although these integrated
 population models may be viewed as the gold standard in state-space
 modeling, ecologists are not always so fortunate to have direct
 information about vital rates, especially at large spatial scales.
