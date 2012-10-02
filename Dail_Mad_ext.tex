@@ -883,33 +883,42 @@ We take the parameter estimates and plug them back in.... For example
 to obtain the posterior distribution for $[N_{i1}]$
 \begin{equation}
   [\hat{N}_{i1}] = \frac{[N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1}, \hat{p}]}{\sum_{N_{i1}=0}^K [N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1},\hat{p}]}
-  \label{eq:3}
+  \label{eq:eb1}
 \end{equation}
 Once we have estimated the posterior distribution for the first time
 period, we can then proceed to estimate the posterior distribution for
 subsequent time periods using recursion.
+\begin{equation}
+  [\hat{N}_{it}] =
+  \frac{[N_{it}|N_{it-1},\hat{\bm{\Theta}}][X_{it}|N_{it},
+    \hat{p}]}{\sum_{N_{it}=0}^K [N_{it}|N_{it-1}, \hat{\Theta}][X_{it}|N_{it},\hat{p}]}
+  \label{eq:eb2}
+\end{equation}
 
 Note that when $X_{it}$ is not observed, including for future time
 periods, the distribution $[X_{it}|N_{it}]$ is taken to be uniform
 such that it has no influence on the posterior. In other words, the
 posterior for years with no observed data is determined entirely by
-the posterior for the previous year (and the population dynamics
-parameters).
+the estimated posterior from the previous year and the population dynamics
+parameters.
 
 If covariates of the dynamics parameters are present, the problem
 becomes much harder because, to fully account for uncertainty, we need
-a model for the future values of the covariates as well.
+a model for the future values of the covariates as well. When the
+covariates are continuous, this requires integrating over their
+possible values, which becomes very challenging
+computationally. Indeed, simulation methods such as MCMC are the only
+viable options when numerous covariates are present, which will often
+be the case in many ecological studies.
 
-In this case, the Bayesian approach is the most direct and easy to
-implement because population size at any future point in time is
-regarded as an unknown parameter like any other. Thus, one can simply
-compute the posterior distribution of $N^+_t$, which is called the
-posterior predictive distribution. In practical terms, this simply
-means adding ``missing data'' to the observed count data, and allowing
-the MCMC algorithm to sample the latent abundance variables
-conditional only on abundance in each previous time period (and the
-parameters governing population dynamics). An example of this is
-provided in the appendix.
+Relative to the computational challenges associated with the empirical
+Bayes methods, the Bayesian approach is much more easy to implement,
+especially since MCMC will be generally be relied upon in the first
+place. Futhermore, because population size at any future point in time is
+regarded as an unknown parameter like any other, computing the
+posterior distribution of $N^+_t$ requires no additional steps in MCMC
+algorithm, other than formally stating that the count data are ``missing''
+in future years.  An example of this is provided in the appendix.
 
 
 
