@@ -613,28 +613,37 @@ for(i in 1:nSites) {
 
 \subsection{Population growth models}
 
-Preliminary DM model runs for several species tended to lead to
-estimates of survival that were unrealistically high and recruitment
-that were unrealistically low, or the reverse (compared to independent
-demographic analyses).  The DM models are able to partition changes in
-abundance to survival and recruitment in part by making strong
-distributional assumptions. % (Dail and Madsen 2011).
-When those assumptions are heavily violated the models may proportion
-population growth incorrectly into survival and recruitment, even if
-they estimates population growth accurately.
+% Preliminary DM model runs for several species tended to lead to
+% estimates of survival that were unrealistically high and recruitment
+% that were unrealistically low, or the reverse (compared to independent
+% demographic analyses).  The DM models are able to partition changes in
+% abundance to survival and recruitment in part by making strong
+% distributional assumptions. % (Dail and Madsen 2011).
+% When those assumptions are heavily violated the models may proportion
+% population growth incorrectly into survival and recruitment, even if
+% they estimates population growth accurately.
 
 Although partitioning population growth into survival and recruitment
-is informative, it is not needed for all applications.  Furthermore, a
-simpler model would have several merits: faster running time, fewer
-total model combinations, and possibly more realistic estimates.
-Therefore, we developed a version of the DM model that estimates and
-models population growth directly.  In this model, Eq.~\ref{eq:Nt} is
-simplified to:
+is ideal in terms of providing a mechanistic description of population
+dynamics, it is not always possible using simple count data,
+especially when the sites are not closed with respect to immigration
+and emigration. %Furthermore, a
+%simpler model would have several merits: faster running time, fewer
+%total model combinations, and possibly more realistic estimates.
+If the mechanistic model must be sacrificed, we suggest replacing it
+with classical population growth models that have a long history in
+ecology. The simplest of which is the exponential growth
+model: $f(N_{it-1}) = N_{it-1}e^r$ where $r$ is the intrinsic rate of
+increase. Although demographic and environmental stochasticity in $r$
+could be modeled as functions of covariates or random effects, a
+simpler way of allow for stocasticity is
+to regard $N_{it}$ as a Poisson random variable, simplifying
+Eq.~\ref{eq:Nt} to:
 \begin{equation}
-  N_{it} \sim \text{Pois}(\exp(r)N_{it-1})
+  N_{it} \sim \text{Pois}(\exp(r)N_{it-1}).
 \label{eq:exp}
 \end{equation}
-where $r$ represents the instantaneous population growth rate.  This,
+This,
 like the autoregressive version of the model, is a variant on a simple
 density-independent exponential model of population growth.
 Density-dependent versions of the model are also possible.  For
@@ -765,8 +774,8 @@ climate.  This approach combines elements of occupancy modeling
 
 %The zero inflation factor can also affect
 %recruitment or population dynamics (see below).
-We also considered a zero-inflated negative binomial model of initial
-abundance, but this model did not perform well in preliminary tests.
+%We also considered a zero-inflated negative binomial model of initial
+%abundance, but this model did not perform well in preliminary tests.
 
 %\subsection{Dynamic range models}
 
@@ -800,9 +809,21 @@ zero-inflated dynamics in the Bayesian framework using program
 %(version 3.2.0; Plummer 2003)
 
 
+\subsection{Environmental and demographic stochasticity}
+
+Even though the DM model is conceptually very simple, even in its most
+stripped down form it includes many random effects (the $N$'s) making
+it challenging to compute the likelihood or implement MCMC
+algorithms. Nonetheless, in some cases additional random effects may
+be of interest. For example, in conventional state-space models,
+demographic stochasticity is often modeled as $r_t \sim
+\text{Norm}(\mu_r, \sigma_r)$.
+
 \subsection{Random effects of observers}
 
-Differences in observers' ability to see, hear, or identify
+Variation in detection probability among observers is another source
+of random variation that may need to be accounted for applying the DM
+model. For example, differences in observers' ability to see, hear, or identify
 birds has long been recognized as a potential source of error
 in avian point count surveys such as the BBS
 \citep{robbins_etal:1986,diefenbach_etal:2003,sauer_etal:1994auk,alldredge_etal:2007auk,campbell_francis:2011}.
@@ -828,27 +849,28 @@ estimates of the fixed effects.
 To include random observer effects in DM models and these extensions,
 Eq.~\ref{eq:p1} can be modified to:
 \begin{gather}
-n_{ijt} \sim \mathrm{Bin}(N_{it}, p_j) \nonumber \\
+X_{ijt} \sim \mathrm{Bin}(N_{it}, p_j) \nonumber \\
 \mathrm{logit}(p_j) \sim \mathrm{Normal}(\mu_p, \sigma_p)
 \label{eq:pobs}
 \end{gather}
-where $n_{ijt}$ is the number of bird recorded at site $i$ by observer $j$ in
+where $X_{ijt}$ is the number of bird recorded at site $i$ by observer $j$ in
 year $t$, $p_j$ is observer-specific detection probability, $\mu_p$ is the mean
 detection probability (on the logit scale), and $\sigma_p$ is the standard
 deviation of the random observer effects (also on the logit scale).
 We have implemented random observer effects in the Bayesian framework
 using program \textbf{JAGS} \citep[version 3.2.0]{plummer:2003}
 % (version 3.2.0; Plummer 2003)
-with the \textbf{R} (R
-Development Core Team 2011) package \texttt{rjags} \citep{plummer:2011}
-%(Plummer 2011)
+with the \textbf{R} package \texttt{rjags} \citep{plummer:2011, R-2012}
 interface.
 
 
-\section{Forecasting Future Population Size}
+\subsection{Alternative Observation Models}
 
+It would be cool to add something on this, but maybe it's asking too much
 
+\subsection{Forecasting Future Population Size}
 
+Ditto
 
 
 \section{Applications}
@@ -1058,12 +1080,6 @@ for both models).
 
 
 
-\begin{figure}
-  \centering
-  \includegraphics[height=8in]{figs/exp_hists}
-  \caption{Histograms of 1000 parameter estimates for each of 27 simulation cases. The verticle lines are the data-generating values.}
-\label{fig:exp_hists}
-\end{figure}
 
 \section{Discussion}
 
@@ -1510,6 +1526,28 @@ C.9. ZIP[$\Lambda$(.)$\psi$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(1st)
 \hline
 \end{tabular}
 \end{table}
+
+
+
+
+
+
+
+
+\newpage
+
+
+%%% Figures
+
+
+\begin{figure}
+  \centering
+  \includegraphics[height=8in]{figs/exp_hists}
+  \caption{Histograms of 1000 parameter estimates for each of 27
+    simulation cases. The verticle lines are the data-generating
+    values.}
+\label{fig:exp_hists}
+\end{figure}
 
 
 \end{document}
