@@ -864,13 +864,53 @@ with the \textbf{R} package \texttt{rjags} \citep{plummer:2011, R-2012}
 interface.
 
 
-\subsection{Alternative Observation Models}
-
-It would be cool to add something on this, but maybe it's asking too much
 
 \subsection{Forecasting Future Population Size}
 
-Ditto
+State-space models allow for inference about future population size,
+a critical component of population viability analysis as well
+as conservaiton planning. Let $N^+_{t}$ denote population size at some
+future point in time and $[N^+_t]$ denote the probability
+distribution for this random variable. If we can specify this
+distribution, we can make statements about the
+probability that $N^+_t = k$ where $k$ is any possible population size
+including zero.
+
+The classical approach to computing $[N^+_t]$ is based upon Empirical
+Bayes methods. Note that neither Empiriis not actually a Bayesian
+method, it is used to estim.
+We take the parameter estimates and plug them back in.... For example
+to obtain the posterior distribution for $[N_{i1}]$
+\begin{equation}
+  [\hat{N}_{i1}] = \frac{[N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1}, \hat{p}]}{\sum_{N_{i1}=0}^K [N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1},\hat{p}]}
+  \label{eq:3}
+\end{equation}
+Once we have estimated the posterior distribution for the first time
+period, we can then proceed to estimate the posterior distribution for
+subsequent time periods using recursion.
+
+Note that when $X_{it}$ is not observed, including for future time
+periods, the distribution $[X_{it}|N_{it}]$ is taken to be uniform
+such that it has no influence on the posterior. In other words, the
+posterior for years with no observed data is determined entirely by
+the posterior for the previous year (and the population dynamics
+parameters).
+
+If covariates of the dynamics parameters are present, the problem
+becomes much harder because, to fully account for uncertainty, we need
+a model for the future values of the covariates as well.
+
+In this case, the Bayesian approach is the most direct and easy to
+implement because population size at any future point in time is
+regarded as an unknown parameter like any other. Thus, one can simply
+compute the posterior distribution of $N^+_t$, which is called the
+posterior predictive distribution. In practical terms, this simply
+means adding ``missing data'' to the observed count data, and allowing
+the MCMC algorithm to sample the latent abundance variables
+conditional only on abundance in each previous time period (and the
+parameters governing population dynamics). An example of this is
+provided in the appendix.
+
 
 
 \section{Applications}
