@@ -1071,13 +1071,21 @@ least 3,000 tuning samples.
 \subsection{Simulation Study}
 
 Generally, estimator bias and error were low with the exponential model, and 
-coverage was nominal (Fig. ~\ref{fig:exp_hists}; Appendix ?). However, estimates of $r$ were 
-imprecise and somewhat biased when the true value of $\Lambda$ was low (1). 
-Simulations of the Ricker-logistic model also generally performed well (Figure 2; 
+coverage was nominal (93.4\% - 97.0\%; Fig.~\ref{fig:exp_hists}; Appendix ?). 
+However, estimates of $r$ were 
+imprecise (RMSE between 0.020 and 0.025; relative RMSE between 413\% and 
+482\% for non-zero true $r$) and biased low (between -0.008 and -0.005; relative bias between
+-151\% and -101\% for non-zero true $r$) when the true value of $\Lambda$ was low (1). 
+Simulations of the Ricker-logistic model also generally performed well (Fig.~\ref{fig:rick_hists}; 
 Appendix ?), except when the true value of $r$ was low (0.005). In this case the 
-estimates of $K$ were imprecise and biased, especially when the true value of $K$ 
-was high.  All three cases simulated for the Ricker-logistic + immigration model 
-performed well (Figure 3; Appendix ?).
+estimates of $r$ and $K$ were inaccurate (relative RMSE between 87.4\% and 2091.8\%),
+biased high (between 65.4\% and 198.9\%), and had low coverage (between 77.6\% and 94.3\%).
+In other cases for the Ricker-logistic model, relative RMSE was between 6.7\%
+and 55\%, bias was between -6.4\% and 5.8\%, and coverage was between
+91.9\% and 96.4\%.  All three cases simulated for the Ricker-logistic + immigration model 
+performed fairly well (Fig.~\ref{fig:ricki_hists}; Appendix ?; relative RMSE between 7.2\% 
+and 62.9\%, bias between -3.5\% and 3.3\%, and coverage between
+93.2\% and 96.4\%).
   
 \subsection{Analysis of Breeding Bird Survey Data}
 
@@ -1099,8 +1107,8 @@ support.
 %(Table 2A, models A.17 - A.18).
 
 Estimates for the top ranked model for ovenbird
-(NB[$\Lambda (.) \alpha (.)$]Ricker-logistic+Immigration[$r(.)K(.) \iota
-(.)$]p(wind+1st)) were similar when
+%(NB[$\Lambda (.) \alpha (.)$]Ricker-logistic+Immigration[$r(.)K(.) \iota(.)$]p(wind+1st)) 
+were similar when
 run in the Bayesian framework, except that the estimate of r
 more than halved (from 0.026 $\pm$ 0.006 to 0.011 $\pm$ 0.005 [for
 Bayesian model estimates we present mean and SD]). When random observer effects
@@ -1109,7 +1117,6 @@ were added, estimates for $\Lambda$ and K increased dramatically
 respectively), and the estimate for r was intermediate (0.018 $\pm$ 0.006). The
 estimate of the intercept for p (on the logit scale) dropped from -1.5 $\pm$
 0.1 to -2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.
-
 Gelman and Rubin diagnostics and visual examination of the chain trajectory and density plots
 provided some evidence for a lack of convergence in estimates of the
 intercept for p for all Bayesian models ran.
@@ -1138,12 +1145,12 @@ models were similar, but with a p covariate (first) the negative
 binomial distribution outranked the ZIP.
 
 Estimates for the top ranked model for golden-winged warbler
-(ZIP[Λ(.)α(.)]Exponential[r(.)]p(1st))
+%(ZIP[Λ(.)α(.)]Exponential[r(.)]p(1st))
 were similar when run in the Bayesian framework. When random
 observer effects were added, the estimate for $\Lambda$ increased dramatically
 (from 22.4 $\pm$ 7.6 to 55.5 $\pm$ 30.9). The estimate of the intercept
-for p (on the logit scale) dropped from -3.5 $\pm$ 0.2 to -5.6 $\pm$ 1.1, and the
-estimate of σ was 1.7 $\pm$ 0.7. Adding zero-inflation to the dynamics (as well as
+for $p$ (on the logit scale) dropped from -3.5 $\pm$ 0.2 to -5.6 $\pm$ 1.1, and the
+estimate of $\sigma_p$ was 1.7 $\pm$ 0.7. Adding zero-inflation to the dynamics (as well as
 the initial abundance) has no effect for exponential models, because populations
 that started at 0 would stay at 0 in any case. Therefore, we tested
 zero-inflated dynamics on the Exponential + Immigration model. Adding zero-inflation to the dynamics
@@ -1636,5 +1643,22 @@ data-generating values.}
 \label{fig:exp_hists}
 \end{figure}
 
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics{figs/rick_hists}
+\caption{Histograms of 1000 parameter estimates for each of 9
+simulation cases with Ricker-logistic dynamics. The vertical lines are the 
+data-generating values.}
+\label{fig:rick_hists}
+\end{sidewaysfigure}
+
+\begin{sidewaysfigure}
+  \centering
+  \includegraphics[width=8.5in]{figs/ricki_hists}
+\caption{Histograms of 1000 parameter estimates for each of 3
+simulation cases with Ricker-logistic + immigration dynamics. The vertical lines are the 
+data-generating values.}
+\label{fig:ricki_hists}
+\end{sidewaysfigure}
 
 \end{document}
