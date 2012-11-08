@@ -85,7 +85,7 @@ density-dependent population regulation, population cycling, and spatial synchro
 \citep{may:1975,royama:1977,turchin:1990,dennis_taper:1994,bjornstad_etal:1999},
 and population models are required to evaluate associated hypotheses.
 In applied contexts, population models are used for estimating extinction probabilities
-\citep{schoener_spiller:1992,nadeem_lele:2011} and for predicting the
+\citep{schoener_spiller:1992,nadeem_lele:2011,hostetler_etal:2012} and for predicting the
 effects of future environmental conditions or conservation actions on
 population size \citep{jamieson_brooks:2004,hatfield_etal:2012}.
 In order to address these questions, two complicating factors must
@@ -1063,7 +1063,12 @@ non-informative priors. We tested for lack of convergence using
 5 Markov chains for each model \citep{gelman_rubin:1992}.
 %(Gelman and Rubin 1992).
 For each chain we sampled the MCMC for at least 40,000 iterations, after at
-least 3,000 tuning samples.
+least 3,000 tuning samples.  
+
+We also used these models to obtain route and 
+year specific abundance estimates.  Because of the memory requirements involved,
+we obtained these estimates from a single chain of 5,000 iterations, after 35,000
+tuning samples.  We present these estimates for ovenbirds only.
 %Latent inclusion factors for temperature effects?
 
 \section{Results}
@@ -1119,7 +1124,15 @@ estimate of the intercept for p (on the logit scale) dropped from -1.5 $\pm$
 0.1 to -2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.
 Gelman and Rubin diagnostics and visual examination of the chain trajectory and density plots
 provided some evidence for a lack of convergence in estimates of the
-intercept for p for all Bayesian models ran.
+intercept for p for all Bayesian models ran.  
+
+We estimated ovenbird abundance by route and year (and averaged over routes) 
+using the Bayesian model including random observer effects (Fig.~\ref{fig:oven_N}).  
+Estimated average abundance oscillated over time with a slowly increasing trend.  Estimated ovenbird
+abundance was highest in western and eastern Maryland in 1970 and 1980, but became
+more evenly distributed by 2010.  Coefficient of variation (CV) for route and year specific
+abundance estimates varied between 0.11 and 2.31 (mean = 0.46).  By comparison, CV
+for the estimate of mean initial abundance ($\Lambda$) was 0.15.
 
 There was slightly more support for the ZIP distribution for initial
 abundance of golden-winged warbler than for the negative binomial; both were strongly
@@ -1354,7 +1367,16 @@ animals.
 %[Discuss causes of low p values (and other BBS results) here or in BBS
 %results?]
 
-[simulation results discussion]
+In our analysis of simulated data, we found that our models generally estimated parameters well.
+Two exceptions were the estimates of instantaneous growth rate in exponential model when the 
+true value of initial abundance was low and the estimates of equilibrium abundance and maximum
+growth rate in the Ricker model when the true value of maximum growth rate was low.  
+The failure of the first case was likely due to a large number of sites starting at abundance 0 or reaching it early in the simulation.  
+%[Richard, maybe come up with a summary statistic for this based on the simulation N values?]
+Since a site that hits abundance 0 in this simulation stayed at 0, this provided little information with
+which to estimate growth rate.  The failure of the second case is also reasonable: with very
+slow movement toward the equilibrium abundance comes little information for estimating
+that abundance or the rate of growth.  In other cases, bias was low and coverage nominal.
 
 We have presented a test case for these models using data from
 the BBS for two species. We demonstrate that these models can be
@@ -1374,13 +1396,17 @@ detection probability, which in turn are probably caused by the
 large 400 m radius used for BBS point counts. Again, we believe
 that direct information on detectability (such as repeated
 visits within a season) would greatly improve the fit of these
-models in both frameworks.
+models in both frameworks.  We also were able to obtain year
+and site-specific estimates of abundance (Fig.~\ref{fig:oven_N}),
+although with generally lower precision than more global estimates.  These sort of estimates
+may be more reliable when abundance and dynamics are modeled 
+as functions of habitat covariates, which we did not do here.
 \hl{[Alternatively, could put discussions of our results where
 they fit in by subject area, rather than separately. For
 instance, could discuss BBS population dynamics model selection
 in population models paragraph, BBS Bayesian vs.
-frequentist strengths and weakness in the Bayesian paragraph
-(currently not written), and golden-winged warbler ZIP results in ZIP
+frequentist strengths and weakness in the Bayesian paragraph, 
+and golden-winged warbler ZIP results in ZIP
 paragraph.]}
 
 The modeling framework we described can be used to address many
@@ -1660,5 +1686,14 @@ simulation cases with Ricker-logistic + immigration dynamics. The vertical lines
 data-generating values.}
 \label{fig:ricki_hists}
 \end{sidewaysfigure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=6.6in]{figs/OVEN_N_by_route_year2}
+\caption{Maps of BBS route and year specific estimated abundances for ovenbirds, for the years 1970,
+1980, 1990, 2000, and 2010.  Lower right panel depicts estimated mean route abundance by year
+(mean and 95\% credible interval).}
+\label{fig:oven_N}
+\end{figure}
 
 \end{document}
