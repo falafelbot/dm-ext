@@ -655,7 +655,7 @@ density-independent exponential model of population growth.
 Density-dependent versions of the model are also possible.  For
 example:
 \begin{equation}
-  N_{it} \sim \text{Pois}(N_{it-1}\exp(r(1-N_{it-1}/K))
+  N_{it} \sim \text{Pois}(N_{it-1}\exp(r(1-N_{it-1}/K)))
 \label{eq:rick}
 \end{equation}
 where $K$ is the stable equilibrium of the population and $r$ is
@@ -670,7 +670,7 @@ implemented a modified Gompertz-logistic density-dependent
 model \citep{hart_gotelli:2011}:
 \begin{equation}
 N_{it} \sim
-\text{Pois}(N_{it-1}\exp(r(1-\log(N_{it-1}+1)/\log(K+1)))
+\text{Pois}(N_{it-1}\exp(r(1-\log(N_{it-1}+1)/\log(K+1))))
 \label{eq:gomp}
 \end{equation}
 Here the interpretations of $r$ and $K$ are similar to in the
@@ -762,11 +762,10 @@ extended
 their model to include another distribution, the zero-inflated
 Poisson. This could be useful when, for example, one is modeling
 the
-abundance of several bird species with the same set of BBS
-routespoint
+abundance of several species with the same set of point
 count surveys for all species, but this set includes routes
 sites
-outside the range of some of the bird species. The distribution
+outside the range of some of the species. The distribution
 of
 initial abundances can be represented as:
 \begin{equation}
@@ -780,15 +779,16 @@ N_{i1} \sim \left\{
 where $\psi$ represents the proportion of extra zeros.
 
 These models allow three sources of zero counts by observers: a
-species was at a route but not detected; the route was within the
-species' range but there were no birds at that site in that
-year; and the route was outside the species' range. Furthermore,
+species was at a site but not detected; the site was within the
+species' range but there were no animals at that site in that
+year; and the site was outside the species' range. Furthermore,
 detection, abundance, and zero-inflation can be modeled separately as
-functions of different (or the same) covariates. For example, detection of
-species x at site y in year z might depend on wind speed,
+functions of different (or the same) covariates. For example, detection of a
+species might depend on wind speed,
 abundance on forest type and weather, and zero-inflation upon elevation and
-climate.  This approach combines elements of occupancy modeling
-\citep{mackenzie_etal:2006} and abundance modeling.
+climate.  
+%This approach combines elements of occupancy modeling
+%\citep{mackenzie_etal:2006} and abundance modeling.
 %, and could prove useful
 %for distinguishing species' fundamental and realized niches
 %(Hutchinson 1957).
@@ -838,14 +838,54 @@ zero-inflated dynamics in the Bayesian framework using program
 
 
 \subsection{Environmental and demographic stochasticity}
-
-Even though the DM model is conceptually very simple, even in
+\begin{comment}
+Even though the DM model is conceptually simple, even in
 its most stripped down form it includes many random effects (the $N$'s)
 making it challenging to compute the likelihood or implement MCMC
 algorithms. Nonetheless, in some cases additional random effects
 may be of interest. For example, in conventional state-space models,
-demographic stochasticity is often modeled as $r_t \sim
+environmental stochasticity is often modeled as $r_t \sim
 \text{Norm}(\mu_r, \sigma_r)$.
+\end{comment}
+The original DM models include demographic stochasticity (variation in population growth 
+rate due to the randomness of birth and death processes) through random 
+binomial draws for survival and Poisson draws for recruitment.  Our population
+growth extensions use a single Poisson draw for abundance: $N_{it} \sim 
+\text{Pois}(f(N_{it-1}))$.  This is also a commonly used (and mathematically equivalent) 
+method of modeling demographic stochasticity 
+\citep{bonsall_hastings:2004,melbourne_hastings:2008}.  
+
+One way to model environmental stochasticity (variation in population growth
+rate due to stochastic environmental conditions) is by explicitly
+modeling dynamic parameters as functions of environmental covariates, such
+as weather.  For example, in the Gompertz-logistic model (Eq.~\ref{eq:gomp}), $r$ could be a 
+function of temperature and $K$ a function of rainfall:
+\begin{gather}
+r_{it} = \exp(r_{0} + r_{temp}T_{it}) \nonumber \\
+K_{it} = \exp(K_{0} + K_{rain}R_{it})  \\
+N_{it} \sim
+\text{Pois}(N_{it-1}\exp(r_{it-1}(1-\log(N_{it-1}+1)/\log(K_{it-1}+1)))) \nonumber
+\label{eq:weather}
+\end{gather}
+where $T_{it}$ is site and year specific temperature, $R_{it}$ is site and year specific rainfall,
+and the errors for the coefficients $r_{0}$, $r_{temp}$, $K_{0}$, and $K_{rain}$ are 
+normally distributed.
+
+Another way to model environmental stochasticity is as lognormal variation in observed local population 
+growth rate \citep{bjornstad:2001,bonsall_hastings:2004}.  This could be applied to both density-independent and density-dependent models.
+For example, for the Ricker-logistic + immigration model:
+\begin{equation}
+N_{it} \sim
+\text{Pois}(N_{it-1}\exp(\nu_{it} + r(1-N_{it-1}/K)) + \iota)
+\label{eq:nuRand}
+\end{equation}
+where $\nu$ is a variable with a normal distribution, mean value of 0, and standard deviation $\sigma_\nu$.  
+Three variations suggest themselves.  The first has independent environmental stochasticity 
+between sites, and might be appropriate where sites are widely dispersed.  In the second 
+all sites have the same environmental conditions in a given year (regional stochasticity, $\nu_{it} = \nu_{t}$),
+which might be appropriate where the geographic or environmental range is small \citep{hanski:1998}.  
+In cases where sites can be close together but the range is broad, a multivariate normal distribution for $\nu_{it}$ with correlation coefficients
+between sites in a year dependent on distance (geographic or otherwise) might be appropriate.
 
 \subsection{Random effects of observers}
 
@@ -1009,10 +1049,10 @@ We applied these models to North American Breeding Bird Survey
 (BBS) data from 1966-2010 for two species in the bordering US states
 Maryland and Virginia. For our focal species, we selected
 ovenbirds (\textit{Seiurus aurocapilla}), an abundant and widespread
-forest breeding migrant with a stable or increasing trend in the region (CITE)
+forest breeding migrant with a stable or increasing trend in the region \citep{porneluzi_etal:2011}
 and golden-winged warblers (\textit{Vermivora chrysoptera}), which
 only breeds in the western parts of these states and has been declining in the
-region (CITE).  %MORE INFORMATION ABOUT THE SPECIES?
+region \citep{confer_etal:2011}.  %MORE INFORMATION ABOUT THE SPECIES?
 
 %GENERAL ABOUT BBS DATA.
 The BBS is an annual roadside survey implemented by trained
@@ -1284,7 +1324,15 @@ when the original assumptions of the model do not hold, the
 model can still be used for important purposes such as predicting future
 population size and changes in species distributions.
 
-[paragraph on random effects]
+Even though the DM models and our extentions are conceptually simple, even in
+their most stripped down form they include many random effects (the $N$'s, which
+incorporate demographic stochasticity), making it challenging to compute the likelihood 
+or implement MCMC algorithms. Nonetheless, in some cases additional random effects
+may be of interest.  We have shown a few approaches for incorporating some of these
+(environmental stochasticity and random observer effects).  Other approaches to modeling
+each of these may also be worth trying.  Incorporating these random effects can increase
+the difficulty of achieving model convergence, but they are certainly important.
+[Something about how much including each of these random effects changes ovenbird estimates.]  
 
 Another important benefit of this class of models is that it can be
 readily implemented using frequentist or Bayesian methods by
@@ -1312,7 +1360,7 @@ a period in which the populations could be assumed to be closed. A
 robust design could be used to combine multiple surveys per
 primary period to increase the precision of the estimates. We envision
 that multiple other options are available as well, such as removal,
-time of detection, and distance modeling ([cites]). These could be
+multiple observer, and distance modeling \citep{williams_etal:2002}. These could be
 accomplished by extending the open population $N$-mixture model
 in exactly the same way as the closed population version has been
 extended \citep[e.g.,][]{royle_etal:2004}.
@@ -1325,18 +1373,20 @@ immigration.
 In our models immigration is currently modeled as independent of
 population sizes in other sites. Several alternatives suggest
 themselves if we think about movement in a metapopulation
-context ([cite]): immigration depending on total or mean
+context \citep{hanski:1998}: immigration depending on total or mean
 abundance across sites the previous time step; immigration
 depending on abundance in nearby sites only; and immigration
 depending on abundance at sites as a function of their distance
-from the receiving site (LOTS OF CITATIONS). These models would
+from the receiving site \citep{hastings:1991,hanski:1998}. These models would
 be based on the assumptions that either the study sites
 spatially cover the whole range of the metapopulation or the
 annual changes in the populations sampled are representative of
 a larger metapopulation. Initial tests suggest that it would be
 possible to fit some or all of these models, at least in the
 Bayesian framework.
-
+% Could use a better reference than Hastings 1991 for the total abundance 
+% immigration models, but haven't been able to find one.  And haven't found
+% any references for nearby site immigration (maybe that's because it's not a great idea).
 \begin{comment}
 
 
@@ -1401,13 +1451,15 @@ and site-specific estimates of abundance (Fig.~\ref{fig:oven_N}),
 although with generally lower precision than more global estimates.  These sort of estimates
 may be more reliable when abundance and dynamics are modeled 
 as functions of habitat covariates, which we did not do here.
-\hl{[Alternatively, could put discussions of our results where
+\begin{comment}
+[Alternatively, could put discussions of our results where
 they fit in by subject area, rather than separately. For
 instance, could discuss BBS population dynamics model selection
 in population models paragraph, BBS Bayesian vs.
 frequentist strengths and weakness in the Bayesian paragraph, 
 and golden-winged warbler ZIP results in ZIP
-paragraph.]}
+paragraph.]
+\end{comment}
 
 The modeling framework we described can be used to address many
 pressing issues in ecology and conservation biology. For
