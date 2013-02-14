@@ -53,7 +53,7 @@ resolved using a class of hierarchical models proposed by
 \citet[Biometrics]{dail_madsen:2011} for spatially-replicated
 time-series data that attributes observation error to imperfect detection.
 We expand this class of models to accommodate classical growth
-models (e.g. exponential, Ricker-logistic, etc $\dots$), zero-inflation,
+models (e.g. exponential and Ricker-logistic), zero-inflation,
 and random effects such as observer-specific
 detection probabilities. We also present methods for forecasting
 population size under future environmental conditions. Implementation
@@ -255,9 +255,9 @@ dependence, which is a hallmark of population models. This
 limits the utility of their model for making inferences about explicit
 population processes.
 
-In this paper, we focus on the model of \citet[henceforth the DM model;]{dail_madsen:2011}
+In this paper, we focus on the model of \citet[henceforth the DM model]{dail_madsen:2011}
 that simultaneous resolves each of the aforementioned problems with
-traditional state-space models, and is designed for simple countdata.
+traditional state-space models, and is designed for simple count data.
 In the following section, we describe the DM model in its original
 form and explain how it resolves each of the deficiencies with
 standard state-space models. In Section~\ref{sec:ext}, we extend the
@@ -362,7 +362,7 @@ In the case where no secondary sampling was conducted, i.e.
 $J=1$, let $X_{it}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data
 at site $i$ and primary period $t$. If secondary sampling periods were
 used, an extra dimension is added so that we have $X_{ijt}:
-j=1,\hdots,J$. Typically, we $X_{it}$ will be lower than the
+j=1,\hdots,J$. Typically, we know $X_{it}$ will be lower than the
 actual quantity of interest, abundance,
 denoted $N_{it}$. In cases where detection probability is perfect,
 abundance is observed directly such that $X_{it} \equiv N_{it}$.
@@ -409,6 +409,7 @@ $[N_1 | \bm{\theta}]$ (Eq.~\ref{eq:ss2a}) is
 \frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}.
   \label{eq:N1br}
 \end{equation}
+% Maybe we don't need the Poisson distriubtion equation? - Jeff
 
 Regardless of the specified distribution, the model for initial
 abundance has two distinguishing features. First, it provides a
@@ -508,8 +509,7 @@ remaining task is to replace the observation model
 $[X_t|N_t, \bm{p}]$ (Eq.~\ref{eq:ss2c}) with one that can be
 more easily interpreted. The observation
 model assumes that individuals are missed due to imperfect
-detection. The simplest model for imperfect detection, and the
-one considered in the original formulation, is
+detection. The simplest model for imperfect detection is
 \begin{equation}
   X_{it} \sim \mathrm{Bin}(N_{it}, p)
   \label{eq:p1}
@@ -520,9 +520,8 @@ or equivalently,
 \bm{p}^{X_{it}}(1-\bm{p})^{N_{it}-X_{it}}.
   \label{eq:1}
 \end{equation}
-Under this model, $\bm{p}$ are interpretted as detection
-probability
-parameters...
+Under this model, $\bm{p}$ are interpreted as detection
+probability parameters.
 
 %%%% Save for discussion?
 %Surprisingly detection probability, $p$, can be estimated without
@@ -592,7 +591,6 @@ ecologists, but software packages such as \textbf{WinBUGS} and
 \textbf{JAGS} overcome the technical difficulties by allowing
 users to specify the model using a simple symbolic descriptions. For
 example here is \textbf{BUGS} code for the ``geometric'' model described
-shown
 in Eq.~\ref{eq:hm}:
 \begin{verbatim}
 model {
@@ -607,7 +605,7 @@ for(i in 1:nSites) {
     S[i,t-1] ~ dbin(omega, N[i,t-1])
     G[i,t-1] ~ dpois(gamma*N[i,t-1])
     N[i,t] <- S[i,t-1] + G[i,t-1]
-    n[i,t] ~ dbin(p, N[i,1])
+    n[i,t] ~ dbin(p, N[i,t])
     }
   }
 }
@@ -681,25 +679,6 @@ distribution of $N_{it}$ in each of these models, the discrete
 convolution used by \citet{dail_madsen:2011} is not required,
 speeding up processing time.
 
-%% Is this here on purpose?  We haven't introduced it, and I was referring to 
-%% the speed-up these models provide in the maximum-likelihood framework
-%% (even the classic DM models don't require the convolution in the Bayesian framework, right?).
-\begin{verbatim}
-model {
-lambda ~ dunif(0, 5)
-r ~ dunif(-5, 5)
-p ~ dunif(0,1)
-for(i in 1:nSites) {
-  N[i,1] ~ dpois(lambda)
-  y[i,1] ~ dbin(p, N[i,1])
-  for(t in 2:nYears) {
-    mu[i,t-1] = N[i,t-1]*exp(r)
-    N[i,t] ~ dpois(mu[i,t-1])
-    n[i,t] ~ dbin(p, N[i,1])
-    }
-  }
-}
-\end{verbatim}
 
 
 \subsection{Immigration models}
@@ -1154,17 +1133,22 @@ support.
 Estimates for the top ranked model for ovenbird
 %(NB[$\Lambda (.) \alpha (.)$]Ricker-logistic+Immigration[$r(.)K(.) \iota(.)$]p(wind+1st)) 
 were similar when
-run in the Bayesian framework, except that the estimate of r
+run in the Bayesian framework, except that the estimate of $r$
 more than halved (from 0.026 $\pm$ 0.006 to 0.011 $\pm$ 0.005 [for
 Bayesian model estimates we present mean and SD]). When random observer effects
-were added, estimates for $\Lambda$ and K increased dramatically
+were added, estimates for $\Lambda$ and $K$ increased dramatically
 (from 31.6 $\pm$ 4.9 to 42.5 $\pm$ 7.3 and from 56.2 $\pm$ 18.2 to 101.8 $\pm$ 21.1,
 respectively), and the estimate for r was intermediate (0.018 $\pm$ 0.006). The
-estimate of the intercept for p (on the logit scale) dropped from -1.5 $\pm$
-0.1 to -2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.
+estimate of the intercept for $p$ (on the logit scale) dropped from -1.5 $\pm$
+0.1 to -2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.  When
+environmental stochasticity was added, the estimate for $K$ increased (to 112 $\pm$ 58.8) and $r$ was
+again intermediate (0.020 $\pm$ 0.010).  Adding environmental stochasticity alone had little effect
+on estimate of $p$ or $\Lambda$. The highest estimates of $\Lambda$ and $K$ came 
+from the model that included environmental stochasticity and random observer effects (43.8 $\pm$
+7.9 and 141.5 $\pm$ 69.5, respectively).  
 Gelman and Rubin diagnostics and visual examination of the chain trajectory and density plots
 provided some evidence for a lack of convergence in estimates of the
-intercept for p for all Bayesian models ran.  
+intercept for $p$ for all Bayesian models ran.  
 
 We estimated ovenbird abundance by route and year (and averaged over routes) 
 using the Bayesian model including random observer effects (Fig.~\ref{fig:oven_N}).  
@@ -1203,14 +1187,17 @@ were similar when run in the Bayesian framework. When random
 observer effects were added, the estimate for $\Lambda$ increased dramatically
 (from 22.4 $\pm$ 7.6 to 55.5 $\pm$ 30.9). The estimate of the intercept
 for $p$ (on the logit scale) dropped from -3.5 $\pm$ 0.2 to -5.6 $\pm$ 1.1, and the
-estimate of $\sigma_p$ was 1.7 $\pm$ 0.7. Adding zero-inflation to the dynamics (as well as
+estimate of $\sigma_p$ was 1.7 $\pm$ 0.7. Adding environmental stochasticity
+also increased the estimate of $\Lambda$ (to 42.9 $\pm$ 17.9) and the model with
+both random effects had the highest estimate of $\Lambda$ (74.6 $\pm$ 32.9). 
+Adding zero-inflation to the dynamics (as well as
 the initial abundance) has no effect for exponential models, because populations
 that started at 0 would stay at 0 in any case. Therefore, we tested
 zero-inflated dynamics on the Exponential + Immigration model. Adding zero-inflation to the dynamics
-increased the estimate of ι from 0 to 0.091 $\pm$ 0.049, but had only minor
+increased the estimate of $\iota$ from 0 to 0.091 $\pm$ 0.049, but had only minor
 effects on the other parameters. Gelman and Rubin diagnostics and visual
 examination of the chain trajectory and density plots provided evidence for a lack of convergence in
-estimates of $\Lambda$ for all Bayesian models ran, and for most parameters when random
+estimates of $\Lambda$ for all Bayesian models ran, and for most parameters when random observer
 effects were included.
 
 Estimated detection probabilities were generally low. The estimated probability
@@ -1332,7 +1319,8 @@ may be of interest.  We have shown a few approaches for incorporating some of th
 (environmental stochasticity and random observer effects).  Other approaches to modeling
 each of these may also be worth trying.  Incorporating these random effects can increase
 the difficulty of achieving model convergence, but they are certainly important.
-[Something about how much including each of these random effects changes ovenbird estimates.]  
+For example, the estimate of carrying capacity for the ovenbird increased by more than 150\%
+when environmental stochasticity and random observer effects were included.  
 
 Another important benefit of this class of models is that it can be
 readily implemented using frequentist or Bayesian methods by
