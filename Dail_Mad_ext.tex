@@ -23,15 +23,16 @@
 \title{Improved state-space models for inference about spatial
 and temporal variation in abundance from count data}
 
-\author{Richard B. Chandler  \\
-        \small USGS Patuxent Wildlife Research Center \\
-        \small Laurel, MD 20708
-   \and Jeffrey A. Hostetler \footnote{Contact:
-     \url{HostetlerJ@si.edu}, +001-202-633-4205}\\
+\author{Jeffrey A. Hostetler\\ %\footnote{Contact:
+%     \url{HostetlerJ@si.edu}, +001-202-633-4205}\\
 %        \small Migratory Bird Center \\
         \small Smithsonian Conservation Biology Institute \\
         \small National Zoological Park, MRC 5503 \\
-        \small Washington, DC 20013-7012}
+        \small Washington, DC 20013-7012\\
+   \and Richard B. Chandler \footnote{Contact:
+     \url{RChandler@usgs.gov}, +001-301-497-5856} \\
+        \small USGS Patuxent Wildlife Research Center \\
+        \small Laurel, MD 20708}
 \maketitle
 
 
@@ -59,7 +60,7 @@ detection probabilities. We also present methods for forecasting
 population size under future environmental conditions. Implementation
 of these ideas is possible using either frequentist or Bayesian
 methods, and code to fit these models using the \textbf{R} package
-\texttt{unmarked} or \textbf{JAGS} is also provided.
+\texttt{unmarked} and \textbf{JAGS} is also provided.
 A simulation study indicated that bias was negligible and coverage
 nominal for the proposed model extensions. An analysis of data from
 the North American Breeding Bird Survey highlighted how these methods
@@ -401,14 +402,14 @@ The Poisson distribution assumes that the mean of $N_{i1}$ is
 equal to its variance, whereas the negative binomial distribution allows the
 variance to be greater than the mean with the amount of
 overdispersion determined by the parameter $\alpha$.
-In the Poisson case, the equivalent expression of
-$[N_1 | \bm{\theta}]$ (Eq.~\ref{eq:ss2a}) is
+%In the Poisson case, the equivalent expression of
+%$[N_1 | \bm{\theta}]$ (Eq.~\ref{eq:ss2a}) is
 %$[N_{i1} | \Lambda] =\frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}$.
-\begin{equation}
-[N_{i1} | \Lambda] =
-\frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}.
-  \label{eq:N1br}
-\end{equation}
+%\begin{equation}
+%[N_{i1} | \Lambda] =
+%\frac{\Lambda^{N_{i1}}e^{-\Lambda}}{N_{i1}!}.
+%  \label{eq:N1br}
+%\end{equation}
 % Maybe we don't need the Poisson distriubtion equation? - Jeff
 
 Regardless of the specified distribution, the model for initial
@@ -514,14 +515,14 @@ detection. The simplest model for imperfect detection is
   X_{it} \sim \mathrm{Bin}(N_{it}, p)
   \label{eq:p1}
 \end{equation}
-or equivalently,
-\begin{equation}
-[X_{it} | N_{it}, \bm{p}] = \binom{N_{it}}{X_{it}}
-\bm{p}^{X_{it}}(1-\bm{p})^{N_{it}-X_{it}}.
-  \label{eq:1}
-\end{equation}
-Under this model, $\bm{p}$ are interpreted as detection
-probability parameters.
+%or equivalently,
+%\begin{equation}
+%[X_{it} | N_{it}, \bm{p}] = \binom{N_{it}}{X_{it}}
+%\bm{p}^{X_{it}}(1-\bm{p})^{N_{it}-X_{it}}.
+%  \label{eq:1}
+%\end{equation}
+Under this model, $\bm{p}$ is interpreted as the detection
+probability parameter.
 
 %%%% Save for discussion?
 %Surprisingly detection probability, $p$, can be estimated without
@@ -560,7 +561,7 @@ can be written:
   \right\} \right\}
   \label{eq:like}
 \end{multline}
-where $\infty$ is replaced by a finite upper bound $K$, which
+where $\infty$ is replaced by a finite upper bound $N_{max}$, which
 %%% Can we rename the upper bound?  We're also using K
 %%% for equilibrium abundance.
 should be high enough such that the MLEs are not affected by increasing
@@ -581,7 +582,7 @@ chain Monte Carlo (MCMC) are used to simulate the posterior
 distributions. Although MCMC can be slow, our experience is that it
 may actually converge faster than the amount of time required to
 maximize the likelihood shown in Eq.\ref{eq:like}, especially
-when the upper bound of the summation must be high, e.g. $K>200$.
+when the upper bound of the summation must be high, e.g. $N_{max}>200$.
 Furthermore, MCMC may be the only possible option for estimating parameters
 using some of the extensions described below, such as allowing for
 additional random effects.
@@ -589,27 +590,28 @@ additional random effects.
 Writeing custom MCMC algorthims is often tedious and foreign to
 ecologists, but software packages such as \textbf{WinBUGS} and
 \textbf{JAGS} overcome the technical difficulties by allowing
-users to specify the model using a simple symbolic descriptions. For
-example here is \textbf{BUGS} code for the ``geometric'' model described
-in Eq.~\ref{eq:hm}:
-\begin{verbatim}
-model {
-lambda ~ dunif(0, 5)
-omega ~ dunif(0,1)
-gamma ~ dunif(0, 10)
-p ~ dunif(0,1)
-for(i in 1:nSites) {
-  N[i,1] ~ dpois(lambda)
-  y[i,1] ~ dbin(p, N[i,1])
-  for(t in 2:nYears) {
-    S[i,t-1] ~ dbin(omega, N[i,t-1])
-    G[i,t-1] ~ dpois(gamma*N[i,t-1])
-    N[i,t] <- S[i,t-1] + G[i,t-1]
-    n[i,t] ~ dbin(p, N[i,t])
-    }
-  }
-}
-\end{verbatim}
+users to specify the model using a simple symbolic descriptions. 
+
+%For example here is \textbf{BUGS} code for the ``geometric'' model described
+%in Eq.~\ref{eq:hm}:
+%\begin{verbatim}
+%model {
+%lambda ~ dunif(0, 5)
+%omega ~ dunif(0,1)
+%gamma ~ dunif(0, 10)
+%p ~ dunif(0,1)
+%for(i in 1:nSites) {
+%  N[i,1] ~ dpois(lambda)
+%  y[i,1] ~ dbin(p, N[i,1])
+%  for(t in 2:nYears) {
+%    S[i,t-1] ~ dbin(omega, N[i,t-1])
+%    G[i,t-1] ~ dpois(gamma*N[i,t-1])
+%    N[i,t] <- S[i,t-1] + G[i,t-1]
+%    n[i,t] ~ dbin(p, N[i,t])
+%    }
+%  }
+%}
+%\end{verbatim}
 
 
 
@@ -873,26 +875,26 @@ source of random variation that may need to be accounted for applying
 the DM model. For example, differences in observers' ability to see,
 hear, or identify birds has long been recognized as a potential source of error
 in avian point count surveys such as the BBS 
-\citep{robbins_etal:1986,diefenbach_etal:2003,sauer_etal:1994auk,alldredge_etal:2007auk,campbell_francis:2011}.
-Estimating a separate detection probability for each observer
-can be difficult and reduces one's ability to estimate the quantities
-of interest.  This problem is compounded by the fact that
-observers differ greatly in the number of surveys they have
-run (so that many observers' separate detection probabilities
-could not be accurately estimated).
+\citep{robbins_etal:1986,sauer_etal:1994auk,diefenbach_etal:2003,campbell_francis:2011}.%,alldredge_etal:2007auk
+%Estimating a separate detection probability for each observer
+%can be difficult and reduces one's ability to estimate the quantities
+%of interest.  This problem is compounded by the fact that
+%observers differ greatly in the number of surveys they have
+%run (so that many observers' separate detection probabilities
+%could not be accurately estimated).
 
 Current BBS trend estimators deal with this problem by
-treating observer identity as a random (as opposed to a fixed)
+treating observer identity as a random %(as opposed to a fixed)
 effect \citep{link_sauer:2002,sauer_link:2011}.
 %(Link and Sauer 2002, Sauer and Link 2011).
-This allows observer-specific differences in detection probability,
-but assumes that observers are selected at random from a pool
-of potential observers.  Models that contain both random and
-fixed effects are referred to as mixed models.  Often in mixed
-models (as in this case), the random effect is modeled not
-because it of interest in itself, but to avoid bias in the
-estimates of the fixed effects.
-
+%This allows observer-specific differences in detection probability,
+%but assumes that observers are selected at random from a pool
+%of potential observers.  Models that contain both random and
+%fixed effects are referred to as mixed models.  Often in mixed
+%models (as in this case), the random effect is modeled not
+%because it of interest in itself, but to avoid bias in the
+%estimates of the fixed effects.
+%
 To include random observer effects in DM models and these
 extensions, Eq.~\ref{eq:p1} can be modified to:
 \begin{gather}
@@ -905,9 +907,9 @@ observer $j$ in year $t$, $p_j$ is observer-specific detection probability,
 $\mu_p$ is the mean detection probability (on the logit scale), and $\sigma_p$ is
 the standard deviation of the random observer effects (also on the logit scale). 
 We have implemented random observer effects in the Bayesian
-framework using program \textbf{JAGS} \citep[version 3.2.0]{plummer:2003}
+framework using program \textbf{JAGS} \citep[version 3.2.0, see Appendix]{plummer:2003}.
 % (version 3.2.0; Plummer 2003)
-with the \textbf{R} package \texttt{rjags} \citep{plummer:2011,R-2012} interface.
+%with the \textbf{R} package \texttt{rjags} \citep{plummer:2011,R-2012} interface.
 
 
 
@@ -923,34 +925,35 @@ probability that $N^+_t = k$ where $k$ is any possible
 population size including zero.
 
 The classical approach to computing $[N^+_t]$ is based upon
-Empirical Bayes methods. Note that neither Empiriis not actually a
-Bayesian method, it is used to estim.
-We take the parameter estimates and plug them back in.... For
-example to obtain the posterior distribution for $[N_{i1}]$
-\begin{equation}
-[\hat{N}_{i1}] = \frac{[N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1},
-\hat{p}]}{\sum_{N_{i1}=0}^K
-[N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1},\hat{p}]}
-  \label{eq:eb1}
-\end{equation}
-Once we have estimated the posterior distribution for the first
-time period, we can then proceed to estimate the posterior
-distribution for subsequent time periods using recursion.
-\begin{equation}
-  [\hat{N}_{it}] =
-  \frac{[N_{it}|N_{it-1},\hat{\bm{\Theta}}][X_{it}|N_{it},
-\hat{p}]}{\sum_{N_{it}=0}^K [N_{it}|N_{it-1},
-\hat{\Theta}][X_{it}|N_{it},\hat{p}]}
-  \label{eq:eb2}
-\end{equation}
-
-Note that when $X_{it}$ is not observed, including for future
-time periods, the distribution $[X_{it}|N_{it}]$ is taken to be
-uniform such that it has no influence on the posterior. In other words,
-the posterior for years with no observed data is determined entirely
-by the estimated posterior from the previous year and the
-population dynamics parameters.
-
+Empirical Bayes methods [CITE]. 
+%Note that neither Empiriis not actually a
+%Bayesian method, it is used to estim.
+%We take the parameter estimates and plug them back in.... For
+%example to obtain the posterior distribution for $[N_{i1}]$
+%\begin{equation}
+%[\hat{N}_{i1}] = \frac{[N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1},
+%\hat{p}]}{\sum_{N_{i1}=0}^K
+%[N_{i1}|\hat{\Lambda}][X_{i1}|N_{i1},\hat{p}]}
+%  \label{eq:eb1}
+%\end{equation}
+%Once we have estimated the posterior distribution for the first
+%time period, we can then proceed to estimate the posterior
+%distribution for subsequent time periods using recursion.
+%\begin{equation}
+%  [\hat{N}_{it}] =
+%  \frac{[N_{it}|N_{it-1},\hat{\bm{\Theta}}][X_{it}|N_{it},
+%\hat{p}]}{\sum_{N_{it}=0}^K [N_{it}|N_{it-1},
+%\hat{\Theta}][X_{it}|N_{it},\hat{p}]}
+%  \label{eq:eb2}
+%\end{equation}
+%
+%Note that when $X_{it}$ is not observed, including for future
+%time periods, the distribution $[X_{it}|N_{it}]$ is taken to be
+%uniform such that it has no influence on the posterior. In other words,
+%the posterior for years with no observed data is determined entirely
+%by the estimated posterior from the previous year and the
+%population dynamics parameters.
+%
 If covariates of the dynamics parameters are present, the problem
 becomes much harder because, to fully account for uncertainty,
 we need a model for the future values of the covariates as well. When
@@ -999,7 +1002,7 @@ We estimated the parameters for each simulation using the same
 initial abundance (Poisson) and dynamics models as were
 simulated, implemented in the unmarked library in \textbf{R}.
 When run in a maximum likelihood framework, these models require a
-maximum abundance to integrate over
+a finite upper bound $N_{max}$,
 \citep{royle:2004biom,dail_madsen:2011};
 %(Royle 2004, Dail and Madsen 2011);
 we used 200.  We report bias of estimates, root
@@ -1071,13 +1074,13 @@ immigration, exponential + immigration, Ricker-logistic +
 immigration, and Gompertz-logistic + immigration. %We then tested the effect of average
 %minimum temperature for June and July on all dynamics parameters from
 %the minimum AIC dynamics model.
-As above, these models require a maximum abundance to integrate
+As above, these models require a a finite upper bound ($N_{max}$) to integrate
 over when run in a maximum likelihood
 framework; we used 600 for ovenbirds and 350 for golden-winged warblers.
 
 We ran the top ranked models from the maximum likelihood
 analyses in a Bayesian framework.  We added random observer 
-effects and, where appropriate, zero-inflated dynamics.  We used
+effects and, where appropriate, environmental stochasticity or zero-inflated dynamics.  We used
 non-informative priors. We tested for lack of convergence using
 5 Markov chains for each model \citep{gelman_rubin:1992}.
 %(Gelman and Rubin 1992).
@@ -1421,7 +1424,7 @@ the BBS for two species. We demonstrate that these models can be
 used to model and estimate initial abundance, detection
 probability, and density-independent and dependent functions for
 population dynamics. We tested these models in both the
-classical and Bayesian frameworks and found strengths and
+frequentist and Bayesian frameworks and found strengths and
 weaknesses of each approach. The Bayesian analyses permit more
 flexibility and allow the incorporation of random observer
 effects and zero-inflated dynamics. Our results suggest ignoring
