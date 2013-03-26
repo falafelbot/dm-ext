@@ -190,7 +190,7 @@ such as Eq~\ref{eq:ss1} are not identifiable in many
 circumstances \citep{polansky_etal:2009}. Recall that the
 Eq.~\ref{eq:ss1} did not specify distributions for $N_1$; % or $X_1$;
 however, $N_1$ is a random variable and hence there is uncertainty
-that should be accounted for.
+that should be accounted for.  
 %are needed to fully specify the model.
 To be more specific, a fully-specified state-space model requires at least
 three probability distributions, which we represent
@@ -349,21 +349,24 @@ describing population change over time.
 \subsection{The Data}
 
 The DM model requires count data collected at $R$ sites, each of
-which is surveyed on $T$ primary sampling periods. A site is ideally a
-well-defined region of a study area, such as a wetland or a
-patch of early-successional habitat, although it could be an arbitrarily
-defined region such as a randomly located survey plots. The time
-frame of the study is arbitrary, but in general
-it will be sufficiently long to allow for temporal variation in
-abundance. For instance, a primary sampling period could be a
-one month long breeding season, which could be surveyed once per
-year for $T$ years. If the a site is surveyed on $J$ occasions during a
-primary period, these are called secondary sampling occasions.
-In the case where no secondary sampling was conducted, i.e.
-$J=1$, let $X_{it}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data
-at site $i$ and primary period $t$. If secondary sampling periods were
-used, an extra dimension is added so that we have $X_{ijt}:
-j=1,\hdots,J$. Typically, we know $X_{it}$ will be lower than the
+which is surveyed on $T$ primary sampling periods. 
+%A site is ideally a
+%well-defined region of a study area, such as a wetland or a
+%patch of early-successional habitat, although it could be an arbitrarily
+%defined region such as a randomly located survey plots. The time
+%frame of the study is arbitrary, but in general
+%it will be sufficiently long to allow for temporal variation in
+%abundance. For instance, a primary sampling period could be a
+%one month long breeding season, which could be surveyed once per
+%year for $T$ years. If the a site is surveyed on $J$ occasions during a
+%primary period, these are called secondary sampling occasions.
+%In the case where no secondary sampling was conducted, i.e. $J=1$, 
+Let $X_{it}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data
+at site $i$ and primary period $t$. 
+%If secondary sampling periods were
+%used, an extra dimension is added so that we have $X_{ijt}:
+%j=1,\hdots,J$. 
+Typically, we know $X_{it}$ will be lower than the
 actual quantity of interest, abundance,
 denoted $N_{it}$. In cases where detection probability is perfect,
 abundance is observed directly such that $X_{it} \equiv N_{it}$.
@@ -378,8 +381,8 @@ denoted (2) abundance at time $t$ (for $t>1$) which depends upon
 abundance at $t-1$, and (3) the
 detection process \citep{dail_madsen:2011}.
 The first two processes describe the state process---the
-variation in abundance in space and time. The third process
-simply describes the the relationship between
+variation in abundance in space and time. The third process %simply 
+describes the the relationship between
 abundance and the observed count data.
 
 \subsubsection{Initial abundance}
@@ -433,7 +436,7 @@ parameter identifiability discussed previously.
 
 The DM model assumes that abundance in time $t$ is a function of
 abundance in time $t-1$, i.e. abundance at each site evolves as a
-first order Markovian process, although higher order processes are also possible.
+first order Markovian process. %, although higher order processes are also possible.
 \citet{dail_madsen:2011} considered several models to describe the temporal dynamics;
 however, in each case they modeled $N_t$ as the sum of two random variables:
 $S_{it}$, the number of indivduals surviving from $t-1$ and not
@@ -461,31 +464,31 @@ expected abundance constant over time. As before, covariates of
 $\omega$ and $\gamma$ can be easily accommodated, for example
 using logit- and log-linear models respectively.
 
-To make the connection between conventional state-space models
-and the DM model, we need to replace $[N_t|N_{t-1}, \bm{\Theta}]$,
-Eq.~\ref{eq:ss2b}, with an expression derived from
-Eq.~\ref{eq:Nt}. This requires summing over all possible values
-of $S$ and $G$, which is accomplished using the discrete convolution:
-\begin{equation}
-[N_{it}|N_{it-1}, \omega, \gamma] =
-  \sum_{S_{it-1}=0}^{\min(N_{it},N_{it-1})}
-\binom{N_{it-1}}{S_{it-1}}\omega^{S_{it-1}}(1-\omega)^{N_{it-1}-S_{it-1}}
-\times
-\frac{\gamma^{N_{it}-S_{it-1}}e^{-\gamma}}{(N_{it}-S_{it-1})!}  \label{eq:P}
-\end{equation}
-where here we assumed no dependence of $\gamma$ on $N_{it-1}$.
-
-In the absence of movement, $\omega$ is exactly the probability of surviving
-from year $t$ to $t-1$, and $\gamma$ is the per-capita birth rate
-(under the geometric growth model). This ability to directly estimate
-demographic parameters from simple count data is one of the DM
-model's most appearling features. However,
-in the more common scenario when immigration and emigration
-occur, $\omega$ and $\gamma$ no longer can be interpreted as vital
-rates. Rather, $\omega$ is the probability of surviving and not
-emigrating, and $\gamma$ is the sum of the birth rate and the immigration rate,
-i.e. the recruitment rate. In such cases, we propose
-replacing Eq.~\ref{eq:Nt} with standard population models.
+%To make the connection between conventional state-space models
+%and the DM model, we need to replace $[N_t|N_{t-1}, \bm{\Theta}]$,
+%Eq.~\ref{eq:ss2b}, with an expression derived from
+%Eq.~\ref{eq:Nt}. This requires summing over all possible values
+%of $S$ and $G$, which is accomplished using the discrete convolution:
+%\begin{equation}
+%[N_{it}|N_{it-1}, \omega, \gamma] =
+%  \sum_{S_{it-1}=0}^{\min(N_{it},N_{it-1})}
+%\binom{N_{it-1}}{S_{it-1}}\omega^{S_{it-1}}(1-\omega)^{N_{it-1}-S_{it-1}}
+%\times
+%\frac{\gamma^{N_{it}-S_{it-1}}e^{-\gamma}}{(N_{it}-S_{it-1})!}  \label{eq:P}
+%\end{equation}
+%where here we assumed no dependence of $\gamma$ on $N_{it-1}$.
+%
+%In the absence of movement, $\omega$ is exactly the probability of surviving
+%from year $t$ to $t-1$, and $\gamma$ is the per-capita birth rate
+%(under the geometric growth model). This ability to directly estimate
+%demographic parameters from simple count data is one of the DM
+%model's most appearling features. However,
+%in the more common scenario when immigration and emigration
+%occur, $\omega$ and $\gamma$ no longer can be interpreted as vital
+%rates. Rather, $\omega$ is the probability of surviving and not
+%emigrating, and $\gamma$ is the sum of the birth rate and the immigration rate,
+%i.e. the recruitment rate. In such cases, we propose
+%replacing Eq.~\ref{eq:Nt} with standard population models.
 
 \begin{comment}
 Irrespective of the model for population dynamics, it is
@@ -499,13 +502,14 @@ model
 
 \subsubsection{Observation process}
 
-Eqs.~\ref{eq:N1} and \ref{eq:Nt} fully specify the state model,
-i.e. the model for abundance dynamics. This state
-model has allowed us to replace the initial abundance
-distribution and transition models of conventional state-space models, with
-alternatives that (1) allow for modeling spatial variation in
-abundance, (2) respect the discrete nature of the counts, and
-(3) have parameters that are estimable. The one
+%Eqs.~\ref{eq:N1} and \ref{eq:Nt} fully specify the state model,
+%i.e. the model for abundance dynamics. This state
+%model has allowed us to replace the initial abundance
+%distribution and transition models of conventional state-space models, with
+%alternatives that (1) allow for modeling spatial variation in
+%abundance, (2) respect the discrete nature of the counts, and
+%(3) have parameters that are estimable.
+The one
 remaining task is to replace the observation model
 $[X_t|N_t, \bm{p}]$ (Eq.~\ref{eq:ss2c}) with one that can be
 more easily interpreted. The observation
@@ -532,65 +536,73 @@ probability parameter.
 %about $p$ using secondary sampling occasions or some other auxiliary
 %data, \hl{as is demonstrated in section....}
 
-The entire model can now be written:
-\begin{gather}
-  N_{i1} \sim \text{Pois}(\Lambda) \nonumber \\
-S_{it}|N_{it-1} \sim \mathrm{Bin}(N_{it-1}, \omega) \nonumber \\  
-G_{it}|N_{it-1}\sim \mathrm{Pois}(\gamma(N_{it-1})) \\
-  N_{it} = S_{it}+G_{it} \nonumber \\
-  X_{it} \sim \text{Bin}(N_{it}, p) \nonumber
-  \label{eq:hm}
-\end{gather}
+%The entire model can now be written:
+%\begin{gather}
+%  N_{i1} \sim \text{Pois}(\Lambda) \nonumber \\
+%S_{it}|N_{it-1} \sim \mathrm{Bin}(N_{it-1}, \omega) \nonumber \\  
+%G_{it}|N_{it-1}\sim \mathrm{Pois}(\gamma(N_{it-1})) \\
+%  N_{it} = S_{it}+G_{it} \nonumber \\
+%  X_{it} \sim \text{Bin}(N_{it}, p) \nonumber
+%  \label{eq:hm}
+%\end{gather}
 
-\section{Statistical Inference}
+%\subsection{Statistical Inference}
 
-\subsection{Maximum likelihood}
+%\subsubsection{Maximum likelihood}
 
-Maximum likelihood estimation of parameters in models with
-discrete random effects requires removing them by
-summation. For Markovian models, this can be done recursively,
-making the likelihood tractable. A general expression of the likelihood
-can be written:
-\begin{multline}
-  \mathcal{L}(\Lambda, \bm{\Theta}, p | \{X_{it}\}) = \\
-  \prod_{i=1}^R \left\{ \sum_{N_{i1}=0}^{\infty}
-  [X_{i1}|N_{i1}, p][N_{i1}|\Lambda] \left\{
-%  \prod_{t=T}^2 \left\{
-  \sum_{N_{i2}=0}^{\infty} \dotsm \sum_{N_{iT}=0}^\infty
-  [X_{it}|N_{it}, p][N_{it}|N_{it-1}, \bm{\Theta}] %\right\}
-  \right\} \right\}
-  \label{eq:like}
-\end{multline}
-where $\infty$ is replaced by a finite upper bound $N_{max}$, which
+%Maximum likelihood estimation of parameters in models with
+%discrete random effects requires removing them by
+%summation. For Markovian models, this can be done recursively,
+%making the likelihood tractable \citep{dail_madsen:2011}. 
+%A general expression of the likelihood can be written:
+%\begin{multline}
+%  \mathcal{L}(\Lambda, \bm{\Theta}, p | \{X_{it}\}) = \\
+%  \prod_{i=1}^R \left\{ \sum_{N_{i1}=0}^{\infty}
+%  [X_{i1}|N_{i1}, p][N_{i1}|\Lambda] \left\{
+%%  \prod_{t=T}^2 \left\{
+%  \sum_{N_{i2}=0}^{\infty} \dotsm \sum_{N_{iT}=0}^\infty
+%  [X_{it}|N_{it}, p][N_{it}|N_{it-1}, \bm{\Theta}] %\right\}
+%  \right\} \right\}
+%  \label{eq:like}
+%\end{multline}
+%where $\infty$ is replaced by a finite upper bound $N_{max}$, which
 %%% Can we rename the upper bound?  We're also using K
 %%% for equilibrium abundance.
-should be high enough such that the MLEs are not affected by increasing
-it further. This likelihood can be maximized numerically using the
-\textbf{R} package \texttt{unmarked} \citep{fiske_chandler:2011}. Examples
-are given in the Appendix.
+%should be high enough such that the MLEs are not affected by increasing
+%it further. 
+%The likelihood can be maximized numerically using the
+%\textbf{R} package \texttt{unmarked} \citep{fiske_chandler:2011}. Examples
+%are given in the Appendix.
 
 
 \subsection{Bayesian inference}
 
+\citet{dail_madsen:2011} demonstrated how to fit these models using maximum 
+likelihood estimation. The likelihood can be maximized numerically using the
+\textbf{R} package \texttt{unmarked} \citep{fiske_chandler:2011}. Examples
+are given in the Appendix.
+
 Bayesian inference has several appealing features. First, it
 allows direct probability statements to be made about a hypothesis
-given data. [EXPLAIN POSTERIORS AND PRIORS]
+given data \citep{link_barker:2010}.    
 Second, Bayesian methods offer straight-forward approaches for
 combine data from multiple sources or use existing estimates of parameters as prior
 distributions. In practice, simulation methods such as Markov
 chain Monte Carlo (MCMC) are used to simulate the posterior
-distributions. Although MCMC can be slow, our experience is that it
-may actually converge faster than the amount of time required to
-maximize the likelihood shown in Eq.\ref{eq:like}, especially
-when the upper bound of the summation must be high, e.g. $N_{max}>200$.
-Furthermore, MCMC may be the only possible option for estimating parameters
+distributions. %Although MCMC can be slow, our experience is that it
+%may actually converge faster than the amount of time required to
+%maximize the likelihood shown in Eq.\ref{eq:like}, especially
+%when the upper bound of the summation must be high, e.g. $N_{max}>200$.
+%Furthermore, 
+MCMC may be the only possible option for estimating parameters
 using some of the extensions described below, such as allowing for
 additional random effects.
 
-Writeing custom MCMC algorthims is often tedious and foreign to
-ecologists, but software packages such as \textbf{WinBUGS} and
-\textbf{JAGS} overcome the technical difficulties by allowing
-users to specify the model using a simple symbolic descriptions. 
+Writing custom MCMC algorthims is often tedious and foreign to
+ecologists, but software packages such as %\textbf{WinBUGS} and
+\textbf{JAGS} \citep{plummer:2003} overcome the technical 
+difficulties by allowing users to specify the model using a simple symbolic 
+descriptions. Examples are given in the Appendix.
 
 %For example here is \textbf{BUGS} code for the ``geometric'' model described
 %in Eq.~\ref{eq:hm}:
@@ -650,7 +662,7 @@ Eq.~\ref{eq:Nt} to:
 \label{eq:exp}
 \end{equation}
 This,
-like the autoregressive version of the model, is a variant on a simple
+like the geometric-recruitment version of the model, is a variant on a simple
 density-independent exponential model of population growth.
 Density-dependent versions of the model are also possible.  For
 example:
@@ -685,7 +697,7 @@ speeding up processing time.
 
 \subsection{Immigration models}
 
-The autoregressive, exponential, Ricker-logistic, and Gompertz-logistic
+The geometric-recruitment, exponential, Ricker-logistic, and Gompertz-logistic
 versions of the DM models all share a common feature (or bug):
 once the population at a site reaches 0, it must remain at 0.
 This is because all contributions to population growth are
@@ -701,15 +713,17 @@ where $\iota$ represents the immigration rate, and is
 constrained to be
 positive (this is equivalent to separate Poisson processes for
 growth and immigration).  This model is close to
-the constant DM model (Eq.~\ref{eq:Nt}), with $\exp(r)$ instead
+the constant-recruitment DM model (Eq.~\ref{eq:Nt}), with $\exp(r)$ instead
 of $\omega$ and $\iota$ instead of $\gamma$, except that the first
-process is Poisson distributed instead of binomial. The autoregressive, Ricker-logistic,
+process is Poisson distributed instead of binomial. The geometric-recruitment, Ricker-logistic,
 and Gompertz-logistic models can be extended to allow for immigration in the
-same way.
+same way.   Deterministic versions of the Ricker-logistic + immigration and the 
+Gompertz-logistic + immigration do reach stable equilibriums, but the equilibriums are not at $K$ and cannot be solved for analytically \citep{otto_day:2007}.  Therefore, we
+refer to $K$ in these models as the semi-equilibrium abundance.
 \begin{comment}
 Similarly, the Ricker-logistic + immigration model can be represented as:
 the
-Gompertz-logistic + immigration model as: (13) and the autoregressive +  immigration model as: (14)
+Gompertz-logistic + immigration model as: (13) and the geometric-recruitment +  immigration model as: (14)
 \end{comment}
 
 % Save for discussion
@@ -783,7 +797,7 @@ climate.
 
 The zero-inflated Poisson distribution can be applied to not only
 initial abundance but also to recruitment and population growth
-terms. For example, the recruitment term of the constant DM model
+terms. For example, the recruitment term of the constant-recruitment DM model
 (Eq.~\ref{eq:Nt}) can be modified as follows:
 \begin{equation}
 G_{it} \sim \left\{
@@ -804,7 +818,7 @@ the
 species between the initial abundance stage and each time step
 of the
 dynamics stage (see code sample?).  Adding zero-inflation to the
-dynamics of the autoregressive, exponential, Ricker-logistic, or Gompertz-logistic
+dynamics of the geometric-recruitment, exponential, Ricker-logistic, or Gompertz-logistic
 models
 (without immigration) should have no effect when initial
 abundance is
@@ -814,7 +828,7 @@ models cannot recover from zero abundance).
 \end{comment}
 We have implemented
 zero-inflated dynamics in the Bayesian framework using program
-\textrm{JAGS} \citep[version 3.2.0]{plummer:2003}.
+\textbf{JAGS} \citep[version 3.2.0]{plummer:2003}.
 %(version 3.2.0; Plummer 2003)
 
 
@@ -840,17 +854,14 @@ One way to model environmental stochasticity (variation in population growth
 rate due to stochastic environmental conditions) is by explicitly
 modeling dynamic parameters as functions of environmental covariates, such
 as weather.  For example, in the Gompertz-logistic model (Eq.~\ref{eq:gomp}), $r$ could be a 
-function of temperature and $K$ a function of rainfall:
+function of temperature ($T$) and $K$ a function of rainfall ($R$):
 \begin{gather}
-r_{it} = \exp(r_{0} + r_{temp}T_{it}) \nonumber \\
-K_{it} = \exp(K_{0} + K_{rain}R_{it})  \\
-N_{it} \sim
-\text{Pois}(N_{it-1}\exp(r_{it-1}(1-\log(N_{it-1}+1)/\log(K_{it-1}+1)))) \nonumber
+\log(r_{it}) = \beta^{r}_{0} + \beta^{r}_{1}T_{it} \nonumber \\
+\log(K_{it}) = \beta^{K}_{0} + \beta^{K}_{1}R_{it}  
+%N_{it} \sim
+%\text{Pois}(N_{it-1}\exp(r_{it-1}(1-\log(N_{it-1}+1)/\log(K_{it-1}+1)))) \nonumber
 \label{eq:weather}
 \end{gather}
-where $T_{it}$ is site and year specific temperature, $R_{it}$ is site and year specific rainfall,
-and the errors for the coefficients $r_{0}$, $r_{temp}$, $K_{0}$, and $K_{rain}$ are 
-normally distributed.
 
 Another way to model environmental stochasticity is as lognormal variation in observed local population 
 growth rate \citep{bjornstad:2001,bonsall_hastings:2004}.  This could be applied to both density-independent and density-dependent models.
@@ -916,7 +927,7 @@ framework using program \textbf{JAGS} \citep[version 3.2.0, see Appendix]{plumme
 \subsection{Forecasting Future Population Size}
 
 State-space models allow for inference about future population size,
-a critical component of population viability analysis as well
+a critical component of population viability analysis (PVA) as well
 as conservation planning. Let $N^+_{t}$ denote population size at some
 future point in time and $[N^+_t]$ denote the probability
 distribution for this random variable. If we can specify this
@@ -924,8 +935,8 @@ distribution, we can make statements about the
 probability that $N^+_t = k$ where $k$ is any possible
 population size including zero.
 
-The classical approach to computing $[N^+_t]$ is based upon
-Empirical Bayes methods [CITE]. 
+%The classical approach to computing $[N^+_t]$ is based upon
+%Empirical Bayes methods [CITE]. 
 %Note that neither Empiriis not actually a
 %Bayesian method, it is used to estim.
 %We take the parameter estimates and plug them back in.... For
@@ -954,19 +965,32 @@ Empirical Bayes methods [CITE].
 %by the estimated posterior from the previous year and the
 %population dynamics parameters.
 %
-If covariates of the dynamics parameters are present, the problem
-becomes much harder because, to fully account for uncertainty,
-we need a model for the future values of the covariates as well. When
-the covariates are continuous, this requires integrating over their
-possible values, which becomes very challenging
-computationally. Indeed, simulation methods such as MCMC are the
-only viable options when numerous covariates are present, which will
-often be the case in many ecological studies.
+%If covariates of the dynamics parameters are present, the problem
+%becomes much harder because, to fully account for uncertainty,
+%we need a model for the future values of the covariates as well. When
+%the covariates are continuous, this requires integrating over their
+%possible values, which becomes very challenging
+%computationally. Indeed, simulation methods such as MCMC are the
+%only viable options when numerous covariates are present, which will
+%often be the case in many ecological studies.
 
-Relative to the computational challenges associated with the
-empirical Bayes methods, the Bayesian approach is much more easy to
+
+%% COULD INCLUDE THIS PARAGRAPH, OR NOT.
+%A standard approach to PVA uses previously derived estimates of current 
+%population size, vital rate or population growth parameters, and environmental
+%stochasticity to stochastically project the population forward and calculate probabilities
+%of extinction or other measures of risk.  Estimates from DM models and the extensions
+%given here can be used in this context.  Uncertainty in extinction or quasi-extinction probabilities
+%can be estimated by either drawing values for parameters from their posterior distributions
+%(if estimated using MCMC) or randomly drawing values for parameters using their means and standard
+%errors (if estimated using maximum likelihood), and running a number of simulations with each
+%set of parameter values \citep{white:2000,hostetler_etal:2012}.
+
+%Relative to the computational challenges associated with the
+%empirical Bayes methods, 
+A fully Bayesian approach to PVA is straightforward to
 implement, especially since MCMC will be generally be relied upon in the
-first place. Furthermore, because population size at any future point
+first place. Because population size at any future point %Furthermore, b
 in time is regarded as an unknown parameter like any other, computing the
 posterior distribution of $N^+_t$ requires no additional steps
 in MCMC algorithm, other than formally stating that the count data are
@@ -1069,7 +1093,7 @@ zero-inflated Poisson) with exponential dynamics
 Criterion (AIC) model from that set to test three additional
 models for p: wind, first, and wind + first. We selected the minimum
 AIC model from that set to test eight additional models of dynamics:
-constant, autoregressive, Ricker-logistic, Gompertz-logistic, autoregressive +
+constant-recruitment, geometric-recruitment, Ricker-logistic, Gompertz-logistic, geometric-recruitment +
 immigration, exponential + immigration, Ricker-logistic +
 immigration, and Gompertz-logistic + immigration. %We then tested the effect of average
 %minimum temperature for June and July on all dynamics parameters from
@@ -1080,17 +1104,17 @@ framework; we used 600 for ovenbirds and 350 for golden-winged warblers.
 
 We ran the top ranked models from the maximum likelihood
 analyses in a Bayesian framework.  We added random observer 
-effects and, where appropriate, environmental stochasticity or zero-inflated dynamics.  We used
+effects and environmental stochasticity (modeled as lognormal
+variation in regional population growth rate, Eq.~\ref{eq:nuRand}) and, where appropriate, zero-inflated dynamics.  We used
 non-informative priors. We tested for lack of convergence using
 5 Markov chains for each model \citep{gelman_rubin:1992}.
 %(Gelman and Rubin 1992).
 For each chain we sampled the MCMC for at least 40,000 iterations, after at
-least 3,000 tuning samples.  
+least 3,000 adaptation and tuning samples.  
 
 We also used these models to obtain route and 
 year specific abundance estimates.  Because of the memory requirements involved,
-we obtained these estimates from a single chain of 5,000 iterations, after 35,000
-tuning samples.  We present these estimates for ovenbirds only.
+we obtained these estimates from a single chain.  We present these estimates for ovenbirds only.
 %Latent inclusion factors for temperature effects?
 
 \section{Results}
@@ -1119,16 +1143,16 @@ and 62.9\%, bias between -3.5\% and 3.3\%, and coverage between
 
 The negative binomial distribution was strongly supported for ovenbird
 initial abundance over the Poisson and zero-inflated Poisson
-(Table 2A). Even compared to the Poisson, there was
-no evidence to support a zero-inflation factor for this species.
-The best supported model for p was additive effects of wind speed
+(Table 2A). %Even compared to the Poisson, there was
+%no evidence to support a zero-inflation factor for this species.
+The best supported model for $p$ was additive effects of wind speed
 and first run (Table 2B, model B.1). First run and increasing wind
-speeds both decreased p. All dynamics models with immigration were
+speeds both decreased $p$. All dynamics models with immigration were
 better supported than models without immigration (Table 2C); 
 the best supported of these was the Ricker-logistic + immigration.
-The best supported model of those without immigration was the
-Gompertz-logistic, and the autoregressive and the constant model had the least
-support.
+%The best supported model of those without immigration was the
+%Gompertz-logistic, and the geometric-recruitment and the constant model had the least
+%support.
 %There was little support for an effect of minimum June and July
 % temperature on dynamics parameters of the Ricker + Immigration model
 %(Table 2A, models A.17 - A.18).
@@ -1137,84 +1161,96 @@ Estimates for the top ranked model for ovenbird
 %(NB[$\Lambda (.) \alpha (.)$]Ricker-logistic+Immigration[$r(.)K(.) \iota(.)$]p(wind+1st)) 
 were similar when
 run in the Bayesian framework, except that the estimate of $r$
-more than halved (from 0.026 $\pm$ 0.006 to 0.011 $\pm$ 0.005 [for
-Bayesian model estimates we present mean and SD]). When random observer effects
-were added, estimates for $\Lambda$ and $K$ increased dramatically
-(from 31.6 $\pm$ 4.9 to 42.5 $\pm$ 7.3 and from 56.2 $\pm$ 18.2 to 101.8 $\pm$ 21.1,
-respectively), and the estimate for r was intermediate (0.018 $\pm$ 0.006). The
-estimate of the intercept for $p$ (on the logit scale) dropped from -1.5 $\pm$
-0.1 to -2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.  When
-environmental stochasticity was added, the estimate for $K$ increased (to 112 $\pm$ 58.8) and $r$ was
-again intermediate (0.020 $\pm$ 0.010).  Adding environmental stochasticity alone had little effect
-on estimate of $p$ or $\Lambda$. The highest estimates of $\Lambda$ and $K$ came 
-from the model that included environmental stochasticity and random observer effects (43.8 $\pm$
-7.9 and 141.5 $\pm$ 69.5, respectively).  
+more than halved.
+% (from 0.026 $\pm$ 0.006 to 0.011 $\pm$ 0.005 [for
+%Bayesian model estimates we present mean and SD]). 
+When random observer effects
+were added, estimates for $\Lambda$ and $K$ increased dramatically,
+%(from 31.6 $\pm$ 4.9 to 42.5 $\pm$ 7.3 and from 56.2 $\pm$ 18.2 to 101.8 $\pm$ 21.1,
+%respectively)
+and the estimate for r was intermediate. The %(0.018 $\pm$ 0.006)
+estimate of the intercept for $p$ (on the logit scale) dropped. % from -1.5 $\pm$
+%0.1 to -2.0 $\pm$ 0.1, and the estimate of $\sigma_p$ was 0.35 $\pm$ 0.03.  
+When environmental stochasticity was added, the estimate for $K$ increased. %(to 112 $\pm$ 58.8) and $r$ was
+%again intermediate (0.020 $\pm$ 0.010).  Adding environmental stochasticity alone had little effect
+%on estimate of $p$ or $\Lambda$. 
+The highest estimates of $\Lambda$ and $K$ came 
+from the model that included environmental stochasticity and random observer effects %(43.8 $\pm$
+%7.9 and 141.5 $\pm$ 69.5, respectively).  
 Gelman and Rubin diagnostics and visual examination of the chain trajectory and density plots
 provided some evidence for a lack of convergence in estimates of the
 intercept for $p$ for all Bayesian models ran.  
 
 We estimated ovenbird abundance by route and year (and averaged over routes) 
 using the Bayesian model including random observer effects (Fig.~\ref{fig:oven_N}).  
-Estimated average abundance oscillated over time with a slowly increasing trend.  Estimated ovenbird
+Estimated average abundance over time alternated between growing and stable periods.  
+Estimated ovenbird
 abundance was highest in western and eastern Maryland in 1970 and 1980, but became
-more evenly distributed by 2010.  Coefficient of variation (CV) for route and year specific
-abundance estimates varied between 0.11 and 2.31 (mean = 0.46).  By comparison, CV
-for the estimate of mean initial abundance ($\Lambda$) was 0.15.
+more evenly distributed by 2010.  
+%These aren't up to date, and it doesn't look like people use CV as a measure of 
+%uncertainty in MCMC estimates anyway.
+%Coefficient of variation (CV) for route and year specific
+%abundance estimates varied between 0.11 and 2.31 (mean = 0.46).  By comparison, CV
+%for the estimate of mean initial abundance ($\Lambda$) was 0.15.
+As expected, uncertainty in estimates of route and year specific abundance was high.
 
 There was slightly more support for the ZIP distribution for initial
 abundance of golden-winged warbler than for the negative binomial; both were strongly
 supported over the Poisson (Table 3A). The best
-supported model for p was an effect of first run (Table 3B, model
+supported model for $p$ was an effect of first run (Table 3B, model
 B.1). The best supported dynamics model was exponential
-(Table 3C, model C.1); the estimate of r from this model was -0.058
-$\pm$ 0.017 (SE). There was no support for immigration added to the
-exponential or autoregressive models (Table 3C, models C.4 and
-C.6).
-However, the Gompertz-logistic + immigration and Ricker-logistic + immigration
-models were supported over the corresponding models without immigration
-(Table 3C, models C.4, C.5, C.7, and C.8), despite low estimates
-of $\iota$ from these models (0.003 $\pm$ 0.003 and 0.003 $\pm$
-0.002, respectively).  
+(Table 3C, model C.1). %; the estimate of r from this model was -0.058
+%$\pm$ 0.017 (SE). There was no support for immigration added to the
+%exponential or geometric-recruitment models (Table 3C, models C.4 and
+%C.6).
+%However, the Gompertz-logistic + immigration and Ricker-logistic + immigration
+%models were supported over the corresponding models without immigration
+%(Table 3C, models C.4, C.5, C.7, and C.8), despite low estimates
+%of $\iota$ from these models (0.003 $\pm$ 0.003 and 0.003 $\pm$
+%0.002, respectively).  
 %There was considerable support for an effect of
 %average minimum June and July temperature on r in the population
 %growth model (Table 1B, model B.17), with a negative slope.
 Because of the closeness of rankings for the ZIP and negative binomial
 distributions for golden-winged warbler, we also ran the subsequent models with the
-negative binomial initial abundance. Rankings of subsequent
-models were similar, but with a p covariate (first) the negative
-binomial distribution outranked the ZIP.
+negative binomial initial abundance; rankings of subsequent
+models were similar. %, but with a $p$ covariate (first) the negative
+%binomial distribution outranked the ZIP.
 
 Estimates for the top ranked model for golden-winged warbler
 %(ZIP[Λ(.)α(.)]Exponential[r(.)]p(1st))
 were similar when run in the Bayesian framework. When random
-observer effects were added, the estimate for $\Lambda$ increased dramatically
-(from 22.4 $\pm$ 7.6 to 55.5 $\pm$ 30.9). The estimate of the intercept
-for $p$ (on the logit scale) dropped from -3.5 $\pm$ 0.2 to -5.6 $\pm$ 1.1, and the
-estimate of $\sigma_p$ was 1.7 $\pm$ 0.7. Adding environmental stochasticity
-also increased the estimate of $\Lambda$ (to 42.9 $\pm$ 17.9) and the model with
-both random effects had the highest estimate of $\Lambda$ (74.6 $\pm$ 32.9). 
+observer effects were added, the estimate for $\Lambda$ increased dramatically,
+and the estimate of the intercept for $p$ dropped.
+%(from 22.4 $\pm$ 7.6 to 55.5 $\pm$ 30.9). The estimate of the intercept
+%for $p$ (on the logit scale) dropped from -3.5 $\pm$ 0.2 to -5.6 $\pm$ 1.1, and the
+%estimate of $\sigma_p$ was 1.7 $\pm$ 0.7. 
+Adding environmental stochasticity also increased the estimate of $\Lambda$ 
+%(to 42.9 $\pm$ 17.9) 
+and the model with both random effects had the highest estimate of $\Lambda$.
+% (74.6 $\pm$ 32.9). 
 Adding zero-inflation to the dynamics (as well as
 the initial abundance) has no effect for exponential models, because populations
 that started at 0 would stay at 0 in any case. Therefore, we tested
 zero-inflated dynamics on the Exponential + Immigration model. Adding zero-inflation to the dynamics
-increased the estimate of $\iota$ from 0 to 0.091 $\pm$ 0.049, but had only minor
+increased the estimate of $\iota$, but had only minor % from 0 to 0.091 $\pm$ 0.049
 effects on the other parameters. Gelman and Rubin diagnostics and visual
 examination of the chain trajectory and density plots provided evidence for a lack of convergence in
 estimates of $\Lambda$ for all Bayesian models ran, and for most parameters when random observer
 effects were included.
 
-Estimated detection probabilities were generally low. The estimated probability
-of detecting an ovenbird in the top model (Table 2, model C.1) varied between 0.157
-$\pm$ 0.014 and 0.184 $\pm$ 0.015, depending on wind speed and whether the
-observer had run that route before. The estimated probability of detecting a
-golden-winged warbler went from 0.013 $\pm$ 0.006 for first time observers to 0.028 $\pm$ 0.008 for
-repeat observers for the top model (Table 3, model C.1). Accounting for random
-observer effects decreased average detection probability for both species.
+%Estimated detection probabilities were generally low. The estimated probability
+%of detecting an ovenbird in the top model (Table 2, model C.1) varied between 0.157
+%$\pm$ 0.014 and 0.184 $\pm$ 0.015, depending on wind speed and whether the
+%observer had run that route before. The estimated probability of detecting a
+%golden-winged warbler went from 0.013 $\pm$ 0.006 for first time observers to 0.028 $\pm$ 0.008 for
+%repeat observers for the top model (Table 3, model C.1). Accounting for random
+%observer effects decreased average detection probability for both species.
 
-For both species, constant dynamics models estimated very high
+For both species, constant-recruitment dynamics models estimated very high
 survival probabilities ($\omega$ = 1 $\pm$ 1.3e-05 for ovenbird and
 0.935 $\pm$ 0.011 for
-golden-winged warbler). The autoregressive and autoregressive + immigration
+golden-winged warbler). The geometric-recruitment and geometric-recruitment + immigration
 models estimated very low survival probabilities for ovenbird ($\omega$ =
 0.058 $\pm$ 0.046 and 0.026 $\pm$ 0.060, respectively), 
 but not for golden-winged warbler ($\omega$ = 0.715 $\pm$ 0.288 for both models).
@@ -1513,7 +1549,7 @@ simulated low, medium, and high values of immigration rate ($\iota$).}
   \end{tabular}
 \end{table}
 
-\vfill
+%\vfill
 %\clearpage
 \newpage
 
@@ -1561,7 +1597,7 @@ A.9.
 NB[$\Lambda$(.)$\alpha$(.)]Gompertz-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st)
 &10	&8.4
 &B.9.
-ZIP[$\Lambda$(.)$\psi$(.)]Autoregressive[$\gamma$(.)$\omega$(.)]$p$(1st)
+ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st)
 &6	&1.7 \\
 A.10.
 NB[$\Lambda$(.)$\alpha$(.)]Growth+Immigration[$r$(.)$\iota$(.)]$p$(wind+1st)
@@ -1570,7 +1606,7 @@ NB[$\Lambda$(.)$\alpha$(.)]Growth+Immigration[$r$(.)$\iota$(.)]$p$(wind+1st)
 ZIP[$\Lambda$(.)$\psi$(.)]Growth+Immigration[$r$(.)$\iota$(.)]$p$(1st)
 &6	&2.0 \\
 A.11.
-NB[$\Lambda$(.)$\alpha$(.)]Autoregressive+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(wind+1st)
+NB[$\Lambda$(.)$\alpha$(.)]Geometric-recruitment+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(wind+1st)
 &10	&38.6
 &B.11.
 ZIP[$\Lambda$(.)$\psi$(.)]Gompertz-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st)
@@ -1585,7 +1621,7 @@ A.13.
 NB[$\Lambda$(.)$\alpha$(.)]Ricker-logistic[$r$(.)$K$(.)]$p$(wind+1st)
 &9	&195.1
 &B.13.
-ZIP[$\Lambda$(.)$\psi$(.)]Autoregressive+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(1st)
+ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(1st)
 &7	&3.7 \\
 A.14. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(wind+1st)	&8
 &271.3
@@ -1593,14 +1629,14 @@ A.14. NB[$\Lambda$(.)$\alpha$(.)]Growth[$r$(.)]$p$(wind+1st)	&8
 ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st)
 &7	&4.2 \\
 A.15.
-NB[$\Lambda$(.)$\alpha$(.)]Autoregressive[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
+NB[$\Lambda$(.)$\alpha$(.)]Geometric-recruitment[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
 &9	&273.7
 &B.15. ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic[$r$(.)$K$(.)]$p$(1st)	&7&5.2 \\
 A.16.
-NB[$\Lambda$(.)$\alpha$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
+NB[$\Lambda$(.)$\alpha$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(wind+1st)
 &9	&1856.7
 &B.16.
-ZIP[$\Lambda$(.)$\psi$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(1st)
+ZIP[$\Lambda$(.)$\psi$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st)
 &6	&12.5 \\
 \hline
 \end{tabular}
@@ -1637,12 +1673,12 @@ C. Dynamics && \\
 C.1. NB[$\Lambda$(.)$\alpha$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) &10	&0	\\
 C.2. NB[$\Lambda$(.)$\alpha$(.)]Gompertz-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) &10	&8.4 \\
 C.3. NB[$\Lambda$(.)$\alpha$(.)]Exponential+Immigration[$r$(.)$\iota$(.)]$p$(wind+1st) &9	&36.5\\
-C.4. NB[$\Lambda$(.)$\alpha$(.)]Autoregressive+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(wind+1st) &10	&38.6\\
+C.4. NB[$\Lambda$(.)$\alpha$(.)]Geometric-recruitment+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(wind+1st) &10	&38.6\\
 C.5. NB[$\Lambda$(.)$\alpha$(.)]Gompertz-logistic[$r$(.)$K$(.)]$p$(wind+1st) &9	&192.8\\
 C.6. NB[$\Lambda$(.)$\alpha$(.)]Ricker-logistic[$r$(.)$K$(.)]$p$(wind+1st) &9	&195.1\\
 C.7. NB[$\Lambda$(.)$\alpha$(.)]Exponential[$r$(.)]$p$(wind+1st)	&8 &271.3\\
-C.8. NB[$\Lambda$(.)$\alpha$(.)]Autoregressive[$\gamma$(.)$\omega$(.)]$p$(wind+1st) &9	&273.7\\
-C.9. NB[$\Lambda$(.)$\alpha$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(wind+1st) &9	&1856.7\\
+C.8. NB[$\Lambda$(.)$\alpha$(.)]Geometric-recruitment[$\gamma$(.)$\omega$(.)]$p$(wind+1st) &9	&273.7\\
+C.9. NB[$\Lambda$(.)$\alpha$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(wind+1st) &9	&1856.7\\
 \hline
 \end{tabular}
 \end{table}
@@ -1678,14 +1714,14 @@ B.4. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(wind) &7 &9.3\\
 \hline
 C. Dynamics && \\
 C.1. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(1st) &5	&0 \\
-C.2. ZIP[$\Lambda$(.)$\psi$(.)]Autoregressive[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&1.7 \\
+C.2. ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&1.7 \\
 C.3. ZIP[$\Lambda$(.)$\psi$(.)]Exponential+Immigration[$r$(.)$\iota$(.)]$p$(1st) &6	&2.0 \\
 C.4. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st) &7	&2.5 \\
 C.5. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz-logistic[$r$(.)$K$(.)]$p$(1st)	&6&3.0 \\
-C.6. ZIP[$\Lambda$(.)$\psi$(.)]Autoregressive+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(1st) &7	&3.7 \\
+C.6. ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(1st) &7	&3.7 \\
 C.7. ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st) &7	&4.2 \\
 C.8. ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic[$r$(.)$K$(.)]$p$(1st)	&7 &5.2 \\
-C.9. ZIP[$\Lambda$(.)$\psi$(.)]Constant[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&12.5 \\
+C.9. ZIP[$\Lambda$(.)$\psi$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&12.5 \\
 \hline
 \end{tabular}
 \end{table}
@@ -1732,7 +1768,7 @@ data-generating values.}
 
 \begin{figure}
   \centering
-  \includegraphics[width=6.6in]{figs/OVEN_N_by_route_year2}
+  \includegraphics[width=6.6in]{figs/OVEN_N_by_route_year4}
 \caption{Maps of BBS route and year specific estimated abundances for ovenbirds, for the years 1970,
 1980, 1990, 2000, and 2010.  Lower right panel depicts estimated mean route abundance by year
 (mean and 95\% credible interval).}
