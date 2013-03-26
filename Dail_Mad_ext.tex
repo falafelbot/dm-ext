@@ -15,7 +15,7 @@
 \usepackage{rotating}
 
 \bibliographystyle{ecology}
-
+\hyphenpenalty=100000
 
 
 \begin{document}
@@ -73,8 +73,8 @@ replicated counts) is unavailable.
 \vspace{0.5cm}
 
 \textbf{Key words}: abundance, Dail and Madsen model, density-dependence,
-Gompertz-logistic model, immigration, open population point count models,
-random observer effects, range, Ricker-logistic model, zero-inflated
+detectability, Gompertz-logistic model, immigration, open population point 
+count models, random observer effects, Ricker-logistic model, zero-inflated
 
 \newpage
 
@@ -184,20 +184,20 @@ this form of observation error, rarely have these methods been
 integrated into state-space models \citep[but
 see][]{buckland_etal:2004}.
 
-A more serious problem than the ones associated with the Gaussian
-assumptions is that the parameters of the simple state-space models
+A more serious problem %than the ones associated with the Gaussian assumptions 
+is that the parameters of the simple state-space models
 such as Eq~\ref{eq:ss1} are not identifiable in many
 circumstances \citep{polansky_etal:2009}. Recall that the
 Eq.~\ref{eq:ss1} did not specify distributions for $N_1$; % or $X_1$;
 however, $N_1$ is a random variable and hence there is uncertainty
 that should be accounted for.  
 %are needed to fully specify the model.
-To be more specific, a fully-specified state-space model requires at least
-three probability distributions, which we represent
-using bracket notation (i.e., $[Y|\Omega]$ is interpreted
-as the probability distribution of the random variable $Y$ given the
-parameter $\Omega$). The three probability distributions required for a
-state-space model are:
+%To be more specific, a fully-specified state-space model requires at least
+%three probability distributions, which we represent
+%using bracket notation (i.e., $[Y|\Omega]$ is interpreted
+%as the probability distribution of the random variable $Y$ given the
+%parameter $\Omega$). The three probability distributions required for a
+%state-space model are:
 %%%% JEFF, does this extra sentence help? This notation comes from
 %%%% several of the original state-space papers and is widespread in
 %%%% books like Andy's and Bill's.
@@ -205,35 +205,35 @@ state-space model are:
 % so these equations are confusing to me. How widely used is this
 % notation in ecology? Will others likely understand this? Also, we might want
 %to save space by trimming a bunch of this discussion back down.]}
-\begin{subequations}
-  \label{eq:ss2}
-  \begin{align}
-    [N_1&|\bm{\theta}] \label{eq:ss2a} \\ \label{eq:ss2b}
-[N_t&|N_{t-1},\bm{\Theta}] \quad \text{for} \; t=2,\hdots,T \\
-\label{eq:ss2c}
-    [X_t&|N_t,\bm{p}]  \qquad \; \text{for} \; t=1,\hdots,T
-  \end{align}
-\end{subequations}
-where $\bm{\theta}$ are the process variation parameters for the
-initial state, $\bm{\Theta}$ are the process variation parameters
-influencing how abundance changes over time, and $\bm{p}$ are the
-observation error parameters. As mentioned previously, Eq.~\ref{eq:ss2b}
-and Eq.~\ref{eq:ss2c} are assumed to be Gaussian in classical state-space
-models, but what should be the distribution for Eq.~\ref{eq:ss2a}?
+%\begin{subequations}
+%  \label{eq:ss2}
+%  \begin{align}
+%    [N_1&|\bm{\theta}] \label{eq:ss2a} \\ \label{eq:ss2b}
+%[N_t&|N_{t-1},\bm{\Theta}] \quad \text{for} \; t=2,\hdots,T \\
+%\label{eq:ss2c}
+%    [X_t&|N_t,\bm{p}]  \qquad \; \text{for} \; t=1,\hdots,T
+%  \end{align}
+%\end{subequations}
+%where $\bm{\theta}$ are the process variation parameters for the
+%initial state, $\bm{\Theta}$ are the process variation parameters
+%influencing how abundance changes over time, and $\bm{p}$ are the
+%observation error parameters. As mentioned previously, Eq.~\ref{eq:ss2b}
+%and Eq.~\ref{eq:ss2c} are assumed to be Gaussian in classical state-space
+%models, but what should be the distribution for Eq.~\ref{eq:ss2a}?
 %The three lines of general model
 %described by Eq.~\ref{eq:ss2} correspond to the three equations shown
 %for the specific example in Eq~\ref{eq:ss1}. However, in this case,
 %we allow $N_1$ to be a random variable. But what should its
 %istribution, $[N_1|\bm{\theta}]$ be?
-And how could $\bm{\theta}$ be estimated given that there is only a single observation
-available? Often, these problems are simply assumed away. For
-example, sometimes researchers assume that there is no process variation in
-the first year, although this seems unjustified. Alternatively, the
-population may be assumed to be at equilibrium such that the expected
-value of $N_t$ is constant through time. Although this 
-makes the parameters $\bm{\theta}$ identifiable, assuming equilibrium
-defeats the objective of many studies of population dynamics, namely
-determining why a population varies over time.
+%And how could $\bm{\theta}$ be estimated given that there is only a single observation
+%available? Often, these problems are simply assumed away. For
+%example, sometimes researchers assume that there is no process variation in
+%the first year, although this seems unjustified. Alternatively, the
+%population may be assumed to be at equilibrium such that the expected
+%value of $N_t$ is constant through time. Although this 
+%makes the parameters $\bm{\theta}$ identifiable, assuming equilibrium
+%defeats the objective of many studies of population dynamics, namely
+%determining why a population varies over time.
 
 A fourth problem with these models is that they do not admit
 spatial variation. This reduces the scope of the inferences that can
@@ -374,7 +374,7 @@ abundance is observed directly such that $X_{it} \equiv N_{it}$.
 \subsection{The Original Formulation of the Model}
 
 As with traditional state-space models, the DM model includes the
-three conditionally related processes shown in Eq.~\ref{eq:ss2},
+three conditionally related processes shown in Eq.~\ref{eq:ss1},
 which correspond to (1) initial abundance, i.e. the
 abundance at site $i$ during the first primary period,
 denoted (2) abundance at time $t$ (for $t>1$) which depends upon
@@ -511,7 +511,7 @@ model
 %(3) have parameters that are estimable.
 The one
 remaining task is to replace the observation model
-$[X_t|N_t, \bm{p}]$ (Eq.~\ref{eq:ss2c}) with one that can be
+$X_t = N_t + \zeta_t$ (Eq.~\ref{eq:ss1c}) with one that can be
 more easily interpreted. The observation
 model assumes that individuals are missed due to imperfect
 detection. The simplest model for imperfect detection is
@@ -1052,13 +1052,13 @@ over the wrong DID model?
 \subsection{Analysis of Breeding Bird Survey Data}
 
 We applied these models to North American Breeding Bird Survey
-(BBS) data from 1966-2010 for two species in the bordering US states
+(BBS) data from 1966-2010 in the bordering US states
 Maryland and Virginia. For our focal species, we selected
 ovenbirds (\textit{Seiurus aurocapilla}), an abundant and widespread
-forest breeding migrant with a stable or increasing trend in the region \citep{porneluzi_etal:2011}
-and golden-winged warblers (\textit{Vermivora chrysoptera}), which
-only breeds in the western parts of these states and has been declining in the
-region \citep{confer_etal:2011}.  %MORE INFORMATION ABOUT THE SPECIES?
+forest breeding migrant with a stable or increasing trend in the region \citep{porneluzi_etal:2011}.
+%and golden-winged warblers (\textit{Vermivora chrysoptera}), which
+%only breeds in the western parts of these states and has been declining in the
+%region \citep{confer_etal:2011}.  %MORE INFORMATION ABOUT THE SPECIES?
 
 %GENERAL ABOUT BBS DATA.
 The BBS is an annual roadside survey implemented by trained
@@ -1085,8 +1085,8 @@ we also included the first time an observer ran a route as a predictor variable 
 probability.
 
 %HOW WE OBTAINED AND MANIPULATED PRISM DATA
-We ran a series of maximum-likelihood based models for each
-species, and then a series of Bayesian models. We started by testing
+We ran a series of maximum-likelihood based models, 
+and then a series of Bayesian models. We started by testing
 three models of initial abundance (Poisson, negative binomial, and
 zero-inflated Poisson) with exponential dynamics
 (Eq.~\ref{eq:exp}) and no covariates.  We selected the minimum Akaike's Information
@@ -1100,12 +1100,13 @@ immigration, and Gompertz-logistic + immigration. %We then tested the effect of 
 %the minimum AIC dynamics model.
 As above, these models require a a finite upper bound ($N_{max}$) to integrate
 over when run in a maximum likelihood
-framework; we used 600 for ovenbirds and 350 for golden-winged warblers.
+framework; we used 600. % for ovenbirds and 350 for golden-winged warblers.
 
 We ran the top ranked models from the maximum likelihood
 analyses in a Bayesian framework.  We added random observer 
 effects and environmental stochasticity (modeled as lognormal
-variation in regional population growth rate, Eq.~\ref{eq:nuRand}) and, where appropriate, zero-inflated dynamics.  We used
+variation in regional population growth rate, Eq.~\ref{eq:nuRand}). % and, where appropriate, zero-inflated dynamics.  
+We used
 non-informative priors. We tested for lack of convergence using
 5 Markov chains for each model \citep{gelman_rubin:1992}.
 %(Gelman and Rubin 1992).
@@ -1114,7 +1115,7 @@ least 3,000 adaptation and tuning samples.
 
 We also used these models to obtain route and 
 year specific abundance estimates.  Because of the memory requirements involved,
-we obtained these estimates from a single chain.  We present these estimates for ovenbirds only.
+we obtained these estimates from a single chain.  %We present these estimates for ovenbirds only.
 %Latent inclusion factors for temperature effects?
 
 \section{Results}
@@ -1175,7 +1176,7 @@ When environmental stochasticity was added, the estimate for $K$ increased. %(to
 %again intermediate (0.020 $\pm$ 0.010).  Adding environmental stochasticity alone had little effect
 %on estimate of $p$ or $\Lambda$. 
 The highest estimates of $\Lambda$ and $K$ came 
-from the model that included environmental stochasticity and random observer effects %(43.8 $\pm$
+from the model that included environmental stochasticity and random observer effects. %(43.8 $\pm$
 %7.9 and 141.5 $\pm$ 69.5, respectively).  
 Gelman and Rubin diagnostics and visual examination of the chain trajectory and density plots
 provided some evidence for a lack of convergence in estimates of the
@@ -1194,12 +1195,12 @@ more evenly distributed by 2010.
 %for the estimate of mean initial abundance ($\Lambda$) was 0.15.
 As expected, uncertainty in estimates of route and year specific abundance was high.
 
-There was slightly more support for the ZIP distribution for initial
-abundance of golden-winged warbler than for the negative binomial; both were strongly
-supported over the Poisson (Table 3A). The best
-supported model for $p$ was an effect of first run (Table 3B, model
-B.1). The best supported dynamics model was exponential
-(Table 3C, model C.1). %; the estimate of r from this model was -0.058
+%There was slightly more support for the ZIP distribution for initial
+%abundance of golden-winged warbler than for the negative binomial; both were strongly
+%supported over the Poisson (Table 3A). The best
+%supported model for $p$ was an effect of first run (Table 3B, model
+%B.1). The best supported dynamics model was exponential
+%(Table 3C, model C.1). %; the estimate of r from this model was -0.058
 %$\pm$ 0.017 (SE). There was no support for immigration added to the
 %exponential or geometric-recruitment models (Table 3C, models C.4 and
 %C.6).
@@ -1211,33 +1212,33 @@ B.1). The best supported dynamics model was exponential
 %There was considerable support for an effect of
 %average minimum June and July temperature on r in the population
 %growth model (Table 1B, model B.17), with a negative slope.
-Because of the closeness of rankings for the ZIP and negative binomial
-distributions for golden-winged warbler, we also ran the subsequent models with the
-negative binomial initial abundance; rankings of subsequent
-models were similar. %, but with a $p$ covariate (first) the negative
+%Because of the closeness of rankings for the ZIP and negative binomial
+%distributions for golden-winged warbler, we also ran the subsequent models with the
+%negative binomial initial abundance; rankings of subsequent
+%models were similar. %, but with a $p$ covariate (first) the negative
 %binomial distribution outranked the ZIP.
 
-Estimates for the top ranked model for golden-winged warbler
-%(ZIP[Λ(.)α(.)]Exponential[r(.)]p(1st))
-were similar when run in the Bayesian framework. When random
-observer effects were added, the estimate for $\Lambda$ increased dramatically,
-and the estimate of the intercept for $p$ dropped.
-%(from 22.4 $\pm$ 7.6 to 55.5 $\pm$ 30.9). The estimate of the intercept
-%for $p$ (on the logit scale) dropped from -3.5 $\pm$ 0.2 to -5.6 $\pm$ 1.1, and the
-%estimate of $\sigma_p$ was 1.7 $\pm$ 0.7. 
-Adding environmental stochasticity also increased the estimate of $\Lambda$ 
-%(to 42.9 $\pm$ 17.9) 
-and the model with both random effects had the highest estimate of $\Lambda$.
-% (74.6 $\pm$ 32.9). 
-Adding zero-inflation to the dynamics (as well as
-the initial abundance) has no effect for exponential models, because populations
-that started at 0 would stay at 0 in any case. Therefore, we tested
-zero-inflated dynamics on the Exponential + Immigration model. Adding zero-inflation to the dynamics
-increased the estimate of $\iota$, but had only minor % from 0 to 0.091 $\pm$ 0.049
-effects on the other parameters. Gelman and Rubin diagnostics and visual
-examination of the chain trajectory and density plots provided evidence for a lack of convergence in
-estimates of $\Lambda$ for all Bayesian models ran, and for most parameters when random observer
-effects were included.
+%Estimates for the top ranked model for golden-winged warbler
+%%(ZIP[Λ(.)α(.)]Exponential[r(.)]p(1st))
+%were similar when run in the Bayesian framework. When random
+%observer effects were added, the estimate for $\Lambda$ increased dramatically,
+%and the estimate of the intercept for $p$ dropped.
+%%(from 22.4 $\pm$ 7.6 to 55.5 $\pm$ 30.9). The estimate of the intercept
+%%for $p$ (on the logit scale) dropped from -3.5 $\pm$ 0.2 to -5.6 $\pm$ 1.1, and the
+%%estimate of $\sigma_p$ was 1.7 $\pm$ 0.7. 
+%Adding environmental stochasticity also increased the estimate of $\Lambda$ 
+%%(to 42.9 $\pm$ 17.9) 
+%and the model with both random effects had the highest estimate of $\Lambda$.
+%% (74.6 $\pm$ 32.9). 
+%Adding zero-inflation to the dynamics (as well as
+%the initial abundance) has no effect for exponential models, because populations
+%that started at 0 would stay at 0 in any case. Therefore, we tested
+%zero-inflated dynamics on the Exponential + Immigration model. Adding zero-inflation to the dynamics
+%increased the estimate of $\iota$, but had only minor % from 0 to 0.091 $\pm$ 0.049
+%effects on the other parameters. Gelman and Rubin diagnostics and visual
+%examination of the chain trajectory and density plots provided evidence for a lack of convergence in
+%estimates of $\Lambda$ for all Bayesian models ran, and for most parameters when random observer
+%effects were included.
 
 %Estimated detection probabilities were generally low. The estimated probability
 %of detecting an ovenbird in the top model (Table 2, model C.1) varied between 0.157
@@ -1247,13 +1248,16 @@ effects were included.
 %repeat observers for the top model (Table 3, model C.1). Accounting for random
 %observer effects decreased average detection probability for both species.
 
-For both species, constant-recruitment dynamics models estimated very high
-survival probabilities ($\omega$ = 1 $\pm$ 1.3e-05 for ovenbird and
-0.935 $\pm$ 0.011 for
-golden-winged warbler). The geometric-recruitment and geometric-recruitment + immigration
-models estimated very low survival probabilities for ovenbird ($\omega$ =
-0.058 $\pm$ 0.046 and 0.026 $\pm$ 0.060, respectively), 
-but not for golden-winged warbler ($\omega$ = 0.715 $\pm$ 0.288 for both models).
+%For both species, 
+Constant-recruitment dynamics models estimated very high
+survival probabilities ($\omega$ = 1 $\pm$ 1.3e-05). % for ovenbird and
+%0.935 $\pm$ 0.011 for
+%golden-winged warbler). 
+The geometric-recruitment and geometric-recruitment + immigration
+models estimated very low survival probabilities %for ovenbird 
+($\omega$ =
+0.058 $\pm$ 0.046 and 0.026 $\pm$ 0.060, respectively). 
+%but not for golden-winged warbler ($\omega$ = 0.715 $\pm$ 0.288 for both models).
 
 
 
@@ -1278,7 +1282,7 @@ demonstrated how a class of open population $N$-mixture models
 proposed by \citet{dail_madsen:2011} overcomes these
 limitations. We extended their model in several important
 ways to accomodate common features of ecological
-datasets, including sparse counts, zero-inflation, demographic
+datasets, including sparse counts, zero-inflation, environmental
 stochasticity, and random variation in observation error.
 %We made four important developments of the open population
 %N-mixture model proposed by \citet{dail_madsen:2011} that make the
@@ -1326,7 +1330,7 @@ demographic data are often referred to as integrated population models
 buckland_etal:2004,schaub_etal:2007}
 and we believe that a DM model could work well in this context.
 In fact, the DM model could be viewed as a specific case of the
-IPM model proposed by \citet{buckland_etal:2004}.
+IPM proposed by \citet{buckland_etal:2004}.
 However, we caution that when count data are affected by
 movement and vital rates, it would be unwise to ignore the movement
 processes.
@@ -1358,7 +1362,7 @@ may be of interest.  We have shown a few approaches for incorporating some of th
 (environmental stochasticity and random observer effects).  Other approaches to modeling
 each of these may also be worth trying.  Incorporating these random effects can increase
 the difficulty of achieving model convergence, but they are certainly important.
-For example, the estimate of carrying capacity for the ovenbird increased by more than 150\%
+For example, the estimate of semi-equilibrium abundance for the ovenbird increased by more than 150\%
 when environmental stochasticity and random observer effects were included.  
 
 Another important benefit of this class of models is that it can be
@@ -1456,19 +1460,20 @@ slow movement toward the equilibrium abundance comes little information for esti
 that abundance or the rate of growth.  In other cases, bias was low and coverage nominal.
 
 We have presented a test case for these models using data from
-the BBS for two species. We demonstrate that these models can be
+the BBS for ovenbirds. We demonstrate that these models can be
 used to model and estimate initial abundance, detection
 probability, and density-independent and dependent functions for
 population dynamics. We tested these models in both the
 frequentist and Bayesian frameworks and found strengths and
 weaknesses of each approach. The Bayesian analyses permit more
 flexibility and allow the incorporation of random observer
-effects and zero-inflated dynamics. Our results suggest ignoring
+effects, environmental stochasticity, and zero-inflated dynamics. 
+Our results suggest ignoring
 variation between observers can lead to underestimation of
 initial abundance and equilibrium population sizes. On the other
-hand, our Bayesian analyses did have convergence problems,
-particularly for the species (golden-winged warbler) with sparser data. It's
-likely that poor model fits are related to the low estimates of
+hand, our Bayesian analyses did have some convergence problems.
+%particularly for the species (golden-winged warbler) with sparser data. 
+It's likely that poor model fits are related to the low estimates of
 detection probability, which in turn are probably caused by the
 large 400 m radius used for BBS point counts. Again, we believe
 that direct information on detectability (such as repeated
@@ -1687,44 +1692,44 @@ C.9. NB[$\Lambda$(.)$\alpha$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(
 %\clearpage
 \newpage
 
-\begin{table}
-  \centering
-  \small
-  \caption{Model selection table for golden-winged
-warblers in Maryland and Virginia, 1966-2010. We present model
-name and number, number of parameters (Par.), and difference in
-Akaike's information criterion between each model and the top model of
-that set ($\Delta$AIC).  The first section compares
-models for initial abundance, the second for detection
-probability, and the third for dynamics.}
-  \begin{tabular}[h]{lcc}
-\hline
-Model	&Par.	&$\Delta$AIC\\
-\hline
-A. Initial Abundance && \\
-A.1. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(.)	&4	&0 \\
-A.2. NB[$\Lambda$(.)$\alpha$(.)]Exponential[$r$(.)]$p$(.)	&4	&0.4 \\
-A.3. P[$\Lambda$(.)]Exponential[$r$(.)]$p$(.)	&3	&37.8 \\
-\hline
-B. Detection Probability && \\
-B.1. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(1st)	&5 &0 \\
-B.2. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(.)	&4	&3.5 \\
-B.3. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(wind+1st)	&8 &5.9 \\
-B.4. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(wind) &7 &9.3\\
-\hline
-C. Dynamics && \\
-C.1. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(1st) &5	&0 \\
-C.2. ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&1.7 \\
-C.3. ZIP[$\Lambda$(.)$\psi$(.)]Exponential+Immigration[$r$(.)$\iota$(.)]$p$(1st) &6	&2.0 \\
-C.4. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st) &7	&2.5 \\
-C.5. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz-logistic[$r$(.)$K$(.)]$p$(1st)	&6&3.0 \\
-C.6. ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(1st) &7	&3.7 \\
-C.7. ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st) &7	&4.2 \\
-C.8. ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic[$r$(.)$K$(.)]$p$(1st)	&7 &5.2 \\
-C.9. ZIP[$\Lambda$(.)$\psi$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&12.5 \\
-\hline
-\end{tabular}
-\end{table}
+%\begin{table}
+%  \centering
+%  \small
+%  \caption{Model selection table for golden-winged
+%warblers in Maryland and Virginia, 1966-2010. We present model
+%name and number, number of parameters (Par.), and difference in
+%Akaike's information criterion between each model and the top model of
+%that set ($\Delta$AIC).  The first section compares
+%models for initial abundance, the second for detection
+%probability, and the third for dynamics.}
+%  \begin{tabular}[h]{lcc}
+%\hline
+%Model	&Par.	&$\Delta$AIC\\
+%\hline
+%A. Initial Abundance && \\
+%A.1. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(.)	&4	&0 \\
+%A.2. NB[$\Lambda$(.)$\alpha$(.)]Exponential[$r$(.)]$p$(.)	&4	&0.4 \\
+%A.3. P[$\Lambda$(.)]Exponential[$r$(.)]$p$(.)	&3	&37.8 \\
+%\hline
+%B. Detection Probability && \\
+%B.1. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(1st)	&5 &0 \\
+%B.2. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(.)	&4	&3.5 \\
+%B.3. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(wind+1st)	&8 &5.9 \\
+%B.4. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(wind) &7 &9.3\\
+%\hline
+%C. Dynamics && \\
+%C.1. ZIP[$\Lambda$(.)$\psi$(.)]Exponential[$r$(.)]$p$(1st) &5	&0 \\
+%C.2. ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&1.7 \\
+%C.3. ZIP[$\Lambda$(.)$\psi$(.)]Exponential+Immigration[$r$(.)$\iota$(.)]$p$(1st) &6	&2.0 \\
+%C.4. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st) &7	&2.5 \\
+%C.5. ZIP[$\Lambda$(.)$\psi$(.)]Gompertz-logistic[$r$(.)$K$(.)]$p$(1st)	&6&3.0 \\
+%C.6. ZIP[$\Lambda$(.)$\psi$(.)]Geometric-recruitment+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(1st) &7	&3.7 \\
+%C.7. ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(1st) &7	&4.2 \\
+%C.8. ZIP[$\Lambda$(.)$\psi$(.)]Ricker-logistic[$r$(.)$K$(.)]$p$(1st)	&7 &5.2 \\
+%C.9. ZIP[$\Lambda$(.)$\psi$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(1st) &6	&12.5 \\
+%\hline
+%\end{tabular}
+%\end{table}
 
 
 
@@ -1733,7 +1738,7 @@ C.9. ZIP[$\Lambda$(.)$\psi$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(1
 
 
 
-\newpage
+%\newpage
 
 
 %%% Figures
