@@ -1,95 +1,1497 @@
-% !TEX TS-program = pdflatex
-% !TEX encoding = UTF-8 Unicode
-
-% This is a simple template for a LaTeX document using the "article" class.
-% See "book", "report", "letter" for other types of document.
-
-\documentclass[12pt]{article} % use larger type; default would be 10pt
-
-\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
-
-%%% Examples of Article customizations
-% These packages are optional, depending whether you want the features they provide.
-% See the LaTeX Companion or other references for full information.
-
-%%% PAGE DIMENSIONS
-\usepackage{geometry} % to change the page dimensions
-\geometry{a4paper} % or letterpaper (US) or a5paper or....
-% \geometry{margin=2in} % for example, change the margins to 2 inches all round
-% \geometry{landscape} % set up the page for landscape
-%   read geometry.pdf for detailed page layout information
-
-\usepackage{graphicx} % support the \includegraphics command and options
-
-% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
-
-%%% PACKAGES
-\usepackage{booktabs} % for much better looking tables
-\usepackage{array} % for better arrays (eg matrices) in maths
-\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
-\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
-\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
-% These packages are all incorporated in the memoir class to one degree or another...
-
-%%% HEADERS & FOOTERS
-\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
-\pagestyle{fancy} % options: empty , plain , fancy
-\renewcommand{\headrulewidth}{0pt} % customise the layout...
-\lhead{}\chead{}\rhead{}
-\lfoot{}\cfoot{\thepage}\rfoot{}
-
-%%% SECTION TITLE APPEARANCE
-\usepackage{sectsty}
-\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
-% (This matches ConTeXt defaults)
-
-%%% ToC (table of contents) APPEARANCE
-\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
-\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
-\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
-\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+\documentclass[12pt]{article}
+\usepackage[a4paper,hmargin={2.4cm,2.4cm},vmargin={2.4cm,2.4cm}]{geometry}
+\usepackage[mathlines,displaymath]{lineno}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage[round,colon,authoryear]{natbib}
+\usepackage{color, soul}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage[pdftex,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,pdftex,pdfstartview=FitH,bookmarks=true]{hyperref}
+\usepackage{rotating}
 
 %%% END Article customizations
 
 %%% The "real" document content comes below...
 
-\title{Code Samples}
-%\author{The Author}
+\begin{document}
+\title{Appendix 1: Code Samples}
+\maketitle
 %\date{} % Activate to display a given date or no date (if empty),
          % otherwise the current date is printed 
-
-\begin{document}
-\maketitle
-
 \section{\texttt{unmarked} code}
 
-\subsection{Exponential model}
-\subsection{Ricker-logistic model}
-\subsection{Gompertz-logistic model}
-\subsection{Exponential plus immigration model}
-\subsection{Ricker-logistic plus immigration model}
-\subsection{Gompertz-logistic plus immigration model}
-\subsection{Autoregressive plus immigration model}
-\subsection{Zero-inflated Poisson initial abundance model}
+%\subsection{Exponential model}
+%\subsection{Ricker-logistic model}
+%\subsection{Gompertz-logistic model}
+%\subsection{Exponential plus immigration model}
+%\subsection{Ricker-logistic plus immigration model}
+%\subsection{Gompertz-logistic plus immigration model}
+%\subsection{Autoregressive plus immigration model}
+%\subsection{Zero-inflated Poisson initial abundance model}
 \subsection{Simulation study code}
+
+File sim\_exp.R:
+\begin{verbatim}
+# Simulate data under exponential growth model
+sim.exp <- function(lambda, r, p, nSites=100, nYears=45) {
+    y <- N <- matrix(NA, nSites, nYears)
+    N[,1] <- rpois(nSites, lambda)
+    for(t in 2:nYears) {
+        mu <- N[,t-1]*exp(r)
+        N[,t] <- rpois(nSites, mu)
+    }
+    y[] <- rbinom(nSites*nYears, N, p)
+    return(list(N=N, y=y, lambda=lambda, r=r, p=p,
+                seed=.Random.seed, seed.kind=RNGkind()))
+}
+\end{verbatim}
+
+File sim\_ricker.r:
+\begin{verbatim}
+# Simulate data under Ricker model
+sim.ricker <- function(lambda, r, K, p, nSites=100, nYears=45) {
+    y <- N <- matrix(NA, nSites, nYears)
+    N[,1] <- rpois(nSites, lambda)
+    for(t in 2:nYears) {
+        mu <- N[,t-1]*exp(r*(1-N[,t-1]/K))
+        N[,t] <- rpois(nSites, mu)
+    }
+    y[] <- rbinom(nSites*nYears, N, p)
+    return(list(N=N, y=y, lambda=lambda, r=r, p=p,
+                seed=.Random.seed, seed.kind=RNGkind()))
+}
+\end{verbatim}
+
+File sim\_ricki.r:
+\begin{verbatim}
+# Simulate data under Ricker + immigration model
+sim.ricki <- function(lambda, r, K, iota, p, nSites=100, nYears=45) {
+    y <- N <- matrix(NA, nSites, nYears)
+    N[,1] <- rpois(nSites, lambda)
+    for(t in 2:nYears) {
+        mu <- N[,t-1]*exp(r*(1-N[,t-1]/K)) + iota
+        N[,t] <- rpois(nSites, mu)
+    }
+    y[] <- rbinom(nSites*nYears, N, p)
+    return(list(N=N, y=y, lambda=lambda, r=r, K=K, iota=iota, p=p,
+                seed=.Random.seed, seed.kind=RNGkind()))
+}
+\end{verbatim}
+
+File ricker\_r0.1K5.r:
+\begin{verbatim}
+# Simulate data under Ricker model
+
+# TO MODIFY
+# (1) Change simulator... source(SOMETHING ELSE)
+# (2) Change stub
+# (3) Change simout
+# (4) Change simulation parameters
+# (5) Change pcountOpen arguments: "dynamics" and "K"
+# (6) Results
+
+ls()
+stub <- "ricker_r0.1K5"  # (2)
+setwd(paste('simulated', stub, sep='/'))
+source("../sim_ricker.r")  # (1)
+ls()
+
+library(unmarked)
+
+nsim <- 200
+simout.mle <- simout.cover <- matrix(NA, nsim, 4)  # (3)
+colnames(simout.mle) <- colnames(simout.cover) <- c("Lambda", "r", "K", "p") # (3)
+
+# Simulate
+set.seed(345489)
+lambda <- 10 # (4)
+r <- 0.1     # (4)
+K <- 5       # (4)
+p <- 0.25    # (4)
+for(i in 1:nsim) {
+    cat("\ndoing", i, "at", format(Sys.time()), "\n")
+    data.name <- paste("data_", stub, "_", i, sep="")
+    data.file <- paste("data/", data.name, ".gzip", sep="")
+    sim.i <- sim.ricker(lambda=lambda, r=r, K=K, p=p, nSites=100, nYears=40) # (1)
+    cat("   max(N)=", max(sim.i$N), "\n", sep="")
+    assign(data.name, sim.i)
+    save(list=data.name, file=data.file) # save simulated data
+    umf.i <- unmarkedFramePCO(y=sim.i$y, numPrimary=ncol(sim.i$y))
+    fm.i <- pcountOpen(~1, ~1, ~1, ~1, umf.i, K=200, dynamics="ricker",  # (5)
+                       starts=c(log(lambda), log(r), log(K), qlogis(p))) # (5)
+    model.name <- paste("fm_", stub, "_", i, sep="")
+    model.file <- paste("fm/", model.name, ".gzip", sep="")
+    assign(model.name, fm.i)
+    save(list=model.name, file=model.file) # save fitted models
+    mle.i <- coef(fm.i)
+    simout.mle[i,] <- c(exp(mle.i[1]), exp(mle.i[2]), exp(mle.i[3]), plogis(mle.i[4])) # (6)
+    cat("   mle=", round(simout.mle[i,], 4), "\n")
+    write.csv(simout.mle, paste(stub, "_mle.csv", sep=""),
+              row.names=FALSE)
+    CI.lam <- confint(fm.i, type="lambda") # (6)
+    CI.r <- confint(fm.i, type="gamma")    # (6)
+    CI.K <- confint(fm.i, type="omega")    # (6)
+    CI.p <- confint(fm.i, type="det")      # (6)
+    simout.cover[i,1] <- log(lambda) >= CI.lam[1] & log(lambda) <= CI.lam[2] # (6)
+    simout.cover[i,2] <- log(r) >= CI.r[1] & log(r) <= CI.r[2]               # (6)
+    simout.cover[i,3] <- log(K) >= CI.K[1] & log(K) <= CI.K[2]               # (6)
+    simout.cover[i,4] <- qlogis(p) >= CI.p[1] & qlogis(p) <= CI.p[2]         # (6)
+    write.csv(simout.cover, paste(stub, "_cover.csv", sep=""),
+              row.names=FALSE)
+    rm(list=c(data.name, model.name))
+}
+\end{verbatim}
+
+File ricki\_r0.05K10iota0.5.r:
+\begin{verbatim}
+# Simulate data under Ricker + immigration model
+
+# TO MODIFY
+# (1) Change simulator... source(SOMETHING ELSE)
+# (2) Change stub
+# (3) Change simout
+# (4) Change simulation parameters
+# (5) Change pcountOpen arguments: "dynamics" and "K"
+# (6) Results
+
+stub <- "ricki_r0.05K10iota0.5"  # (2)
+setwd(paste('simulated', stub, sep='/'))
+ls()
+source("../sim_ricki.r")  # (1)
+ls()
+
+library(unmarked)
+
+nsim <- 1000
+simout.mle <- simout.cover <- matrix(NA, nsim, 5)  # (3)
+colnames(simout.mle) <- colnames(simout.cover) <-
+    c("Lambda", "r", "K", "iota", "p") # (3)
+
+# Simulate
+set.seed(345489)
+lambda <- 10 # (4)
+r <- 0.05    # (4)
+K <- 10      # (4)
+iota <- 0.5  # (4)
+p <- 0.25    # (4)
+for(i in 1:nsim) {
+    cat("\ndoing", i, "at", format(Sys.time()), "\n")
+    data.name <- paste("data_", stub, "_", i, sep="")
+    data.file <- paste("data/", data.name, ".gzip", sep="")
+    # Create simulated data
+    sim.i <- sim.ricki(lambda=lambda, r=r, K=K, iota=iota, p=p, nSites=100, nYears=40) # (1)
+    cat("   max(N)=", max(sim.i$N), "\n", sep="")
+    assign(data.name, sim.i)
+    # Save simulated data
+    save(list=data.name, file=data.file)
+    # Run pcountOpen model 
+    umf.i <- unmarkedFramePCO(y=sim.i$y, numPrimary=ncol(sim.i$y))
+    fm.i <- pcountOpen(~1, ~1, ~1, ~1, umf.i, K=200, dynamics="ricker", # (5)
+      immigration=TRUE, starts=c(log(lambda), log(r), log(K), qlogis(p), log(iota))) # (5)
+    # Save fitted models
+    model.name <- paste("fm_", stub, "_", i, sep="")
+    model.file <- paste("fm/", model.name, ".gzip", sep="")
+    assign(model.name, fm.i)
+    save(list=model.name, file=model.file) 
+    # Save maximum likelihood estimates
+    mle.i <- coef(fm.i)
+    simout.mle[i,] <- c(exp(mle.i[1]), exp(mle.i[2]), exp(mle.i[3]), exp(mle.i[5]), plogis(mle.i[4])) # (6)
+    cat("   mle=", round(simout.mle[i,], 4), "\n")
+    write.csv(simout.mle, paste(stub, "_mle.csv", sep=""),
+              row.names=FALSE)
+    # Save coverage
+    CI.lam <- confint(fm.i, type="lambda") # (6)
+    CI.r <- confint(fm.i, type="gamma")    # (6)
+    CI.K <- confint(fm.i, type="omega")    # (6)
+    CI.p <- confint(fm.i, type="det")      # (6)
+    CI.iota <- confint(fm.i, type="iota")  # (6)
+    simout.cover[i,1] <- log(lambda) >= CI.lam[1] & log(lambda) <= CI.lam[2] # (6)
+    simout.cover[i,2] <- log(r) >= CI.r[1] & log(r) <= CI.r[2]               # (6)
+    simout.cover[i,3] <- log(K) >= CI.K[1] & log(K) <= CI.K[2]               # (6)
+    simout.cover[i,4] <- log(iota) >= CI.iota[1] & log(iota) <= CI.iota[2]   # (6)
+    simout.cover[i,5] <- qlogis(p) >= CI.p[1] & qlogis(p) <= CI.p[2]         # (6)
+    write.csv(simout.cover, paste(stub, "_cover.csv", sep=""),
+              row.names=FALSE)
+    # Clean up
+    rm(list=c(data.name, model.name))
+}
+\end{verbatim}
+
 \subsection{BBS analysis code}
+\begin{verbatim}
+library(unmarked)
+
+# Read in input files
+ydata <- as.matrix(read.csv('oven3a.csv', row.names=1))
+observers <- as.matrix(read.csv('observers.csv', row.names=1))
+first.run <- as.matrix(read.csv('first.run.csv', row.names=1))
+wind.factor <- as.matrix(read.csv('wind.factor.csv', row.names=1))
+# Fix formatting
+wind.factor[wind.factor==" 0"] <- "0"
+wind.factor[wind.factor==" 1"] <- "1"
+wind.factor[wind.factor==" 2"] <- "2"
+# Combine obsCovs together into list
+obs4 <- list(observers = observers, first.run = first.run, wind.factor = 
+  wind.factor)
+  
+# Basic settings and labels
+year1 <- 66
+aou <- 'oven'
+gam.model <- list(~1)[[1]] 
+om.model <- list(~1)[[1]] 
+lam.model <- list(~1)[[1]] 
+K <- 600
+iota.model <- list(~1) [[1]]
+
+# Input data for pcountOpen
+bird.frame <- unmarkedFramePCO(ydata, obsCovs=obs4, numPrimary=45)
+
+# Run mixture models for initial abundance  
+mods1 <- rep('', 3)
+outputs1 = list()
+for (i in 1:3) {
+  mixture <- c('P','NB','ZIP')[i]
+  dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[3]
+  p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[1]]
+  immigration <- FALSE
+  mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+    paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+    substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+    'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+    ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+    'K', sep='.')))), K, sep="")
+  mods1[i] <- mod.name
+  file.name <- paste(mod.name, 'gzip', sep='.')
+  print(file.name)
+  fm <- pcountOpen(data=bird.frame, mixture=mixture, gammaformula=gam.model, 
+    lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+    dynamics=dynamics, immigration=immigration, iotaformula=iota.model)
+  outputs1[[i]] <- fm
+  print(summary(fm))
+  save(fm, file=file.name)
+}
+names(outputs1) <- mods1
+
+AIC.table <- function(mods, sort=T) {
+  tab <- data.frame(model = names(mods), npar = NA, AIC = NA, delta = NA, 
+    weight = NA)
+  for (i in 1:length(mods)) {
+    tab$npar[i] <- length(coef(mods[[i]]))
+    tab$AIC[i] <- mods[[i]]@AIC
+  }
+  tab$delta <- tab$AIC - min(tab$AIC)
+  tab$weight <- exp(-tab$delta/2)/sum(exp(-tab$delta/2))
+  if (sort)
+    tab <- tab[order(tab$AIC), ]
+  return(tab)
+}
+
+# Compare these models
+mix.aic <- AIC.table(outputs1)
+mix.aic
+mix.num <- as.integer(rownames(mix.aic)[1])
+mix.num
+
+# Run models for detection probability  
+mods2 <- c(mods1[mix.num], rep('', 3))
+outputs2 <- list(outputs1[[mix.num]])
+for (i in 2:4) {
+  mixture <- c('P','NB','ZIP')[mix.num]
+  dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[3]
+  p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[i]]
+  immigration <- FALSE
+  mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+    paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+    substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+    'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+    ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+    'K', sep='.')))), K, sep="")
+  mods2[i] <- mod.name
+  file.name <- paste(mod.name, 'gzip', sep='.')
+  print(file.name)
+  fm <- pcountOpen(data=bird.frame, mixture=mixture, gammaformula=gam.model, 
+    lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+    dynamics=dynamics, immigration=immigration, iotaformula=iota.model)
+  outputs2[[i]] <- fm
+  print(summary(fm))
+  save(fm, file=file.name)
+}
+names(outputs2) <- mods2
+
+# Compare these models
+p.aic <- AIC.table(outputs2)
+p.aic
+p.num <- as.integer(rownames(p.aic)[1])
+p.num
+
+
+# Run models for population dynamics  
+mods3 <- c(mods2[p.num], rep('', 8))
+outputs3 <- list(outputs2[[p.num]])
+# Constant dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[1]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- FALSE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[2] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+fm <- pcountOpen(data=bird.frame, mixture=mixture, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  dynamics=dynamics, immigration=immigration, iotaformula=iota.model)
+outputs3[[2]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+# Autoregressive dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[2]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- FALSE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[3] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+fm <- pcountOpen(data=bird.frame, mixture=mixture, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  dynamics=dynamics, immigration=immigration, iotaformula=iota.model)
+outputs3[[3]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+# Ricker dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[4]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- FALSE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[4] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+# Ricker and Gompertz generally seem to fail with default starting values, 
+# so we set them
+starts <- coef(outputs2[[p.num]])
+starts <- c(starts[1], -2.35, starts[1]+0.3, starts[3:length(starts)])
+fm <- pcountOpen(data=bird.frame, mixture=mixture, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  dynamics=dynamics, immigration=immigration, iotaformula=iota.model, 
+  starts=starts)
+outputs3[[4]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+# Gompertz dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[5]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- FALSE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[5] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+# Ricker and Gompertz generally seem to fail with default starting values, so we set them
+starts <- coef(outputs2[[p.num]])
+starts <- c(starts[1], -2.35, starts[1]+0.3, starts[3:length(starts)])
+fm <- pcountOpen(data=bird.frame, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  mixture=mixture, dynamics=dynamics, immigration=immigration, 
+  iotaformula=iota.model, starts=starts)
+outputs3[[5]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+# Trend + immigration dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[3]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- TRUE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[6] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+fm <- pcountOpen(data=bird.frame, mixture=mixture, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  dynamics=dynamics, immigration=immigration, iotaformula=iota.model)
+outputs3[[6]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+# Autoregressive + immigration dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[2]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- TRUE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[7] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+fm <- pcountOpen(data=bird.frame, mixture=mixture, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  dynamics=dynamics, immigration=immigration, iotaformula=iota.model)
+outputs3[[7]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+# Ricker + immigration dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[4]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- TRUE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[8] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+# Ricker and Gompertz generally seem to fail with default starting values, 
+# so we set them
+starts <- coef(outputs2[[p.num]])
+starts <- c(starts[1], -2.35, starts[1]+0.3, starts[3:(length(starts)-1)], 
+  -1.5, starts[length(starts)])
+fm <- pcountOpen(data=bird.frame, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  mixture=mixture, dynamics=dynamics, immigration=immigration, 
+  iotaformula=iota.model, starts=starts)
+outputs3[[8]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+# Gompertz + immigration dynamics
+mixture <- c('P','NB','ZIP')[mix.num]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[5]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[p.num]]
+immigration <- TRUE
+mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "", 
+  paste(paste(aou, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'gam', substring(deparse(gam.model), 2), 
+  'om', substring(deparse(om.model), 2), 'p', substring(deparse(p.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'K', sep='.')))), K, sep="")
+mods3[9] <- mod.name
+file.name <- paste(mod.name, 'gzip', sep='.')
+print(file.name)
+# Ricker and Gompertz generally seem to fail with default starting values, 
+# so we set them
+starts <- coef(outputs2[[p.num]])
+starts <- c(starts[1], -2.35, starts[1]+0.3, starts[3:(length(starts)-1)], 
+  -1.5, starts[length(starts)])
+fm <- pcountOpen(data=bird.frame, gammaformula=gam.model, 
+  lambdaformula=lam.model, omegaformula=om.model, pformula=p.model, K=K, 
+  mixture=mixture, dynamics=dynamics, immigration=immigration, 
+  iotaformula=iota.model, starts=starts)
+outputs3[[9]] <- fm
+print(summary(fm))
+save(fm, file=file.name)
+
+names(outputs3) <- mods3
+
+# Compare these models
+dyn.aic <- AIC.table(outputs3)
+dyn.aic
+dyn.num <- as.integer(rownames(dyn.aic)[1])
+dyn.num
+\end{verbatim}
 
 
 
 \section{\textbf{JAGS} code}
 
-\subsection{Constant model}
+\subsection{Geometric-recruitment (autoregressive) model}
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 5)
+omega ~ dunif(0,1)
+gamma ~ dunif(0, 10)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    S[i,t-1] ~ dbin(omega, N[i,t-1])
+    G[i,t-1] ~ dpois(gamma * N[i,t-1])
+    N[i,t] <- S[i,t-1] + G[i,t-1]
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}
+\end{verbatim}
+
 \subsection{Exponential model}
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 5)
+r ~ dnorm(0,0.01)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    N[i,t] ~ dpois(exp(r) * N[i,t-1])
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}
+\end{verbatim}
+
 \subsection{Ricker-logistic model}
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 50)
+r ~ dunif(0,5)
+K ~ dunif(0, 50)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    muN[i,t-1] <- N[i,t-1] * exp(r * (1 - N[i,t-1] / K))
+    N[i,t] ~ dpois(muN[i,t-1])
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}
+\end{verbatim}
+
 \subsection{Gompertz-logistic model}
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 50)
+r ~ dunif(0,5)
+K ~ dunif(0, 50)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    muN[i,t-1] <- N[i,t-1] * exp(r * (1 - log(N[i,t-1] + 1) / log(K + 1)))
+    N[i,t] ~ dpois(muN[i,t-1])
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}
+\end{verbatim}
+
 \subsection{Exponential plus immigration model}
-\subsection{Ricker-logistic plus immigration model}
-\subsection{Gompertz-logistic plus immigration model}
-\subsection{Autoregressive plus immigration model}
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 5)
+r ~ dnorm(0,0.01)
+p ~ dunif(0,1)
+iota ~ dunif(0, 5)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    muN[i,t-1] <- N[i,t-1] * exp(r) + iota
+    N[i,t] ~ dpois(muN[i,t-1])
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}
+\end{verbatim}
+
 \subsection{Zero-inflated Poisson dynamics model}
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 200)
+psi ~ dunif(0, 1)
+# Trend + immigration
+r ~ dnorm(0, 0.01)
+iota ~ dunif(0, 20)
+p ~ dunif(0,1)
+
+for(i in 1:nSites) {
+  range[i] ~ dbern(1-psi)
+  N[i,1] ~ dpois(lambda*range[i])
+  for(t in 2:nYears) {
+      muN[i,t-1] <- (N[i,t-1]*exp(r)+iota)*range[i]
+      N[i,t] ~ dpois(muN[i,t-1])
+    }
+  for(t in 1:nYears) {
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}
+\end{verbatim}
+
 \subsection{Environmental stochasticity models}
+\begin{verbatim}
+model {
+# Explicitly modeling dynamic parameters as functions of environmental covariates
+# Negative binomial initial abundance, Gompertz-logistic dynamics
+lambda ~ dunif(0, 400)
+alpha ~ dunif(0, 400)
+P <- alpha/(alpha + lambda)
+K0 ~ dnorm(0, 0.01)
+Krain ~ dnorm(0, 0.01)
+r0 ~ dnorm(0, 0.01)
+rTemp ~ dnorm(0, 0.01)
+p ~ dunif(0,1)
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(P, alpha)
+  for(t in 2:nYears) {
+      K[i,t-1] <- exp(K0 + Krain*rain[i,t-1]) 
+      r[i,t-1] <- exp(r0 + rTemp*temp[i,t-1]) 
+      muN[i,t-1] <- N[i,t-1] * exp(r[i,t-1] * (1 - log(N[i,t-1] + 1) / log(K[i,t-1] + 1)))
+      N[i,t] ~ dpois(muN[i,t-1])
+  }
+  for(t in 1:nYears) {
+    y[i,t] ~ dbin(p, N[i,t])
+  }
+}
+}
+\end{verbatim}
+
+\begin{verbatim}
+model {
+# Independent environmental stochasticity between sites
+# Negative binomial initial abundance, Ricker-logistic dynamics + immigration
+lambda ~ dunif(0, 400)
+alpha ~ dunif(0, 400)
+P <- alpha/(alpha + lambda)
+K ~ dunif(0, 400)
+r ~ dunif(0, 5)
+iota ~ dunif(0, 10)
+sigma.nu ~ dunif(0, 2)
+tau.nu <- 1 / (sigma.nu * sigma.nu)
+p ~ dunif(0, 1)
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(P, alpha)
+  for(t in 2:nYears) {
+      nu[i,t-1] ~ dnorm(0, tau.nu) 
+      muN[i,t-1] <- N[i, t-1] * exp(nu[i, t-1] + r * (1 - log(N[i, t-1] + 1) / log(K + 1))) + iota
+      N[i,t] ~ dpois(muN[i, t-1])
+  }
+  for(t in 1:nYears) {
+    y[i,t] ~ dbin(p, N[i,t])
+  }
+}
+}
+\end{verbatim}
+
+\begin{verbatim}
+model {
+# Regional stochasticity 
+# Negative binomial initial abundance, Ricker-logistic dynamics + immigration
+lambda ~ dunif(0, 400)
+alpha ~ dunif(0, 400)
+P <- alpha/(alpha + lambda)
+K ~ dunif(0, 400)
+r ~ dunif(0, 5)
+iota ~ dunif(0, 10)
+sigma.nu ~ dunif(0, 2)
+tau.nu <- 1 / (sigma.nu * sigma.nu)
+p ~ dunif(0, 1)
+
+for(t in 2:nYears) {
+  nu[t-1] ~ dnorm(0, tau.nu)
+}
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(P, alpha)
+  for(t in 2:nYears) {
+      muN[i,t-1] <- N[i, t-1] * exp(nu[t-1] + r * (1 - log(N[i, t-1] + 1) / log(K + 1))) + iota
+      N[i,t] ~ dpois(muN[i, t-1])
+  }
+  for(t in 1:nYears) {
+    y[i,t] ~ dbin(p, N[i,t])
+  }
+}
+}
+\end{verbatim}
+
+% Don't have this working yet!  Should we leave it out or try to get it working?
+%\begin{verbatim}
+%model {
+%# Correlated environmental stochasticity between sites (exponential decay with distance)
+%# Poisson initial abundance, exponential dynamics 
+%lambda ~ dunif(0, 100)
+%#alpha ~ dunif(0, 100)
+%#P <- alpha/(alpha + lambda)
+%#K ~ dunif(0, 400)
+%r ~ dnorm(0, 0.01)
+%#iota ~ dunif(0, 10)
+%sigma.nu ~ dunif(0, 2)
+%l.nu ~ dunif(0, 1000)
+%for(i in 1:nSites) {
+%  cor.mat[i,i] <- 1
+%#  cov.mat[i,i] <- sigma.nu * sigma.nu
+%  for(j in 1:(i-1)) {
+%    cor.mat[i,j] <- exp(-((dist.mat[i,j]/(2*l.nu))^2))
+%    cor.mat[j,i] <- cor.mat[i,j]
+%  }
+%}
+%cov.mat[1:nSites,1:nSites] <- sigma.nu * cor.mat[1:nSites,1:nSites] * sigma.nu
+%tau.nu <- inverse(cov.mat)
+%p ~ dunif(0, 1)
+%
+%
+%for(t in 2:nYears) {
+%  nu[1:nSites,t-1] ~ dmnorm(mu.nu, tau.nu)
+%}
+%
+%for(i in 1:nSites) {
+%  N[i,1] ~ dpois(lambda)
+%  for(t in 2:nYears) {
+%      muN[i,t-1] <- N[i, t-1] * exp(nu[i, t-1] + r) #+ iota
+%      N[i,t] ~ dpois(muN[i, t-1])
+%  }
+%  for(t in 1:nYears) {
+%    y[i,t] ~ dbin(p, N[i,t])
+%  }
+%}
+%}
+%
+%\end{verbatim}
+
+\subsection{Random effects of observers}
+\begin{verbatim}
+model {
+lambda ~ dunif(0, 50)
+r ~ dunif(0,5)
+K ~ dunif(0, 50)
+p0 ~ dnorm(0, 0.01)
+sigma.p ~ dunif(0,10)
+tau.p <- 1 / (sigma.p * sigma.p)
+p1st ~ dnorm(0, 0.01)
+
+for (o in 1:nObs) {
+  logitpObs[o] ~ dnorm(p0,tau.p)
+}
+
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  logit(p[i,1]) <- logitpObs[obsMat[i,1]] 
+  y[i,1] ~ dbin(p[i,1], N[i,1])
+  for(t in 2:nYears) {
+    muN[i,t-1] <- N[i,t-1] * exp(r * (1 - log(N[i,t-1] + 1) / log(K + 1)))
+    N[i,t] ~ dpois(muN[i,t-1])
+    logit(p[i,t]) <- logitpObs[obsMat[i,t]] 
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+    }
+  }
+}
+\end{verbatim}
+
+
 \subsection{Forecast model}
-\subsection{Simulation study code}
+Since the forecast model can be implemented identically to a purely retrospective model
+as far as JAGS code goes, we are including R code as well to show the differences in implementation.
+\begin{verbatim}
+library(rjags)
+
+# Settings
+nRun <- 100000 # Number of times to run the MCMC, after burnin
+nThin <- 25 # Thinning rate (only store 1 iteration out of every nThin)
+nChain <- 3 # Number of separate chains to run MCMC (for testing convergence)
+nBurn <- 10000 # Number of times to run the MCMC before getting output
+nAdapt <- 1000 # Number of times to run the MCMC for adaptation at beginning
+year1 <- 1966 # First year of estimation data
+year2 <- 2010 # Last year of estimation data/first year of projection
+year3 <- 2100 # Last year of projection
+thresholds <- c(1,10,50) # Quasi-extirpation levels to monitor
+
+# Read in input files
+ydata <- as.matrix(read.csv('oven3a.csv', row.names=1))
+observers <- as.matrix(read.csv('observers.csv', row.names=1))
+wind.factor <- as.matrix(read.csv('wind.factor.csv', row.names=1))
+# Fix formatting
+wind.factor[wind.factor==" 0"] <- "0"
+wind.factor[wind.factor==" 1"] <- "1"
+wind.factor[wind.factor==" 2"] <- "2"
+
+# More settings
+species = 'oven'
+aou <- 6740
+nSites <- nrow(ydata)
+nYears <- year3 - year1 + 1
+nPast <- year2 - year1 + 1
+nFuture <- year3 - year2
+
+# File names to save
+mod.name <- paste(species, 'sample.proj.JAGS', sep='.')
+file.name <- paste(mod.name, 'RData', sep='.')
+file.name2 <- paste(mod.name, 'gzip', sep='.')
+file.name2
+
+# For projection, fill in the future counts with all NA
+ydata <- cbind(ydata, matrix(NA, nrow=nSites, ncol=nFuture))
+
+fakeN <- ydata + 10 # Try to set up plausible initial values for N
+fillNAs <- function(N, default) { # Need to replace NAs in initial N with values
+  tMax <- ncol(N)
+  defaults <- which(is.na(N[,1]) & is.na(N[,2]))
+  N[defaults,1] <- default # Assign missing values from the 1st year which also have missing values for the 2nd year with default supplied
+  subsequent <- which(is.na(N[,1]))
+  N[subsequent,1] <- N[subsequent,2] # Assign missing values from the 1st year which don't have missing values for the 2nd year with the 2nd year's value
+  for (t in 2:(tMax-1)) {
+    # Assign missing values from this year which also have missing values for the next year with the values from the previous year
+    previous <- which(is.na(N[,t]) & is.na(N[,t+1]))
+    N[previous,t] <- N[previous,t-1] 
+    # Assign missing values from this year which don't have missing values for the next year with the mean of the previous and next year
+    means <- which(is.na(N[,t]))
+    N[means,t] <- ceiling((N[means, t-1] + N[means, t+1])/2)
+  }
+  # Assign missing values from the last year with the values from the previous year
+  previous <- which(is.na(N[,tMax]))
+  N[previous, tMax] <- N[previous, tMax - 1]
+  return(N)
+}
+fakeN <- fillNAs(fakeN, 24)
+head(fakeN)
+
+# Replace missing observer numbers with a new value, calculate number of observers
+obs.nr5 <- cbind(observers, matrix(NA, nrow=nSites, ncol=nFuture))
+nObs <- max(as.vector(obs.nr5), na.rm=T) + 1
+obs.nr5[is.na(obs.nr5)] = nObs
+# Set wind speed category values, counting routes not run as wind speed 0 
+wind1 <- cbind(matrix(as.integer(!is.na(wind.factor) & wind.factor=="1"), nSites, nPast),
+  matrix(0, nSites, nFuture))
+wind2 <- cbind(matrix(as.integer(!is.na(wind.factor) & wind.factor=="2"), nSites, nPast),
+  matrix(0, nSites, nFuture))
+wind3 <- cbind(matrix(as.integer(!is.na(wind.factor) & wind.factor=="3+"), nSites, nPast),
+  matrix(0, nSites, nFuture))
+
+# Ricker + immigration model, NB initial abundance
+# Logit-normal random observer effect
+# Wind (factor) effects on p
+# Projection model included
+sink(file="dm.proj.oven1.txt")
+cat("model {
+lambda ~ dunif(0, 200) # Average initial abundance
+alpha ~ dunif(0, 200) # Initial abundance overdispersion
+# JAGS doesn't allow lambda based parameterization of NB, so reparameterize
+P <- alpha/(alpha + lambda)
+# Carrying capacity (K) 
+K ~ dunif(0, 200)
+r ~ dunif(0, 2) # Instantaneous growth rate (return to equil. abundance)
+iota ~ dunif(0, 10) # Immigration rate
+# Detection probability parameters
+p0 ~ dnorm(0, 0.01) # Intercept
+sigma.p ~ dunif(0,10) # SD due to random observer effects
+tau.p <- 1 / (sigma.p * sigma.p) # Convert SD to precision
+p1 ~ dnorm(0, 0.01) # Effect of wind speed 1 on detection probability
+p2 ~ dnorm(0, 0.01) # Effect of wind speed 2 on detection probability
+p3 ~ dnorm(0, 0.01) # Effect of wind speed 3 or higher on detection probability
+
+# Random observer effects, by observer
+for (o in 1:nObs) {
+  logitpObs[o] ~ dnorm(p0,tau.p)
+}
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(P, alpha) #Initial abundance
+  # Detection probability 
+  logit(p[i,1]) <- logitpObs[obsMat[i,1]] + p1 * wind1[i,1] + p2 * wind2[i,1] + 
+    p3 * wind3[i,1] 
+  # Observed counts, based on true abundance and detection probabilities
+  y[i,1] ~ dbin(p[i,1], N[i,1])
+  for(t in 2:nYears) {
+    # Expected abundance this time step (Ricker + immigration model)
+    muN[i,t-1] <- N[i,t-1] * exp(r * (1 - N[i,t - 1] / K)) + iota
+    # Due to demographic stochasticity, actual abundance differs from expected
+    N[i,t] ~ dpois(muN[i,t-1])
+    # Detection probability 
+    logit(p[i,t]) <- logitpObs[obsMat[i,t]] + p1 * wind1[i,t] + 
+      p2 * wind2[i,t] + p3 * wind3[i,t]
+    # Observed counts, based on true abundance and detection probabilities 
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+  }
+}
+
+# If don't have enough memory to just trace N, instead trace derived variables 
+# of interest
+for(t in 1:nYears) { 
+  meanN[t] <- mean(N[,t]) # Average by year
+  for(j in 1:nThresholds) { 
+  # Proportion of sites (quasi-)extirpated by year (not cumulative over time)
+    PQE[j,t] <- sum(N[,t]<thresholds[j])/nSites 
+  } 
+}  
+
+# If you're also interested in spatial patterns, 
+# snapshots for three years, but all sites
+N1 <- N[,1] 
+N2 <- N[,nPast] 
+N3 <- N[,nYears] 
+  
+}", fill=TRUE)
+sink()
+
+# Data to feed into JAGS
+dat.proj.oven1 <- list(nSites=nSites, nYears=nYears, nPast=nPast, 
+  nObs=nObs, y=ydata, thresholds=thresholds, nThresholds=length(thresholds),
+  obsMat = obs.nr5, wind1=wind1, wind2=wind2, wind3=wind3)
+# Initial values for parameters
+init.proj.oven1 <- function(chain) list(lambda=runif(1, 20, 75), alpha=runif(1, 0, 20), 
+  K=runif(1, 10, 50), iota=runif(1), r=runif(1, 0, 0.1), 
+  p0=rnorm(1), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), sigma.p=runif(1),
+  N=fakeN, .RNG.name="base::Wichmann-Hill", .RNG.seed=year1 + aou + chain)
+# Three options on what parameters to trace
+pars.proj.oven1 <- c("lambda", "alpha", "K", "r", "iota", "p0", "p1", "p2", 
+  "p3", "sigma.p")
+pars.proj.oven1.1 <- c("lambda", "alpha", "K", "r", "iota", "p0", "p1", "p2", 
+  "p3", "sigma.p", "meanN", "PQE", "N1", "N2", "N3")
+pars.proj.oven1.2 <- c("lambda", "alpha", "K", "r", "iota", "p0", "p1", "p2", 
+  "p3", "sigma.p", "N")
+
+set.seed(year1 + aou)
+jm.proj.oven1 <- jags.model("dm.proj.oven1.txt", dat.proj.oven1, 
+  init.proj.oven1, n.chains=nChain, n.adapt=nAdapt)
+update(jm.proj.oven1, n.iter=nBurn)
+jc.proj.oven1 <- coda.samples(jm.proj.oven1, pars.proj.oven1.1, n.iter=nRun,
+  thin=nThin)
+summary(jc.proj.oven1)
+save.image(file.name)
+png(paste(mod.name, 'converge.\%i.png', sep='.'))
+plot(jc.proj.oven1)
+dev.off()
+gelman.diag(jc.proj.oven1)
+save(jc.proj.oven1, file=file.name2)
+\end{verbatim}
+
+
+
 \subsection{BBS analysis code}
+\begin{verbatim}
+# Read in input files
+ydata <- as.matrix(read.csv('oven3a.csv', row.names=1))
+obs5 <- as.matrix(read.csv('observers.csv', row.names=1))
+first <- as.matrix(read.csv('first.run.csv', row.names=1))
+wind.factor <- as.matrix(read.csv('wind.factor.csv', row.names=1))
+# Fix formatting
+wind.factor[wind.factor==" 0"] <- "0"
+wind.factor[wind.factor==" 1"] <- "1"
+wind.factor[wind.factor==" 2"] <- "2"
+
+library(rjags)
+
+# Settings
+year1 <- 66
+species <- 'oven'
+nSites <- nrow(ydata)
+nYears <- ncol(ydata)
+
+
+fillN3 <- function(N, p, lambda, alpha) { # Need to replace NAs in initial N with values, adjust others by detection probability
+  for (i in 1:nrow(N)) {
+    notNA <- which(!is.na(N[i, ]))
+    size <- N[i, notNA] 
+    size[size==0] <- 0.5
+    addTo <- rnbinom(length(notNA), size=size, prob=p)
+    N[i, notNA] <- N[i, notNA] + addTo
+    for (t in 1:ncol(N))
+      if (is.na(N[i,t])) {
+        if (t == ncol(N) || is.na(N[i, t+1])) {
+          if (t==1) {
+            N[i, t] <- rnbinom(1, size=alpha, mu=lambda) #If no previous or subsequent value, use supplied default
+          }
+          else {
+            N[i, t] <- N[i, t-1] #If no subsequent value, use previous
+          }
+        }
+        else if (t==1)
+          N[i, t] <- N[i, t+1] #If no previous value, use subsequent
+        else
+          N[i, t] <- ceiling((N[i, t-1] + N[i, t+1])/2) #Otherwise, use mean
+      }
+  }
+  return(N)
+}
+
+N <- fillN3(ydata, 0.18, 33.4, 0.65)
+head(N)
+summary(N)
+
+# Other input variables
+nObs <- max(as.vector(obs5), na.rm=T) + 1
+obs5[is.na(obs5)] <- nObs
+wind1 <- matrix(as.integer(!is.na(wind.factor) & wind.factor=="1"), nSites, nYears)
+summary(wind1)
+wind2 <- matrix(as.integer(!is.na(wind.factor) & wind.factor=="2"), nSites, nYears)
+wind3 <- matrix(as.integer(!is.na(wind.factor) & wind.factor=="3+"), nSites, nYears)
+first[is.na(first)] <- 1
+
+# Repeat top model from frequentist analysis
+# Pick filename based on model
+mixture <- c('P','NB','ZIP')[2]
+dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[4]
+p.model <- list(~1, ~first.run, ~wind.factor, ~wind.factor + first.run)[[4]] 
+r.model <- list(~1)[[1]] 
+K.model <- list(~1)[[1]] 
+lam.model <- list(~1)[[1]] 
+immigration <- TRUE
+iota.model <- list(~1) [[1]]
+p.rand <- c("None","Normal","Beta")[1]
+mod.name <- paste(paste(species, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'r', substring(deparse(r.model), 2), 
+  'K', substring(deparse(K.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'p', substring(deparse(p.model), 2), 'rand', p.rand, 'JAGS', sep='.') 
+file.name <- paste(mod.name, 'RData', sep='.')
+file.name
+
+sink(file="dm.ricki1.txt")
+cat("
+model {
+lambda ~ dunif(0, 200)
+alpha ~ dunif(0, 200)
+p.nb <- alpha/(alpha + lambda)
+r ~ dunif(0, 5)
+K ~ dunif(0, 200)
+p0 ~ dnorm(0, 0.01)
+p1 ~ dnorm(0, 0.01)
+p2 ~ dnorm(0, 0.01)
+p3 ~ dnorm(0, 0.01)
+p1st ~ dnorm(0, 0.01)
+iota ~ dunif(0, 15)
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(p.nb, alpha)
+  for(t in 2:nYears) {
+      muN[i,t-1] <- N[i,t-1]*exp(r*(1-N[i,t-1]/K))+iota
+      N[i,t] ~ dpois(muN[i,t-1])
+    }
+  for(t in 1:nYears) {
+    logit(p[i,t]) <- p0 + p1*wind1[i,t] + p2*wind2[i,t] + p3*wind3[i,t] + p1st*first[i,t]
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+    }
+  }
+}
+", fill=TRUE)
+sink()
+
+dat.ricki1 <- list(nSites=nSites, nYears=nYears, y=ydata, wind1=wind1, 
+  wind2=wind2, wind3=wind3, first=first)
+init.ricki1 <- function() list(lambda=runif(1, 10, 60), alpha=runif(1, 0, 60), 
+  r=runif(1), K=runif(1, 30, 120), iota=runif(1),
+  p0=rnorm(1, -1.5), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), p1st=rnorm(1), N=N)
+pars.ricki1 <- c("lambda", "alpha", "r", "K", "p0", "p1", "p2", "p3", "p1st", "iota")
+
+jm.ricki1 <- jags.model("dm.ricki1.txt", dat.ricki1, init.ricki1, n.chains=5, n.adapt=5000)
+jc.ricki1 <- coda.samples(jm.ricki1, pars.ricki1, n.iter=100000)
+
+summary(jc.ricki1)
+windows(record=T)
+plot(jc.ricki1)
+warnings()
+gelman.diag(jc.ricki1)
+
+jc.ricki1a <- window(jc.ricki1, 51001)
+summary(jc.ricki1a)
+gelman.diag(jc.ricki1a)
+
+save.image(file.name)
+
+# Add random observer effects
+rm(jc.ricki1)
+rm(jc.ricki1a)
+p.rand <- c("None","Normal","Beta")[2]
+mod.name <- paste(paste(species, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'r', substring(deparse(r.model), 2), 
+  'K', substring(deparse(K.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'p', substring(deparse(p.model), 2), 'rand', p.rand, 'JAGS', sep='.') 
+file.name = paste(mod.name, 'RData', sep='.')
+file.name
+
+sink(file="dm.ricki2.txt")
+cat("
+model {
+lambda ~ dunif(0, 200)
+alpha ~ dunif(0, 200)
+p.nb <- alpha/(alpha + lambda)
+r ~ dunif(0, 5)
+K ~ dunif(0, 200)
+p0 ~ dnorm(0, 0.01)
+p1 ~ dnorm(0, 0.01)
+p2 ~ dnorm(0, 0.01)
+p3 ~ dnorm(0, 0.01)
+p1st ~ dnorm(0, 0.01)
+iota ~ dunif(0, 15)
+sigma.p ~ dunif(0,15)
+tau.p <- 1 / (sigma.p * sigma.p)
+
+for (o in 1:nObs) {
+  eta[o] ~ dnorm(0,tau.p)
+}
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(p.nb, alpha)
+  for(t in 2:nYears) {
+      muN[i,t-1] <- N[i,t-1]*exp(r*(1-N[i,t-1]/K))+iota
+      N[i,t] ~ dpois(muN[i,t-1])
+    }
+  for(t in 1:nYears) {
+    logit(p[i,t]) <- p0 + p1*wind1[i,t] + p2*wind2[i,t] + p3*wind3[i,t] + p1st*first[i,t] + eta[obsID[i,t]]
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+    }
+  }
+}
+", fill=TRUE)
+sink()
+
+dat.ricki2 <- list(nSites=nSites, nYears=nYears, y=ydata, wind1=wind1, 
+  wind2=wind2, wind3=wind3, first=first, nObs=nObs, obsID=obs5)
+init.ricki2 <- function() list(lambda=runif(1, 10, 60), alpha=runif(1, 0, 60), 
+  r=runif(1, 0, 0.1), K=runif(1, 40, 70),
+  p0=rnorm(1, -1.5), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), p1st=rnorm(1), 
+  iota=runif(1), sigma.p=runif(1, 0, 2), N=N)
+pars.ricki2 <- c("lambda", "alpha", "r", "K", "iota", "p0", "p1", "p2", "p3", 
+  "p1st", "sigma.p")
+
+jm.ricki2 <- jags.model("dm.ricki2.txt", dat.ricki2, init.ricki2, n.chains=5, n.adapt=3000)
+jc.ricki2 <- coda.samples(jm.ricki2, pars.ricki2, n.iter=40000)
+
+summary(jc.ricki2)
+windows(record=T)
+plot(jc.ricki2)
+warnings()
+
+save.image(file.name)
+
+# Regional environmental stochasticity
+rm(jc.ricki2)
+p.rand <- c("None","Normal","Beta")[1]
+mod.name <- paste(paste(species, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'r', substring(deparse(r.model), 2), 
+  'K', substring(deparse(K.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'p', substring(deparse(p.model), 2), 'rand', p.rand, 'JAGS.ES', sep='.') 
+file.name = paste(mod.name, 'RData', sep='.')
+file.name
+
+sink(file="dm.ricki3.txt")
+cat("
+model {
+lambda ~ dunif(0, 400)
+alpha ~ dunif(0, 200)
+p.nb <- alpha/(alpha + lambda)
+r ~ dunif(0, 3)
+sigma.nu ~ dunif(0, 10)
+tau.nu <- 1 / (sigma.nu * sigma.nu)
+K ~ dunif(0, 400)
+p0 ~ dnorm(0, 0.01)
+p1 ~ dnorm(0, 0.01)
+p2 ~ dnorm(0, 0.01)
+p3 ~ dnorm(0, 0.01)
+p1st ~ dnorm(0, 0.01)
+iota ~ dunif(0, 15)
+
+for(t in 2:nYears) {
+  nu[t-1] ~ dnorm(0, tau.nu)
+}
+
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(p.nb, alpha)
+  for(t in 2:nYears) {
+      muN[i,t-1] <- N[i,t-1]*exp(nu[t-1]+r*(1-N[i,t-1]/K))+iota
+      N[i,t] ~ dpois(muN[i,t-1])
+    }
+  for(t in 1:nYears) {
+    logit(p[i,t]) <- p0 + p1*wind1[i,t] + p2*wind2[i,t] + p3*wind3[i,t] + p1st*first[i,t]
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+    }
+  }
+}
+", fill=TRUE)
+sink()
+
+dat.ricki3 <- list(nSites=nSites, nYears=nYears, y=ydata, wind1=wind1, 
+  wind2=wind2, wind3=wind3, first=first) 
+init.ricki3 <- function() list(lambda=runif(1, 10, 60), alpha=runif(1, 0, 60), 
+  r=runif(1, 0, 0.2), sigma.nu=runif(1), K=runif(1, 30, 120), iota=runif(1),
+  p0=rnorm(1, -1.5), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), p1st=rnorm(1), N=N)
+pars.ricki3 <- c("lambda", "alpha", "r", "sigma.nu", "K", "iota", 
+  "p0", "p1", "p2", "p3", "p1st")
+
+jm.ricki3 <- jags.model("dm.ricki3.txt", dat.ricki3, init.ricki3, n.chains=5, n.adapt=1000)
+update(jm.ricki3, 50000)
+jc.ricki3 <- coda.samples(jm.ricki3, pars.ricki3, n.iter=130000)
+
+summary(jc.ricki3)
+save.image(file.name)
+HPDinterval(jc.ricki3)
+gelman.diag(jc.ricki3)
+png(paste(mod.name, '%i.png', sep='.'))
+plot(jc.ricki3)
+dev.off()
+
+# Regional environmental stochasticity AND random observer effects
+summary(jc.ricki3)
+p.rand <- c("None","Normal","Beta")[2]
+mod.name <- paste(paste(species, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'r', substring(deparse(r.model), 2), 
+  'K', substring(deparse(K.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'p', substring(deparse(p.model), 2), 'rand', p.rand, 'JAGS.ES', sep='.') 
+file.name <- paste(mod.name, 'RData', sep='.')
+file.name
+
+sink(file="dm.ricki4.txt")
+cat("
+model {
+lambda ~ dunif(0, 400)
+alpha ~ dunif(0, 200)
+p.nb <- alpha/(alpha + lambda)
+r ~ dunif(0, 3)
+sigma.nu ~ dunif(0, 10)
+tau.nu <- 1 / (sigma.nu * sigma.nu)
+K ~ dunif(0, 1000)
+p0 ~ dnorm(0, 0.01)
+p1 ~ dnorm(0, 0.01)
+p2 ~ dnorm(0, 0.01)
+p3 ~ dnorm(0, 0.01)
+p1st ~ dnorm(0, 0.01)
+iota ~ dunif(0, 15)
+sigma.p ~ dunif(0,15)
+tau.p <- 1 / (sigma.p * sigma.p)
+
+for (o in 1:nObs) {
+  eta[o] ~ dnorm(0,tau.p)
+}
+
+for(t in 2:nYears) {
+  nu[t-1] ~ dnorm(0, tau.nu)
+}
+
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(p.nb, alpha)
+  for(t in 2:nYears) {
+      muN[i,t-1] <- N[i,t-1]*exp(nu[t-1]+r*(1-N[i,t-1]/K))+iota
+      N[i,t] ~ dpois(muN[i,t-1])
+    }
+  for(t in 1:nYears) {
+    logit(p[i,t]) <- p0 + p1*wind1[i,t] + p2*wind2[i,t] + p3*wind3[i,t] + p1st*first[i,t] + eta[obsID[i,t]]
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+    }
+  }
+}
+", fill=TRUE)
+sink()
+
+dat.ricki4 <- list(nSites=nSites, nYears=nYears, y=ydata, wind1=wind1, 
+  wind2=wind2, wind3=wind3, nObs=nObs, obsID=obs5, first=first)
+init.ricki4 <- function() list(lambda=runif(1, 10, 60), alpha=runif(1, 0, 60), 
+  r=runif(1, 0, 0.2), sigma.nu=runif(1), K=runif(1, 30, 120), iota=runif(1),
+  p0=rnorm(1, -1.5), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), p1st=rnorm(1), sigma.p=runif(1), N=N)
+pars.ricki4 <- c("lambda", "alpha", "r", "sigma.nu", "K", "iota", 
+  "p0", "p1", "p2", "p3", "p1st", "sigma.p")
+
+jm.ricki4 <- jags.model("dm.ricki4.txt", dat.ricki4, init.ricki4, n.chains=5, n.adapt=1000)
+update(jm.ricki4, 50000)
+jc.ricki4 <- coda.samples(jm.ricki4, pars.ricki4, n.iter=130000)
+
+summary(jc.ricki4)
+save.image(file.name)
+HPDinterval(jc.ricki4)
+gelman.diag(jc.ricki4)
+
+jpeg(paste(mod.name, '%i.jpg', sep='.'))
+plot(jc.ricki4)
+dev.off()
+
+# Track population sizes (includes random observer effects but not environmental stochasticity)
+rm(jc.ricki4)
+p.rand <- c("None","Normal","Beta")[2]
+mod.name <- paste(paste(species, year1, sep=''), mixture, dynamics, 'lam', 
+  substring(deparse(lam.model), 2), 'r', substring(deparse(r.model), 2), 
+  'K', substring(deparse(K.model), 2), 
+  ifelse(immigration, "iotaT", "iotaF"), substring(deparse(iota.model), 2),
+  'p', substring(deparse(p.model), 2), 'rand', p.rand, 'JAGS.N', sep='.') 
+file.name <- paste(mod.name, 'RData', sep='.')
+file.name
+
+sink(file="dm.ricki5.txt")
+cat("
+var Ndecade[nSites,5]
+model {
+lambda ~ dunif(0, 200)
+alpha ~ dunif(0, 200)
+p.nb <- alpha/(alpha + lambda)
+r ~ dunif(0, 5)
+K ~ dunif(0, 200)
+p0 ~ dnorm(0, 0.01)
+p1 ~ dnorm(0, 0.01)
+p2 ~ dnorm(0, 0.01)
+p3 ~ dnorm(0, 0.01)
+p1st ~ dnorm(0, 0.01)
+iota ~ dunif(0, 15)
+sigma.p ~ dunif(0,15)
+tau.p <- 1 / (sigma.p * sigma.p)
+
+for (o in 1:nObs) {
+  eta[o] ~ dnorm(0,tau.p)
+}
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(p.nb, alpha)
+  for(t in 2:nYears) {
+      muN[i,t-1] <- N[i,t-1]*exp(r*(1-N[i,t-1]/K))+iota
+      N[i,t] ~ dpois(muN[i,t-1])
+    }
+  for(t in 1:nYears) {
+    logit(p[i,t]) <- p0 + p1*wind1[i,t] + p2*wind2[i,t] + p3*wind3[i,t] + p1st*first[i,t] + eta[obsID[i,t]]
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+    }
+  }
+
+for(t in 1:nYears) {
+  Nmean[t] <- mean(N[,t])
+}
+
+for (t2 in 1:length(decades)) {
+  for(i in 1:nSites) {
+    Ndecade[i,t2] <- N[i,decades[t2]]
+  }
+}
+}
+", fill=TRUE)
+sink()
+
+dat.ricki5 <- list(nSites=nSites, nYears=nYears, y=ydata, wind1=wind1, 
+  wind2=wind2, wind3=wind3, nObs=nObs, obsID=obs5, first=first,
+  decades=as.integer(seq(5, 45, 10)))
+init.ricki5 <- function() list(lambda=runif(1, 10, 60), alpha=runif(1, 0, 60), 
+  r=runif(1), K=runif(1, 30, 120), iota=runif(1),
+  p0=rnorm(1, -1.5), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), p1st=rnorm(1), sigma.p=runif(1), N=N)
+pars.ricki5 <- c("lambda", "alpha", "r", "K", "p0", "p1", "p2", "p3", "p1st", 
+  "sigma.p", "iota", "Nmean", "Ndecade")
+
+jm.ricki5 <- jags.model("dm.ricki5.txt", dat.ricki5, init.ricki5, n.chains=1, n.adapt=1000)
+update(jm.ricki5, n.iter=100000)
+jc.ricki5 <- coda.samples(jm.ricki5, pars.ricki5, n.iter=40000)
+
+# Summarize results
+mat.ricki5 <- as.matrix(jc.ricki5)
+NmeanCols<- which(colnames(mat.ricki5)=="Nmean[1]") + 1:nYears - 1
+Nmean.frame<-data.frame(year=1966:2010, Mean=colMeans(mat.ricki5[,NmeanCols]), HPDinterval(jc.ricki5[,NmeanCols]))
+Nmean.frame
+mean.N1 <- colMeans(mat.ricki5[,2:(122*5+1)])
+mean.N1
+mean.N2 <- matrix(mean.N1, nrow=122, ncol=5)
+mean.N2
+colnames(mean.N2) <- paste("N", seq(1970,2010,10), sep="")
+max(mean.N2)
+max.plot <- round(max(mean.N2)/5, -1)*5
+mean.N2 <- with(rt2a, data.frame(statenum, Route, Lati, Longi, mean.N2))
+head(mean.N2)
+
+
+# Measures of variability
+sd.N1 <- apply(mat.ricki5[,2:(122*45+1)], 2, sd)
+sd.N1
+mean(sd.N1)
+mean(mean.N1)
+mean(mat.ricki5[,"lambda"])
+sd(mat.ricki5[,"lambda"])
+sd(mat.ricki5[,"lambda"])/mean(mat.ricki5[,"lambda"])
+sd(mat.ricki5[,"alpha"])/mean(mat.ricki5[,"alpha"])
+sd(mat.ricki5[,"iota"])/mean(mat.ricki5[,"iota"])
+sd(mat.ricki5[,"r"])/mean(mat.ricki5[,"r"])
+summary(sd.N1/mean.N1)
+sd.N2 <- apply(mean.N2, 2, sd) #Variation between sites in a year
+sd.N2
+
+# Make plot
+library(ggplot2)
+library(gridExtra)
+library(maps)
+
+all.states <- map_data("state")
+states <- subset(all.states, region %in% c('maryland', 'virginia')) 
+
+max.radius <- 4
+leg.sizes <- c(1, 10, 100, 250)
+gN.sp <- list()
+gN.sp[[1]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+  geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
+  geom_point(aes(size=N1970), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_text(x=-83.2, y=39.75, label="1970")
+gN.sp[[2]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+  geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
+  geom_point(aes(size=N1980), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_text(x=-83.2, y=39.75, label="1980")
+gN.sp[[3]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+  geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
+  geom_point(aes(size=N1990), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_text(x=-83.2, y=39.75, label="1990")
+gN.sp[[4]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+  geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
+  geom_point(aes(size=N2000), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_text(x=-83.2, y=39.75, label="2000")
+gN.sp[[5]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+  geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
+  geom_point(aes(size=N2010), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_text(x=-83.2, y=39.75, label="2010")
+
+gN.mean <- ggplot(Nmean.frame.f, aes(x=year,y=Mean)) + theme_bw() + labs(x="Year",
+  y="Mean Abundance")+
+  geom_ribbon(aes(ymin=lower,ymax=upper),fill="black",
+  alpha=0.5,colour=NA) + geom_line(colour="black", size=1) 
+
+png(filename = "OVEN_N_by_route_year6.png", height = 6.5, width = 6.5, units = "in", res=600)
+print(arrangeGrob(gN.sp[[1]] + theme(legend.position=c(0.145, 0.56), 
+  legend.background=element_blank(), axis.text=element_blank(), 
+  axis.line=element_blank(), axis.ticks=element_blank(), panel.border=element_blank(),
+  panel.grid=element_blank(), plot.margin=unit(rep(0.1, 4), "lines")),
+  gN.sp[[2]] + theme(legend.position="none", axis.text=element_blank(), 
+  axis.line=element_blank(), axis.ticks=element_blank(), panel.border=element_blank(),
+  panel.grid=element_blank(), plot.margin=unit(rep(0.1, 4), "lines")),
+  gN.sp[[3]] + theme(legend.position="none", axis.text=element_blank(), 
+  axis.line=element_blank(), axis.ticks=element_blank(), panel.border=element_blank(),
+  panel.grid=element_blank(), plot.margin=unit(rep(0.1, 4), "lines")),
+  gN.sp[[4]] + theme(legend.position="none", axis.text=element_blank(), 
+  axis.line=element_blank(), axis.ticks=element_blank(), panel.border=element_blank(),
+  panel.grid=element_blank(), plot.margin=unit(rep(0.1, 4), "lines")),
+  gN.sp[[5]] + theme(legend.position="none", axis.text=element_blank(), 
+  axis.line=element_blank(), axis.ticks=element_blank(), panel.border=element_blank(),
+  panel.grid=element_blank(), plot.margin=unit(rep(0.1, 4), "lines")),
+  gN.mean, main=" ", nrow=3, ncol=2))
+dev.off()
+
+save.image(file.name)
+\end{verbatim}
 
 \end{document}
