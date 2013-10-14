@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \renewcommand*\abstractname{Summary}
 \usepackage[a4paper,hmargin={2.4cm,2.4cm},vmargin={2.4cm,2.4cm}]{geometry}
-\usepackage[mathlines,displaymath]{lineno}
+\usepackage[mathlines]{lineno} %,displaymath
 \usepackage{setspace}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -23,6 +23,7 @@
 \title{Improved state-space models for inference about spatial
 and temporal variation in abundance from count data}
 
+%\doublespacing
 \author{Jeffrey A. Hostetler\\ %\footnote{Contact:
 %     \url{HostetlerJ@si.edu}, +001-202-633-4205}\\
         \small Migratory Bird Center \\
@@ -34,7 +35,6 @@ and temporal variation in abundance from count data}
         \small USGS Patuxent Wildlife Research Center \\
         \small Laurel, MD 20708}
 \maketitle
-
 
 \abstract{
 \noindent
@@ -73,13 +73,14 @@ replicated counts).
 \end{enumerate}
 }
 
-\vspace{0.5cm}
+%\vspace{0.5cm}
 
 \textbf{Key words}: abundance, Dail and Madsen model, density-dependence,
 detectability, Gompertz-logistic model, immigration, open population point 
 count models, random observer effects, Ricker-logistic model, zero-inflated
 
 %\newpage
+\vspace{0.5cm}
 
 Theoretical ecology requires models of population dynamics for testing
 hypotheses regarding spatial and temporal variation in
@@ -121,7 +122,10 @@ $t=1,\hdots,T$, and let $X_t$ be
 the observed data, which differs from $N_t$ due to observation error,
 a random effect denoted $\zeta_t$. Temporal variation in $N_t$ is
 modeled using a population growth model, $\mu(N_{t-1})$
-and random process variation denoted $\grave{o}_t$.
+and random process variation denoted $\eta_t$.
+% Richard, is switching this from $\grave{o}$ to $\eta$ okay?  Andy thought
+% the o with accent was weird and I think I agree.  $\nu$ seems standard,
+% but we use it for a slightly different meaning (ES only) later.  
 The growth model may be density-dependent, as in the case of the 
 Ricker-logistic model, or it might be density-independent, such as when growth
 is exponential.
@@ -131,17 +135,17 @@ The full model can now be written as:
   \label{eq:ss1}
   \begin{align}
     N_1 &= X_1 \label{eq:ss1a} \\
-N_t &= \mu(N_{t-1}) + \grave{o}_{t-1} \quad \text{for} \;
+N_t &= \mu(N_{t-1}) + \eta_{t-1} \quad \text{for} \;
 t=2,\hdots,T \label{eq:ss1b} \\
 X_t &= N_t + \zeta_t \qquad \qquad \;\, \text{for} \;
 t=1,\hdots,T \label{eq:ss1c}
   \end{align}
 \end{subequations}
-where $\grave{o}_t$ is the random effect allowing for process
+where $\eta_t$ is the random effect allowing for process
 variation unaccounted for by the deterministic model. In classical
 state-space models, the two sets of random effects
 are assumed to be i.i.d. Gaussian deviates:
-$\grave{o}_t \sim \mathrm{N}(0, \sigma)$ and
+$\eta_t \sim \mathrm{N}(0, \sigma)$ and
 $\zeta_t \sim \mathrm{N}(0, \tau)$. Standard practice is to
 ignore process variation associated with $N_1$, as
 indicated by Eq~\ref{eq:ss1a}. Alternatively, the population is
@@ -199,15 +203,15 @@ is that the parameters of the simple state-space models
 such as Eq~\ref{eq:ss1} are not identifiable in many
 circumstances \citep{polansky_etal:2009}. Recall that the
 Eq.~\ref{eq:ss1} did not specify distributions for $N_1$, % or $X_1$;
-which $N_1$ is a random variable. Thus, uncertainty exists
+although $N_1$ is a random variable. Thus, uncertainty exists
 that should be accounted for in the model.  
 %are needed to fully specify the model.
-%To be more specific, a fully-specified state-space model requires at least
-%three probability distributions, which we represent
-%using bracket notation (i.e., $[Y|\Omega]$ is interpreted
-%as the probability distribution of the random variable $Y$ given the
-%parameter $\Omega$). The three probability distributions required for a
-%state-space model are:
+To be more specific, a fully-specified state-space model requires at least
+three probability distributions, which we represent
+using bracket notation (i.e., $[Y|\Omega]$ is interpreted
+as the probability distribution of the random variable $Y$ given the
+parameter $\Omega$). The three probability distributions required for a
+state-space model are:
 %%%% JEFF, does this extra sentence help? This notation comes from
 %%%% several of the original state-space papers and is widespread in
 %%%% books like Andy's and Bill's.
@@ -215,28 +219,29 @@ that should be accounted for in the model.
 % so these equations are confusing to me. How widely used is this
 % notation in ecology? Will others likely understand this? Also, we might want
 %to save space by trimming a bunch of this discussion back down.]}
-%\begin{subequations}
-%  \label{eq:ss2}
-%  \begin{align}
-%    [N_1&|\bm{\theta}] \label{eq:ss2a} \\ \label{eq:ss2b}
-%[N_t&|N_{t-1},\bm{\Theta}] \quad \text{for} \; t=2,\hdots,T \\
-%\label{eq:ss2c}
-%    [X_t&|N_t,\bm{p}]  \qquad \; \text{for} \; t=1,\hdots,T
-%  \end{align}
-%\end{subequations}
-%where $\bm{\theta}$ are the process variation parameters for the
-%initial state, $\bm{\Theta}$ are the process variation parameters
-%influencing how abundance changes over time, and $\bm{p}$ are the
-%observation error parameters. As mentioned previously, Eq.~\ref{eq:ss2b}
-%and Eq.~\ref{eq:ss2c} are assumed to be Gaussian in classical state-space
-%models, but what should be the distribution for Eq.~\ref{eq:ss2a}?
+\begin{subequations}
+  \label{eq:ss2}
+  \begin{align}
+    [N_1&|\bm{\theta}] \label{eq:ss2a} \\ \label{eq:ss2b}
+[N_t&|N_{t-1},\bm{\Theta}] \quad \text{for} \; t=2,\hdots,T \\
+\label{eq:ss2c}
+    [X_t&|N_t,\bm{p}]  \qquad \; \text{for} \; t=1,\hdots,T
+  \end{align}
+\end{subequations}
+where $\bm{\theta}$ are the process variation parameters for the
+initial state, $\bm{\Theta}$ are the process variation parameters
+influencing how abundance changes over time, and $\bm{p}$ are the
+observation error parameters. As mentioned previously, Eq.~\ref{eq:ss2b}
+and Eq.~\ref{eq:ss2c} are assumed to be Gaussian in classical state-space
+models, but what should be the distribution for Eq.~\ref{eq:ss2a}?
 %The three lines of general model
 %described by Eq.~\ref{eq:ss2} correspond to the three equations shown
 %for the specific example in Eq~\ref{eq:ss1}. However, in this case,
 %we allow $N_1$ to be a random variable. But what should its
-%istribution, $[N_1|\bm{\theta}]$ be?
-%And how could $\bm{\theta}$ be estimated given that there is only a single observation
-%available? Often, these problems are simply assumed away. For
+%distribution, $[N_1|\bm{\theta}]$ be?
+And how can $\bm{\theta}$ be estimated given that there is only a single observation
+available? 
+%Often, these problems are simply assumed away. For
 %example, sometimes researchers assume that there is no process variation in
 %the first year, although this seems unjustified. Alternatively, the
 %population may be assumed to be at equilibrium such that the expected
@@ -244,7 +249,10 @@ that should be accounted for in the model.
 %makes the parameters $\bm{\theta}$ identifiable, assuming equilibrium
 %defeats the objective of many studies of population dynamics, namely
 %determining why a population varies over time.
-
+%% OR
+%Sometimes researchers assume that there is no process variation in 
+%the first year or that the population is at equilibrium such that the expected
+%value of $N_t$ is constant through time, but these approaches are unsatisfactory.
 
 Several extensions of state-space models have been proposed to
 overcome the limitations described above. \citet{devalpine_hastings:2002} and
@@ -367,15 +375,15 @@ which is surveyed on $T$ primary sampling periods.
 %year for $T$ years. If the a site is surveyed on $J$ occasions during a
 %primary period, these are called secondary sampling occasions.
 %In the case where no secondary sampling was conducted, i.e. $J=1$, 
-Let $X_{it}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data
+Let $X_{i,t}: i=1,\hdots,R; t=1,\hdots,T$ denote the count data
 at site $i$ and primary period $t$. 
 %If secondary sampling periods were
 %used, an extra dimension is added so that we have $X_{ijt}:
 %j=1,\hdots,J$. 
-Typically, we know $X_{it}$ will be lower than the
+Typically, we know $X_{i,t}$ will be lower than the
 actual quantity of interest, abundance,
-denoted $N_{it}$. In cases where detection probability is perfect,
-abundance is observed directly such that $X_{it} \equiv N_{it}$.
+denoted $N_{i,t}$. In cases where detection probability is perfect,
+abundance is observed directly such that $X_{i,t} \equiv N_{i,t}$.
 
 \subsection{The Original Formulation of the Model}
 
@@ -400,14 +408,14 @@ distribution, or has zero variance.
 In contrast, \citet{dail_madsen:2011} proposed modeling $N_{i1}$
 as either a Poisson or negative binomial random variable:
 \begin{gather}
-N_{i1} \sim \mathrm{Pois}(\Lambda) \nonumber \\
+N_{i,1} \sim \mathrm{Pois}(\Lambda) \nonumber \\
 \text{or} \nonumber \\
-N_{i1} \sim \mathrm{NB}(\Lambda, \alpha)
+N_{i,1} \sim \mathrm{NB}(\Lambda, \alpha)
 \label{eq:N1}
 \end{gather}
 where $\Lambda_i$ is the expected abundance at site $i$ during
 year 1.
-The Poisson distribution assumes that the mean of $N_{i1}$ is
+The Poisson distribution assumes that the mean of $N_{i,1}$ is
 equal to its variance, whereas the negative binomial distribution allows the
 variance to be greater than the mean with the amount of
 overdispersion determined by the parameter $\alpha$.
@@ -445,25 +453,25 @@ abundance in time $t-1$, i.e. abundance at each site evolves as a
 first order Markovian process. %, although higher order processes are also possible.
 \citet{dail_madsen:2011} considered several models to describe the temporal dynamics;
 however, in each case they modeled $N_t$ as the sum of two random variables:
-$S_{it}$, the number of indivduals surviving from $t-1$ and not
-emigrating; and $G_{it}$ the number of new individuals entering
+$S_{i,t}$, the number of indivduals surviving from $t-1$ and not
+emigrating; and $G_{i,t}$ the number of new individuals entering
 the population. Their most general model was
 \begin{equation}
 \left.\begin{aligned}
-S_{it}|N_{it-1} &\sim \mathrm{Bin}(N_{it-1}, \omega) \\
-G_{it}|N_{it-1} &\sim \mathrm{Pois}(\gamma(N_{it-1})) \\
-N_{it} &= S_{it}+G_{it}
+S_{i,t}|N_{i,t-1} &\sim \mathrm{Bin}(N_{i,t-1}, \omega) \\
+G_{i,t}|N_{i,t-1} &\sim \mathrm{Pois}(\gamma(N_{i,t-1})) \\
+N_{i,t} &= S_{i,t}+G_{i,t}
 \end{aligned}\right\} \quad \text{for} \; t=2,\hdots,T
 \label{eq:Nt}
 \end{equation}
 where $\omega$ is the apparent survival probability and $\gamma$
-is the recruitment rate (which can depend on $N_{it-1}$).
+is the recruitment rate (which can depend on $N_{i,t-1}$).
 \citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
-$G_{it} \sim \mathrm{Pois}(\gamma)$ where recruitment does not
-depend on $N_{it-1}$, and which simulates a ``propagule rain'' of new
-individuals; the autoregressive model, $G_{it} \sim
-\mathrm{Pois}(\gamma(N_{it-1}))$, which
+$G_{i,t} \sim \mathrm{Pois}(\gamma)$ where recruitment does not
+depend on $N_{i,t-1}$, and which simulates a ``propagule rain'' of new
+individuals; the autoregressive model, $G_{i,t} \sim
+\mathrm{Pois}(\gamma(N_{i,t-1}))$, which
 simulates geometric or density independent growth; and the
 ``no-trend'' model, $\gamma = (1-\omega)\Lambda$, which keeps
 expected abundance constant over time. Covariates of
@@ -522,7 +530,7 @@ more easily interpreted. The observation
 model assumes that individuals are missed due to imperfect
 detection. The simplest model for imperfect detection is
 \begin{equation}
-  X_{it} \sim \mathrm{Bin}(N_{it}, p)
+  X_{i,t} \sim \mathrm{Bin}(N_{i,t}, p)
   \label{eq:p1}
 \end{equation}
 %or equivalently,
@@ -658,14 +666,14 @@ and emigration. %Furthermore, a
 If the mechanistic model must be sacrificed, we suggest replacing it
 with classical population growth models that have a long history in
 ecology. The exponential growth model is the simplest: 
-$f(N_{it-1}) = N_{it-1}e^r$ where $r$ is the intrinsic
+$f(N_{i,t-1}) = N_{i,t-1}e^r$ where $r$ is the intrinsic
 rate of increase. %Although demographic and environmental stochasticity
 %in $r$ could be modeled as functions of covariates or random effects, a
 %simpler way of 
-To allow for demographic stochasticity, we can regard $N_{it}$ as a Poisson 
+To allow for demographic stochasticity, we can regard $N_{i,t}$ as a Poisson 
 random variable, simplifying Eq.~\ref{eq:Nt} to:
 \begin{equation}
-  N_{it} \sim \text{Pois}(\exp(r)N_{it-1}).
+  N_{i,t} \sim \mathrm{Pois}(\exp(r)N_{i,t-1}).
 \label{eq:exp}
 \end{equation}
 This,
@@ -674,7 +682,7 @@ density-independent, exponential model of population growth.
 Density-dependent versions of the model are also possible.  For
 example:
 \begin{equation}
-  N_{it} \sim \text{Pois}(N_{it-1}\exp(r(1-N_{it-1}/K)))
+  N_{i,t} \sim \mathrm{Pois}(N_{i,t-1}\exp(r(1-N_{i,t-1}/K)))
 \label{eq:rick}
 \end{equation}
 where $K$ is the stable equilibrium of the population and $r$ is
@@ -688,15 +696,15 @@ of the Ricker-logistic population growth model
 implemented a modified Gompertz-logistic density-dependent
 model \citep{hart_gotelli:2011}:
 \begin{equation}
-N_{it} \sim
-\text{Pois}(N_{it-1}\exp(r(1-\log(N_{it-1}+1)/\log(K+1))))
+N_{i,t} \sim
+\mathrm{Pois}(N_{i,t-1}\exp(r(1-\log(N_{i,t-1}+1)/\log(K+1))))
 \label{eq:gomp}
 \end{equation}
 Here the interpretations of $r$ and $K$ are similar to in the
 Ricker-logistic model.
 Because a single Poisson distribution controls the
-distribution of $N_{it}$ in each of these models, the discrete
-convolution used by \citet{dail_madsen:2011} is not required,
+distribution of $N_{i,t}$ in each of these models, the discrete
+convolution used by \citet{dail_madsen:2011} to construct the likelihood is not required,
 speeding up processing time.
 
 
@@ -712,10 +720,10 @@ include both internal and external (immigration) contributions
 to population growth.  The exponential plus immigration
 model is:
 \begin{equation}
-  N_{it} \sim \text{Poisson}(\exp(r)N_{it-1} + \iota)
+  N_{i,t} \sim \mathrm{Pois}(\exp(r)N_{i,t-1} + \iota)
   \label{eq:expimm2}
 \end{equation}
-where $\iota$ represents the immigration rate, and is
+where $\iota$ represents the average number of immigrants per year, and is
 constrained to be
 positive (this is equivalent to separate Poisson processes for
 growth and immigration).  %This model is close to
@@ -803,10 +811,10 @@ population growth terms as well as initial abundance. For example,
 the recruitment term of the constant-recruitment DM model
 (Eq.~\ref{eq:Nt}) can be modified as follows:
 \begin{equation}
-G_{it} \sim \left\{
+G_{i,t} \sim \left\{
 \begin{aligned}
 0 &\; \text{with probability} \; \psi \\
-\mathrm{Poisson}(\gamma) &\; \text{with probability} \; (1-\psi)\end{aligned} \right.
+\mathrm{Pois}(\gamma) &\; \text{with probability} \; (1-\psi)\end{aligned} \right.
 \label{eq:ZIPts}
 \end{equation}
 \begin{comment}
@@ -843,13 +851,13 @@ making it challenging to compute the likelihood or implement MCMC
 algorithms. Nonetheless, in some cases additional random effects
 may be of interest. For example, in conventional state-space models,
 environmental stochasticity is often modeled as $r_t \sim
-\text{Norm}(\mu_r, \sigma_r)$.
+\mathrm{Norm}(\mu_r, \sigma_r)$.
 \end{comment}
 The original DM models include demographic stochasticity --- variation in population growth 
 rate due to the randomness of birth and death processes --- through random 
 binomial draws for survival and Poisson draws for recruitment.  Our population
-growth extensions use a single Poisson draw for abundance: $N_{it} \sim 
-\text{Pois}(f(N_{it-1}))$.  This is also a commonly used (and mathematically equivalent) 
+growth extensions use a single Poisson draw for abundance: $N_{i,t} \sim 
+\mathrm{Pois}(f(N_{i,t-1}))$.  This is also a commonly used (and mathematically equivalent) 
 method of modeling demographic stochasticity 
 \citep{bonsall_hastings:2004,melbourne_hastings:2008}.  
 
@@ -859,8 +867,8 @@ modeling dynamic parameters as functions of environmental covariates, such
 as weather.  For example, in the Gompertz-logistic model (Eq.~\ref{eq:gomp}), $r$ could be a 
 function of temperature ($T$) and $K$ a function of rainfall ($R$):
 \begin{gather}
-\log(r_{it}) = \beta^{r}_{0} + \beta^{r}_{1}T_{it} \nonumber \\
-\log(K_{it}) = \beta^{K}_{0} + \beta^{K}_{1}R_{it}  
+\log(r_{i,t}) = \beta^{r}_{0} + \beta^{r}_{1}T_{i,t} \nonumber \\
+\log(K_{i,t}) = \beta^{K}_{0} + \beta^{K}_{1}R_{i,t}  
 %N_{it} \sim
 %\text{Pois}(N_{it-1}\exp(r_{it-1}(1-\log(N_{it-1}+1)/\log(K_{it-1}+1)))) \nonumber
 \label{eq:weather}
@@ -870,17 +878,17 @@ Another way to model environmental stochasticity is as lognormal variation in ob
 growth rate \citep{bjornstad:2001,bonsall_hastings:2004}.  This could be applied to both density-independent and density-dependent models.
 For example, for the Ricker-logistic + immigration model:
 \begin{equation}
-N_{it} \sim
-\text{Pois}(N_{it-1}\exp(\nu_{it} + r(1-N_{it-1}/K)) + \iota)
+N_{i,t} \sim
+\mathrm{Pois}(N_{i,t-1}\exp(\nu_{i,t} + r(1-N_{i,t-1}/K)) + \iota)
 \label{eq:nuRand}
 \end{equation}
 where $\nu$ is a variable with a normal distribution, mean value of 0, and standard deviation $\sigma_\nu$.  
 Three variations suggest themselves.  The first has independent environmental stochasticity 
 between sites, and might be appropriate where sites are widely dispersed.  In the second, 
-all sites have the same environmental conditions in a given year (regional stochasticity, $\nu_{it} = \nu_{t}$),
+all sites have the same environmental conditions in a given year (regional stochasticity, $\nu_{i,t} = \nu_{t}$),
 which might be appropriate where the geographic or environmental range is small \citep{hanski:1998}.  
 Third, where sites can be close together but the range of sites is broad, a multivariate normal distribution 
-for $\nu_{it}$ with distance-dependent (geographic or otherwise) correlation coefficients
+for $\nu_{i,t}$ with distance-dependent (geographic or otherwise) correlation coefficients
 between sites in a year might be appropriate.
 
 \subsection{Random effects of observers}
@@ -913,11 +921,11 @@ effect \citep{link_sauer:2002,sauer_link:2011}.
 To include random observer effects in DM models and these
 extensions, Eq.~\ref{eq:p1} can be modified to:
 \begin{gather}
-X_{ijt} \sim \mathrm{Bin}(N_{it}, p_j) \nonumber \\
-\mathrm{logit}(p_j) \sim \mathrm{Normal}(\mu_p, \sigma_p)
+X_{i,j,t} \sim \mathrm{Bin}(N_{i,t}, p_j) \nonumber \\
+\mathrm{logit}(p_j) \sim \mathrm{N}(\mu_p, \sigma_p)
 \label{eq:pobs}
 \end{gather}
-where $X_{ijt}$ is the number of bird recorded at site $i$ by
+where $X_{i,j,t}$ is the number of bird recorded at site $i$ by
 observer $j$ in year $t$, $p_j$ is observer-specific detection probability,
 $\mu_p$ is the mean detection probability (on the logit scale), and $\sigma_p$ is
 the standard deviation of the random observer effects (also on the logit scale). 
@@ -1089,7 +1097,7 @@ Following \citet{link_sauer:2002},
 we also included the first time an observer ran a route as a predictor variable for detection
 probability.
 
-We ran a series of frequentist models, 
+We fitted a series of frequentist models, 
 and then a series of Bayesian models. We started by testing
 three models of initial abundance (Poisson, negative binomial, and
 zero-inflated Poisson) with exponential dynamics
@@ -1783,5 +1791,5 @@ data-generating values.}
 (mean and 95\% credible interval).}
 \label{fig:oven_N}
 \end{figure}
-
+%\arglebargle
 \end{document}
