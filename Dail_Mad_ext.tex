@@ -20,8 +20,8 @@
 
 \begin{document}
 
-\title{Improved state-space models for inference about spatial
-and temporal variation in abundance from count data}
+\title{Improved state-space models for inference about 
+spatial and temporal variation in abundance from count data}
 
 %\doublespacing
 \author{Jeffrey A. Hostetler\\ %\footnote{Contact:
@@ -30,27 +30,36 @@ and temporal variation in abundance from count data}
         \small Smithsonian Conservation Biology Institute \\
         \small National Zoological Park, MRC 5503 \\
         \small Washington, DC 20013-7012\\
-   \and Richard B. Chandler \footnote{Contact:
-     \url{rbchan@uga.edu}, +001-706-542-5815} \\
+   \and Richard B. Chandler \footnote{Current address: Warnell School of
+     Forestry and Natural Resources, University of Georgia,
+     \url{rchandler@warnell.uga.edu}, +001-706-542-5815} \\
         \small USGS Patuxent Wildlife Research Center \\
-        \small Laurel, MD 20708}
+        \small Laurel, MD 20708
+}
 \maketitle
 
 \abstract{
 \noindent
 \begin{enumerate}
-\item Models of population dynamics play a central role in theoretical and
-applied ecology, where they are used for purposes such as testing 
+\item Models of population dynamics %play a central role in theoretical and
+%applied ecology, where they 
+are frequently used for purposes such as testing 
 hypotheses about density dependence and predicting species' responses 
-to future environmental change or conservation actions. Failure to
-account for observation error in such models can result in 
-bias. Therefore, ecologists have increasingly relied on state-space
-models to directly model both the observation error and the ecological
+to future environmental change or conservation actions. Fitting models
+of population dynamics to field data is challenging because most data
+sets are characterized by missing data and observation error, which
+can inflate estimates of process variation if ignored.  
+%Failure to account for observation error in such models can result in 
+%bias. Therefore, ecologists have increasingly relied on 
+Recently, state-space models have been developed to deal with these problems
+%these probdirectly model 
+by directly modeling both the observation error and the ecological
 process of interest.
 \item Conventional state-space models, however, have
 three important limitations: (1) the parameters are not identifiable
 in many common situations, (2) they do not admit spatial variation in
-population dynamics, and (3) we have no clear interpretation of the
+population dynamics, and (3) they assert an implausible model for
+%we have no clear interpretation of the
 observation error. We demonstrate how each of these problems can be
 resolved using a class of hierarchical models proposed by
 \citet[Biometrics]{dail_madsen:2011} for spatially-replicated
@@ -61,15 +70,16 @@ and random effects such as observer-specific
 detection probabilities. We also present methods for forecasting
 population size under future environmental conditions. Implementation
 of these ideas is possible using either frequentist or Bayesian
-methods. We provide code to fit these models using the \textbf{R} package
-\texttt{unmarked} and \textbf{JAGS} is also provided.
-\item A simulation study indicated that bias was negligible and coverage
+methods, as demonstrated by accompanying {\bf R} and {\bf JAGS} code.%. We provide code to fit these models using the \textbf{R} package
+%\texttt{unmarked} and \textbf{JAGS} is also provided.
+\item Results of a simulation study suggest that bias is %was 
+negligible and coverage
 nominal for the proposed model extensions. An analysis of data from
-the North American Breeding Bird Survey highlighted how these methods
-can be readily applied to existing data, but it also suggested 
-that precision would be low when we lack direct information about detection
+the North American Breeding Bird Survey highlights how these methods
+can be readily applied to existing data, but it also suggests 
+that precision will be low when direct information about detection
 probability (such as is collected using distance sampling or
-replicated counts).
+replicated counts) is lacking.
 \end{enumerate}
 }
 
@@ -77,7 +87,7 @@ replicated counts).
 
 \textbf{Key words}: abundance, Dail and Madsen model, density-dependence,
 detectability, Gompertz-logistic model, immigration, open population point 
-count models, random observer effects, Ricker-logistic model, zero-inflated
+count models, population dynamics, random observer effects, Ricker-logistic model, zero-inflated
 
 %\newpage
 \vspace{0.5cm}
