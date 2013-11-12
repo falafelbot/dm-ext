@@ -11,7 +11,8 @@
 \usepackage{color, soul}
 \usepackage{fancyvrb}
 \usepackage{verbatim}
-\usepackage[pdftex,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,pdftex,pdfstartview=FitH,bookmarks=true]{hyperref}
+%\usepackage[pdftex,colorlinks=true,citecolor=black,linkcolor=black,urlcolor=black,pdftex,pdfstartview=FitH,bookmarks=true]{hyperref}
+\usepackage[pdftex,hidelinks,pdfstartview={XYZ 1 1 1.5},bookmarks=true]{hyperref}
 \usepackage{rotating}
 
 \bibliographystyle{ecology}
@@ -56,18 +57,29 @@ Recently, state-space models have been developed to deal with these problems
 by directly modeling both the observation error and the ecological
 process of interest.
 \item Conventional state-space models, however, have
-three important limitations: (1) the parameters are not identifiable
-in many common situations, (2) they do not admit spatial variation in
-population dynamics, and (3) they assert an implausible model for
+several important limitations: (1) they assume that random effects are
+Gaussian distributed, which implies that abundance can be negative and
+that false negative observation errors are equally likely as false positive
+errors, %results in unrealistic predictions
+%(e.g. negative values of abundance) and an implausible mode
+%and observation error are Gaussian random effects
+%the parameters are not identifiable
+%in many common situations, 
+(2) they do not admit spatial variation in
+population dynamics, and (3) some of the parameters of the model are not
+estimable. % they assert an implausible model for
 %we have no clear interpretation of the
-observation error. We demonstrate how each of these problems can be
+%observation error. 
+We demonstrate how each of these problems can be
 resolved using a class of hierarchical models proposed by
-\citet[Biometrics]{dail_madsen:2011} for spatially-replicated
-time-series data that attributes observation error to imperfect detection.
+\citet[Biometrics]{dail_madsen:2011} 
+%for spatially-replicated time series data 
+that attributes observation error to imperfect detection.
 \item We expand this class of models to accommodate classical growth
 models (e.g. exponential and Ricker-logistic), zero-inflation,
-and random effects such as observer-specific
-detection probabilities. We also present methods for forecasting
+and random effects. 
+% such as observer-specific detection probabilities. 
+We also present methods for forecasting
 population size under future environmental conditions. Implementation
 of these ideas is possible using either frequentist or Bayesian
 methods, as demonstrated by accompanying {\bf R} and {\bf JAGS} code.%. We provide code to fit these models using the \textbf{R} package
@@ -125,7 +137,7 @@ have made it possible to %become the primary tool for
 study population dynamics while accounting for both process variation
 and observation error \citep{devalpine_hastings:2002,
   buckland_etal:2004, dennis_etal:2006}. Classical state-space
-models are time-series models in which the true state of the
+models are time series models in which the true state of the
 system (e.g. population size during each year) is modeled as a hidden
 process, and the observed data are modeled conditional on this process
 and the observation error. One reason for the widespread adoption of
@@ -167,24 +179,28 @@ In classical
 state-space models, the two sets of random effects
 are assumed to be i.i.d. Gaussian deviates:
 $\eta_t \sim \mathrm{N}(0, \sigma)$ and
-$\zeta_t \sim \mathrm{N}(0, \tau)$. Standard practice is to
-ignore process variation associated with $N_1$, as
-indicated by Eq~\ref{eq:ss1a}. Alternatively, the population is
-assumed to be at equilibrium such that the $N_1$ can be regarded as an
-outcome of the equilibrium distribution.
+$\zeta_t \sim \mathrm{N}(0, \tau)$. %Standard practice is to
+%ignore 
+The process variation associated with $N_1$ is often ignored, or
+%, as indicated by Eq~\ref{eq:ss1a}. Alternatively, 
+the population is assumed to be at equilibrium such that the $N_1$ can
+be regarded as an outcome of the equilibrium distribution.
 
 Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
-are among the most widespread approaches for modeling population dynamics
-using time-series data, several problems exist. First,
-time-series data and the underlying abundance parameters of interest
-are typically integer-valued, as in the case of count data, raising
-concerns about the Gaussian assumption for the random
-effects. Second, the model for observation error is implausible. %has little biological basis. 
-Third, the model does not account for spatial variation in abundance. Lastly, some of the
-parameters of the model are not estimable. We briefly discuss each of
-these points before describing a general approach to resolving these
-shortcomings.
-
+overcome many of the limitations associated with the application of
+classical models of population dynamics, 
+%are among the most widespread approaches for modeling population dynamics
+%using time series data, 
+several problems exist. %, which we explain in the following paragraphs. 
+% First,
+% time series data and the underlying abundance parameters of interest
+% are typically integer-valued, as in the case of count data, raising
+% concerns about the Gaussian assumption for the random
+% effects. Second, the model for observation error is implausible. %has little biological basis. 
+% Third, the model does not account for spatial variation in abundance. Lastly, some of the
+% parameters of the model are not estimable. We briefly discuss each of
+% these points before describing a general approach to resolving these
+% shortcomings.
 %Use of the Gaussian distribution for modeling random process variation
 %and observation error is often motivated by convenience rather than
 %biology. Specifically, t
@@ -192,23 +208,27 @@ The assumption that random effects are Gaussian distributed makes it
 easier to estimate parameters because methods such as the Kalman
 filter can be applied %The Gaussian assumption allows for efficient methods of parameter
 %estimation, such as the Kalman filter
-\citep{dennis_etal:2006}, which are not available otherwise. % which is much more computationally efficient
+\citep{dennis_etal:2006}; however, % which are not available otherwise % which is much more computationally efficient
 %than estimation methods when random effects are not Gaussian distributed
-\citep{devalpine_hastings:2002}. %The problem with this is that it
-However, these models effectively assume that abundance can be take on any
-real value, including negative values, 
+%\citep{devalpine_hastings:2002}. %The problem with this is that it
+%However, 
+these models effectively assume that abundance can be take on any
+real value, and hence they can predict negative values of abundance. %including negative values, 
 %This approach allows for negative and non-integer values of the state-variable, which is
 %inconsistent with the observed data, and may 
-and these models can result in implausible predictions.
+%and these models can result in implausible predictions.
 Transforming the count data and the underlying abundance variables 
 do little to resolve these issues \citep{ohara_kotze:2010}.
 
-Another problem with standard state-space models is that the model for
-the mean zero Gaussian distribution for the observation error
+With respect to the observation error, the Gaussian assumption
+%Another problem with standard state-space models is that the model for
+%the mean zero Gaussian distribution for the observation error
 implies that false positive detections are
-equally likely as false negatives. To our knowledge, all studies to
-date have shown that false negative detections are much more common
-that false positives (CITE DAVE MILLER PAPERS). 
+equally likely as false negatives, a pattern inconsistent with most
+findings \citep{miller_etal:2011}. 
+%. To our knowledge, all studies to
+%date have shown that false negative detections are much more common
+%that false positives \citep{miller_etal:2011}.
 %will be
 %higher than $N_t$ as often as it is lower than $N_t$. 
 %Identifying a biological mechanism that would cause such symmetric errors
@@ -220,22 +240,37 @@ characteristics of the species under study, such as its elusiveness,
 or to individuals being missed by the ecologist collecting the data in the field.
 Although a vast number of methods have been devised for accounting for
 this form of observation error, rarely have these methods been
-integrated into state-space models \citep[but
+integrated into state-space models of population dynamics \citep[but
 see][]{buckland_etal:2004}.
 
-Common formulations of state space models do not admit
-spatial variation. This reduces the scope of the inferences that can
-be drawn from the models. Moreover, space is an important factor in the
-regulation of natural populations \citep{murdoch:1994,
-pulliam:1988, gill_etal:2001}.
-
-A more serious problem %than the ones associated with the Gaussian assumptions 
-is that the parameters of simple state-space models
-such as Eq~\ref{eq:ss1} are not identifiable in many
-circumstances \citep{polansky_etal:2009}. Specifically, abundance in
+Other limitations of state-space models, as commonly applied in ecology,
+include the failure to admit spatial variation in abundance and
+the fact that some parameters are not identifiable
+\citep{polansky_etal:2009}. 
+% without making 
+%Another limitation of many state-space models is that they do 
+%Common formulations of state space models do 
+%not admit spatial variation in abundance or demographic
+%parameters. 
+Ignorning spatial variation simply reduces the scope of the
+inferences, 
+% that can 
+%be drawn from the models, it disregards the fact that space is an
+%important factor in the regulation of natural populations \citep{murdoch:1994,
+%pulliam:1988, gill_etal:2001}.
+but identifiability problems require %lack of identifiability because
+model constraints or the assertion of additional assumptions. 
+%A more serious problem %than the ones associated with the Gaussian assumptions 
+%is that the parameters of simple state-space models
+%such as Eq~\ref{eq:ss1} are not identifiable in many
+%circumstances \citep{polansky_etal:2009}. 
+Specifically, abundance in
 the first year cannot be estimated because there is only one data
 point (the count in the first year) that carries any information about
-it. 
+it. To remedy this, pratitioners either assume that there is no
+observation error in the first year, or they assume the population is
+at equilibrium, which may defeat the purpose of many studies of
+population dynamics. 
 %Recall that the
 %Eq.~\ref{eq:ss1} did not specify distributions for $N_1$, % or $X_1$;
 %although $N_1$ is a random variable. Thus, uncertainty exists
@@ -307,32 +342,37 @@ dependence, which is a hallmark of population models. %This
 %population processes.
 
 In this paper, we focus on the model of \citet[henceforth the DM model]{dail_madsen:2011}
-that resolves many of the problems with classical state-space models.
+that resolves each of the problems outlined above. 
 %simultaneous resolves each of the aforementioned problems with
 %traditional state-space models, and is designed for simple count data.
 %In the following section, we describe the DM model in its original
 %form and explain how it resolves each of the deficiencies with
 %standard state-space models. 
-In Section~\ref{sec:ext}, we extend the
+%In Section~\ref{sec:ext}, 
+Our aim is to extend the
 model to accommodate classical models of population growth and
 to handle several features common to ecological
-time-series, such as excess zeros and unexplained random variation. 
+time series, such as excess zeros and unexplained random variation. 
 %Specifically, we describe methods for accommodating
 %excess zeros and nuisance variables such as random observer effects.
 Both frequentist and Bayesian methods of inference are discussed, and
-code for fitting models is presented in the appendices.
+we evaluate the performance of the model using a simulation study by
+analyzing data from the North American Breeding Bird Survey (BBS), one of
+the most spatially and temporally extensive sets of count data on
+vertebrate populations \citep{robbins_etal:1986}.
+%code for fitting models is presented in the appendices.
 %The Bayesian method
 %is attractive in that it can accommodate prior information about
 %detection parameters, which is available for many species, yet not
 %collected as part of many existing monitoring programs.
-In Section~\ref{sec:app}, we evaluate the performance of the model
-extensions using a simulation study and by analyzing data from the
-North American Breeding Bird Survey (BBS), one of
-the most spatially and temporally extensive sets of count data on
-vertebrate populations \citep{robbins_etal:1986}. The overarching aim
-of the paper is to provide ecologists with flexible and accessible means of
-addressing important questions related to the variation of abundance in
-space and time. 
+%In Section~\ref{sec:app}, we evaluate the performance of the model
+%extensions using a simulation study and by analyzing data from the
+%North American Breeding Bird Survey (BBS), one of
+%the most spatially and temporally extensive sets of count data on
+%vertebrate populations \citep{robbins_etal:1986}. %The overarching aim
+%of the paper is to provide ecologists with flexible and accessible means of
+%addressing important questions related to the variation of abundance in
+%space and time. 
 %believe these extensions will increase the utility of the model for
 %application to existing datasets such the Breeding Bird Survey.
 \begin{comment}
@@ -367,7 +407,7 @@ purposes,
 the original formulation of the model makes strict
 distributional
   assumptions and does not acknowledge many of the sources of
-variation inherent to existing ecological time-series data.  We  propose variations on these models that are likely to be more
+variation inherent to existing ecological time series data.  We  propose variations on these models that are likely to be more
 realistic and useful in many cases. We demonstrate the
 usefulness
   of these new models with simulated and real BBS data.
@@ -1343,7 +1383,7 @@ stochasticity, and random variation in observation error.
 %with open population $N$-mixture models by illustrating how
 %classical models of population dynamics can be embedded within
 %the framework. Second, we have demonstrated methods of
-%accounting for zero-inflation in the time-series. Third, we
+%accounting for zero-inflation in the time series. Third, we
 %have illustrated how additional random effects such as
 %observer-specific detection probabilities can be
 %accommodated. Fourth, we presented a Bayesian analysis of the
