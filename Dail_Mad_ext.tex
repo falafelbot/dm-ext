@@ -629,57 +629,6 @@ or occasion-specific covariates using, for example, a logit-linear model.
 %are given in the Appendix.
 
 
-\subsection{Bayesian inference}
-
-\citet{dail_madsen:2011} demonstrated how to fit these models using maximum 
-likelihood estimation. The likelihood can be maximized numerically using the
-\textbf{R} package \texttt{unmarked} \citep{fiske_chandler:2011}. Examples
-are given in the Appendix.
-
-Bayesian inference, however, has several appealing features. First, it
-allows direct probability statements to be made about a hypothesis
-given data \citep{link_barker:2010}.    
-Second, Bayesian methods offer straight-forward approaches for
-combine data from multiple sources or use existing estimates of parameters as prior
-distributions. In practice, simulation methods such as Markov
-chain Monte Carlo (MCMC) are used to simulate the posterior
-distributions. %Although MCMC can be slow, our experience is that it
-%may actually converge faster than the amount of time required to
-%maximize the likelihood shown in Eq.\ref{eq:like}, especially
-%when the upper bound of the summation must be high, e.g. $N_{max}>200$.
-%Furthermore, 
-MCMC may be the only possible option for estimating parameters
-using some of the extensions described below, such as allowing for
-additional random effects.
-
-Writing custom MCMC algorthims is often tedious and foreign to
-ecologists, but software packages such as %\textbf{WinBUGS} and
-\textbf{JAGS} \citep{plummer:2003} overcome the technical 
-difficulties by allowing users to specify the model using a simple symbolic 
-descriptions. Examples are given in the Appendix.
-
-%For example here is \textbf{BUGS} code for the ``geometric'' model described
-%in Eq.~\ref{eq:hm}:
-%\begin{verbatim}
-%model {
-%lambda ~ dunif(0, 5)
-%omega ~ dunif(0,1)
-%gamma ~ dunif(0, 10)
-%p ~ dunif(0,1)
-%for(i in 1:nSites) {
-%  N[i,1] ~ dpois(lambda)
-%  y[i,1] ~ dbin(p, N[i,1])
-%  for(t in 2:nYears) {
-%    S[i,t-1] ~ dbin(omega, N[i,t-1])
-%    G[i,t-1] ~ dpois(gamma*N[i,t-1])
-%    N[i,t] <- S[i,t-1] + G[i,t-1]
-%    y[i,t] ~ dbin(p, N[i,t])
-%    }
-%  }
-%}
-%\end{verbatim}
-
-
 
 \section{Model Extensions}
 \label{sec:ext}
@@ -726,38 +675,35 @@ example:
 \label{eq:rick}
 \end{equation}
 where $K$ is the stable equilibrium of the population and $r$ is
-the
-instantaneous population growth rate at low population
-densities, and
-both parameters are constrained to be positive. This is a
-stochastic version
-of the Ricker-logistic population growth model
-\citep{ricker:1954}. We also
-implemented a modified Gompertz-logistic density-dependent
-model \citep{hart_gotelli:2011}:
+the instantaneous population growth rate at low population
+densities, and both parameters are constrained to be positive. This is
+a stochastic version of the Ricker-logistic population growth model
+\citep{ricker:1954}. Another option is a modified Gompertz-logistic
+density-dependent model \citep{hart_gotelli:2011}:
 \begin{equation}
-N_{i,t} \sim
-\mathrm{Pois}(N_{i,t-1}\exp(r(1-\log(N_{i,t-1}+1)/\log(K+1))))
+N_{i,t} \sim \mathrm{Pois}(N_{i,t-1}\exp(r(1-\log(N_{i,t-1}+1)/\log(K+1))))
 \label{eq:gomp}
 \end{equation}
 Here the interpretations of $r$ and $K$ are similar to in the
-Ricker-logistic model.
-Because a single Poisson distribution controls the
-distribution of $N_{i,t}$ in each of these models, the discrete
-convolution used by \citet{dail_madsen:2011} to construct the likelihood is not required,
-speeding up processing time.
-
+Ricker-logistic model. Because a single Poisson distribution controls
+the distribution of $N_{i,t}$ in each of these models, the discrete 
+convolution used by \citet{dail_madsen:2011} to construct the
+likelihood is not required, speeding up processing time.
 
 
 \subsection{Immigration models}
 
-The geometric-recruitment, exponential, Ricker-logistic, and Gompertz-logistic
-versions of the DM models all share a common feature (or bug):
-once the population at a site reaches 0, it must remain at 0
-because all contributions to population growth are assumed to be
-local.  We therefore generalized these models to
-include both internal and external (immigration) contributions
-to population growth.  The exponential plus immigration
+One limitation of the geometric-recruitment, exponential,
+Ricker-logistic, and Gompertz-logistic versions of the DM models all
+%share a common feature (or bug): once the 
+is that they include no mechanism for a local population to recover
+after extinction. %at a site reaches 0, it must remain at 0
+%because all contributions to population growth are assumed to be
+%local.  
+However, these models can be generalized 
+%We therefore generalized these models 
+to include both internal and external (immigration) contributions
+to population growth. For example, an exponential plus immigration
 model is:
 \begin{equation}
   N_{i,t} \sim \mathrm{Pois}(\exp(r)N_{i,t-1} + \iota)
@@ -806,30 +752,36 @@ a maximum likelihood framework by extending the
 %\subsection{Range model of initial abundance}
 \subsection{Excess zeros}
 
-\citet{dail_madsen:2011} suggested two distributions for modeling
-initial abundance: Poisson and negative binomial. We have
-extended their model to include another distribution, the zero-inflated
-Poisson. This could be useful when, for example, one is modeling
-the abundance of several species with the same set of point
-count surveys for all species, but some survey sites are
-outside the range of some of the species. The distribution
-of initial abundances can be represented as:
+%\citet{dail_madsen:2011} suggested two distributions for modeling
+%initial abundance: Poisson and negative binomial. We have
+%extended their model to include another distribution, the zero-inflated
+%Poisson. This could be useful when, for example, one is modeling
+%the abundance of several species with the same set of point
+%count surveys for all species, but some survey sites are
+%outside the range of some of the species. 
+The negative binomial distribution used in $N$-mixture models can have
+a very long right tail, and its mean to variance ratio may not be
+ideal in all cases. An alternative is to consider zero-inflated
+distributions, such as the zero-inflated Poisson:
+%The distribution
+%of initial abundances can be represented as:
 \begin{equation}
 N_{i1} \sim \left\{
 \begin{aligned}
-0 &\; \text{with probability} \; \psi \\
-\Lambda &\; \text{with probability} \; (1-\psi)
+\mbox{Pois}(0) &\; \text{with probability} \; \psi \\
+\mbox{Pois}(\Lambda) &\; \text{with probability} \; (1-\psi)
 \end{aligned} \right.
 \label{eq:ZIP}
 \end{equation}
 where $\psi$ represents the proportion of extra zeros.
 
-These models allow three sources of zero counts by observers: a
-species was at a site but not detected; the site was within the
-species' range but no individuals occured at that site in that
-year; and the site was outside the species' range. Furthermore,
+%These models allow three sources of zero counts by observers: a
+%species was at a site but not detected; the site was within the
+%species' range but no individuals occured at that site in that
+%year; and the site was outside the species' range. Furthermore,
+Under this formulation, 
 detection, abundance, and zero-inflation can be modeled separately as
-functions of different (or the same) covariates. For example, detection of a
+functions of covariates. For example, detection of a
 species might depend on wind speed,
 abundance on forest type and weather, and zero-inflation upon elevation and
 climate.  
@@ -853,7 +805,7 @@ the recruitment term of the constant-recruitment DM model
 \begin{equation}
 G_{i,t} \sim \left\{
 \begin{aligned}
-0 &\; \text{with probability} \; \psi \\
+\mathrm{Pois}(0) &\; \text{with probability} \; \psi \\
 \mathrm{Pois}(\gamma) &\; \text{with probability} \; (1-\psi)\end{aligned} \right.
 \label{eq:ZIPts}
 \end{equation}
@@ -1046,6 +998,59 @@ in time is regarded as a standard, unknown parameter, computing the
 posterior distribution of $N^+_t$ requires no additional steps
 in the MCMC algorithm, other than formally stating that the count data are
 ``missing'' in future years. An example of this is provided in the Appendix.
+
+
+
+\subsection{Bayesian inference}
+
+\citet{dail_madsen:2011} demonstrated how to fit these models using maximum 
+likelihood estimation. The likelihood can be maximized numerically using the
+\textbf{R} package \texttt{unmarked} \citep{fiske_chandler:2011}. Examples
+are given in the Appendix.
+
+Bayesian inference, however, has several appealing features. First, it
+allows direct probability statements to be made about a hypothesis
+given data \citep{link_barker:2010}.    
+Second, Bayesian methods offer straight-forward approaches for
+combine data from multiple sources or use existing estimates of parameters as prior
+distributions. In practice, simulation methods such as Markov
+chain Monte Carlo (MCMC) are used to simulate the posterior
+distributions. %Although MCMC can be slow, our experience is that it
+%may actually converge faster than the amount of time required to
+%maximize the likelihood shown in Eq.\ref{eq:like}, especially
+%when the upper bound of the summation must be high, e.g. $N_{max}>200$.
+%Furthermore, 
+MCMC may be the only possible option for estimating parameters
+using some of the extensions described below, such as allowing for
+additional random effects.
+
+Writing custom MCMC algorthims is often tedious and foreign to
+ecologists, but software packages such as %\textbf{WinBUGS} and
+\textbf{JAGS} \citep{plummer:2003} overcome the technical 
+difficulties by allowing users to specify the model using a simple symbolic 
+descriptions. Examples are given in the Appendix.
+
+%For example here is \textbf{BUGS} code for the ``geometric'' model described
+%in Eq.~\ref{eq:hm}:
+%\begin{verbatim}
+%model {
+%lambda ~ dunif(0, 5)
+%omega ~ dunif(0,1)
+%gamma ~ dunif(0, 10)
+%p ~ dunif(0,1)
+%for(i in 1:nSites) {
+%  N[i,1] ~ dpois(lambda)
+%  y[i,1] ~ dbin(p, N[i,1])
+%  for(t in 2:nYears) {
+%    S[i,t-1] ~ dbin(omega, N[i,t-1])
+%    G[i,t-1] ~ dpois(gamma*N[i,t-1])
+%    N[i,t] <- S[i,t-1] + G[i,t-1]
+%    y[i,t] ~ dbin(p, N[i,t])
+%    }
+%  }
+%}
+%\end{verbatim}
+
 
 
 
