@@ -809,49 +809,33 @@ G_{i,t} \sim \left\{
 \mathrm{Pois}(\gamma) &\; \text{with probability} \; (1-\psi)\end{aligned} \right.
 \label{eq:ZIPts}
 \end{equation}
-\begin{comment}
-When both initial abundance and dynamics are modeled as
-zero-inflated,
-$\psi$ can be modeled as time-varying or not (in either case,
-$\psi$ can also be
-modeled as varying over space). In the latter case, it makes
-sense
-for the model to "remember" which sites are inside the range of
-the
-species between the initial abundance stage and each time step
-of the
-dynamics stage (see code sample?).  Adding zero-inflation to the
-dynamics of the geometric-recruitment, exponential, Ricker-logistic, or Gompertz-logistic
-models
-(without immigration) should have no effect when initial
-abundance is
-also zero-inflated unless $\psi$ is time-varying (because these
-dynamic
-models cannot recover from zero abundance).
-\end{comment}
-We have implemented
-zero-inflated dynamics in the Bayesian framework using program
-\textbf{JAGS} \citep[version 3.2.0]{plummer:2003}.
+%We have implemented
+%zero-inflated dynamics in the Bayesian framework using program
+%\textbf{JAGS} \citep[version 3.2.0]{plummer:2003}.
 %(version 3.2.0; Plummer 2003)
 
 
 \subsection{Environmental and demographic stochasticity}
 \begin{comment}
-Even though the DM model is conceptually simple, even in
-its most stripped down form it includes many random effects (the $N$'s)
+Even though the DM model is conceptually simple, %even in
+%its most stripped down form 
+it includes many random effects (the $N$'s)
 making it challenging to compute the likelihood or implement MCMC
 algorithms. Nonetheless, in some cases additional random effects
 may be of interest. For example, in conventional state-space models,
 environmental stochasticity is often modeled as $r_t \sim
 \mathrm{Norm}(\mu_r, \sigma_r)$.
 \end{comment}
-The original DM models include demographic stochasticity --- variation in population growth 
-rate due to the randomness of birth and death processes --- through random 
-binomial draws for survival and Poisson draws for recruitment.  Our population
-growth extensions use a single Poisson draw for abundance: $N_{i,t} \sim 
-\mathrm{Pois}(f(N_{i,t-1}))$.  This is also a commonly used (and mathematically equivalent) 
-method of modeling demographic stochasticity 
-\citep{bonsall_hastings:2004,melbourne_hastings:2008}.  
+The original DM models allows for demographic stochasticity --- variation in population growth 
+rate due to the randomness of birth and death processes --- through %random 
+via the binomial and Poisson distributions for apparent survival and recruitment.  Our population
+growth extensions use a single probability distribution for abundance: $N_{i,t} \sim 
+\mathrm{Pois}(f(N_{i,t-1}))$.  
+% JEFF: I'm not sure what you're driving at here. Do these papers
+% assume a Poisson distribution too?
+%This is also a commonly used (and mathematically equivalent) 
+%method of modeling demographic stochasticity 
+%\citep{bonsall_hastings:2004,melbourne_hastings:2008}.  
 
 One way to model environmental stochasticity --- variation in population growth
 rate due to stochastic environmental conditions --- is by explicitly
@@ -866,6 +850,9 @@ function of temperature ($T$) and $K$ a function of rainfall ($R$):
 \label{eq:weather}
 \end{gather}
 
+% JEFF: It seems to me that this approach could be used to account for
+% either demographic or enviro stochasticity. How can you know what
+% the variation in attributable to?
 Another way to model environmental stochasticity is as lognormal variation in observed local population 
 growth rate \citep{bjornstad:2001,bonsall_hastings:2004}.  This could be applied to both density-independent and density-dependent models.
 For example, for the Ricker-logistic + immigration model:
@@ -883,7 +870,7 @@ Third, where sites can be close together but the range of sites is broad, a mult
 for $\nu_{i,t}$ with distance-dependent (geographic or otherwise) correlation coefficients
 between sites in a year might be appropriate.
 
-\subsection{Random effects of observers}
+\subsection{Random observer effects}
 
 Variation in detection probability among observers is another
 source of random variation that may need to be considered when applying
@@ -910,34 +897,36 @@ effect \citep{link_sauer:2002,sauer_link:2011}.
 %because it of interest in itself, but to avoid bias in the
 %estimates of the fixed effects.
 %
-To include random observer effects in DM models and these
-extensions, Eq.~\ref{eq:p1} can be modified to:
+To include random observer effects in DM models, 
+% and these extensions, 
+Eq.~\ref{eq:p1} can be modified to:
 \begin{gather}
 X_{i,j,t} \sim \mathrm{Bin}(N_{i,t}, p_j) \nonumber \\
 \mathrm{logit}(p_j) \sim \mathrm{N}(\mu_p, \sigma_p)
 \label{eq:pobs}
 \end{gather}
-where $X_{i,j,t}$ is the number of bird recorded at site $i$ by
+where $X_{i,j,t}$ is the number of individuals counted at site $i$ by
 observer $j$ in year $t$, $p_j$ is observer-specific detection probability,
 $\mu_p$ is the mean detection probability (on the logit scale), and $\sigma_p$ is
 the standard deviation of the random observer effects (also on the logit scale). 
-We have implemented random observer effects in the Bayesian
-framework using program \textbf{JAGS} \citep[version 3.2.0, see Appendix]{plummer:2003}.
+%We have implemented random observer effects in the Bayesian
+%framework using program \textbf{JAGS} \citep[version 3.2.0, see Appendix]{plummer:2003}.
 % (version 3.2.0; Plummer 2003)
 %with the \textbf{R} package \texttt{rjags} \citep{plummer:2011,R-2012} interface.
 
 
 
-\subsection{Forecasting Future Population Size}
+%\subsection{Forecasting Future Population Size}
 
-State-space models allow for inference about future population size,
-a critical component of population viability analysis (PVA) as well
-as conservation planning. Let $N^+_{t}$ denote population size at some
-future point in time and $[N^+_t]$ denote the probability
-distribution for this random variable. If we can specify this
-distribution, we can make statements about the
-probability that $N^+_t = k$ where $k$ is any possible
-population size including zero.
+%State-space models allow for inference about future population size,
+%a critical component of population viability analysis (PVA) as well
+%as conservation planning. 
+%Let $N^+_{t}$ denote population size at some
+%future point in time and $[N^+_t]$ denote the probability
+%distribution for this random variable. If we can specify this
+%distribution, we can make statements about the
+%probability that $N^+_t = k$ where $k$ is any possible
+%population size including zero.
 
 %The classical approach to computing $[N^+_t]$ is based upon
 %Empirical Bayes methods [CITE]. 
@@ -992,43 +981,58 @@ population size including zero.
 
 %Relative to the computational challenges associated with the
 %empirical Bayes methods, 
-A fully Bayesian approach to PVA is straightforward to
-implement with MCMC. Because population size at any future point %Furthermore, b
-in time is regarded as a standard, unknown parameter, computing the
-posterior distribution of $N^+_t$ requires no additional steps
-in the MCMC algorithm, other than formally stating that the count data are
-``missing'' in future years. An example of this is provided in the Appendix.
+%A fully Bayesian approach to PVA is straightforward to
+%implement with MCMC. Because population size at any future point %Furthermore, b
+%in time is regarded as a standard, unknown parameter, computing the
+%posterior distribution of $N^+_t$ requires no additional steps
+%in the MCMC algorithm, other than formally stating that the count data are
+%``missing'' in future years. An example of this is provided in the Appendix.
 
 
 
-\subsection{Bayesian inference}
+\subsection{Statistical inference}
 
-\citet{dail_madsen:2011} demonstrated how to fit these models using maximum 
-likelihood estimation. The likelihood can be maximized numerically using the
+\citet{dail_madsen:2011} used likelihood based methods for estimating
+the parameters of their model. The same likelihood functions can be
+used to accomodate the alternative population growth models that we
+have proposed. Methods for implementing these models using maximum 
+likelihood estimation are included in the %. The likelihood can be maximized numerically using the
 \textbf{R} package \texttt{unmarked} \citep{fiske_chandler:2011}. Examples
 are given in the Appendix.
 
-Bayesian inference, however, has several appealing features. First, it
-allows direct probability statements to be made about a hypothesis
-given data \citep{link_barker:2010}.    
-Second, Bayesian methods offer straight-forward approaches for
-combine data from multiple sources or use existing estimates of parameters as prior
-distributions. In practice, simulation methods such as Markov
-chain Monte Carlo (MCMC) are used to simulate the posterior
-distributions. %Although MCMC can be slow, our experience is that it
+Bayesian inference is an alternative to classical inference with
+several appealing features. First, it allows direct probability
+statements to be made about a hypothesis given data
+\citep{link_barker:2010}.  Second, Bayesian methods offer
+straight-forward approaches for combining data from multiple sources
+or use existing estimates of parameters as prior distributions. Third,
+one common usage of state-space models is for predicting future
+population size, and this task easily accomplished using Bayesian
+methods.
+
+In
+practice, simulation methods such as Markov chain Monte Carlo (MCMC)
+are used to simulate the posterior distributions. While time
+consuming, MCMC may be the only viable approach for estimating
+parameters, especially for hierarchical models with many random
+effects.  
+% Although MCMC can be slow, our experience is that it
 %may actually converge faster than the amount of time required to
 %maximize the likelihood shown in Eq.\ref{eq:like}, especially
 %when the upper bound of the summation must be high, e.g. $N_{max}>200$.
 %Furthermore, 
-MCMC may be the only possible option for estimating parameters
-using some of the extensions described below, such as allowing for
-additional random effects.
-
-Writing custom MCMC algorthims is often tedious and foreign to
-ecologists, but software packages such as %\textbf{WinBUGS} and
-\textbf{JAGS} \citep{plummer:2003} overcome the technical 
-difficulties by allowing users to specify the model using a simple symbolic 
-descriptions. Examples are given in the Appendix.
+%MCMC may be the only possible option for estimating parameters
+%using some of the extensions described below, such as allowing for
+%additional random effects.
+%Writing custom MCMC algorthims is often tedious and foreign to
+%ecologists, but 
+Software packages such as %\textbf{WinBUGS} and
+\textbf{JAGS} \citep{plummer:2003} make these methods readily
+available to ecologists, and we have provided examples in the
+Appendix. 
+%overcome the technical 
+%difficulties by allowing users to specify the model using a simple symbolic 
+%descriptions. Examples are given in the Appendix.
 
 %For example here is \textbf{BUGS} code for the ``geometric'' model described
 %in Eq.~\ref{eq:hm}:
@@ -1107,11 +1111,12 @@ over the wrong DID model?
 
 \subsection{Analysis of Breeding Bird Survey Data}
 
-We applied these models to North American Breeding Bird Survey
-(BBS) data from 1966-2010 in the bordering US states
+We applied our model extensions to North American Breeding Bird Survey
+(BBS) data collected from 1966-2010 in the bordering US states
 Maryland and Virginia. For our focal species, we selected the
 ovenbird (\textit{Seiurus aurocapilla}), an abundant and widespread,
-forest-breeding migratory songbird with a stable or increasing trend in the region \citep{porneluzi_etal:2011}.
+forest-breeding migratory songbird with a stable or increasing trend
+in the region \citep{porneluzi_etal:2011}. 
 %and golden-winged warblers (\textit{Vermivora chrysoptera}), which
 %only breeds in the western parts of these states and has been declining in the
 %region \citep{confer_etal:2011}.  %MORE INFORMATION ABOUT THE SPECIES?
@@ -1142,8 +1147,8 @@ Following \citet{link_sauer:2002},
 we also included the first time an observer ran a route as a predictor variable for detection
 probability.
 
-We fitted a series of frequentist models, 
-and then a series of Bayesian models. We started by testing
+We fitted a series of models using maximum likelihood, 
+and then a series of models using MCMC. We started by testing
 three models of initial abundance (Poisson, negative binomial, and
 zero-inflated Poisson) with exponential dynamics
 (Eq.~\ref{eq:exp}) and no covariates.  We selected the minimum Akaike's Information
@@ -1157,12 +1162,15 @@ the previous three with immigration, and exponential + immigration.
 %immigration, and Gompertz-logistic + immigration. %We then tested the effect of average
 %minimum temperature for June and July on all dynamics parameters from
 %the minimum AIC dynamics model.
-As above, these models require a a finite upper bound ($N_{max}$) to integrate
+%As above, t
+These models require a a finite upper bound ($N_{max}$) to integrate
 over when run in a maximum likelihood
 framework; we used 600. % for ovenbirds and 350 for golden-winged warblers.
 
 We ran the top ranked models from the maximum likelihood
-analyses in a Bayesian framework with non-informative priors.  We added random observer 
+analyses in a Bayesian framework with non-informative priors.  
+% JEFF: We need to be specific about the priors
+We added random observer 
 effects and environmental stochasticity, modeled as lognormal
 variation in regional population growth rate, Eq.~\ref{eq:nuRand}. % and, where appropriate, zero-inflated dynamics.  
 We tested for lack of convergence using
