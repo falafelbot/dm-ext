@@ -375,60 +375,13 @@ vertebrate populations \citep{robbins_etal:1986}.
 %space and time. 
 %believe these extensions will increase the utility of the model for
 %application to existing datasets such the Breeding Bird Survey.
-\begin{comment}
-  The DM model allows for inference about spatial and temporal
-dynamics in abundance while accounting for observation error
-using only spatially and temporally replicated count data. Their model
-is an extension of the closed-population $N$-mixture model
-\citep{royle:2004biom}, which was designed specifically to
-address the problem of modeling spatial variation in abundance in the
-  presence of observation error, specifically, when detection
-  probability is less than one. The DM extension relaxes the
-assumption of population closure and includes explicit
-parameters describing population change as a first-order Markovian
-  process. [more details]
-
-[applications / potential etc... ] The DM model is relevant to a
-vast number of problems confronting basic and applied ecologicalresearch. Answering questions about climate change etc...
-require
-spatially and temporally extensive datasets such as result from
-the
-  North American Breeding Bird Survey (BBS)
-\citep{robbins_etal:1986}. However, most of the datasets of theappropriate scale are collected by volunteers and using
-protocols
-  that are not amenable to traditional approaches of modeling
-  abundance and detection probability based on standard
-capture-recapture methods. Instead they have, at best, simple
-count
-data for which, when it can be interpreted as counts of unique  individuals, the DM model can be applied.. Yadi ya
-
-Although the DM model was designed explicitly for these
-purposes,
-the original formulation of the model makes strict
-distributional
-  assumptions and does not acknowledge many of the sources of
-variation inherent to existing ecological time series data.  We  propose variations on these models that are likely to be more
-realistic and useful in many cases. We demonstrate the
-usefulness
-  of these new models with simulated and real BBS data.
-
-
-In this paper, we demonstrate how the DM model resolves each ofthese four limitations of conventional state-space models, and
-we
-extend the DM model in several important ways. First, we
-demonstrate
-  how classical population models can be embedded within the DM
-model. Then we present methods for handling excess zeros as well
-as
-nuisance parameters such as random observer effects on detection probability. A simulation study
-\end{comment}
 
 
 \section{The Dail-Madsen Model}
 \label{sec:dm}
 
-The DM model is an extension of the $N$-mixture model
-\citep{royle:2004biom}, which allows for inference about spatial
+The DM model is an extension of the 
+\citet{royle:2004biom} $N$-mixture model, which allows for inference about spatial
 variation in abundance when individuals cannot be detected with
 certainty. To estimate parameters associated with both abundance 
 and the detection process, the original $N$-mixture model uses replicate
@@ -439,7 +392,7 @@ model relaxes this closure assumption and includes explicit parameters
 describing population change over time.
 
 
-\subsection{The Data}
+%\subsection{The Data}
 
 The DM model requires count data collected at $R$ sites, each of
 which is surveyed on $T$ primary sampling periods. 
@@ -459,16 +412,18 @@ at site $i$ and primary period $t$.
 %If secondary sampling periods were
 %used, an extra dimension is added so that we have $X_{ijt}:
 %j=1,\hdots,J$. 
-Typically, we know $X_{i,t}$ will be lower than the
-actual quantity of interest, abundance,
-denoted $N_{i,t}$. In cases where detection probability is perfect,
+In general, $X_{i,t}$ will be lower than abundance, 
+%actual quantity of interest, abundance,
+%denoted 
+$N_{i,t}$, but in cases where detection is perfect,
 abundance is observed directly such that $X_{i,t} \equiv N_{i,t}$.
 
 \subsection{The Original Formulation of the Model}
 
-Like traditional state-space models, the DM model includes the
-three conditionally related processes shown in Eq.~\ref{eq:ss1},
-which correspond to (1) initial abundance, i.e. the
+Like traditional state-space models, the DM model includes 
+three conditionally related processes corresponding to: 
+% shown in Eq.~\ref{eq:ss1}, which correspond to 
+(1) initial abundance, i.e. the
 abundance at site $i$ during the first primary period,
 denoted (2) abundance at time $t$ (for $t>1$) which depends upon
 abundance at $t-1$, and (3) the
@@ -480,9 +435,11 @@ abundance and the observed count data.
 
 \subsubsection{Initial abundance}
 
-Recall that conventional state-space models assume that the
-distribution for the initial time period,
-$[N_1 | \bm{\theta}]$, is either the equilibrium
+%Recall that 
+Conventional state-space models assume that the
+distribution for the initial time period %,
+%$[N_1 | \bm{\theta}]$, 
+is either the equilibrium
 distribution, or has zero variance.
 In contrast, \citet{dail_madsen:2011} proposed modeling $N_{i1}$
 as either a Poisson or negative binomial random variable:
@@ -528,8 +485,8 @@ parameter identifiability discussed previously.
 \subsubsection{Abundance in subsequent time periods}
 
 The DM model assumes that abundance in time $t$ is a function of
-abundance in time $t-1$, i.e. abundance at each site evolves as a
-first order Markovian process. %, although higher order processes are also possible.
+abundance at time $t-1$, i.e. abundance at each site evolves as a
+first order Markov process. %, although higher order processes are also possible.
 \citet{dail_madsen:2011} considered several models to describe the temporal dynamics;
 however, in each case they modeled $N_t$ as the sum of two random variables:
 $S_{i,t}$, the number of indivduals surviving from $t-1$ and not
@@ -552,8 +509,8 @@ depend on $N_{i,t-1}$, and which simulates a ``propagule rain'' of new
 individuals; the autoregressive model, $G_{i,t} \sim
 \mathrm{Pois}(\gamma(N_{i,t-1}))$, which
 simulates geometric or density independent growth; and the
-``no-trend'' model, $\gamma = (1-\omega)\Lambda$, which keeps
-expected abundance constant over time. Covariates of
+``no-trend'' model, $\gamma = (1-\omega)\Lambda$, which assumes the
+population is at equilibrium. Covariates of
 $\omega$ and $\gamma$ can be easily accommodated, for example
 using logit- and log-linear models respectively.
 
@@ -602,24 +559,28 @@ model
 %alternatives that (1) allow for modeling spatial variation in
 %abundance, (2) respect the discrete nature of the counts, and
 %(3) have parameters that are estimable.
-The one
-remaining task is to replace the observation model
-$X_t = N_t + \zeta_t$ (Eq.~\ref{eq:ss1c}) with one that can be
-more easily interpreted. The observation
-model assumes that individuals are missed due to imperfect
-detection. The simplest model for imperfect detection is
+%The one
+%remaining task is to replace the observation model
+%$X_t = N_t + \zeta_t$ (Eq.~\ref{eq:ss1c}) with one that can be
+%more easily interpreted. 
+The observation model adopted by \citet{dail_madsen:2011} is the same
+binomial model proposed by \citet{royle:2004biom}: % assumes that individuals are missed due to imperfect
+%detection. The simplest model for imperfect detection is
 \begin{equation}
   X_{i,t} \sim \mathrm{Bin}(N_{i,t}, p)
   \label{eq:p1}
 \end{equation}
+where $p$ is the probability of detecting each individual. Variation
+in detection probability can be modeled as a function of site-specific
+or occasion-specific covariates using, for example, a logit-linear model.
 %or equivalently,
 %\begin{equation}
 %[X_{it} | N_{it}, \bm{p}] = \binom{N_{it}}{X_{it}}
 %\bm{p}^{X_{it}}(1-\bm{p})^{N_{it}-X_{it}}.
 %  \label{eq:1}
 %\end{equation}
-Under this model, $\bm{p}$ is interpreted as the detection
-probability parameter.
+%Under this model, $\bm{p}$ is interpreted as the detection
+%probability parameter.
 
 %%%% Save for discussion?
 %Surprisingly detection probability, $p$, can be estimated without
