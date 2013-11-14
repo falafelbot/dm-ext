@@ -1082,7 +1082,7 @@ parameters the same as the Ricker-logistic model (with $r$ = 0.05 and $K$ = 10) 
 simulated low, medium, and high values of immigration rate with 1000
 simulation each (Table 1).
 
-We used the \texttt{unmarked} library in \textbf{R} to estimate the parameters 
+We used the \textbf{R} package \texttt{unmarked} to estimate the parameters 
 for each simulation with the same
 initial abundance (Poisson) and dynamics models as were simulated.
 When run in a maximum likelihood framework, these models require a
@@ -1112,7 +1112,7 @@ over the wrong DID model?
 \subsection{Analysis of Breeding Bird Survey Data}
 
 We applied our model extensions to North American Breeding Bird Survey
-(BBS) data collected from 1966-2010 in the bordering US states
+(BBS) data collected from 1966-2010 in %the bordering US states
 Maryland and Virginia. For our focal species, we selected the
 ovenbird (\textit{Seiurus aurocapilla}), an abundant and widespread,
 forest-breeding migratory songbird with a stable or increasing trend
@@ -1124,7 +1124,9 @@ in the region \citep{porneluzi_etal:2011}.
 %GENERAL ABOUT BBS DATA.
 The BBS is an annual roadside survey implemented by trained
 observers in the United States and Canada. An observer conducts 50
-3-minute point counts, with 400 m radii and 0.8 km apart from each other along a
+3-minute point counts, with 400 m radii and 0.8 km apart 
+%from each other 
+along a
 39.4 km route. We only used data marked as acceptable for use in the annual BBS
 analysis \citep{sauer_etal:1994auk}.  We summed the number of ovenbirds
 seen on each route and year, and used the routes (rather
@@ -1179,7 +1181,8 @@ For each chain we sampled the MCMC for at least 40,000 iterations, after at
 least 3,000 adaptation and tuning samples.  
 We also used these models to obtain route and 
 year specific abundance estimates.  Because of the memory requirements involved,
-we obtained these estimates from a single chain.  %We present these estimates for ovenbirds only.
+we used %obtained these estimates from 
+a single chain.  %We present these estimates for ovenbirds only.
 
 \section{Results}
 
@@ -1190,8 +1193,10 @@ coverage was nominal (93.4\% - 97.0\%; Fig.~\ref{fig:exp_hists}; Table S2.1 in A
 However, estimates of $r$ were 
 imprecise (RMSE between 0.020 and 0.025; relative RMSE between 413\% and 
 482\% for non-zero true $r$) and biased low (between -0.008 and -0.005; relative bias between
--151\% and -101\% for non-zero true $r$) when the true value of $\Lambda$ was low (1). 
-Simulations of the Ricker-logistic model also generally performed well (Fig.~\ref{fig:rick_hists}; 
+-151\% and -101\% for non-zero true $r$) when the true value of
+$\Lambda$ was low. % (1). 
+Simulations of the Ricker-logistic model %also 
+generally performed well (Fig.~\ref{fig:rick_hists}; 
 Table S2.2 in Appendix 2), except when the true value of $r$ was low (0.005). In this case the 
 estimates of $r$ and $K$ were inaccurate (relative RMSE between 87.4\% and 2091.8\%),
 biased high (between 65.4\% and 198.9\%), and had low coverage (between 77.6\% and 94.3\%).
@@ -1238,7 +1243,9 @@ Estimates for the top ranked model %for ovenbird
 %(NB[$\Lambda (.) \alpha (.)$]Ricker-logistic+Immigration[$r(.)K(.) \iota(.)$]p(wind+1st)) 
 were similar when
 run in the Bayesian framework, except that the estimate of $r$
-more than halved (Table S3.2 OR Figure S3.1, Appendix 3). %to 0.011 $\pm$ 0.005 [for
+more than halved 
+%% JEFF: How do we explain that????
+(Table S3.2 OR Figure S3.1, Appendix 3). %to 0.011 $\pm$ 0.005 [for
 %Bayesian model estimates we present mean and SD]). 
 When random observer effects
 were added, estimates for $\Lambda$ and $K$ increased dramatically
@@ -1267,7 +1274,7 @@ more evenly distributed by 2010.
 %Coefficient of variation (CV) for route and year specific
 %abundance estimates varied between 0.11 and 2.31 (mean = 0.46).  By comparison, CV
 %for the estimate of mean initial abundance ($\Lambda$) was 0.15.
-As expected, uncertainty in estimates of route and year specific abundance was high.
+%As expected, uncertainty in estimates of route and year specific abundance was high.
 
 %There was slightly more support for the ZIP distribution for initial
 %abundance of golden-winged warbler than for the negative binomial; both were strongly
@@ -1340,11 +1347,15 @@ in
 \end{comment}
 
 
-Our work has highlighted the limitations of classical state-space
-models as applied to ecological time series data, and we have
-demonstrated how a class of open population $N$-mixture models
-proposed by \citet{dail_madsen:2011} overcomes these
-limitations. We extended their model in several important
+Our work %has highlighted the limitations of classical state-space
+%models as applied to ecological time series data, and we have
+%demonstrated 
+demonstrates how a class of open population $N$-mixture models
+proposed by \citet{dail_madsen:2011} overcomes 
+%these limitations. 
+many of the limitations of classical state-space models as applied to
+ecological time series data.
+We extended their model in several important
 ways to accomodate common features of ecological
 datasets, including sparse counts, zero-inflation, environmental
 stochasticity, and random variation in observation error.
