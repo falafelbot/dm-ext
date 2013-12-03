@@ -2,11 +2,15 @@
 \usepackage[landscape,a4paper,hmargin={2.4cm,2.4cm},vmargin={2.4cm,2.4cm}]{geometry}
 \usepackage[pdftex]{hyperref}
 \usepackage{soul}
+\usepackage{graphicx}
+%\usepackage{rotating}
 
 \begin{document}
 \title{Appendix 2: Simulation Results}
+\date{} %remove date
 \maketitle
 \renewcommand*\thetable{S2.\arabic{table}}
+\renewcommand*\thefigure{S2.\arabic{figure}}
 \begin{table}[htb]
   \centering
   \footnotesize
@@ -113,7 +117,26 @@
 10 &0.05 &10 &0.500 &0.25 &10.000 &0.05057 &9.648 &0.50811 &0.25110 &0.96491 &0.01942 &2.68264 &0.07763 &0.02050  &0.947 &0.940 &0.952 &0.951 &0.941\\
   \hline
   \end{tabular}
-  \label{tab:simricker}
+  \label{tab:simricki}
 \end{table}
+
+\begin{figure}
+\caption{Histograms of 1000 parameter estimates for each of 9
+simulation cases with Ricker-logistic dynamics. The vertical lines are the 
+data-generating values.}
+  \centering
+  \includegraphics{../figs/rick_hists}
+\label{fig:rick_hists}
+\end{figure}
+
+\begin{figure}
+\caption{Histograms of 1000 parameter estimates for each of 3
+simulation cases with Ricker-logistic + immigration dynamics. The vertical lines are the 
+data-generating values.}
+  \centering
+  \includegraphics[width=8.5in]{../figs/ricki_hists}
+\label{fig:ricki_hists}
+\end{figure}
+
 
 \end{document}

@@ -96,7 +96,7 @@ FUNCTION {output.nonnull}
     { ", " * write$ }
     { output.state after.block =
         { add.period$ write$
-          newline$
+          %newline$
           "\newblock " write$
         }
         { output.state before.all =
@@ -129,7 +129,7 @@ FUNCTION {output.check}
 FUNCTION {fin.entry}
 { add.period$
   write$
-  newline$
+ % newline$
 }
 
 FUNCTION {new.block}
@@ -592,7 +592,7 @@ FUNCTION {make.full.names}
 }
 
 FUNCTION {output.bibitem}
-{ newline$
+{ %newline$
   "\bibitem[" write$
   label write$
   ")" make.full.names duplicate$ short.list =
@@ -602,7 +602,7 @@ FUNCTION {output.bibitem}
   "]{" * write$
   cite$ write$
   "}" write$
-  newline$
+  %newline$
   ""
   before.all 'output.state :=
 }
@@ -642,7 +642,8 @@ FUNCTION {format.date}
        pop$ "????" }
     'skip$
   if$
-  extra.label *
+  add.period$ %write$
+  %extra.label *
 }
 
 FUNCTION {format.btitle}
@@ -883,14 +884,15 @@ FUNCTION {format.incoll.inproc.crossref}
 FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output
+%  author format.key output
+  new.block
   format.date "year" output.check
   date.block
   format.title "title" output.check
   new.block
   crossref missing$
     { journal
-      emphasize
+      %emphasize
       "journal" output.check
       add.blank
       format.vol.num.pages output
