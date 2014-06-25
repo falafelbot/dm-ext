@@ -1,0 +1,16 @@
+# JAGS code for Gompertz-logistic model
+model {
+lambda ~ dunif(0, 50)
+r ~ dunif(0,5)
+K ~ dunif(0, 50)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    muN[i,t-1] <- N[i,t-1] * exp(r * (1 - log(N[i,t-1] + 1) / log(K + 1)))
+    N[i,t] ~ dpois(muN[i,t-1])
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}

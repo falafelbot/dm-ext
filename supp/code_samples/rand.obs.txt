@@ -1,0 +1,26 @@
+# JAGS code for random effects of observers
+# Poisson initial abundance, Gompertz-logistic dynamics 
+model {
+lambda ~ dunif(0, 50)
+r ~ dunif(0,5)
+K ~ dunif(0, 50)
+p0 ~ dnorm(0, 0.01)
+sigma.p ~ dunif(0,10)
+tau.p <- 1 / (sigma.p * sigma.p)
+
+for (o in 1:nObs) {
+  logitpObs[o] ~ dnorm(p0,tau.p)
+}
+
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  logit(p[i,1]) <- logitpObs[obsMat[i,1]]
+  y[i,1] ~ dbin(p[i,1], N[i,1])
+  for(t in 2:nYears) {
+    muN[i,t-1] <- N[i,t-1] * exp(r * (1 - log(N[i,t-1] + 1) / log(K + 1)))
+    N[i,t] ~ dpois(muN[i,t-1])
+    logit(p[i,t]) <- logitpObs[obsMat[i,t]]
+    y[i,t] ~ dbin(p[i,t], N[i,t])
+    }
+  }
+}

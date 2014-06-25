@@ -1,0 +1,26 @@
+# JAGS code for environmental stochasticity model
+# Explicitly modeling dynamic parameters as functions of environmental covariates
+# Negative binomial initial abundance, Gompertz-logistic dynamics
+model {
+lambda ~ dunif(0, 400)
+alpha ~ dunif(0, 400)
+P <- alpha/(alpha + lambda)
+K0 ~ dnorm(0, 0.01)
+Krain ~ dnorm(0, 0.01)
+r0 ~ dnorm(0, 0.01)
+rTemp ~ dnorm(0, 0.01)
+p ~ dunif(0,1)
+
+for(i in 1:nSites) {
+  N[i,1] ~ dnegbin(P, alpha)
+  for(t in 2:nYears) {
+      K[i,t-1] <- exp(K0 + Krain*rain[i,t-1])
+      r[i,t-1] <- exp(r0 + rTemp*temp[i,t-1])
+      muN[i,t-1] <- N[i,t-1] * exp(r[i,t-1] * (1 - log(N[i,t-1] + 1) / log(K[i,t-1] + 1)))
+      N[i,t] ~ dpois(muN[i,t-1])
+  }
+  for(t in 1:nYears) {
+    y[i,t] ~ dbin(p, N[i,t])
+  }
+}
+}

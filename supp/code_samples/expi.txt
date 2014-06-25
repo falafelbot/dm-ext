@@ -1,0 +1,16 @@
+# JAGS code for exponential plus immigration model
+model {
+lambda ~ dunif(0, 5)
+r ~ dnorm(0,0.01)
+p ~ dunif(0,1)
+iota ~ dunif(0, 5)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    muN[i,t-1] <- N[i,t-1] * exp(r) + iota
+    N[i,t] ~ dpois(muN[i,t-1])
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}

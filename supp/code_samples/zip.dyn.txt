@@ -1,0 +1,21 @@
+# JAGS code for zero-inflated Poisson dynamics model
+# Dynamics are otherwise exponential + immigration
+model {
+lambda ~ dunif(0, 200)
+psi ~ dunif(0, 1)
+r ~ dnorm(0, 0.01)
+iota ~ dunif(0, 20)
+p ~ dunif(0,1)
+
+for(i in 1:nSites) {
+  range[i] ~ dbern(1-psi)
+  N[i,1] ~ dpois(lambda*range[i])
+  for(t in 2:nYears) {
+      muN[i,t-1] <- (N[i,t-1]*exp(r)+iota)*range[i]
+      N[i,t] ~ dpois(muN[i,t-1])
+    }
+  for(t in 1:nYears) {
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}

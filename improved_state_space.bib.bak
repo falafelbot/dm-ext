@@ -1,0 +1,1495 @@
+% This file was created with JabRef 2.10.
+% Encoding: Cp1252
+
+
+@Article{alho:1990,
+  Title                    = {Logistic regression in capture-recapture models},
+  Author                   = {Alho, J. M.},
+  Journal                  = {Biometrics},
+  Year                     = {1990},
+  Pages                    = {623--635},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{alldredge_etal:2007auk,
+  Title                    = {Time-of-detection method for estimating abundance from point-count surveys},
+  Author                   = {Alldredge, M. W. and Pollock, K. H. and Simons, T. R. and Collazo, J. A. and Shriner, S. A. and Johnson, D H},
+  Journal                  = {The Auk},
+  Year                     = {2007},
+  Number                   = {2},
+  Pages                    = {653--664},
+  Volume                   = {124}
+}
+
+@Article{alldredge_etal:2007ea,
+  Title                    = {Factors affecting aural detections of songbirds},
+  Author                   = {Alldredge, M. W. and Simons, T. R. and Pollock, K. H.},
+  Journal                  = {Ecological Applications},
+  Year                     = {2007},
+  Number                   = {3},
+  Pages                    = {948--955},
+  Volume                   = {17},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{alldredge_etal:2007jwm,
+  Title                    = {A field evaluation of distance measurement error in auditory avian point count surveys},
+  Author                   = {Alldredge, M. W. and Simons, T. R. and Pollock, K. H.},
+  Journal                  = {The Journal of Wildlife Management},
+  Year                     = {2007},
+  Number                   = {8},
+  Pages                    = {2759--2766},
+  Volume                   = {71},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@InCollection{barker_sauer:1992,
+  Title                    = {Modeling population change from time series data},
+  Author                   = {Barker, R. J. and Sauer, J. R.},
+  Booktitle                = {Wildlife 2001: populations},
+  Publisher                = {Elsevier},
+  Year                     = {1992},
+
+  Address                  = {New York},
+  Editor                   = {D. R. McCullough and R. Barrett},
+  Pages                    = {182--194}
+}
+
+@InCollection{barker_sauer:1995,
+  Title                    = {Statistical aspects of point count sampling},
+  Author                   = {Barker, R. J. and Sauer, J. R.},
+  Booktitle                = {Monitoring Bird Populations by Point Counts},
+  Publisher                = {US Department of Agriculture, Forest Service General Technical Report PSW-GTR-149},
+  Year                     = {1995},
+  Editor                   = {CJ Ralph and JR Sauer and S. Droege},
+  Pages                    = {125--130}
+}
+
+@Article{bart:2005,
+  Title                    = {Monitoring the abundance of bird populations},
+  Author                   = {Bart, J.},
+  Journal                  = {The Auk},
+  Year                     = {2005},
+  Number                   = {1},
+  Pages                    = {15--25},
+  Volume                   = {122},
+
+  Publisher                = {BioOne}
+}
+
+@Article{bart_etal:2004,
+  Title                    = {Density estimation in wildlife surveys},
+  Author                   = {Bart, J. and Droege, S. and Geissler, P. and Peterjohn, B. and Ralph, C. J.},
+  Journal                  = {Wildlife Society Bulletin},
+  Year                     = {2004},
+  Number                   = {4},
+  Pages                    = {1242--1247},
+  Volume                   = {32},
+
+  Publisher                = {BioOne}
+}
+
+@Article{besbeas_etal:2002,
+  Title                    = {Integrating mark--recapture--recovery and census data to estimate animal abundance and demographic parameters},
+  Author                   = {Besbeas, P. and Freeman, S N and Morgan, B J T and Catchpole, E A},
+  Journal                  = {Biometrics},
+  Year                     = {2002},
+  Number                   = {3},
+  Pages                    = {540--547},
+  Volume                   = {58},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{bibby_buckland:1987,
+  Title                    = {Bias of bird census results due to detectability varying with habitat},
+  Author                   = {Bibby, C. J. and Buckland, S. T.},
+  Journal                  = {Acta Oecologia},
+  Year                     = {1987},
+  Number                   = {2},
+  Pages                    = {103--112},
+  Volume                   = {8}
+}
+
+@Article{bjornstad:2001,
+  Title                    = {Cycles and synchrony: two historical experiments and one experience},
+  Author                   = {Bj{\o}rnstad, O. N.},
+  Journal                  = {Journal of Animal Ecology},
+  Year                     = {2001},
+  Number                   = {5},
+  Pages                    = {869--873},
+  Volume                   = {69},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{bjornstad_grenfell:2001,
+  Title                    = {Noisy clockwork: time series analysis of population fluctuations in animals},
+  Author                   = {Bj{\o}rnstad, O. N. and Grenfell, B. T.},
+  Journal                  = {Science},
+  Year                     = {2001},
+  Number                   = {5530},
+  Pages                    = {638--643},
+  Volume                   = {293},
+
+  Publisher                = {American Association for the Advancement of Science}
+}
+
+@Article{bjornstad_etal:1999,
+  Title                    = {Spatial population dynamics: analyzing patterns and processes of population synchrony},
+  Author                   = {Bj{\o}rnstad, O. N. and Ims, R. A. and Lambin, X.},
+  Journal                  = {Trends in Ecology \& Evolution},
+  Year                     = {1999},
+  Number                   = {11},
+  Pages                    = {427--432},
+  Volume                   = {14},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{bled_etal:2012,
+  Title                    = {Impacts of Deepwater Horizon oil spill on avian population trends},
+  Author                   = {Bled, F. and others},
+  Journal                  = {Dont know},
+  Year                     = {2012}
+}
+
+@Article{bonsall_hastings:2004,
+  Title                    = {Demographic and environmental stochasticity in predator--prey metapopulation dynamics},
+  Author                   = {Bonsall, M. B. and Hastings, A.},
+  Journal                  = {Journal of Animal Ecology},
+  Year                     = {2004},
+  Number                   = {6},
+  Pages                    = {1043--1055},
+  Volume                   = {73},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{borchers:2012,
+  Title                    = {Unknown},
+  Author                   = {Borchers, D. L.},
+  Journal                  = {Unknown},
+  Year                     = {2012}
+}
+
+@Article{borchers_etal:1998,
+  Title                    = {Mark-recapture models for line transect surveys},
+  Author                   = {Borchers, D. L. and Zucchini, W. and Fewster, R. M.},
+  Journal                  = {Biometrics},
+  Year                     = {1998},
+  Pages                    = {1207--1220},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{boulinier_etal:2001,
+  Title                    = {Forest fragmentation and bird community dynamics: inference at regional scales},
+  Author                   = {Boulinier, T. and Nichols, J. D. and Hines, J. E. and Sauer, J. R. and Flather, C. H. and Pollock, K. H.},
+  Journal                  = {Ecology},
+  Year                     = {2001},
+  Number                   = {4},
+  Pages                    = {1159--1169},
+  Volume                   = {82},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{brooks_etal:2004,
+  Title                    = {A Bayesian approach to combining animal abundance and demographic data},
+  Author                   = {Brooks, SP and King, R and Morgan, BJT},
+  Journal                  = {Animal Biodiversity and Conservation},
+  Year                     = {2004},
+  Number                   = {1},
+  Pages                    = {515--529},
+  Volume                   = {27}
+}
+
+@Book{buckland_etal:2001,
+  Title                    = {Introduction to distance sampling: estimating abundance of biological populations},
+  Author                   = {Buckland, S and Anderson, D and Burnham, K and Laake, J and Borcher, D and Thomas L},
+  Publisher                = {Oxford University Press},
+  Year                     = {2001},
+
+  Address                  = {Oxford, {UK}},
+
+  ISBN                     = {9780198509271},
+  Shorttitle               = {Introduction to distance sampling}
+}
+
+@Article{buckland_etal:2004,
+  Title                    = {State-space models for the dynamics of wild animal populations},
+  Author                   = {Buckland, S T and Newman, K B and Thomas, L. and Koesters, N B},
+  Journal                  = {Ecological Modelling},
+  Year                     = {2004},
+  Number                   = {1},
+  Pages                    = {157--175},
+  Volume                   = {171},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{bulmer:1975,
+  Title                    = {The statistical analysis of density dependence},
+  Author                   = {Bulmer, M G},
+  Journal                  = {Biometrics},
+  Year                     = {1975},
+  Pages                    = {901--911},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{burnham_overton:1979,
+  Title                    = {Robust estimation of population size when capture probabilities vary among animals},
+  Author                   = {Burnham, K. P. and Overton, W. S.},
+  Journal                  = {Ecology},
+  Year                     = {1979},
+  Number                   = {5},
+  Pages                    = {927--936},
+  Volume                   = {60},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{campbell_francis:2011,
+  Title                    = {Using stereo-microphones to evaluate observer variation in {North American Breeding Bird Survey} point counts},
+  Author                   = {Campbell, M. and Francis, C. M},
+  Journal                  = {The Auk},
+  Year                     = {2011},
+  Number                   = {2},
+  Pages                    = {303--312},
+  Volume                   = {128}
+}
+
+@Article{carroll_lombard:1985,
+  Title                    = {A note on {N} estimators for the binomial distribution},
+  Author                   = {Carroll, R. J. and Lombard, F.},
+  Journal                  = {Journal of the American Statistical Association},
+  Year                     = {1985},
+  Pages                    = {423--426},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{chandler_etal:2011,
+  Title                    = {{Inference about density and temporary emigration in unmarked populations}},
+  Author                   = {Chandler, R and Royle, J and King, D},
+  Journal                  = {Ecology},
+  Year                     = {2011},
+  Pages                    = {1429--1435},
+  Volume                   = {92},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{chandler_etal:2009,
+  Title                    = {Scrub-shrub bird habitat associations at multiple spatial scales in beaver meadows in {Massachusetts}},
+  Author                   = {Chandler, R. B. and King, D. I. and DeStefano, S.},
+  Journal                  = {The Auk},
+  Year                     = {2009},
+  Number                   = {1},
+  Pages                    = {186--197},
+  Volume                   = {126},
+
+  Publisher                = {BioOne}
+}
+
+@Article{clark_bjornstad:2004,
+  Title                    = {Population time series: process variability, observation errors, missing values, lags, and hidden states},
+  Author                   = {Clark, J. S. and Bj{\o}rnstad, O. N.},
+  Journal                  = {Ecology},
+  Year                     = {2004},
+  Number                   = {11},
+  Pages                    = {3140--3150},
+  Volume                   = {85},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Book{cochran:2007,
+  Title                    = {Sampling techniques},
+  Author                   = {Cochran, W. G.},
+  Publisher                = {Wiley-India},
+  Year                     = {2007}
+}
+
+@InCollection{confer_etal:2011,
+  Title                    = {Golden-winged warbler (\textit{Vermivora chrysoptera})},
+  Author                   = {Confer, J. L. and Hartman, P. and Roth, A.},
+  Booktitle                = {The Birds of North America Online},
+  Publisher                = {Cornell Laboratory of Ornithology},
+  Year                     = {2011},
+
+  Address                  = {Ithaca, New York},
+  Editor                   = {A. Poole}
+}
+
+@Article{cook_jacobson:1979,
+  Title                    = {A design for estimating visibility bias in aerial surveys},
+  Author                   = {Cook, R. D. and Jacobson, J. O.},
+  Journal                  = {Biometrics},
+  Year                     = {1979},
+  Pages                    = {735--742},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{dail_madsen:2011,
+  Title                    = {{Models for estimating abundance from repeated counts of an open metapopulation.}},
+  Author                   = {Dail, D and Madsen, L},
+  Journal                  = {Biometrics},
+  Year                     = {2011},
+
+  Month                    = {jun},
+  Number                   = {2},
+  Pages                    = {577--87},
+  Volume                   = {67}
+}
+
+@Article{dennis_etal:2006,
+  Title                    = {Estimating density dependence, process noise, and observation error},
+  Author                   = {Dennis, B. and Ponciano, J. M. and Lele, S. R. and Taper, M. L. and Staples, D. F.},
+  Journal                  = {Ecological Monographs},
+  Year                     = {2006},
+  Number                   = {3},
+  Pages                    = {323--341},
+  Volume                   = {76},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{dennis_taper:1994,
+  Title                    = {Density dependence in time series observations of natural populations: estimation and testing},
+  Author                   = {Dennis, B. and Taper, M. L.},
+  Journal                  = {Ecological Monographs},
+  Year                     = {1994},
+  Number                   = {2},
+  Pages                    = {205--224},
+  Volume                   = {64},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{diefenbach_etal:2003,
+  Title                    = {Variability in grassland bird counts related to observer differences and species detection rates},
+  Author                   = {Diefenbach, D. R. and Brauning, D. W. and Mattice, J. A. and Thompson III, F R},
+  Journal                  = {The Auk},
+  Year                     = {2003},
+  Number                   = {4},
+  Pages                    = {1168--1179},
+  Volume                   = {120},
+
+  Publisher                = {BioOne}
+}
+
+@Article{diefenbach_etal:2007,
+  Title                    = {Incorporating availability for detection in estimates of bird abundance},
+  Author                   = {Diefenbach, D. R. and Marshall, M. R. and Mattice, J. A. and Brauning, D. W. and Johnson, D H},
+  Journal                  = {The Auk},
+  Year                     = {2007},
+  Number                   = {1},
+  Pages                    = {96--106},
+  Volume                   = {124},
+
+  Publisher                = {BioOne}
+}
+
+@Article{efford_dawson:2009,
+  Title                    = {Effect of distance-related heterogeneity on population size estimates from point counts},
+  Author                   = {Efford, M. G. and Dawson, D. K.},
+  Journal                  = {The Auk},
+  Year                     = {2009},
+  Number                   = {1},
+  Pages                    = {100--111},
+  Volume                   = {126},
+
+  Publisher                = {BioOne}
+}
+
+@Article{farnsworth_etal:2002,
+  Title                    = {{A removal model for estimating detection probabilities from point-count surveys}},
+  Author                   = {Farnsworth, G L and Pollock, K H and Nichols, J D and Simons, T R and E., Hines J and R., Sauer J},
+  Journal                  = {The Auk},
+  Year                     = {2002},
+  Number                   = {2},
+  Pages                    = {414--425},
+  Volume                   = {119},
+
+  Publisher                = {Ornithological Societies North America}
+}
+
+@Article{fiske_chandler:2011,
+  Title                    = {unmarked: An {R} package for fitting hierarchical models of wildlife occurrence and abundance},
+  Author                   = {Fiske, I. and Chandler, R.},
+  Journal                  = {Journal of Statistical Software},
+  Year                     = {2011},
+  Number                   = {10},
+  Pages                    = {1--23},
+  Volume                   = {43}
+}
+
+@Article{flather_sauer:1996,
+  Title                    = {Using landscape ecology to test hypotheses about large-scale abundance patterns in migratory birds},
+  Author                   = {Flather, C. H. and Sauer, J. R.},
+  Journal                  = {Ecology},
+  Year                     = {1996},
+  Number                   = {1},
+  Pages                    = {28--35},
+  Volume                   = {77},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{gelman_rubin:1992,
+  Title                    = {Inference from iterative simulation using multiple sequences},
+  Author                   = {Gelman, A. and Rubin, D. B.},
+  Journal                  = {Statistical Science},
+  Year                     = {1992},
+  Number                   = {4},
+  Pages                    = {457--472},
+  Volume                   = {7}
+}
+
+@Article{gill_etal:2001,
+  Title                    = {The buffer effect and large-scale population regulation in migratory birds},
+  Author                   = {Gill, Jennifer A and Norris, Ken and Potts, Peter M and Gunnarsson, T{\'o}mas Gr{\'e}tar and Atkinson, Philip W and Sutherland, William J},
+  Journal                  = {Nature},
+  Year                     = {2001},
+  Number                   = {6845},
+  Pages                    = {436--438},
+  Volume                   = {412},
+
+  Publisher                = {Nature Publishing Group}
+}
+
+@Article{gompertz:1825,
+  Title                    = {On the nature of the function expressive of the law of human mortality, and on a new mode of determining the value of life contingencies},
+  Author                   = {Gompertz, B.},
+  Journal                  = {Philosophical transactions of the royal society of London},
+  Year                     = {1825},
+  Pages                    = {513--583},
+  Volume                   = {115},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{griffith_etal:2010,
+  Title                    = {Traffic effects on bird counts on {North American Breeding Bird Survey} routes},
+  Author                   = {Griffith, E. H. and Sauer, J. R. and Royle, J. A.},
+  Journal                  = {The Auk},
+  Year                     = {2010},
+  Number                   = {2},
+  Pages                    = {387--393},
+  Volume                   = {127},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{hanski:1998,
+  Title                    = {Metapopulation dynamics},
+  Author                   = {Hanski, I.},
+  Journal                  = {Nature},
+  Year                     = {1998},
+  Number                   = {6706},
+  Pages                    = {41--49},
+  Volume                   = {396}
+}
+
+@Article{hart_gotelli:2011,
+  Title                    = {The effects of climate change on density-dependent population dynamics of aquatic invertebrates},
+  Author                   = {Hart, E. M. and Gotelli, N. J.},
+  Journal                  = {Oikos},
+  Year                     = {2011},
+  Number                   = {8},
+  Pages                    = {1227--1234},
+  Volume                   = {120},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{hastings:1991,
+  Title                    = {Structured models of metapopulation dynamics},
+  Author                   = {Hastings, A.},
+  Journal                  = {Biological Journal of the Linnean Society},
+  Year                     = {1991},
+  Number                   = {1-2},
+  Pages                    = {57--71},
+  Volume                   = {42},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{hatfield_etal:2012,
+  Title                    = {Population dynamics of {Hawaiian} seabird colonies vulnerable to sea-level rise},
+  Author                   = {Hatfield, J. S. and Reynolds, M. H. and Seavy, N. E. and Krause, C. M.},
+  Journal                  = {Conservation Biology},
+  Year                     = {2012},
+  Number                   = {4},
+  Pages                    = {667--678},
+  Volume                   = {26},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{hostetler_etal:2012,
+  Title                    = {A cat's tale: the impact of genetic restoration on {Florida} panther population dynamics and persistence},
+  Author                   = {Hostetler, J. A. and Onorato, D. P. and Jansen, D. and Oli, M. K.},
+  Journal                  = {Journal of Animal Ecology},
+  Year                     = {2013},
+  Pages                    = {608--620},
+  Volume                   = {82},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{huggins:1989,
+  Title                    = {{On the statistical analysis of capture experiments}},
+  Author                   = {Huggins, R M},
+  Journal                  = {Biometrika},
+  Year                     = {1989},
+  Number                   = {1},
+  Pages                    = {133},
+  Volume                   = {76},
+
+  Publisher                = {Biometrika Trust}
+}
+
+@Article{jamieson_brooks:2004,
+  Title                    = {Density dependence in {North American} ducks},
+  Author                   = {Jamieson, L E and Brooks, S P},
+  Journal                  = {Animal Biodiversity and Conservation},
+  Year                     = {2004},
+  Number                   = {1},
+  Pages                    = {113--128},
+  Volume                   = {27}
+}
+
+@Article{johnson:2008,
+  Title                    = {In defense of indices: the case of bird surveys},
+  Author                   = {Johnson, D. H.},
+  Journal                  = {The Journal of Wildlife Management},
+  Year                     = {2008},
+  Number                   = {4},
+  Pages                    = {857--868},
+  Volume                   = {72},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{johnson_etal:2010,
+  Title                    = {A Model-Based Approach for Making Ecological Inference from Distance Sampling Data},
+  Author                   = {Johnson, D. S. and Laake, J. L. and Ver Hoef, J. M.},
+  Journal                  = {Biometrics},
+  Year                     = {2010},
+  Number                   = {1},
+  Pages                    = {310--318},
+  Volume                   = {66},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{kery:2008,
+  Title                    = {Estimating abundance from bird counts: binomial mixture models uncover complex covariate relationships},
+  Author                   = {K{\'e}ry, M.},
+  Journal                  = {The Auk},
+  Year                     = {2008},
+  Number                   = {2},
+  Pages                    = {336--345},
+  Volume                   = {125},
+
+  Publisher                = {BioOne}
+}
+
+@Article{kery_schmid:2004,
+  Title                    = {Monitoring programs need to take into account imperfect species detectability},
+  Author                   = {K{\'e}ry, M. and Schmid, H.},
+  Journal                  = {Basic and Applied Ecology},
+  Year                     = {2004},
+  Number                   = {1},
+  Pages                    = {65--73},
+  Volume                   = {5},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{kendall_etal:1996,
+  Title                    = {First-time observer effects in the {North American Breeding Bird Survey}},
+  Author                   = {Kendall, W. L. and Peterjohn, B. G. and Sauer, J. R.},
+  Journal                  = {The Auk},
+  Year                     = {1996},
+  Pages                    = {823--829},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{kery_etal:2009,
+  Title                    = {Trend estimation in populations with imperfect detection},
+  Author                   = {Kery, M. and Dorazio, R. M. and Soldaat, L. and Van Strien, A. and Zuiderwijk, A. and Royle, J. A.},
+  Journal                  = {Journal of Applied Ecology},
+  Year                     = {2009},
+  Number                   = {6},
+  Pages                    = {1163--1172},
+  Volume                   = {46},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{kot_schaffer:1986,
+  Title                    = {Discrete-time growth-dispersal models},
+  Author                   = {Kot, M. and Schaffer, W. M.},
+  Journal                  = {Mathematical Biosciences},
+  Year                     = {1986},
+  Number                   = {1},
+  Pages                    = {109--136},
+  Volume                   = {80},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{ladeau_etal:2007,
+  Title                    = {West Nile virus emergence and large-scale declines of North American bird populations},
+  Author                   = {LaDeau, S. L. and Kilpatrick, A. M. and Marra, P. P.},
+  Journal                  = {Nature},
+  Year                     = {2007},
+  Number                   = {7145},
+  Pages                    = {710--713},
+  Volume                   = {447},
+
+  Publisher                = {Nature Publishing Group}
+}
+
+@Article{lele_etal:1998,
+  Title                    = {Statistical analysis of population dynamics in space and time using estimating functions},
+  Author                   = {Lele, S. and Taper, M. L. and Gage, S.},
+  Journal                  = {Ecology},
+  Year                     = {1998},
+  Number                   = {5},
+  Pages                    = {1489--1502},
+  Volume                   = {79},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{link:2003,
+  Title                    = {Nonidentifiability of Population Size from Capture-Recapture Data with Heterogeneous Detection Probabilities},
+  Author                   = {Link, W. A.},
+  Journal                  = {Biometrics},
+  Year                     = {2003},
+  Number                   = {4},
+  Pages                    = {1123--1130},
+  Volume                   = {59},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Book{link_barker:2010,
+  Title                    = {Bayesian Inference: With Ecological Applications},
+  Author                   = {Link, William A. and Barker, Richard J.},
+  Publisher                = {Academic Press},
+  Year                     = {2010},
+
+  Address                  = {London, {UK}},
+
+  ISBN                     = {9780123748546},
+  Shorttitle               = {Bayesian Inference}
+}
+
+@Article{link_etal:1994,
+  Title                    = {Within-site variability in surveys of wildlife populations},
+  Author                   = {Link, W. A. and Barker, R. J. and Sauer, J. R. and Droege, S.},
+  Journal                  = {Ecology},
+  Year                     = {1994},
+  Pages                    = {1097--1108},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{link_nichols:1994,
+  Title                    = {On the importance of sampling variance to investigations of temporal variation in animal population size},
+  Author                   = {Link, W. A. and Nichols, J. D.},
+  Journal                  = {Oikos},
+  Year                     = {1994},
+  Number                   = {3},
+  Pages                    = {539--544},
+  Volume                   = {69},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{link_sauer:2002,
+  Title                    = {A hierarchical analysis of population change with application to Cerulean Warblers},
+  Author                   = {Link, W. A. and Sauer, J. R.},
+  Journal                  = {Ecology},
+  Year                     = {2002},
+  Number                   = {10},
+  Pages                    = {2832--2840},
+  Volume                   = {83},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{link_sauer:1998,
+  Title                    = {Estimating population change from count data: application to the {North American Breeding Bird Survey}},
+  Author                   = {Link, W. A. and Sauer, J. R.},
+  Journal                  = {Ecological Applications},
+  Year                     = {1998},
+  Number                   = {2},
+  Pages                    = {258--268},
+  Volume                   = {8},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Book{mackenzie_etal:2006,
+  Title                    = {Occupancy estimation and modeling: inferring patterns and dynamics of species occurrence},
+  Author                   = {MacKenzie, D. I. and J. D Nichols and J. A. Royle and K. H. Pollock and L. L. Bailey and J. E. Hines},
+  Publisher                = {Academic Press},
+  Year                     = {2006}
+}
+
+@Article{marques_etal:2010,
+  Title                    = {Point transect sampling along linear features},
+  Author                   = {Marques, T A and Buckland, S T and Borchers, D L and Tosh, D. and McDonald, R A},
+  Journal                  = {Biometrics},
+  Year                     = {2010},
+  Number                   = {4},
+  Pages                    = {1247--1255},
+  Volume                   = {66},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{marsh_sinclair:1989,
+  Title                    = {Correcting for visibility bias in strip transect aerial surveys of aquatic fauna},
+  Author                   = {Marsh, H. and Sinclair, D F},
+  Journal                  = {The Journal of wildlife management},
+  Year                     = {1989},
+  Pages                    = {1017--1024},
+
+  Publisher                = {JSTOR}
+}
+
+@Book{matthews_etal:2004,
+  Title                    = {Atlas of climate change effects in 150 bird species of the Eastern United States},
+  Author                   = {Matthews, S. N. and O'Conner, Raymond and Iverson, Louis R. and Prasad, Anantha},
+  Publisher                = {US Department of Agriculture, Forest Service, Northeastern Research Station},
+  Year                     = {2004}
+}
+
+@Article{may:1975,
+  Title                    = {Biological populations obeying difference equations: stable points, stable cycles, and chaos},
+  Author                   = {May, R. M.},
+  Journal                  = {Journal of Theoretical Biology},
+  Year                     = {1975},
+  Number                   = {2},
+  Pages                    = {511--524},
+  Volume                   = {51},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{mcshea_rappole:1997,
+  Title                    = {Variable Song Rates in Three Species of Passerines and Implications for Estimating Bird Populations},
+  Author                   = {McShea, W J and Rappole, J H},
+  Journal                  = {Journal of Field Ornithology},
+  Year                     = {1997},
+  Pages                    = {367--375},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{melbourne_hastings:2008,
+  Title                    = {Extinction risk depends strongly on factors contributing to stochasticity},
+  Author                   = {Melbourne, B. A. and Hastings, A.},
+  Journal                  = {Nature},
+  Year                     = {2008},
+  Number                   = {7200},
+  Pages                    = {100--103},
+  Volume                   = {454},
+
+  Publisher                = {Nature Publishing Group}
+}
+
+@Article{miller_etal:2011,
+  Title                    = {Improving occupancy estimation when two types of observational error occur: non-detection and species misidentification},
+  Author                   = {Miller, David A and Nichols, James D and McClintock, Brett T and Grant, Evan H Campbell and Bailey, Larissa L and Weir, Linda A},
+  Journal                  = {Ecology},
+  Year                     = {2011},
+  Number                   = {7},
+  Pages                    = {1422--1428},
+  Volume                   = {92},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{murdoch:1994,
+  Title                    = {Population regulation in theory and practice},
+  Author                   = {Murdoch, William W},
+  Journal                  = {Ecology},
+  Year                     = {1994},
+  Number                   = {2},
+  Pages                    = {271--287},
+  Volume                   = {75},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{nadeem_lele:2011,
+  Title                    = {Likelihood based population viability analysis in the presence of observation error},
+  Author                   = {Nadeem, K. and Lele, S. R.},
+  Journal                  = {Oikos},
+  Year                     = {2011},
+  Number                   = {10},
+  Pages                    = {1656--1664},
+  Volume                   = {21},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@TechReport{nawmp:1986,
+  Title                    = {North American waterfowl management plan: a strategy for cooperation},
+  Author                   = {{NAWMP}},
+  Institution              = {Canadian Wildlife Service and US Fish and Wildlife Service},
+  Year                     = {1986},
+
+  Publisher                = {U.S. Department of Interior and Environment Canada}
+}
+
+@Article{new_etal:2011,
+  Title                    = {Hen harrier management: insights from demographic models fitted to population data},
+  Author                   = {New, L. F. and Buckland, S. T. and Redpath, S. and Matthiopoulos, J.},
+  Journal                  = {Journal of Applied Ecology},
+  Year                     = {2011},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{new_etal:2009,
+  Title                    = {Fitting models of multiple hypotheses to partial population data: investigating the causes of cycles in red grouse},
+  Author                   = {New, L. F. and Matthiopoulos, J. and Redpath, S. and Buckland, S. T.},
+  Journal                  = {The American Naturalist},
+  Year                     = {2009},
+  Number                   = {3},
+  Pages                    = {399--412},
+  Volume                   = {174},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{nichols_etal:2000,
+  Title                    = {A double-observer approach for estimating detection probability and abundance from point counts},
+  Author                   = {Nichols, J. D. and Hines, J. E. and Sauer, J. R. and Fallon, F. W. and Fallon, J. E. and Heglund, P. J.},
+  Journal                  = {The Auk},
+  Year                     = {2000},
+  Number                   = {2},
+  Pages                    = {393--408},
+  Volume                   = {117}
+}
+
+@InCollection{nichols_etal:2009,
+  Title                    = {Inferences about landbird abundance from count data: recent advances and future directions},
+  Author                   = {Nichols, J. D. and Thomas, L. and Conn, P. B.},
+  Booktitle                = {Modeling Demographic Processes in Marked Populations},
+  Publisher                = {Springer},
+  Year                     = {2009},
+
+  Address                  = {New York, New York},
+  Editor                   = {Thomson, D. L. and Cooch, E. G. and Conroy, M. J.},
+  Pages                    = {201--235}
+}
+
+@TechReport{stateofbirds:2011,
+  Title                    = {The State of the Birds: Report on Public Lands and Waters},
+  Author                   = {North American Bird Conservation Initiative, U.S. Committee},
+  Institution              = {U.S. Department of Interior},
+  Year                     = {2011},
+
+  Address                  = {Washington, DC.},
+  Note                     = {48 pages}
+}
+
+@TechReport{stateofbirds:2010,
+  Title                    = {The State of the Birds: Report on Climate Change},
+  Author                   = {North American Bird Conservation Initiative, U.S. Committee},
+  Institution              = {U.S. Department of Interior},
+  Year                     = {2010},
+
+  Address                  = {Washington, DC.},
+  Note                     = {32 pages}
+}
+
+@Article{ohara_kotze:2010,
+  Title                    = {Do not log-transform count data},
+  Author                   = {O'Hara, R. B. and Kotze, D. J.},
+  Journal                  = {Methods in Ecology and Evolution},
+  Year                     = {2010},
+  Number                   = {2},
+  Pages                    = {118--122},
+  Volume                   = {1},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Book{otto_day:2007,
+  Title                    = {A Biologist's Guide to Mathematical Modeling in Ecology and Evolution},
+  Author                   = {Otto, Sarah P and Day, Troy},
+  Publisher                = {Princeton University Press},
+  Year                     = {2007},
+  Volume                   = {13}
+}
+
+@Article{pacifici_etal:2008,
+  Title                    = {Effects of vegetation and background noise on the detection process in auditory avian point-count surveys},
+  Author                   = {Pacifici, K. and Simons, T. R. and Pollock, K. H.},
+  Journal                  = {The Auk},
+  Year                     = {2008},
+  Number                   = {3},
+  Pages                    = {600--607},
+  Volume                   = {125},
+
+  Publisher                = {BioOne}
+}
+
+@Manual{plummer:2011,
+  Title                    = {rjags: {Bayesian} graphical models using {MCMC}},
+  Author                   = {Martyn Plummer},
+  Note                     = {R package version 3-5},
+  Year                     = {2011},
+
+  Url                      = {http://CRAN.R-project.org/package=rjags}
+}
+
+@InProceedings{plummer:2003,
+  Title                    = {{JAGS}: A program for analysis of {Bayesian} graphical models using {Gibbs} sampling},
+  Author                   = {Plummer, M.},
+  Booktitle                = {Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003). March},
+  Year                     = {2003},
+  Pages                    = {20--22}
+}
+
+@Article{polansky_etal:2009,
+  Title                    = {Likelihood ridges and multimodality in population growth rate models},
+  Author                   = {Polansky, L. and De Valpine, P. and Lloyd-Smith, J. O. and Getz, W. M.},
+  Journal                  = {Ecology},
+  Year                     = {2009},
+  Number                   = {8},
+  Pages                    = {2313--2320},
+  Volume                   = {90},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{pollock:1982,
+  Title                    = {A capture-recapture design robust to unequal probability of capture},
+  Author                   = {Pollock, Kenneth H},
+  Journal                  = {The Journal of Wildlife Management},
+  Year                     = {1982},
+  Number                   = {3},
+  Pages                    = {752--757},
+  Volume                   = {46}
+}
+
+@Article{pollock_etal:1984,
+  Title                    = {The use of auxiliary variables in capture-recapture and removal experiments},
+  Author                   = {Pollock, K. H. and Hines, J. E. and Nichols, J. D.},
+  Journal                  = {Biometrics},
+  Year                     = {1984},
+  Pages                    = {329--340}
+}
+
+@Article{pollock_etal:2002,
+  Title                    = {Large scale wildlife monitoring studies: statistical methods for design and analysis},
+  Author                   = {Pollock, K. H. and Nichols, J. D. and Simons, T. R. and Farnsworth, G. L. and Bailey, L. L. and Sauer, J. R.},
+  Journal                  = {Environmetrics},
+  Year                     = {2002},
+  Number                   = {2},
+  Pages                    = {105--119},
+  Volume                   = {13},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@InCollection{porneluzi_etal:2011,
+  Title                    = {Ovenbird (\textit{Seiurus aurocapilla})},
+  Author                   = {Porneluzi, P. and Van Horn, M. A. and Donovan, T. M.},
+  Booktitle                = {The Birds of North America Online},
+  Publisher                = {Cornell Laboratory of Ornithology},
+  Year                     = {2011},
+
+  Address                  = {Ithaca, New York},
+  Editor                   = {A. Poole}
+}
+
+@Article{pulliam:1988,
+  Title                    = {Sources, sinks, and population regulation},
+  Author                   = {Pulliam, H Ronald},
+  Journal                  = {American Naturalist},
+  Year                     = {1988},
+  Pages                    = {652--661},
+
+  Publisher                = {JSTOR}
+}
+
+@Manual{R-2012,
+  Title                    = {R: A Language and Environment for Statistical Computing},
+
+  Address                  = {Vienna, Austria},
+  Author                   = {{R Development Core Team}},
+  Note                     = {{ISBN} 3-900051-07-0},
+  Organization             = {R Foundation for Statistical Computing},
+  Year                     = {2012},
+
+  Url                      = {http://www.R-project.org/}
+}
+
+@Article{reijnen_etal:1996,
+  Title                    = {The effects of traffic on the density of breeding birds in Dutch agricultural grasslands},
+  Author                   = {Rien Reijnen and Ruud Foppen and Henk Meeuwsen},
+  Journal                  = {Biological Conservation},
+  Year                     = {1996},
+  Number                   = {3},
+  Pages                    = {255--260},
+  Volume                   = {75}
+}
+
+@Book{rich_etal:2004,
+  Title                    = {{North American} landbird conservation plan},
+  Author                   = {Rich, T. and others},
+  Publisher                = {Cornell Lab of Ornithology},
+  Year                     = {2004}
+}
+
+@Article{ricker:1954,
+  Title                    = {Stock and recruitment},
+  Author                   = {Ricker, W. E.},
+  Journal                  = {Journal of the Fisheries Board of Canada},
+  Year                     = {1954},
+  Number                   = {5},
+  Pages                    = {559--623},
+  Volume                   = {11},
+
+  Publisher                = {NRC Research Press}
+}
+
+@Article{riddle_etal:2010a,
+  Title                    = {Effects of prior detections on estimates of detection probability, abundance, and occupancy},
+  Author                   = {Riddle, J. D. and Mordecai, R. S. and Pollock, K. H. and Simons, T. R.},
+  Journal                  = {The Auk},
+  Year                     = {2010},
+  Number                   = {1},
+  Pages                    = {94--99},
+  Volume                   = {127},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{riddle_etal:2010b,
+  Title                    = {An unreconciled double-observer method for estimating detection probability and abundance},
+  Author                   = {Riddle, J. D. and Pollock, K. H. and Simons, T. R.},
+  Journal                  = {The Auk},
+  Year                     = {2010},
+  Number                   = {4},
+  Pages                    = {841--849},
+  Volume                   = {127},
+
+  Publisher                = {BioOne}
+}
+
+@Article{riddle_etal:2010c,
+  Title                    = {Separating components of the detection process with combined methods: an example with northern bobwhite},
+  Author                   = {Riddle, J. D. and Stanislav, S. J. and Pollock, K. H. and Moorman, C. E. and Perkins, F. S.},
+  Journal                  = {The Journal of Wildlife Management},
+  Year                     = {2010},
+  Number                   = {6},
+  Pages                    = {1319--1325},
+  Volume                   = {74},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@TechReport{robbins_etal:1986,
+  Title                    = {The {Breeding Bird Survey}: its first fifteen years, 1965-1979},
+  Author                   = {Robbins, C. S. and Bystrak, D. and Geissler, P. H.},
+  Institution              = {US Fish and Wildlife Service},
+  Year                     = {1986}
+}
+
+@Article{robbins_etal:1989,
+  Title                    = {Population declines in {North American} birds that migrate to the Neotropics},
+  Author                   = {Robbins, C. S. and Sauer, J. R. and Greenberg, R. S. and Droege, S.},
+  Journal                  = {Proceedings of the National Academy of Sciences},
+  Year                     = {1989},
+  Number                   = {19},
+  Pages                    = {7658},
+  Volume                   = {86},
+
+  Publisher                = {National Acad Sciences}
+}
+
+@InProceedings{rosenberg_blancher:2005,
+  Title                    = {Setting numerical population objectives for priority landbird species},
+  Author                   = {Rosenberg, K. V. and Blancher, P. J.},
+  Booktitle                = {Bird Conservation Implementation and Integration in the Americas: Proceedings of the Third International Partners in Flight Conference},
+  Year                     = {2005},
+  Editor                   = {CJ Ralph and TD Rich},
+  Pages                    = {57--67},
+  Publisher                = {US Department of Agriculture Forest Service, General Technical Report PSW-GTR-191}
+}
+
+@Article{royama:1977,
+  Title                    = {Population persistence and density dependence},
+  Author                   = {Royama, T.},
+  Journal                  = {Ecological Monographs},
+  Year                     = {1977},
+  Number                   = {1},
+  Pages                    = {1--35},
+  Volume                   = {47},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{royle:2004biom,
+  Title                    = {N-Mixture Models for Estimating Population Size from Spatially Replicated Counts},
+  Author                   = {Royle, J. A.},
+  Journal                  = {Biometrics},
+  Year                     = {2004},
+  Number                   = {1},
+  Pages                    = {108--115},
+  Volume                   = {60}
+}
+
+@Article{royle_etal:2004,
+  Title                    = {Modeling abundance effects in distance sampling},
+  Author                   = {J. A. Royle and D. K. Dawson and S. Bates},
+  Journal                  = {Ecology},
+  Year                     = {2004},
+  Pages                    = {1591--1597},
+  Volume                   = {85}
+}
+
+@Book{royle_dorazio:2008,
+  Title                    = {Hierarchical modeling and inference in ecology: the analysis of data from populations, metapopulations and communities},
+  Author                   = {Royle, J. A. and Dorazio, R. M.},
+  Publisher                = {Academic Press},
+  Year                     = {2008}
+}
+
+@Article{royle_etal:2005,
+  Title                    = {Modelling occurrence and abundance of species when detection is imperfect},
+  Author                   = {Royle, J. A. and Nichols, J. D. and K{\'e}ry, M.},
+  Journal                  = {Oikos},
+  Year                     = {2005},
+  Number                   = {2},
+  Pages                    = {353--359},
+  Volume                   = {110},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{saether_engen:2002,
+  Title                    = {Pattern of variation in avian population growth rates},
+  Author                   = {S{\ae}ther, B.E. and Engen, S.},
+  Journal                  = {Philosophical Transactions of the Royal Society of London. Series B: Biological Sciences},
+  Year                     = {2002},
+  Number                   = {1425},
+  Pages                    = {1185--1195},
+  Volume                   = {357},
+
+  Publisher                = {The Royal Society}
+}
+
+@InCollection{sauer_etal:1994,
+  Title                    = {Statistical aspects of modeling population change from population size data},
+  Author                   = {Sauer, J.R. and Barker, R.J. and Geissler, P.H.},
+  Booktitle                = {Wildlife toxicology and population modeling},
+  Publisher                = {Lewis},
+  Year                     = {1994},
+
+  Address                  = {Boca Raton, Florida},
+  Editor                   = {RJ Kendall and TE Lacher},
+  Pages                    = {451--466}
+}
+
+@Article{sauer_link:2011,
+  Title                    = {Analysis of the {North American Breeding Bird Survey} using hierarchical models},
+  Author                   = {Sauer, J. R. and Link, W. A.},
+  Journal                  = {The Auk},
+  Year                     = {2011},
+  Number                   = {1},
+  Pages                    = {87--98},
+  Volume                   = {128},
+
+  Publisher                = {BioOne}
+}
+
+@Article{sauer_etal:1994auk,
+  Title                    = {Observer differences in the {North American Breeding Bird Survey}},
+  Author                   = {Sauer, J. R. and Peterjohn, B. G. and Link, W. A.},
+  Journal                  = {The Auk},
+  Year                     = {1994},
+  Number                   = {1},
+  Pages                    = {50--62},
+  Volume                   = {111},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{schaub_etal:2007,
+  Title                    = {Use of integrated modeling to enhance estimates of population dynamics obtained from limited data},
+  Author                   = {Schaub, M. and Gimenez, O. and Sierro, A. and Arlettaz, R. E. L.},
+  Journal                  = {Conservation Biology},
+  Year                     = {2007},
+  Number                   = {4},
+  Pages                    = {945--955},
+  Volume                   = {21},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{schoener_spiller:1992,
+  Title                    = {Is extinction rate related to temporal variability in population size? An empirical answer for orb spiders},
+  Author                   = {Schoener, T. W. and Spiller, D. A.},
+  Journal                  = {American Naturalist},
+  Year                     = {1992},
+  Number                   = {6},
+  Pages                    = {1176--1207},
+  Volume                   = {139},
+
+  Publisher                = {JSTOR}
+}
+
+@Article{seavy_etal:2009,
+  Title                    = {Postcatastrophe population dynamics and density dependence of an endemic island duck},
+  Author                   = {Seavy, N. E. and Reynolds, M. H. and Link, W.A. and Hatfield, J. S.},
+  Journal                  = {The Journal of Wildlife Management},
+  Year                     = {2009},
+  Number                   = {3},
+  Pages                    = {414--418},
+  Volume                   = {73},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Book{seber:1982,
+  Title                    = {{The estimation of animal abundance and related parameters}},
+  Author                   = {Seber, G A F},
+  Publisher                = {Macmillan},
+  Year                     = {1982},
+
+  Booktitle                = {New York}
+}
+
+@Article{shenk_etal:1998,
+  Title                    = {Sampling-variance effects on detecting density dependence from temporal trends in natural populations},
+  Author                   = {Shenk, T. M. and White, G. C. and Burnham, K. P.},
+  Journal                  = {Ecological Monographs},
+  Year                     = {1998},
+  Number                   = {3},
+  Pages                    = {445--463},
+  Volume                   = {68},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{sillett_etal:2012,
+  Title                    = {Hierarchical distance sampling models to estimate population size and habitat-specific abundance of an island endemic},
+  Author                   = {Sillett, S. and Chandler, R. B. and Royle, J. A. and K{\'e}ry, M. and Morrison, S. A.},
+  Journal                  = {Ecological Applications},
+  Year                     = {2012}
+}
+
+@Article{simons_etal:2007,
+  Title                    = {Experimental analysis of the auditory detection process on avian point counts},
+  Author                   = {Simons, T. R. and Alldredge, M. W. and Pollock, K. H. and Wettroth, J. M. and Dufty Jr, A M},
+  Journal                  = {The Auk},
+  Year                     = {2007},
+  Number                   = {3},
+  Pages                    = {986--999},
+  Volume                   = {124}
+}
+
+@Unpublished{simons_etal:2010,
+  Title                    = {Incorporating estimates of detection probability into the {Breeding Bird Survey} potocol: assessment of current sampling methods},
+  Author                   = {Simons, T. R and K. Pollock and J. Riddle},
+  Note                     = {Research Work Order NC145},
+
+  Month                    = {November},
+  Year                     = {2010}
+}
+
+@Article{summers_etal:2011,
+  Title                    = {Are the negative effects of roads on breeding birds caused by traffic noise?},
+  Author                   = {Summers, P. D. and Cunnington, G. M. and Fahrig, L.},
+  Journal                  = {Journal of Applied Ecology},
+  Year                     = {2011},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{temple_wiens:1989,
+  Title                    = {Bird populations and environmental changes: can birds be bio-indicators},
+  Author                   = {Temple, S. A. and Wiens, J. A.},
+  Journal                  = {American Birds},
+  Year                     = {1989},
+  Number                   = {2},
+  Pages                    = {260--270},
+  Volume                   = {43}
+}
+
+@Article{thomas_etal:2006,
+  Title                    = {Making BUGS Open},
+  Author                   = {Andrew Thomas and Bob O'Hara and Uwe Ligges and Sibylle Sturtz},
+  Journal                  = {R News},
+  Year                     = {2006},
+  Pages                    = {12--17},
+  Volume                   = {6}
+}
+
+@Article{thomas_etal:2005,
+  Title                    = {A unified framework for modelling wildlife population dynamics},
+  Author                   = {Thomas, L. and Buckland, S. T. and Newman, K. B. and Harwood, J.},
+  Journal                  = {Australian \& New Zealand Journal of Statistics},
+  Year                     = {2005},
+  Number                   = {1},
+  Pages                    = {19--34},
+  Volume                   = {47},
+
+  Publisher                = {Wiley Online Library}
+}
+
+@Article{turchin:1990,
+  Title                    = {Rarity of density dependence or population regulation with lags?},
+  Author                   = {Turchin, P.},
+  Journal                  = {Nature},
+  Year                     = {1990},
+  Number                   = {6267},
+  Pages                    = {660--663},
+  Volume                   = {344},
+
+  Publisher                = {Nature Publishing Group}
+}
+
+@Article{turchin_taylor:1992,
+  Title                    = {Complex dynamics in ecological time series},
+  Author                   = {Turchin, P. and Taylor, A. D.},
+  Journal                  = {Ecology},
+  Year                     = {1992},
+  Number                   = {1},
+  Pages                    = {289--305},
+  Volume                   = {73},
+
+  Publisher                = {Eco Soc America}
+}
+
+@TechReport{usgs:2007,
+  Title                    = {Strategic Plan for the North American Breeding Bird Survey: 2006--2007},
+  Author                   = {USGS},
+  Institution              = {U.S. Geological Survey},
+  Year                     = {2007},
+
+  Address                  = {http://pubs.usgs.gov/circ/2007/1307/},
+  Number                   = {1307},
+  Type                     = {Circular}
+}
+
+@Article{devalpine_hastings:2002,
+  Title                    = {Fitting population models incorporating process noise and observation error},
+  Author                   = {de Valpine, P. and Hastings, A.},
+  Journal                  = {Ecological Monographs},
+  Year                     = {2002},
+  Number                   = {1},
+  Pages                    = {57--76},
+  Volume                   = {72},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{viljugrein_etal:2005,
+  Title                    = {Density dependence in {North American} ducks},
+  Author                   = {Viljugrein, H. and Stenseth, N. C. and Smith, G. W. and Steinbakk, G. H.},
+  Journal                  = {Ecology},
+  Year                     = {2005},
+  Number                   = {1},
+  Pages                    = {245--254},
+  Volume                   = {86},
+
+  Publisher                = {Eco Soc America}
+}
+
+@Article{vindenes_etal:2008,
+  Title                    = {Individual heterogeneity in vital parameters and demographic stochasticity},
+  Author                   = {Vindenes, Yngvild and Engen, Steinar and S{\ae}ther, Bernt-Erik},
+  Journal                  = {The American Naturalist},
+  Year                     = {2008},
+  Number                   = {4},
+  Pages                    = {455--467},
+  Volume                   = {171},
+
+  Publisher                = {JSTOR}
+}
+
+@InCollection{white:2000,
+  Title                    = {Population viability analysis: data requirements and essential analyses},
+  Author                   = {White, G. C.},
+  Booktitle                = {Research Techniques in Animal Ecology: Controversies and Consequences},
+  Publisher                = {Columbia University Press},
+  Year                     = {2000},
+
+  Address                  = {New York, New York},
+  Editor                   = {L Boitani and TK Fuller},
+  Pages                    = {288--331}
+}
+
+@Book{williams_etal:2002,
+  Title                    = {Analysis and management of animal populations: modeling, estimation, and decision making},
+  Author                   = {Williams, B K and Nichols, J D and Conroy, M J},
+  Publisher                = {Academic Press},
+  Year                     = {2002},
+
+  Address                  = {New York, New York}
+}
+
+@Article{yoccoz_etal:2001,
+  Title                    = {Monitoring of biological diversity in space and time},
+  Author                   = {Yoccoz, N. G. and Nichols, J. D. and Boulinier, T.},
+  Journal                  = {Trends in Ecology \& Evolution},
+  Year                     = {2001},
+  Number                   = {8},
+  Pages                    = {446--453},
+  Volume                   = {16},
+
+  Publisher                = {Elsevier}
+}
+
+@Article{ziolkowski_etal:2010,
+  Title                    = {The 2003-2008 summary of the {North American Breeding Bird Survey}},
+  Author                   = {Ziolkowski Jr., David J. and Parkieck, Keith L. and Sauer, John R.},
+  Journal                  = {Bird Populations},
+  Year                     = {2010},
+  Pages                    = {90--109},
+  Volume                   = {10}
+}
+
+@Article{zippin:1958,
+  Title                    = {{The removal method of population estimation}},
+  Author                   = {Zippin, C},
+  Journal                  = {Journal of Wildlife Management},
+  Year                     = {1958},
+  Number                   = {1},
+  Pages                    = {82--90},
+  Volume                   = {22},
+
+  Annote                   = {From Duplicate 1 ( The removal method of population estimation - Zippin, C )}
+}
+
+@Book{zucchini_macdonald:2009,
+  Title                    = {Hidden Markov models for time series: an introduction using R},
+  Author                   = {Zucchini, W. and MacDonald, I.L.},
+  Publisher                = {Chapman \& Hall/CRC},
+  Year                     = {2009},
+  Volume                   = {110}
+}
+

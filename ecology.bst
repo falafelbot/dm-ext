@@ -129,7 +129,7 @@ FUNCTION {output.check}
 FUNCTION {fin.entry}
 { add.period$
   write$
- % newline$
+  newline$
 }
 
 FUNCTION {new.block}
@@ -797,7 +797,7 @@ FUNCTION {format.pages}
 
 FUNCTION {format.vol.num.pages}
 { volume field.or.null
-  bolden
+%  bolden
   pages empty$
     'skip$
     { duplicate$ empty$

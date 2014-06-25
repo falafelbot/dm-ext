@@ -1,0 +1,3491 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage[mathlines]{lineno}
+\linenumbers
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage{color}
+\usepackage{soul}\usepackage{fancyvrb}
+\usepackage{indentfirst}
+\usepackage[format=plain,justification=raggedright,labelsep=period,font={stretch=1.9}]{caption}
+\usepackage{rotating}
+\usepackage[compact]{titlesec}
+\titleformat{\section}[display]{\normalfont\bfseries}{}{0em}{\centering}
+\titleformat{\subsection}[display]{\normalfont\itshape}{}{0em}{\centering}
+
+\setlength{\bibsep}{0.0pt}
+\bibpunct{(}{)}{,}{a}{}{,}
+\setlength{\jot}{-1.2ex}
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{}
+
+\let\@fnsymbol\@arabic
+
+\title{Improved state-space models for inference about 
+spatial and temporal variation in abundance from count data}
+
+\author{Jeffrey A. Hostetler\thanks{Migratory Bird Center, Smithsonian 
+Conservation Biology Institute, National Zoological Park, MRC 5503, 
+Washington, DC 20013-7012} \textsuperscript{,}\footnote{Email: \href{mailto:hostetlerj@si.edu}{hostetlerj@si.edu}}
+   \and Richard B. Chandler\footnote{USGS Patuxent Wildlife Research Center 
+        Laurel, MD 20708} \textsuperscript{,}\thanks{Current address: Warnell School of
+     Forestry and Natural Resources, University of Georgia}        
+}
+ %remove date
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding auto
+\fontencoding default
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing double
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref section
+\pdf_pdfusetitle false
+\pdf_quoted_options "pdftex,hidelinks"
+\papersize letterpaper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style ecology
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset VSpace -1cm
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+ 
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+abstract
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\end_inset
+
+ Models of population dynamics are frequently used for purposes such as
+ testing hypotheses about density dependence and predicting species' responses
+ to future environmental change or conservation actions.
+ Fitting models of population dynamics to field data is challenging because
+ most data sets are characterized by observation error, which can inflate
+ estimates of process variation if ignored.
+ Recently, state-space models have been developed to deal with this problem
+ by directly modeling both the observation error and the ecological process
+ of interest.
+ Conventional state-space models, however, have several important limitations:
+ (1) they assume that random effects are Gaussian distributed, which implies
+ that abundance can be negative and that false positive observation errors
+ are equally likely as false negative errors; (2) they do not admit spatial
+ variation in population dynamics; and (3) some of the parameters of the
+ model are not estimable.
+ We demonstrate how each of these problems can be resolved using a class
+ of hierarchical models proposed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+after "Biometrics"
+key "dail_madsen:2011"
+
+\end_inset
+
+ that attributes observation error to imperfect detection.
+ We expand this class of models to accommodate classical growth models (e.g.
+ exponential and Ricker-logistic), zero-inflation, and random effects.
+ We also present methods for forecasting population size under future environmen
+tal conditions.
+ Implementation of these ideas is possible using either frequentist or Bayesian
+ methods, as demonstrated by accompanying 
+\series bold
+R
+\series default
+ and 
+\series bold
+JAGS
+\series default
+ code.
+ Results of a simulation study suggest that bias is negligible and coverage
+ nominal for the proposed model extensions.
+ An analysis of data from the North American Breeding Bird Survey highlights
+ how these methods can be readily applied to existing data, but it also
+ suggests that precision will be low when direct information about detection
+ probability (such as is collected using distance sampling or replicated
+ counts) is lacking.
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+
+\shape italic
+Key words
+\shape default
+: abundance, Dail and Madsen model, density-dependence, detectability, Gompertz-
+logistic model, immigration, open population point count models, population
+ dynamics, random observer effects, Ricker-logistic model, zero-inflated
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%
+\backslash
+vspace{0.5cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Introduction
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Models of population dynamics are vital in both theoretical and applied
+ ecological research.
+ For instance, the importance and existence of phenomenon such as density-depend
+ent population regulation, population cycling, and spatial synchrony have
+ been studied by comparing data from natural populations with theoretical
+ models 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "may:1975,turchin:1990,bjornstad_etal:1999"
+
+\end_inset
+
+.
+ In applied contexts, population models are used for estimating extinction
+ probabilities 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "schoener_spiller:1992,nadeem_lele:2011,hostetler_etal:2012"
+
+\end_inset
+
+ and for predicting the effects of future environmental conditions or conservati
+on actions on population size 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "jamieson_brooks:2004,hatfield_etal:2012"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Several challenges are routinely encountered when trying to fit models of
+ population dynamics to data from field studies.
+ First, deterministic models of population dynamics are virtually always
+ inadequate due to process variation, the inherent stochasticity in demographic
+ parameters and environmental conditions 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bjornstad_grenfell:2001,saether_engen:2002"
+
+\end_inset
+
+.
+ Second, abundance---the natural state variable in studies of population
+ dynamics---can rarely be observed perfectly in field studies because of
+ observation error, such as imperfect detection 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "link_nichols:1994,kery_etal:2009"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Recently developed state-space models have made it possible to study population
+ dynamics while accounting for both process variation and observation error
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "devalpine_hastings:2002,   buckland_etal:2004, dennis_etal:2006"
+
+\end_inset
+
+.
+ Classical state-space models are time series models in which the true state
+ of the system (e.g.
+ population size during each year) is modeled as a hidden process, and the
+ observed data are modeled conditional on this process and the observation
+ error.
+ One reason for the widespread adoption of state-space models in ecology
+ is that failure to account for observation error can bias estimators of
+ abundance and population growth parameters.
+ For instance, the strength of density dependence will be overestimated
+ if observation error is ignored 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "link_nichols:1994,shenk_etal:1998"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+A simple state-space model can be described as follows.
+ Let 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ be the abundance of a species during year 
+\begin_inset Formula $t$
+\end_inset
+
+, for 
+\begin_inset Formula $t=1,\hdots,T$
+\end_inset
+
+, and let 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+ be the observed data, which differs from 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ due to observation error, a random effect denoted 
+\begin_inset Formula $\zeta_{t}$
+\end_inset
+
+.
+ Temporal variation in 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ is modeled using a population growth model, 
+\begin_inset Formula $\mu(N_{t-1})$
+\end_inset
+
+ and random process variation denoted 
+\begin_inset Formula $\eta_{t}$
+\end_inset
+
+.
+ The growth model may be density-dependent, as in the case of the Ricker-logisti
+c model, or it might be density-independent, such as when growth is exponential.
+ A generic model can be written: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{gather}
+\begin{align}N_{1} & =X_{1}\\
+N_{t} & =\mu(N_{t-1})+\eta_{t-1}\quad\text{for}\; t=2,\hdots,T\\
+X_{t} & =N_{t}+\zeta_{t}\qquad\qquad\;\,\text{for}\; t=1,\hdots,T.
+\end{align}
+\label{eq:ss1}
+\end{gather}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ In classical state-space models, the two sets of random effects are assumed
+ to be i.i.d.
+ Gaussian deviates: 
+\begin_inset Formula $\eta_{t}\sim\mathrm{N}(0,\sigma)$
+\end_inset
+
+ and 
+\begin_inset Formula $\zeta_{t}\sim\mathrm{N}(0,\tau)$
+\end_inset
+
+.
+ The process variation associated with 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ is often ignored, or the population is assumed to be at equilibrium such
+ that the 
+\begin_inset Formula $N_{1}$
+\end_inset
+
+ can be regarded as an outcome of the equilibrium distribution.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Even though state-space models such as that shown in Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:ss1"
+
+\end_inset
+
+ overcome many of the limitations associated with the application of classical
+ models of population dynamics, several problems exist.
+ The assumption that random effects are Gaussian distributed makes it easier
+ to estimate parameters because methods such as the Kalman filter can be
+ applied 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "dennis_etal:2006"
+
+\end_inset
+
+; however, these models effectively assume that abundance can be take on
+ any real value, and hence they can predict negative values of abundance.
+ Transforming the count data and the underlying abundance variables do little
+ to resolve these issues 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ohara_kotze:2010"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+With respect to the observation error, the Gaussian assumption implies that
+ false positive detections are equally likely as false negatives, a pattern
+ inconsistent with most findings 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "miller_etal:2011"
+
+\end_inset
+
+.
+ A more likely form of observation error, and one that has been recognized
+ for well over a century, results from failing to detect individuals that
+ are present.
+ Imperfect detection may be attributable to characteristics of the species
+ under study, such as it being present but unavailable for detection, or
+ to individuals being available but missed by the ecologist collecting the
+ data in the field.
+ Although a vast number of methods have been devised for accounting for
+ this form of observation error, rarely have these methods been integrated
+ into state-space models of population dynamics 
+\begin_inset CommandInset citation
+LatexCommand citep
+before "but see"
+key "buckland_etal:2004"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Other limitations of state-space models, as commonly applied in ecology,
+ include the failure to admit spatial variation in abundance and the fact
+ that some parameters are not identifiable 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "polansky_etal:2009"
+
+\end_inset
+
+.
+ Ignoring spatial variation reduces the scope of the inferences and can
+ lead to underestimation of variances.
+ Identifiability problems require model constraints or the assertion of
+ additional assumptions.
+ Specifically, abundance in the first year cannot be estimated because there
+ is only one data point (the count in the first year) that carries any informati
+on about it.
+ To remedy this, practitioners either assume that there is no observation
+ error in the first year, or they assume the population is at equilibrium,
+ which may defeat the purpose of many studies of population dynamics.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Several extensions of state-space models have been proposed to overcome
+ the limitations described above.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "devalpine_hastings:2002"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "brooks_etal:2004"
+
+\end_inset
+
+ described methods for fitting models with non-Gaussian distributions for
+ the process and observation errors.
+ Observation models with more intuitive interpretations, such as those that
+ explicitly model detection probability, have been proposed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "kery_etal:2009"
+
+\end_inset
+
+.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "lele_etal:1998"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "kery_etal:2009"
+
+\end_inset
+
+ developed models allowing for inference about spatial and temporal variation
+ in abundance, and their developments also resolved the problems of non-identifi
+ability for the parameters of the initial state at time 
+\begin_inset Formula $t=1$
+\end_inset
+
+.
+ Of these extensions, only the work by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "kery_etal:2009"
+
+\end_inset
+
+ addressed several of these limitations simultaneously; however, their model
+ did not include serial dependence, which is a hallmark of population models.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+In this paper, we focus on the model of 
+\begin_inset CommandInset citation
+LatexCommand citet
+after "henceforth the DM model"
+key "dail_madsen:2011"
+
+\end_inset
+
+ that resolves each of the problems outlined above.
+ Our aim is to extend the model to accommodate classical models of population
+ growth and to handle several features common to ecological time series,
+ such as excess zeros and unexplained random variation.
+ Both frequentist and Bayesian methods of inference are discussed, and we
+ evaluate the performance of the model using a simulation study and by analyzing
+ data from the North American Breeding Bird Survey (BBS), one of the most
+ spatially and temporally extensive sets of count data on vertebrate populations
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "robbins_etal:1986"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+The Dail-Madsen Model
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:dm"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The DM model is an extension of the 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "royle:2004biom"
+
+\end_inset
+
+ 
+\begin_inset Formula $N$
+\end_inset
+
+-mixture model, which allows for inference about spatial variation in abundance
+ when individuals cannot be detected with certainty.
+ To estimate parameters associated with both abundance and the detection
+ process, the original 
+\begin_inset Formula $N$
+\end_inset
+
+-mixture model uses replicate observations at each site.
+ The observations are collected during sufficiently short time intervals
+ such that the population can safely be assumed to be closed with respect
+ to births, deaths, and movement.
+ The DM model relaxes this closure assumption and includes explicit parameters
+ describing population change over time.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The DM model requires count data collected at 
+\begin_inset Formula $R$
+\end_inset
+
+ sites, each of which is surveyed on 
+\begin_inset Formula $T$
+\end_inset
+
+ primary sampling periods.
+ Let 
+\begin_inset Formula $X_{i,t}:i=1,\hdots,R;t=1,\hdots,T$
+\end_inset
+
+ denote the count data at site 
+\begin_inset Formula $i$
+\end_inset
+
+ and primary period 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ In general, 
+\begin_inset Formula $X_{i,t}$
+\end_inset
+
+ will be lower than abundance, 
+\begin_inset Formula $N_{i,t}$
+\end_inset
+
+, but in cases where detection is perfect, abundance is observed directly
+ such that 
+\begin_inset Formula $X_{i,t}\equiv N_{i,t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Like traditional state-space models, the DM model includes three conditionally
+ related processes corresponding to: (1) initial abundance, i.e.
+ the abundance at site 
+\begin_inset Formula $i$
+\end_inset
+
+ during the first primary period, denoted 
+\begin_inset Formula $N_{i,1}$
+\end_inset
+
+, (2) abundance at time 
+\begin_inset Formula $t$
+\end_inset
+
+ (for 
+\begin_inset Formula $t>1$
+\end_inset
+
+) which depends upon abundance at 
+\begin_inset Formula $t-1$
+\end_inset
+
+, and (3) the detection process 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "dail_madsen:2011"
+
+\end_inset
+
+.
+ The first two processes describe the state process---the variation in abundance
+ in space and time.
+ The third process describes the the relationship between abundance and
+ the observed count data.
+\end_layout
+
+\begin_layout Subsection*
+Initial abundance
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Conventional state-space models assume that the distribution for the initial
+ time period is either the equilibrium distribution, or has zero variance.
+ In contrast, 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ proposed modeling 
+\begin_inset Formula $N_{i,1}$
+\end_inset
+
+ as either a Poisson or negative binomial random variable: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{gather}
+N_{i,1}\sim\mathrm{Pois}(\Lambda)\nonumber \\
+\text{or}\nonumber \\
+N_{i,1}\sim\mathrm{NB}(\Lambda,\alpha)\label{eq:N1}
+\end{gather}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $\Lambda_{i}$
+\end_inset
+
+ is the expected abundance at site 
+\begin_inset Formula $i$
+\end_inset
+
+ during year 1.
+ The Poisson distribution assumes that the mean of 
+\begin_inset Formula $N_{i,1}$
+\end_inset
+
+ is equal to its variance, whereas the negative binomial distribution allows
+ the variance to be greater than the mean with the amount of overdispersion
+ determined by the parameter 
+\begin_inset Formula $\alpha$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Regardless of the specified distribution, the model for initial abundance
+ has two distinguishing features.
+ First, it provides a mechanism for characterizing spatial variation in
+ abundance.
+ For instance, one might consider the influence of some environmental covariate
+ (
+\begin_inset Formula $x_{i}$
+\end_inset
+
+) on abundance using a log-linear model such as 
+\begin_inset Formula $\log(\Lambda_{i})=\beta_{0}^{\Lambda}+\beta_{1}^{\Lambda}x_{i}$
+\end_inset
+
+.
+ Second, the spatial replicates resolve the problem of parameter non-identifiabi
+lity that are common to standard state-space models because 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%, as demonstrated by 
+\backslash
+citet{royle:2004biom},
+\end_layout
+
+\end_inset
+
+process variation and observation error can be estimated from spatially-replicat
+ed count data 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "royle:2004biom"
+
+\end_inset
+
+.
+ Hence, the first component of the model addresses both the issues of spatial
+ inference and parameter identifiability discussed previously.
+\end_layout
+
+\begin_layout Subsection*
+Abundance in subsequent time periods
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The DM model assumes that abundance in time 
+\begin_inset Formula $t$
+\end_inset
+
+ is a function of abundance at time 
+\begin_inset Formula $t-1$
+\end_inset
+
+, i.e.
+ abundance at each site evolves as a first order Markov process.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ considered several models to describe the temporal dynamics; however, in
+ each case they modeled 
+\begin_inset Formula $N_{t}$
+\end_inset
+
+ as the sum of two random variables: 
+\begin_inset Formula $S_{i,t}$
+\end_inset
+
+, the number of individuals surviving from 
+\begin_inset Formula $t-1$
+\end_inset
+
+ and not emigrating; and 
+\begin_inset Formula $G_{i,t}$
+\end_inset
+
+ the number of new individuals entering the population.
+ Their most general model was 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+\left.\begin{aligned}S_{i,t}|N_{i,t-1} & \sim\mathrm{Bin}(N_{i,t-1},\omega)\\
+G_{i,t}|N_{i,t-1} & \sim\mathrm{Pois}(\gamma(N_{i,t-1}))\\
+N_{i,t} & =S_{i,t}+G_{i,t}
+\end{aligned}
+\right\} \quad\text{for}\; t=2,\hdots,T\label{eq:Nt}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $\omega$
+\end_inset
+
+ is the apparent survival probability and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ is the recruitment rate (which can depend on 
+\begin_inset Formula $N_{i,t-1}$
+\end_inset
+
+).
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ proposed three models for 
+\begin_inset Formula $\gamma$
+\end_inset
+
+: the constant model, 
+\begin_inset Formula $G_{i,t}\sim\mathrm{Pois}(\gamma)$
+\end_inset
+
+ where recruitment does not depend on 
+\begin_inset Formula $N_{i,t-1}$
+\end_inset
+
+, and which simulates a 
+\begin_inset Quotes eld
+\end_inset
+
+propagule rain
+\begin_inset Quotes erd
+\end_inset
+
+ of new individuals; the autoregressive model, 
+\begin_inset Formula $G_{i,t}\sim\mathrm{Pois}(\gamma(N_{i,t-1}))$
+\end_inset
+
+, which simulates geometric or density independent growth; and the 
+\begin_inset Quotes eld
+\end_inset
+
+no-trend
+\begin_inset Quotes erd
+\end_inset
+
+ model, 
+\begin_inset Formula $\gamma=(1-\omega)\Lambda$
+\end_inset
+
+, which assumes the population is at equilibrium.
+ Covariates of 
+\begin_inset Formula $\omega$
+\end_inset
+
+ and 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ can be easily accommodated, for example using logit- and log-linear models
+ respectively.
+\end_layout
+
+\begin_layout Subsection*
+Observation process
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The observation model adopted by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ is the same binomial model proposed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "royle:2004biom"
+
+\end_inset
+
+: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+X_{i,t}\sim\mathrm{Bin}(N_{i,t},p)\label{eq:p1}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $p$
+\end_inset
+
+ is the probability of detecting each individual.
+ Variation in detection probability can be modeled as a function of site-specifi
+c or occasion-specific covariates using, for example, a logit-linear model.
+\end_layout
+
+\begin_layout Section*
+Model Extensions
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:ext"
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Subsection*
+Population growth models
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Partitioning population growth into survival and recruitment is ideal in
+ terms of providing a mechanistic description of population dynamics, but
+ this is not always possible using simple count data, especially when the
+ sites are not closed with respect to immigration and emigration.
+ When the mechanistic model is unrealistic, we suggest replacing it with
+ classical population growth models that have a long history in ecology.
+ The exponential growth model is the simplest: 
+\begin_inset Formula $N_{i,t}=N_{i,t-1}e^{r}$
+\end_inset
+
+ where 
+\begin_inset Formula $r$
+\end_inset
+
+ is the intrinsic rate of increase.
+ To allow for demographic stochasticity, we can regard 
+\begin_inset Formula $N_{i,t}$
+\end_inset
+
+ as a Poisson random variable, simplifying Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Nt"
+
+\end_inset
+
+ to: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+N_{i,t}\sim\mathrm{Pois}(\exp(r)N_{i,t-1}).\label{eq:exp}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Density-dependent versions of the model are also possible.
+ For example: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+N_{i,t}\sim\mathrm{Pois}(N_{i,t-1}\exp(r(1-N_{i,t-1}/K)))\label{eq:rick}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $K$
+\end_inset
+
+ is the stable equilibrium of the population and 
+\begin_inset Formula $r$
+\end_inset
+
+ is the instantaneous population growth rate at low population densities,
+ and both parameters are constrained to be positive.
+ This is a stochastic version of the Ricker-logistic population growth model
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ricker:1954"
+
+\end_inset
+
+.
+ Another option is a modified Gompertz-logistic density-dependent model
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hart_gotelli:2011"
+
+\end_inset
+
+: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+N_{i,t}\sim\mathrm{Pois}(N_{i,t-1}\exp(r(1-\log(N_{i,t-1}+1)/\log(K+1))))\label{eq:gomp}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ Here the interpretations of 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $K$
+\end_inset
+
+ are similar to those in the Ricker-logistic model.
+ Because a single Poisson distribution controls the distribution of 
+\begin_inset Formula $N_{i,t}$
+\end_inset
+
+ in each of these models, the discrete convolution used by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ to construct the likelihood is not required, speeding up processing time.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Immigration models
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+One limitation of the geometric-recruitment, exponential, Ricker-logistic,
+ and Gompertz-logistic versions of the DM models all is that they include
+ no mechanism for a local population to recover after extinction.
+ However, these models can be generalized to include both internal and external
+ (immigration) contributions to population growth.
+ For example, an exponential plus immigration model is: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+N_{i,t}\sim\mathrm{Pois}(\exp(r)N_{i,t-1}+\iota)\label{eq:expimm2}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $\iota$
+\end_inset
+
+ represents the average number of immigrants per year, and is constrained
+ to be positive (this is equivalent to separate Poisson processes for growth
+ and immigration).
+ The geometric-recruitment, Ricker-logistic, and Gompertz-logistic models
+ can be extended to allow for immigration in the same way.
+ Deterministic versions of the Ricker-logistic + immigration and the Gompertz-lo
+gistic + immigration do reach stable equilibriums, but the equilibriums
+ are not at 
+\begin_inset Formula $K$
+\end_inset
+
+ and cannot be solved for analytically 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "otto_day:2007"
+
+\end_inset
+
+.
+ Therefore, we refer to 
+\begin_inset Formula $K$
+\end_inset
+
+ in these models as the semi-equilibrium abundance.
+\end_layout
+
+\begin_layout Subsection*
+Excess zeros
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The negative binomial distribution used in 
+\begin_inset Formula $N$
+\end_inset
+
+-mixture models can have a very long right tail, and its mean to variance
+ ratio may not be ideal in all cases.
+ An alternative is to consider zero-inflated distributions, such as the
+ zero-inflated Poisson: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+N_{i1}\sim\left\{ \begin{aligned}\mbox{Pois}(0) & \;\text{with probability}\;\psi\\
+\mbox{Pois}(\Lambda) & \;\text{with probability}\;(1-\psi)
+\end{aligned}
+\right.\label{eq:ZIP}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $\psi$
+\end_inset
+
+ represents the proportion of extra zeros.
+ Mechanistically, this distribution might be appropriate when not all sites
+ are within the range of a species.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Under this formulation, detection, abundance, and zero-inflation can be
+ modeled separately as functions of covariates.
+ For example, detection of a species might depend on wind speed, abundance
+ on forest type and weather, and zero-inflation upon elevation and climate.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The zero-inflated Poisson distribution can be applied to recruitment and
+ population growth terms as well as initial abundance.
+ For example, the recruitment term of the constant-recruitment DM model
+ (Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Nt"
+
+\end_inset
+
+) can be modified as follows: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+G_{i,t}\sim\left\{ \begin{aligned}\mathrm{Pois}(0) & \;\text{with probability}\;\psi\\
+\mathrm{Pois}(\gamma) & \;\text{with probability}\;(1-\psi)
+\end{aligned}
+\right.\label{eq:ZIPts}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Environmental and demographic stochasticity
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+Even though the DM model is conceptually simple, it includes many random
+ effects (the 
+\begin_inset Formula $N$
+\end_inset
+
+'s) making it challenging to compute the likelihood or implement MCMC algorithms.
+ Nonetheless, in some cases additional random effects may be of interest.
+ For example, in conventional state-space models, environmental stochasticity
+ is often modeled as 
+\begin_inset Formula $r_{t}\sim\mathrm{Norm}(\mu_{r},\sigma_{r})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_inset
+
+The original DM models allows for demographic stochasticity --- variation
+ in population growth rate due to the randomness of birth and death processes
+ --- via the binomial and Poisson distributions for apparent survival and
+ recruitment.
+ Our population growth extensions use a single Poisson distribution for
+ abundance.
+ Conceptually, this is an appropriate method of modeling demographic stochastici
+ty for semelparous organisms with one generation per sampling interval (year)
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bonsall_hastings:2004,melbourne_hastings:2008"
+
+\end_inset
+
+, but may actually perform better for iteroparous organisms as well (see
+ Discussion).
+ Dynamics of semelparous organisms with more than one generation per year
+ (many insects) may be overdispersed compared to the Poisson.
+ If the number of generations per year is known, then this can be accounted
+ for in our models by adding extra 
+\begin_inset Formula $N$
+\end_inset
+
+'s between each count (see Supplement 1).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+One way to model environmental stochasticity --- variation in population
+ growth rate due to stochastic environmental conditions --- is by explicitly
+ modeling dynamic parameters as functions of environmental covariates, such
+ as weather.
+ For example, in the Gompertz-logistic model (Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:gomp"
+
+\end_inset
+
+), 
+\begin_inset Formula $r$
+\end_inset
+
+ could be a function of temperature (
+\begin_inset Formula $C$
+\end_inset
+
+) and 
+\begin_inset Formula $K$
+\end_inset
+
+ a function of rainfall (
+\begin_inset Formula $M$
+\end_inset
+
+): 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{gather}
+\log(r_{i,t})=\beta_{0}^{r}+\beta_{1}^{r}C_{i,t}\nonumber \\
+\log(K_{i,t})=\beta_{0}^{K}+\beta_{1}^{K}M_{i,t}\label{eq:weather}
+\end{gather}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Another way to model environmental stochasticity is as lognormal variation
+ in observed local population growth rate 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "bjornstad:2001,bonsall_hastings:2004"
+
+\end_inset
+
+.
+ This could be applied to both density-independent and density-dependent
+ models.
+ For example, for the Ricker-logistic + immigration model: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{equation}
+N_{i,t}\sim\mathrm{Pois}(N_{i,t-1}\exp(\nu_{i,t}+r(1-N_{i,t-1}/K))+\iota)\label{eq:nuRand}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is a variable with a normal distribution, mean value of 0, and standard
+ deviation 
+\begin_inset Formula $\sigma_{\nu}$
+\end_inset
+
+.
+ We suggest three variations for spatial variation in environmental stochasticit
+y.
+ The first has independent environmental stochasticity between sites, and
+ might be appropriate where sites are widely dispersed.
+ In the second, all sites have the same environmental conditions in a given
+ year (regional stochasticity, 
+\begin_inset Formula $\nu_{i,t}=\nu_{t}$
+\end_inset
+
+), which might be appropriate where the geographic or environmental range
+ is small 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hanski:1998"
+
+\end_inset
+
+.
+ Third, where sites can be close together but the range of sites is broad,
+ a multivariate normal distribution for 
+\begin_inset Formula $\nu_{i,t}$
+\end_inset
+
+ with distance-dependent correlation coefficients between sites in a year
+ might be appropriate.
+\end_layout
+
+\begin_layout Subsection*
+Random observer effects
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Variation in detection probability among observers is another source of
+ random variation that may need to be considered when applying the DM model.
+ For example, differences in observers' ability to see, hear, or identify
+ birds has long been recognized as a potential source of error in avian
+ point count surveys such as the BBS 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "robbins_etal:1986,sauer_etal:1994auk,campbell_francis:2011"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Current BBS trend estimators deal with this problem by treating observer
+ identity as a random effect 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "link_sauer:2002,sauer_link:2011"
+
+\end_inset
+
+.
+ To include random observer effects in DM models, Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p1"
+
+\end_inset
+
+ can be modified to: 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{linenomath*}
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{gather}
+X_{i,j,t}\sim\mathrm{Bin}(N_{i,t},p_{j})\nonumber \\
+\mathrm{logit}(p_{j})\sim\mathrm{N}(\mu_{p},\sigma_{p})\label{eq:pobs}
+\end{gather}
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{linenomath*}
+\end_layout
+
+\end_inset
+
+ where 
+\begin_inset Formula $X_{i,j,t}$
+\end_inset
+
+ is the number of individuals counted at site 
+\begin_inset Formula $i$
+\end_inset
+
+ by observer 
+\begin_inset Formula $j$
+\end_inset
+
+ in year 
+\begin_inset Formula $t$
+\end_inset
+
+, 
+\begin_inset Formula $p_{j}$
+\end_inset
+
+ is observer-specific detection probability, 
+\begin_inset Formula $\mu_{p}$
+\end_inset
+
+ is the mean detection probability (on the logit scale), and 
+\begin_inset Formula $\sigma_{p}$
+\end_inset
+
+ is the standard deviation of the random observer effects (also on the logit
+ scale).
+\end_layout
+
+\begin_layout Subsection*
+Statistical inference
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ used likelihood based methods for estimating the parameters of their model.
+ The same likelihood functions can be used to accommodate the alternative
+ population growth, immigration, and zero-inflation (initial abundance only)
+ models that we have proposed.
+ Methods for implementing these models using maximum likelihood estimation
+ are included in the 
+\series bold
+R
+\series default
+ package 
+\family typewriter
+unmarked
+\family default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "fiske_chandler:2011"
+
+\end_inset
+
+.
+ Examples are given in Supplement 1.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Bayesian inference is an alternative to classical inference with several
+ appealing features.
+ First, it allows direct probability statements to be made about a hypothesis
+ given data 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "link_barker:2010"
+
+\end_inset
+
+.
+ Second, Bayesian methods offer straight-forward approaches for combining
+ data from multiple sources or use existing estimates of parameters as prior
+ distributions.
+ Third, one common usage of state-space models is for predicting future
+ population size, and this task is easily accomplished using Bayesian methods.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+In practice, simulation methods such as Markov chain Monte Carlo (MCMC)
+ are used to simulate the posterior distributions.
+ While time consuming, MCMC may be the only viable approach for estimating
+ parameters, especially for hierarchical models with many random effects.
+ Software packages such as 
+\series bold
+JAGS
+\series default
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "plummer:2003"
+
+\end_inset
+
+ make these methods readily available to ecologists, and we have provided
+ examples in Supplement 1.
+\end_layout
+
+\begin_layout Section*
+Applications
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:app"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Proof of Concept Simulation Study
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+We simulated data for 100 sites over 40 years.
+ All simulations assumed initial abundance was Poisson distributed and no
+ covariates affected initial abundance, dynamics, or detection probability.
+ Our first series of simulations assumed dynamics were exponential.
+ We ran 1000 simulations for each combination of low, medium, and high 
+\begin_inset Formula $\Lambda\in\{1,5,10\}$
+\end_inset
+
+, 
+\begin_inset Formula $r\in\{-0.005,0,0.005\}$
+\end_inset
+
+, and 
+\begin_inset Formula $p\in\{0.05,0.25,0.5\}$
+\end_inset
+
+.
+ Our second series of simulations changed dynamics to the Ricker-logistic
+ model.
+ We used an initial abundance of 10 and a detection probability of 0.25,
+ and simulated low, medium, and high values of equilibrium abundance and
+ maximum growth rate, each with 1000 simulations (Table 1; 9 total combinations).
+ Our third series of simulations was based on the Ricker-logistic + immigration
+ dynamics model; here we fixed all parameters the same as the Ricker-logistic
+ model (with 
+\begin_inset Formula $r$
+\end_inset
+
+ = 0.05 and 
+\begin_inset Formula $K$
+\end_inset
+
+ = 10) and simulated low, medium, and high values of immigration rate with
+ 1000 simulations each (Table 1).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+We used the 
+\series bold
+R
+\series default
+ package 
+\family typewriter
+unmarked
+\family default
+ to estimate the parameters for each simulation with the same initial abundance
+ (Poisson) and dynamics models as were simulated.
+ When run in a maximum likelihood framework, these models require a a finite
+ upper bound 
+\begin_inset Formula $N_{max}$
+\end_inset
+
+, 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "royle:2004biom,dail_madsen:2011"
+
+\end_inset
+
+; we used 200.
+ We report bias of estimates, root mean squared error, and coverage (percentage
+ of 95% confidence intervals for parameters that overlap the true values).
+\end_layout
+
+\begin_layout Subsection*
+Robustness Simulation Study
+\end_layout
+
+\begin_layout Subsection*
+Analysis of Breeding Bird Survey Data
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+We applied our model extensions to North American Breeding Bird Survey (BBS)
+ data collected from 1966-2010 in Maryland and Virginia.
+ For our focal species, we selected the ovenbird (
+\shape italic
+Seiurus aurocapilla
+\shape default
+), an abundant and widespread, forest-breeding migratory songbird with a
+ stable or increasing trend in the region 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "porneluzi_etal:2011"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The BBS is an annual roadside survey implemented by trained observers in
+ the United States and Canada.
+ An observer conducts 50 3-minute point counts with 400 m radii, 0.8 km apart
+ along a 39.4 km route.
+ We only used data marked as acceptable for use in the annual BBS analysis
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "sauer_etal:1994auk"
+
+\end_inset
+
+.
+ We summed the number of ovenbirds seen on each route and year, and used
+ the routes (rather than the individual stops) as our sites.
+ Strong winds can interfere with point count observers' ability to hear
+ birds 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "simons_etal:2007"
+
+\end_inset
+
+; we tested the effects of wind speed on detection probability, using the
+ truncated mean of wind conditions at the start and end of each route on
+ the Beaufort scale as a categorical predictor.
+ Following 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "link_sauer:2002"
+
+\end_inset
+
+, we also included the first time an observer ran a route as a predictor
+ variable for detection probability.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+We fitted a series of models using maximum likelihood, and then a series
+ of models using MCMC.
+ We started by testing three models of initial abundance (Poisson, negative
+ binomial, and zero-inflated Poisson) with exponential dynamics (Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:exp"
+
+\end_inset
+
+) and no covariates.
+ We selected the minimum Akaike's Information Criterion (AIC) model from
+ that set to test three additional models for p: wind, first, and wind +
+ first.
+ We selected the minimum AIC model from that set to test eight additional
+ models of dynamics: constant-recruitment, geometric-recruitment, Ricker-logisti
+c, Gompertz-logistic, the previous three with immigration, and exponential
+ + immigration.
+ These models require a a finite upper bound (
+\begin_inset Formula $N_{max}$
+\end_inset
+
+) to integrate over when run in a maximum likelihood framework; we used
+ 600.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+We ran the top ranked models from the maximum likelihood analyses in a Bayesian
+ framework with non-informative priors (
+\begin_inset Formula $\Lambda$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, and 
+\begin_inset Formula $K\sim\mathrm{U}(0,200)$
+\end_inset
+
+, 
+\begin_inset Formula $r\sim\mathrm{U}(0,5)$
+\end_inset
+
+, 
+\begin_inset Formula $\iota\sim\mathrm{U}(0,15)$
+\end_inset
+
+, and logit-linear 
+\begin_inset Formula $p$
+\end_inset
+
+ coefficients 
+\begin_inset Formula $\sim\mathrm{N}(0,100)$
+\end_inset
+
+).
+ We added random observer effects and environmental stochasticity, modeled
+ as lognormal variation in regional population growth rate, Eq.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:nuRand"
+
+\end_inset
+
+.
+ We tested for lack of convergence using five Markov chains for each model
+ 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "gelman_rubin:1992"
+
+\end_inset
+
+.
+ For each chain we sampled the MCMC for at least 40,000 iterations, after
+ at least 3,000 adaptation and tuning samples.
+ We also used the random observer effects model to obtain route and year
+ specific abundance estimates.
+ Because of the memory requirements involved, we used a single chain.
+\end_layout
+
+\begin_layout Section*
+Results
+\end_layout
+
+\begin_layout Subsection*
+Simulation Study
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Estimator bias and error were generally low with the exponential model,
+ and coverage was nominal (93.4% - 97.0%; Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:exp_hists"
+
+\end_inset
+
+; Table A1 in Appendix A).
+ However, estimates of 
+\begin_inset Formula $r$
+\end_inset
+
+ were imprecise (RMSE between 0.020 and 0.025; relative RMSE between 413%
+ and 482% for non-zero true 
+\begin_inset Formula $r$
+\end_inset
+
+) and biased low (between -0.008 and -0.005; relative bias between -151% and
+ -101% for non-zero true 
+\begin_inset Formula $r$
+\end_inset
+
+) when the true value of 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ was low.
+ Simulations of the Ricker-logistic model generally performed well (Fig.
+ A1 and Table A2 in Appendix A), except when the true value of 
+\begin_inset Formula $r$
+\end_inset
+
+ was low (0.005).
+ In this case the estimates of 
+\begin_inset Formula $r$
+\end_inset
+
+ and 
+\begin_inset Formula $K$
+\end_inset
+
+ were inaccurate (relative RMSE between 87.4% and 2091.8%), biased high (between
+ 65.4% and 198.9%), and had low coverage (between 77.6% and 94.3%).
+ In other cases for the Ricker-logistic model, relative RMSE was between
+ 6.7% and 55%, bias was between -6.4% and 5.8%, and coverage was between 91.9%
+ and 96.4%.
+ All three cases simulated for the Ricker-logistic + immigration model performed
+ fairly well (Fig.
+ A2 and Table A3 in Appendix A; relative RMSE between 7.2% and 62.9%, bias
+ between -3.5% and 3.3%, and coverage between 93.2% and 96.4%).
+\end_layout
+
+\begin_layout Subsection*
+Analysis of Breeding Bird Survey Data
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The negative binomial distribution was strongly supported for ovenbird initial
+ abundance over the Poisson and zero-inflated Poisson (Table B1A in Appendix
+ B).
+ The best supported model for 
+\begin_inset Formula $p$
+\end_inset
+
+ included additive effects of wind speed and first run of a route by an
+ observer (Table B1B, model B.1).
+ First run and increasing wind speeds both decreased 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ All dynamics models with immigration were better supported than models
+ without immigration (Table B1C); the best supported of these was the Ricker-log
+istic + immigration (see Appendix B, Fig.
+ B1 for estimates).
+ Constant-recruitment dynamics models estimated unrealistically high survival
+ probabilities (
+\begin_inset Formula $\omega$
+\end_inset
+
+ = 1 
+\begin_inset Formula $\pm$
+\end_inset
+
+ 1.3e-05), whereas the geometric-recruitment and geometric-recruitment +
+ immigration models estimated nonviably low survival probabilities (
+\begin_inset Formula $\omega$
+\end_inset
+
+ = 0.058 
+\begin_inset Formula $\pm$
+\end_inset
+
+ 0.046 and 0.026 
+\begin_inset Formula $\pm$
+\end_inset
+
+ 0.060, respectively).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Estimates for the top ranked model were similar when run in the Bayesian
+ framework, except that the estimate of 
+\begin_inset Formula $r$
+\end_inset
+
+ more than halved (Appendix B, Fig.
+ B1).
+ When random observer effects were added, estimates for 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $K$
+\end_inset
+
+ increased dramatically and the estimate for r was intermediate.
+ The estimate of the intercept for 
+\begin_inset Formula $p$
+\end_inset
+
+ dropped.
+ When environmental stochasticity was added, the estimate for 
+\begin_inset Formula $K$
+\end_inset
+
+ increased.
+ The highest estimates of 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ and 
+\begin_inset Formula $K$
+\end_inset
+
+ came from the model that included environmental stochasticity and random
+ observer effects.
+ Gelman and Rubin diagnostics and visual examination of the chain trajectory
+ and density plots provided little evidence of lack of convergence for any
+ of the Bayesian models ran.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+We estimated ovenbird abundance by route and year (and averaged over routes)
+ using the Bayesian model with random observer effects (Fig.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:oven_N"
+
+\end_inset
+
+).
+ Estimated average abundance over time alternated between growing and stable
+ periods.
+ Estimated ovenbird abundance was highest in western and eastern Maryland
+ in 1970 and 1980, but became more evenly distributed by 2010.
+\end_layout
+
+\begin_layout Section*
+Discussion
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Our work demonstrates how a class of open population 
+\begin_inset Formula $N$
+\end_inset
+
+-mixture models proposed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ overcomes many of the limitations of classical state-space models as applied
+ to ecological time series data.
+ We extended their model in several important ways to accommodate common
+ features of ecological datasets, including sparse counts, zero-inflation,
+ environmental stochasticity, and random variation in observation error.
+ We also demonstrated how many of the objectives of conventional state-space
+ modeling can be accomplished within this expanded framework.
+ For example, one of the primary aims of our paper was to demonstrate how
+ classical population growth models can be embedded in the DM model.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Although we view this as an important connection to make between the two
+ different classes of state-space models, we believe that such population
+ growth models are more phenomenological than mechanistic, and this runs
+ counter to the motivation for the DM model.
+ However, estimating demographic parameters from count data is an ambitious
+ goal, and the required assumptions will not be valid in many cases, especially
+ when immigration and emigration occur.
+ This was supported by the unrealistic estimates of vital rates reported
+ here and by the lack of support for the mechanistic models relative to
+ the population growth models.
+ A separate analysis of BBS data for eleven other forest passerines found
+ similar poor support and unrealistic estimates for the mechanistic models
+ (J.
+ Hostetler, unpublished analyses), suggesting that some process, possibly
+ individual heterogeneity 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "vindenes_etal:2008"
+
+\end_inset
+
+, is increasing variances above the levels expected from demographic stochastici
+ty alone.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+One strategy for adhering to the original formulation of the model that
+ included survival and recruitment parameters would be to use either prior
+ information or additional data.
+ For example, in a Bayesian analysis existing estimates of demographic parameter
+s could be used as informative priors, which might make it possible to seperate
+ the effects of movement versus births and deaths.
+ Alternatively, ecologists could combine count data with data from, for
+ example, capture-recapture data.
+ Models that are fitted to count data and demographic data are often referred
+ to as integrated population models 
+\begin_inset CommandInset citation
+LatexCommand citep
+before "IPM;"
+key "besbeas_etal:2002, buckland_etal:2004,schaub_etal:2007"
+
+\end_inset
+
+.
+ We believe that a DM modeling framework could work well in this context,
+ and that the DM model could be viewed as a specific case of the IPM proposed
+ by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "buckland_etal:2004"
+
+\end_inset
+
+.
+ However, we caution that when count data are affected by movement and vital
+ rates, it would be unwise to ignore the movement processes.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Integrated population models may be viewed as the gold standard in state-space
+ modeling, but ecologists do not always have direct information about vital
+ rates, especially at large spatial scales.
+ Count data are much more common, relatively inexpensive to obtain, and
+ are produced by many of the largest monitoring programs in the world, such
+ as the BBS.
+ In the absence of direct information about demographic parameters, and
+ when the original assumptions of the model do not hold, our extensions
+ to the DM model can still be used for important purposes such as predicting
+ future population size and changes in species distributions.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+DM models and our extensions are conceptually simple, but even in their
+ most basic form they include many random effects (the 
+\begin_inset Formula $N$
+\end_inset
+
+'s, which incorporate demographic stochasticity), making it challenging
+ to compute the likelihood or implement MCMC algorithms.
+ Nonetheless, in some cases additional random effects may be of interest.
+ We have shown a few approaches for incorporating some of these (environmental
+ stochasticity and random observer effects).
+ Although incorporating these random effects can increase the difficulty
+ of achieving model convergence and decrease estimate precision, they can
+ be important.
+ For example, the estimate of semi-equilibrium abundance for the ovenbird
+ increased by more than 150% when environmental stochasticity and random
+ observer effects were included.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Another important benefit of this class of models is that it can be readily
+ implemented using frequentist or Bayesian methods by ecologists lacking
+ skills in computer programming and advanced statistics.
+ Supplement 1 includes code to simulate and fit many of the extensions discussed
+ in this paper.
+ In spite of the new extensions we have proposed, several aspects of the
+ model could be improved.
+ First, the precision with which the parameters of the state process can
+ be estimated ultimately depends upon how well detection probability is
+ estimated.
+ With only a single survey per primary period, the information about detection
+ probability comes from deviations from the parametric assumptions about
+ population dynamics.
+ Thus, without direct information about detection probability, the estimates
+ will be determined by the model's parametric assumptions.
+ Furthermore, properly modeling detection probability can involve accounting
+ for nuances such as difference among individuals and probabilities of being
+ available for detection 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "nichols_etal:2009"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Fortunately, incorporating direct information about detection probability
+ is straightforward and we recommend that this be done whenever possible.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "dail_madsen:2011"
+
+\end_inset
+
+ proposed that replicated counts be conducted within an interval in which
+ the populations can be assumed to be closed.
+ A robust design 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "pollock:1982"
+
+\end_inset
+
+ could be used to combine multiple surveys per primary period to increase
+ the precision of the estimates.
+ We envision that multiple other options are available as well, such as
+ removal, multiple observer, and distance modeling 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "williams_etal:2002"
+
+\end_inset
+
+.
+ These could be accomplished by extending the open population 
+\begin_inset Formula $N$
+\end_inset
+
+-mixture model in exactly the same way as the closed population version
+ has been extended 
+\begin_inset CommandInset citation
+LatexCommand citep
+before "e.g.,"
+key "royle_etal:2004"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Our emphasis was on increasing the practical utility of this class of models,
+ and so we avoided several conceptually interesting extensions that we believe
+ would be computationally prohibitive in many cases.
+ Nonetheless, we will discuss one---spatially-explicit models of immigration.
+ In our models, immigration is currently modeled as independent of population
+ sizes in other sites.
+ Several alternatives suggest themselves if we think about movement in a
+ metapopulation context 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hanski:1998"
+
+\end_inset
+
+: immigration conditional on total or mean abundance across sites the previous
+ time step; immigration conditional on abundance in nearby sites only; and
+ immigration conditional on abundance at sites as a function of their distance
+ from the receiving site 
+\begin_inset CommandInset citation
+LatexCommand citep
+key "hastings:1991,hanski:1998"
+
+\end_inset
+
+.
+ These models would be based on the assumptions that either the study sites
+ encompass the whole range of the metapopulation or that the annual changes
+ in the populations sampled are representative of a larger metapopulation.
+ Initial tests suggest that it would be possible to fit some or all of these
+ models, at least in the Bayesian framework.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+Our models generally estimated parameters well in analysis of simulated
+ data.
+ Two exceptions were the estimates of instantaneous growth rate in exponential
+ model when the true value of initial abundance was low, and the estimates
+ of equilibrium abundance and maximum growth rate in the Ricker-logistic
+ model when the true value of maximum growth rate was low.
+ The failure of the first case was likely due to a large number of sites
+ starting at abundance 0 or reaching it early in the simulation.
+ Because a site that hits abundance 0 in this simulation stayed at 0, this
+ provided little information with which to estimate growth rate.
+ The failure of the second case is also reasonable: with very slow movement
+ toward the equilibrium abundance comes little information for estimating
+ that abundance or the rate of growth.
+ In other cases, bias was low and coverage nominal.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+The modeling framework we described can be used and extended to address
+ many pressing issues in ecology and conservation biology.
+ For example, it allows for inference about the effects of climate change
+ on either explicit demographic parameters or in derived parameters such
+ as population growth rate.
+ Furthermore, in addition to assessing past climate change on population
+ parameters, projecting populations under future climate scenarios is also
+ possible.
+ Thus, we expect this modeling methodology can be used to make quantitative
+ assessments of species vulnerability to climate change and other important
+ human-induced drivers of population dynamics.
+\end_layout
+
+\begin_layout Section*
+Acknowledgments
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+We thank J.
+ Andrew Royle and T.
+ Scott Sillett for helpful suggestions on our analysis and manuscript.
+ We gratefully acknowledge the U.
+ S.
+ National Park Service, the Smithsonian Institution, and USGS's Breeding
+ Bird Survey program for funding support.
+ We thank K.
+ Pardieck and D.
+ Zilowkowski for help with data acquisition.
+ J.
+ Sauer provided helpful feedback about our analysis.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "improved_state_space"
+options "default"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\noindent
+\align left
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Appendix A
+\series default
+: Simulation Results.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\noindent
+\align left
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Appendix B
+\series default
+: BBS Results.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\noindent
+\align left
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+
+\series bold
+Supplement 1
+\series default
+: Code Samples.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+% Tables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset Float table
+placement t
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Changed parameter values, by series of simulations.
+ We simulated 1000 sets of data each combination of parameter values for
+ 100 sites over 40 years.
+ We assumed that initial abundance (
+\begin_inset Formula $\Lambda$
+\end_inset
+
+) was Poisson distributed.
+ For the exponential simulations we included all combinations of low, medium,
+ and high 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+, growth rate (
+\begin_inset Formula $r$
+\end_inset
+
+), and detection probability (
+\begin_inset Formula $p$
+\end_inset
+
+).
+ For the Ricker-logistic model simulations we used 
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ = 10 and 
+\begin_inset Formula $p$
+\end_inset
+
+ = 0.25, and simulated low, medium, and high values of 
+\begin_inset Formula $r$
+\end_inset
+
+ and equilibrium density (
+\begin_inset Formula $K$
+\end_inset
+
+).
+ For the Ricker-logistic + immigration dynamics model we fixed all parameters
+ the same as the Ricker-logistic model (with 
+\begin_inset Formula $r$
+\end_inset
+
+ = 0.05 and 
+\begin_inset Formula $K$
+\end_inset
+
+ = 10) and simulated low, medium, and high values of immigration rate (
+\begin_inset Formula $\iota$
+\end_inset
+
+).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="9">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exponential Growth
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="none" valignment="top" topline="true" usebox="none" special="c">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ricker-logistic
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ricker-logistic + Immigration 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\Lambda$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $p$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $r$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $K$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\iota$
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Low 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-0.01 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.005 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.005 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Med 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.25 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.05 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+High 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.005 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.5 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.1 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.5 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%%% Figures
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newpage clearpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Figure Legends
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\noindent
+\align left
+Figure 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:exp_hists"
+
+\end_inset
+
+.
+ Histograms of 1000 parameter estimates for each of 27 simulation cases
+ with exponential dynamics.
+ The vertical lines are the data-generating values.
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\noindent
+\align left
+Figure 
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:oven_N"
+
+\end_inset
+
+.
+ Maps of BBS route and year specific estimated abundances for ovenbirds,
+ for the years 1970, 1980, 1990, 2000, and 2010.
+ Lower right panel depicts estimated mean route abundance by year (mean
+ and 95% credible interval).
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figs/exp_hists.png
+	height 8in
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:exp_hists"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\paragraph_spacing other 1.9
+\align left
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename figs/OVEN_N_by_route_year6.png
+	width 6.6in
+
+\end_inset
+
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:oven_N"
+
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

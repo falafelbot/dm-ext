@@ -1,0 +1,14 @@
+# JAGS code for exponential model
+model {
+lambda ~ dunif(0, 5)
+r ~ dnorm(0,0.01)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    N[i,t] ~ dpois(exp(r) * N[i,t-1])
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}

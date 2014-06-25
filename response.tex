@@ -1,0 +1,196 @@
+\documentclass[12pt,english]{article}
+\usepackage[letterpaper,hmargin={2.4cm,2.4cm},vmargin={2.4cm,2.4cm}]{geometry}
+\usepackage{setspace}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage[round,comma,authoryear]{natbib}
+\usepackage{color, soul}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage[format=plain,justification=raggedright,labelsep=period,font={stretch=1.9}]{caption}
+\usepackage[pdftex,hidelinks]{hyperref} 
+%\usepackage[compact]{titlesec}
+%\titleformat{\section}[display]{\normalfont\bfseries}{}{0em}{\centering}
+%\titleformat{\subsection}[display]{\normalfont\itshape}{}{0em}{\centering}
+\bibliographystyle{ecology}
+%\setlength{\bibsep}{0.0pt}
+\bibpunct{(}{)}{,}{a}{}{,}
+%\setlength{\jot}{-1.2ex}
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{\doublespacing}
+\makeatletter
+\let\@fnsymbol\@arabic
+\makeatother
+\title{Improved state-space models for inference about 
+spatial and temporal variation in abundance from count data: Response to comments}
+
+\author{Jeffrey A. Hostetler\thanks{Migratory Bird Center, Smithsonian 
+Conservation Biology Institute, National Zoological Park, MRC 5503, 
+Washington, DC 20013-7012} \textsuperscript{,}\footnote{Email: \href{mailto:hostetlerj@si.edu}{hostetlerj@si.edu}}
+   \and Richard B. Chandler\footnote{USGS Patuxent Wildlife Research Center 
+        Laurel, MD 20708} \textsuperscript{,}\thanks{Current address: Warnell School of
+     Forestry and Natural Resources, University of Georgia}        
+}
+\date{} %remove date
+\begin{document}
+\maketitle
+\vspace{-1cm}
+\begin{spacing}{1.9}
+\begin{flushleft}
+\renewcommand*\thetable{R\arabic{table}}
+\renewcommand*\thefigure{R\arabic{figure}}
+\renewcommand*\theequation{R\arabic{equation}}
+
+\section*{General Comments}
+\label{sec:general}
+
+In this submission, Hostetler and Chandler extend the so-called Dall and Madsen (DM) 
+model for temporally and spatially-replicated animal point counts to include additional 
+forms of process dynamics (e.g. exponential growth, density dependence) and to better 
+cope with common features of ecological datasets (e.g. zero inflation, environmental noise, 
+variation in observation error). The paper is well written, should be understandable by ecologists, 
+and is reasonably motivated, the authors having situated their modeling approach within the 
+context of state-space models for ecological time series (see Specific Comments for some 
+musings on this topic). The authors also include requisite computing code to reconstruct the 
+analysis within the R package unmarked, which is a nice touch and should make implementation 
+of some of these methods easier for ecologists.
+
+%\hfill\begin{minipage}{\dimexpr\textwidth-25pt}
+\textit{Thank you for your positive comments.}
+%\end{minipage}
+
+Despite these positives, I do have several reservations about the manuscript. First, the notion that 
+one can estimate so many quantities with simple count data seems to me to be something like trying 
+to squeeze blood out of a turnip. If distributional assumptions hold, the authors have shown that a 
+good deal of parameters (initial state distribution, population growth rates, immigration) can be 
+estimated unbiasedly and have other good properties (coverage etc.). However, what if those 
+distributional assumptions are violated?
+
+In an ideal world, it seems to me that simulation studies should include two components: a 
+'proof of concept' type study to demonstrate parameter identifiability and to make sure the code 
+isn't buggy (using the exact distributional forms to simulate data as are used in estimation), and 
+(2) a robustness study to examine performance of the proposed model under suspected assumption 
+violations. I think the ecological estimation literature is too often characterized by studies that 
+employ (1) and not (2) (I am guilty of this myself). However, the need for a 'robustness' study seems 
+particularly germane in this case, given the large number of assumptions to proceed with inference here. 
+I suspect the authors must have similar feelings, given some of the statements in the discussion about 
+the importance of including auxiliary data on detection probability, vital rates, etc.
+
+%\vspace{1cm}\hfill\begin{minipage}{\dimexpr\textwidth-25pt}
+\textit{We have added a robustness simulation section. We included three additional simulation models:
+DM with geometric-recruitment dynamics (underdispersed compared to Poisson), a Leslie matrix (underdispersed),
+and a Gompertz-logistic with two generations per year (overdispersed). We fit the first two sets of simulated
+data with the DM geometric-recruitment and our exponential version in unmarked, and the third with
+a Gompertz-logistic model with one generation per year (unmarked and JAGS) and two generations
+per year (JAGS).  In addition to comparing model estimates, we also examined how well AIC did at
+selecting the more appropriate model in the first two cases.}
+%\end{minipage}\vspace{1cm}
+
+I am also a bit troubled by the use of a Poisson process to encompass process error. This assumption 
+in itself is a very strong one (see Specific Comments below), which seems to me to be an additional 
+argument for conducting a robustness study. What happens for instance if you use a Leslie-matrix 
+type model on individual sites and then try to fit the Poisson process model? Do estimates come out 
+near where they should? If not, is including an informative prior on detection probability (as if one 
+had auxiliary data) sufficient to achieve good estimator properties?
+
+%\vspace{1cm}\hfill\begin{minipage}{\dimexpr\textwidth-25pt}
+\textit{In the Leslie matrix and geometric-recruitment simulations, estimates for $\Lambda$ and $p$ from
+the exponential model were biased, and in the Gompertz-logistic simulation, all estimates from the single
+generation models were biased.  However, between the models presented in DM and here (including new 
+overdispersion models), we cover almost
+all cases of density-dependence and dispersion (see table).  Furthermore, AIC does a good job of distinguishing
+between Poisson distributed and underdispersed data.}
+%\end{minipage}\vspace{1cm}
+
+\begin{table}[t]
+  \centering
+\caption{Population dynamics options covered by improved state-space models.}  
+\begin{tabular}{lccc}
+    \hline
+Dispersion & Density-Independent & Density-Dependent  \\    
+\hline
+    Underdispersed	        &DM	&Not covered yet  \\
+    Poisson-distributed	        &Here	&Here   \\
+    Overdispersed		 &Here	&Here    \\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+\section*{Specific Comments}
+
+1. Just pontificating here: I wonder if the use of the term “state-space" is becoming a little over-extended 
+in the ecological literature. For instance, the generic state space model written in Eq. 1 certainly is a 
+state space model in the sense it has Gaussian error and can be fitted using the Kalman filter. One could 
+argue that the de Valpine and Hastings (2002) model is analagous to a state space model, and they seem 
+to have borrowed the terminology when naming their model. The models in the present paper share 
+several features with state-space models: they are Markovian time series models with both process and 
+observation error. On the other hand, I'm not sure it makes sense to talk of the Kery et al. (2009) model 
+as a state space model at all. It doesn't have Gaussian error, can't be fit using a forward-backward type 
+algorithm, and doesn't even have serial dependence. When does a “state space” model just become a 
+hierarchical time series model??
+
+[Richard, what do you think?  Should we say that Kery 2009 might not be state-space to appease this person?]
+
+2. Is there a justification for using the Poisson process error model in Eqn 5 and throughout the remainder 
+of the paper? This does not seem like an innocuous distributional choice, and it seems like real data could 
+easily be over- or under-dispersed relative to the Poisson (e.g. with long-lived mammals or insects, respectively). 
+Error associated with the binomial and Poisson distribution are drastically different unless the binomial success 
+probability is really small and the index is large. I'm just not seeing any real justification other than modeling convenience.
+
+%\vspace{1cm}\hfill\begin{minipage}{\dimexpr\textwidth-25pt}
+\textit{When we have compared our models to the DM models with real data, the estimates from our models
+are more plausible and the AIC lower.  That's our main justification - the data support the Poisson process error.
+In addition, we now present models that account for overdispersion, and the original DM models account for
+some degree of underdispersion (see table).}
+%\end{minipage}\vspace{1cm}
+
+3. Simulation study. There needs to be more detail here. Was process error included in simulations? If so, was it 
+induced with the same Poisson assumption as in estimation? I guess what I'm getting at here is that I'm dubious 
+on whether the Poisson distribution is appropriate, so would be interested in seeing results where a different process 
+error form is used in simulation that estimation. For instance, what does estimator performance look like when data 
+are simulated with a binomial survival model and a Poisson immigration model as in the original DM model
+
+%\vspace{1cm}\hfill\begin{minipage}{\dimexpr\textwidth-25pt}
+\textit{Our "proof of concept" simulations did use Poisson process error.  We have added one of the original DM
+models to our robustness simulation section.}
+%\end{minipage}\vspace{1cm}
+
+\section*{Minor Comments/Typos}
+1. Equation 1. As written, lines 1 and 3 imply that ζ1 = 0 (no sampling error in year 1). Given that there are 
+other alternatives (e.g. the authors allude to using a stationarity assumption in year 1), would it make more 
+sense to just specify an initial condition like N1 = x0 and state what the choices of x0 can be later (e.g. lines 95-97)?
+
+[Richard, what do you think?]
+
+2. Lines 83-84. Instead of speaking of elusiveness, it may be better to distinguish between availability 
+and detection probability given available as you do in the discussion- I think this way of looking at things is a little more general.
+
+\textit{Thank you for the suggestion!  We have amended the text (lines X).}
+
+3. Line 91. Ignoring spatial variation (with respect to habitat covariates as well as spatial autocorrelation) has great potential for underestimating variances
+
+\textit{This is a good point.  We have amended the text (lines X).}
+
+4. Line 132. Denoted what?
+
+\textit{Denoted Ni,1.  We have fixed this (line X).}
+
+5. Line 150. I think these types of models would benefit from adding spatial autocorrelation via random effects at this stage
+
+\textit{We agree that this would be a useful extension of these models, but believe it is beyond the scope of this manuscript.}
+
+6. Line 192 'to in'
+
+\textit{We have corrected this (line X).}
+
+7. Line 240. `Three variations suggest themselves' - sounds like spontaneous generation!
+
+\textit{We have taken ownership of these ideas (lines X).}
+
+8. Line 294 simulations not simulation
+
+\textit{We have corrected this (line X).}
+\end{flushleft}
+\end{spacing}
+\end{document}

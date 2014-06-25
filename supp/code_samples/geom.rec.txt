@@ -1,0 +1,17 @@
+# JAGS code for geometric-recruitment (autoregressive) model
+model {
+lambda ~ dunif(0, 5)
+omega ~ dunif(0,1)
+gamma ~ dunif(0, 10)
+p ~ dunif(0,1)
+for(i in 1:nSites) {
+  N[i,1] ~ dpois(lambda)
+  y[i,1] ~ dbin(p, N[i,1])
+  for(t in 2:nYears) {
+    S[i,t-1] ~ dbin(omega, N[i,t-1])
+    G[i,t-1] ~ dpois(gamma * N[i,t-1])
+    N[i,t] <- S[i,t-1] + G[i,t-1]
+    y[i,t] ~ dbin(p, N[i,t])
+    }
+  }
+}
