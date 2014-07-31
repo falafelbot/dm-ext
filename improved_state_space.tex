@@ -733,7 +733,7 @@ and 62.9\%, bias between -3.5\% and 3.3\%, and coverage between
 93.2\% and 96.4\%).  
   
 \subsection*{Robustness Simulation Study}
-In simulations of the geometric-recruitment model estimated with exponential model,
+In simulations of the geometric-recruitment model estimated with the exponential model,
 estimates of $\Lambda$ were biased high %(2.71, relative bias 27.1\%) 
 and $p$ biased low (Table A5). % (-0.05, relative bias -21.1\%).  
 %As a result, RMSE for these parameters were high %(2.88 and 0.05, respectively) 
@@ -782,7 +782,7 @@ models estimated nonviably low survival probabilities
 Estimates for the top ranked model 
 were similar when
 run in the Bayesian framework, except that the estimate of $r$
-more than halved (Appendix B, Fig. B1). 
+more than halved (Appendix B, Fig. B1). %% What's up with that??
 When random observer effects
 were added, estimates for $\Lambda$ and $K$ increased dramatically
 and the estimate for r was intermediate. The 
@@ -833,7 +833,7 @@ above the levels expected from demographic stochasticity alone.
 
 One strategy for adhering to the original formulation of the
 model that included survival and recruitment parameters would be to
-use either prior information or additional data. For example, in a
+use either prior information or additional data \citep{zipkin_etal:2014}. For example, in a 
 Bayesian analysis existing estimates of demographic parameters
 could be used as informative priors, which might make it possible to
 seperate the effects of movement versus births and deaths.
@@ -841,8 +841,7 @@ Alternatively, ecologists could combine count data with data
 from, for example,
 capture-recapture data. Models that are fitted to count data and
 demographic data are often referred to as integrated population models
-\citep[IPM;][]{besbeas_etal:2002,
-buckland_etal:2004,schaub_etal:2007}.
+\citep[IPM;][]{besbeas_etal:2002,schaub_etal:2007,chandler_clark:2014}.
 We believe that a DM modeling framework could work well in this context,
 and that the DM model could be viewed as a specific case of the
 IPM proposed by \citet{buckland_etal:2004}.
@@ -898,7 +897,7 @@ be assumed to be closed. A robust design \citep{pollock:1982} could be
 used to combine multiple surveys per
 primary period to increase the precision of the estimates. We envision
 that multiple other options are available as well, such as removal,
-multiple observer, and distance modeling \citep{williams_etal:2002}. These could be
+multiple observer, and distance sampling \citep{williams_etal:2002}. These could be
 accomplished by extending the open population $N$-mixture model
 in exactly the same way as the closed population version has been
 extended \citep[e.g.,][]{royle_etal:2004}.
@@ -916,10 +915,13 @@ abundance across sites the previous time step; immigration
 conditional on abundance in nearby sites only; and immigration
 conditional on abundance at sites as a function of their distance
 from the receiving site \citep{hastings:1991,hanski:1998}. These models would
-be based on the assumptions that either the study sites
-encompass the whole range of the metapopulation or that the
-annual changes in the populations sampled are representative of
-a larger metapopulation. Initial tests suggest that it would be
+require that all sites in the metapopulation are sampled, or that abundance at 
+unsampled locations can be estimated \citep{lele_etal:1998}. 
+%be based on the assumptions that either the study sites
+%encompass the whole range of the metapopulation or that the
+%annual changes in the populations sampled are representative of
+%a larger metapopulation. 
+Initial tests suggest that it would be
 possible to fit some or all of these models, at least in the
 Bayesian framework.
 
