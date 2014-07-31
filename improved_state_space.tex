@@ -82,8 +82,11 @@ replicated counts) is lacking.
 }
 
 \textit{Key words}: abundance, Dail and Madsen model, density-dependence,
-detectability, Gompertz-logistic model, immigration, open population point 
-count models, population dynamics, random observer effects, Ricker-logistic model, zero-inflated
+detectability, Gompertz-logistic model, immigration, 
+%% open population point count models, 
+population dynamics, 
+%% random observer effects, 
+Ricker-logistic model, zero-inflated
 
 %\vspace{0.5cm}
 
@@ -95,7 +98,7 @@ density-dependent population regulation, population cycling, and
 spatial synchrony have been studied by comparing data from natural
 populations with theoretical models
 \citep{may:1975,turchin:1990,bjornstad_etal:1999}. 
-In applied contexts, population models are used for estimating extinction probabilities
+In applied contexts, population models are used for estimating extinction risk % probabilities
 \citep{schoener_spiller:1992,nadeem_lele:2011,hostetler_etal:2012} and for predicting the
 effects of future environmental conditions or conservation actions on
 population size \citep{jamieson_brooks:2004,hatfield_etal:2012}.
@@ -116,7 +119,7 @@ study population dynamics while accounting for both process variation
 and observation error \citep{devalpine_hastings:2002,
   buckland_etal:2004, dennis_etal:2006}. Classical state-space
 models are time series models in which the true state of the
-system (e.g. population size during each year) is modeled as a hidden
+system (e.g. population size during each year) is modeled as a latent %hidden
 process, and the observed data are modeled conditional on this process
 and the observation error. One reason for the widespread adoption of
 state-space models in ecology is that failure to account for 
@@ -134,14 +137,14 @@ modeled using a population growth model, $\mu(N_{t-1})$
 and random process variation denoted $\eta_t$.
 The growth model may be density-dependent, as in the case of the 
 Ricker-logistic model, or it might be density-independent, such as when growth
-is exponential.
+is exponential. %% Exponential or geometric?
 A generic model can be written: 
 \begin{linenomath*}
 \begin{gather}
   \label{eq:ss1}
   \begin{align}
     N_1 &= X_1 \nonumber \\
-N_t &= \mu(N_{t-1}) + \eta_{t-1} \quad \text{for} \;
+N_t &= \mu(N_{t-1}) + \eta_{t-1} \quad \text{for} \; %% Should this be \eta_t?
 t=2,\hdots,T  \\
 X_t &= N_t + \zeta_t \qquad \qquad \;\, \text{for} \;
 t=1,\hdots,T. \nonumber 
@@ -150,7 +153,7 @@ t=1,\hdots,T. \nonumber
 \end{linenomath*}
 In classical
 state-space models, the two sets of random effects
-are assumed to be i.i.d. Gaussian deviates:
+are assumed to be i.i.d. Gaussian variables: %deviates:
 $\eta_t \sim \mathrm{N}(0, \sigma)$ and
 $\zeta_t \sim \mathrm{N}(0, \tau)$. 
 The process variation associated with $N_1$ is often ignored, or
@@ -179,23 +182,29 @@ over a century, results from failing to detect individuals that are
 present. Imperfect detection may be attributable to
 characteristics of the species under study, such as it being present but unavailable for detection,
 or to individuals being available but missed by the ecologist collecting the data in the field.
-Although a vast number of methods have been devised for accounting for
+Although a vast number of methods have been devised to account for %for accounting for
 this form of observation error, rarely have these methods been
-integrated into state-space models of population dynamics \citep[but
-see][]{buckland_etal:2004}.
+integrated into state-space models of population dynamics 
+%\citep[but see][]{buckland_etal:2004}. 
+Of the exceptions that exist, none provide software to facilitate model fitting 
+\citep{buckland_etal:2004}.
 
 Other limitations of state-space models, as commonly applied in ecology,
 include the failure to admit spatial variation in abundance and
 the fact that some parameters are not identifiable
 \citep{polansky_etal:2009}. 
 Ignoring spatial variation reduces the scope of the
-inferences and can lead to underestimation of variances. 
-Identifiability problems require 
-model constraints or the assertion of additional assumptions. 
-Specifically, abundance in
-the first year cannot be estimated because there is only one data
-point (the count in the first year) that carries any information about
-it. To remedy this, practitioners either assume that there is no
+inferences and reduces the information about the parameters of interest \citep{dennis_etal:2010}.
+%% Identifiability problems require 
+%% model constraints or the assertion of additional assumptions. 
+%% Specifically, 
+Even more problematic is the issue that without some form of replication in the first year, 
+abundance cannot be estimated without making strong assumptions about 
+the initial distribution. 
+%% because there is only one data
+%% point (the count in the first year) that carries any information about
+%%it. To remedy this, 
+For example, practitioners either assume that there is no
 observation error in the first year, or they assume the population is
 at equilibrium, which may defeat the purpose of many studies of
 population dynamics. 
