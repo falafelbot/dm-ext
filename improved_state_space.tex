@@ -242,8 +242,9 @@ vertebrate populations \citep{robbins_etal:1986}.
 The DM model is an extension of the 
 \citet{royle:2004biom} $N$-mixture model, which allows for inference about spatial
 variation in abundance when individuals cannot be detected with
-certainty. To estimate parameters associated with both abundance 
-and the detection process, the original $N$-mixture model uses replicate
+certainty. To estimate both abundance and detection parameters, 
+%% associated with both abundance and the detection process, 
+the original $N$-mixture model uses replicate
 observations at each site. The observations are collected during sufficiently
 short time intervals such that the population can safely be
 assumed to be closed with respect to births, deaths, and movement. The DM
@@ -312,7 +313,7 @@ parameter identifiability discussed previously.
 
 \subsection*{Abundance in subsequent time periods}
 
-The DM model assumes that abundance in time $t$ is a function of
+The DM model assumes that abundance at time $t>1$ is a function of
 abundance at time $t-1$, i.e. abundance at each site evolves as a
 first order Markov process. 
 \citet{dail_madsen:2011} considered several models to describe the temporal dynamics;
@@ -331,14 +332,15 @@ N_{i,t} &= S_{i,t}+G_{i,t}
 \end{equation}
 \end{linenomath*}
 where $\omega$ is the apparent survival probability and $\gamma$
-is the recruitment rate (which can depend on $N_{i,t-1}$).
+is the recruitment rate, which can depend on $N_{i,t-1}$.
 \citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
 $G_{i,t} \sim \mathrm{Pois}(\gamma)$ where recruitment does not
 depend on $N_{i,t-1}$, and which simulates a ``propagule rain'' of new
 individuals; the autoregressive model, $G_{i,t} \sim
-\mathrm{Pois}(\gamma(N_{i,t-1}))$, which
-simulates geometric or density independent growth; and the
+\mathrm{Pois}(\gamma(N_{i,t-1}))$
+%% , which simulates 
+of geometric or density independent growth; and the
 ``no-trend'' model, $\gamma = (1-\omega)\Lambda$, which assumes the
 population is at equilibrium. Covariates of
 $\omega$ and $\gamma$ can be easily accommodated, for example
@@ -364,13 +366,14 @@ or occasion-specific covariates using, for example, a logit-linear model.
 \subsection*{Population growth models}
 \begin{samepage}
 Partitioning population growth into survival and recruitment
-is ideal in terms of providing a mechanistic description of population
+is useful %%ideal 
+in terms of providing a mechanistic description of population
 dynamics, but this is not always possible using simple count data,
 especially when the sites are not closed with respect to immigration
 and emigration. 
 When the mechanistic model is unrealistic, we suggest replacing it
 with classical population growth models that have a long history in ecology.
-The exponential growth model is the simplest: 
+The exponential growth model is the simplest: %% Should this geometric instead of exponential?
 $N_{i,t} = N_{i,t-1}e^r$ where $r$ is the intrinsic
 rate of increase. 
 To allow for demographic stochasticity, we can regard $N_{i,t}$ as a Poisson 
@@ -393,7 +396,8 @@ example:
 where $K$ is the stable equilibrium of the population and $r$ is
 the instantaneous population growth rate at low population
 densities, and both parameters are constrained to be positive. This is
-a stochastic version of the Ricker-logistic population growth model
+a stochastic version of the 
+Ricker-logistic population growth model %% Could we just call this the "Ricker model"?
 \citep{ricker:1954}. Another option is a modified Gompertz-logistic
 density-dependent model \citep{hart_gotelli:2011}:
 \begin{linenomath*}
@@ -413,7 +417,7 @@ likelihood is not required, speeding up processing time.
 \subsection*{Immigration models}
 
 One limitation of the geometric-recruitment, exponential,
-Ricker-logistic, and Gompertz-logistic versions of the DM models all
+Ricker-logistic, and Gompertz-logistic versions of the DM models %%all
 is that they include no mechanism for a local population to recover
 after extinction. 
 However, these models can be generalized 
@@ -454,9 +458,9 @@ N_{i1} \sim \left\{
 \end{equation}
 \end{linenomath*}
 where $\psi$ represents the proportion of extra zeros. 
-Mechanistically, this distribution might be appropriate when not all sites are 
-within the range of a species.
-
+%% Mechanistically, this distribution might be appropriate when not all sites are 
+%% within the range of a species.
+%%
 Under this formulation, 
 detection, abundance, and zero-inflation can be modeled separately as
 functions of covariates. For example, detection of a
@@ -492,30 +496,35 @@ The original DM models allows for demographic stochasticity --- variation in pop
 rate due to the randomness of birth and death processes --- 
 via the binomial and Poisson distributions for apparent survival and recruitment.  Our population
 growth extensions use a single Poisson distribution for abundance. 
-Conceptually, this is an appropriate method of modeling demographic stochasticity 
-for semelparous organisms with one generation per sampling interval (year)
-\citep{bonsall_hastings:2004,melbourne_hastings:2008},
-but may actually perform better for iteroparous organisms as well (see Discussion).  
-Dynamics of semelparous organisms with more than one generation per year 
-(many insects) may be overdispersed compared to the Poisson.  If the number of generations per
-year is known, then this can be accounted for in our models by adding extra $N$'s between each
-count (see Supplement 1).
+% NOTE: I would save this for the discussion
+% Conceptually, this is an appropriate method of modeling demographic stochasticity 
+% for semelparous organisms with one generation per sampling interval (year)
+% \citep{bonsall_hastings:2004,melbourne_hastings:2008},
+% but may actually perform better for iteroparous organisms as well (see Discussion).  
+% Dynamics of semelparous organisms with more than one generation per year 
+% (many insects) may be overdispersed compared to the Poisson.  If the number of generations per
+% year is known, then this can be accounted for in our models by adding extra $N$'s between each
+% count (see Supplement 1).
 
 One way to model environmental stochasticity --- variation in population growth
 rate due to stochastic environmental conditions --- is by explicitly
 modeling dynamic parameters as functions of environmental covariates, such
 as weather.  For example, in the Gompertz-logistic model (Eq.~\ref{eq:gomp}), $r$ could be a 
-function of temperature ($C$) and $K$ a function of rainfall ($M$):
-\begin{linenomath*}
-\begin{gather}
-\log(r_{i,t}) = \beta^{r}_{0} + \beta^{r}_{1}C_{i,t} \nonumber \\
-\log(K_{i,t}) = \beta^{K}_{0} + \beta^{K}_{1}M_{i,t}  
-\label{eq:weather}
-\end{gather}
-\end{linenomath*}
-
-Another way to model environmental stochasticity is as lognormal variation in observed local population 
-growth rate \citep{bjornstad:2001,bonsall_hastings:2004}.  This could be applied to both density-independent and density-dependent models.
+function of temperature %($C$) 
+and $K$ a function of rainfall. %($M$):
+%% NOTE: I don't think these equations are necessary
+% \begin{linenomath*}
+% \begin{gather}
+% \log(r_{i,t}) = \beta^{r}_{0} + \beta^{r}_{1}C_{i,t} \nonumber \\
+% \log(K_{i,t}) = \beta^{K}_{0} + \beta^{K}_{1}M_{i,t}  
+% \label{eq:weather}
+% \end{gather}
+% \end{linenomath*}
+% 
+Another way to model environmental stochasticity is as lognormal variation in 
+the %observed local 
+population growth rate \citep{bjornstad:2001,bonsall_hastings:2004}.  
+This could be applied to both density-independent and density-dependent models.
 For example, for the Ricker-logistic + immigration model:
 \begin{linenomath*}
 \begin{equation}
@@ -525,7 +534,10 @@ N_{i,t} \sim
 \end{equation}
 \end{linenomath*}
 where $\nu$ is a variable with a normal distribution, mean value of 0, and standard deviation $\sigma_\nu$.  
-We suggest three variations for spatial variation in environmental stochasticity.  The first has independent environmental stochasticity 
+We suggest three variations for spatial variation in environmental stochasticity.  
+%% These are interesting ideas, but do we actually evaluate them? If not, it might be 
+%% better to save them for the discussion.
+The first has independent environmental stochasticity 
 between sites, and might be appropriate where sites are widely dispersed.  In the second, 
 all sites have the same environmental conditions in a given year (regional stochasticity, $\nu_{i,t} = \nu_{t}$),
 which might be appropriate where the geographic or environmental range is small \citep{hanski:1998}.  
@@ -595,7 +607,8 @@ Supplement 1.
 \section*{Applications}
 \label{sec:app}
 
-\subsection*{Proof of Concept Simulation Study}
+%\subsection*{Proof of Concept Simulation Study}
+\subsection*{Simulation Study to Assess Estimator Accuracy}
 
 
 We simulated data for 100 sites over 40 years, with 1000 simulations of 
@@ -629,6 +642,7 @@ We tested our models against violations of the Poisson process assumption for
 annual dynamics.  We ran three alternative scenarios: 1) a geometric-recruitment model with
 $\omega = \gamma = 0.5$; 2) a Leslie matrix model with six age classes; and 3) 
 a Gompertz-logistic model with two non-overlapping generations per year (sampling occasion).   
+%% Couldn't we expand our model to deal with these "mis-specifications"? Like Elise and I did in a couple of recent papers?
 The first two scenarios are underdispersed compared to the Poisson and the third is overdispersed.
 In the first two cases, we estimated parameters with both the exponential and geometric-recruitment
 models using the \textbf{R} package \texttt{unmarked}.  We compared the bias,
@@ -665,7 +679,7 @@ Following \citet{link_sauer:2002},
 we also included the first time an observer ran a route as a predictor variable for detection
 probability.
  
-We fitted a series of models using maximum likelihood, 
+We fit a series of models using maximum likelihood, 
 and then a series of models using MCMC. We started by testing
 three models of initial abundance (Poisson, negative binomial, and
 zero-inflated Poisson) with exponential dynamics
@@ -679,7 +693,8 @@ over when run in a maximum likelihood
 framework; we used 600. 
 
 We ran the top ranked models from the maximum likelihood
-analyses in a Bayesian framework with non-informative priors ($\Lambda$,
+analyses in a Bayesian framework with vague %non-informative 
+priors ($\Lambda$,
 $\alpha$, and $K  \sim \mathrm{U}(0, 200)$, $r  \sim \mathrm{U}(0, 5)$,
 $\iota  \sim \mathrm{U}(0, 15)$, and logit-linear $p$ coefficients $\sim \mathrm{N}(0, 100)$).  
 We added random observer 
@@ -687,8 +702,10 @@ effects and environmental stochasticity, modeled as lognormal
 variation in regional population growth rate, Eq.~\ref{eq:nuRand}.
 We tested for lack of convergence using
 five Markov chains for each model \citep{gelman_rubin:1992}.
-For each chain we sampled the MCMC for at least 40,000 iterations, after at
-least 3,000 adaptation and tuning samples.  
+For each chain, we drew at least 40,000 samples, 
+%the MCMC for at least 40,000 iterations, 
+after at
+least 3,000 adaptation iterations. %and tuning samples.  
 We also used the random observer effects model to obtain route and 
 year specific abundance estimates.  Because of the memory requirements involved,
 we used a single chain.  
