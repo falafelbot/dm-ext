@@ -6,6 +6,7 @@
 
 \begin{document}
 \title{Appendix B: BBS Results}
+\date{} %remove date
 \maketitle
 \renewcommand*\thetable{B\arabic{table}}
 \renewcommand*\thefigure{B\arabic{figure}}
@@ -35,12 +36,12 @@ B.3. NB[$\Lambda$(.)$\alpha$(.)]Exponential[$r$(.)]$p$(1st)	&5	&5.0
 \\B.4. NB[$\Lambda$(.)$\alpha$(.)]Exponential[$r$(.)]$p$(.)	&4	&6.4\\
 \hline
 C. Dynamics && \\
-C.1. NB[$\Lambda$(.)$\alpha$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) &10	&0	\\
-C.2. NB[$\Lambda$(.)$\alpha$(.)]Gompertz-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) &10	&8.4 \\
+C.1. NB[$\Lambda$(.)$\alpha$(.)]Ricker+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) &10	&0	\\
+C.2. NB[$\Lambda$(.)$\alpha$(.)]Gompertz+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) &10	&8.4 \\
 C.3. NB[$\Lambda$(.)$\alpha$(.)]Exponential+Immigration[$r$(.)$\iota$(.)]$p$(wind+1st) &9	&36.5\\
 C.4. NB[$\Lambda$(.)$\alpha$(.)]Geometric-recruitment+Immigration[$\gamma$(.)$\omega$(.)$\iota$(.)]$p$(wind+1st) &10	&38.6\\
-C.5. NB[$\Lambda$(.)$\alpha$(.)]Gompertz-logistic[$r$(.)$K$(.)]$p$(wind+1st) &9	&192.8\\
-C.6. NB[$\Lambda$(.)$\alpha$(.)]Ricker-logistic[$r$(.)$K$(.)]$p$(wind+1st) &9	&195.1\\
+C.5. NB[$\Lambda$(.)$\alpha$(.)]Gompertz[$r$(.)$K$(.)]$p$(wind+1st) &9	&192.8\\
+C.6. NB[$\Lambda$(.)$\alpha$(.)]Ricker[$r$(.)$K$(.)]$p$(wind+1st) &9	&195.1\\
 C.7. NB[$\Lambda$(.)$\alpha$(.)]Exponential[$r$(.)]$p$(wind+1st)	&8 &271.3\\
 C.8. NB[$\Lambda$(.)$\alpha$(.)]Geometric-recruitment[$\gamma$(.)$\omega$(.)]$p$(wind+1st) &9	&273.7\\
 C.9. NB[$\Lambda$(.)$\alpha$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(wind+1st) &9	&1856.7\\
@@ -56,7 +57,7 @@ C.9. NB[$\Lambda$(.)$\alpha$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(
 %\begin{table}[ht]
 %\centering
 %  \caption{Parameter estimates for ovenbirds in Maryland and Virginia from BBS data, 1966-2010.  
-%MLE estimates come from the NB[$\Lambda$(.)$\alpha$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) 
+%MLE estimates come from the NB[$\Lambda$(.)$\alpha$(.)]Ricker+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) 
 %model run in the \textbf{R} package \texttt{unmarked}; base estimates from the same model run in \textbf{JAGS};
 %obs estimates from the base model with random observer effects added; and ES estimates from the base
 %model with regional environmental stochasticity added.  Detectability parameters (intercept: $p_{0}$, 
@@ -88,7 +89,7 @@ C.9. NB[$\Lambda$(.)$\alpha$(.)]Constant-recruitment[$\gamma$(.)$\omega$(.)]$p$(
   \centering
   \includegraphics[width=6.5in]{../figs/oven_par_est}
 \caption{Parameter estimates for ovenbirds in Maryland and Virginia from BBS data, 1966-2010.  
-MLE estimates come from the NB[$\Lambda$(.)$\alpha$(.)]Ricker-logistic+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) 
+MLE estimates come from the NB[$\Lambda$(.)$\alpha$(.)]Ricker+Immigration[$r$(.)$K$(.)$\iota$(.)]$p$(wind+1st) 
 model run in the \textbf{R} package \texttt{unmarked}; base estimates from the same model run in \textbf{JAGS};
 obs estimates from the base model with random observer effects added; and ES estimates from the base
 model with regional environmental stochasticity added.  Detectability parameters (intercept: $p_{0}$, 

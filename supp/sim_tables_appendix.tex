@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[letterpaper,hmargin={2.4cm,2.4cm},vmargin={2.4cm,2.4cm}]{geometry}
-\usepackage[pdftex]{hyperref}
+\usepackage[pdftex,hidelinks]{hyperref}
 \usepackage{soul}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -50,9 +50,9 @@ the first).  The starting age distribution was random Poisson with mean at the s
 For the maximum likelihood exponential and geometric-recruitment models fit to these data, 
 we used finite upper bound $N_{max} = 150$. 
 
-The third simulation was a Gompertz-logistic model with two non-overlapping generations per year (sampling occasion).   
+The third simulation was a Gompertz model with two non-overlapping generations per year (sampling occasion).   
 We used 200 sites for 25 years, and data-generating values of $\Lambda = 10$, $r = 0.05$, $K = 10$, and $p = 0.5$.
-We estimated parameters with the Gompertz-logistic model with 
+We estimated parameters with the Gompertz model with 
 one generation per year using both maximum likelihood and MCMC approaches, as well
 as allowing for two generations per year with MCMC.  
 For the maximum likelihood model, we used finite upper bound $N_{max} = 150$. 
@@ -76,15 +76,15 @@ for 100 sites over 40 years.  We assumed that initial abundance
 ($\Lambda$) was Poisson distributed.  For the exponential 
 simulations we included all combinations of low, medium, and
 high $\Lambda$, growth rate ($r$), and detection probability ($p$).
-For the Ricker-logistic model simulations we used $\Lambda$ = 10 and $p$ = 0.25, and
+For the Ricker model simulations we used $\Lambda$ = 10 and $p$ = 0.25, and
 simulated low, medium, and high values of $r$ and equilibrium density ($K$).
-For the Ricker-logistic + immigration dynamics model we fixed all parameters the
-same as the Ricker-logistic model (with $r$ = 0.05 and $K$ = 10) and
+For the Ricker + immigration dynamics model we fixed all parameters the
+same as the Ricker model (with $r$ = 0.05 and $K$ = 10) and
 simulated low, medium, and high values of immigration rate ($\iota$).}  
 \begin{tabular}{lcccccccc}
     \hline
-    & \multicolumn{3}{c}{Exponential Growth} && \multicolumn{2}{c}{Ricker-logistic} &&
-    Ricker-logistic + Immigration \\
+    & \multicolumn{3}{c}{Exponential Growth} && \multicolumn{2}{c}{Ricker} &&
+    Ricker + Immigration \\
     \cline{2-4}     \cline{6-7}    \cline{9-9}
 & $\Lambda$ & $r$ & $p$ && $r$  & $K$ && $\iota$  \\    
 \hline
@@ -186,7 +186,7 @@ simulated low, medium, and high values of immigration rate ($\iota$).}
 \begin{table}
   \centering
   \footnotesize
-  \caption{Simulation results from 3 cases of Ricker-logistic and immigration dynamics with 1000 Monte Carlo replicates for each.}
+  \caption{Simulation results from 3 cases of Ricker and immigration dynamics with 1000 Monte Carlo replicates for each.}
   \begin{tabular}{cccccccccccccccccccc}
     \hline
     \multicolumn{5}{c}{Data generating values}&
@@ -275,7 +275,7 @@ Geometric-recruitment &
 \begin{table}[htb]
   \centering
   \footnotesize
-  \caption{Parameters of Gompertz-logistic simulation with two generation per year 
+  \caption{Parameters of Gompertz simulation with two generation per year 
 (1000 Monte Carlo replicates)
   and results of models fit to these data.}
   \begin{tabular}{lcccccccccccccc}
@@ -290,15 +290,15 @@ Geometric-recruitment &
     \hline
 Simulation & 
 10	&0.05	&10	&0.5	&&-	&-	&-	&-	&&-	&-	&-	&-\\
-Gompertz-logistic (MLE; 1 generation/year) &
+Gompertz (MLE; 1 generation/year) &
 8.392	&0.00919	&1.269	&0.60241	&&
 1.64842	&-	&8.94192	&0.10395	&&
 0.013	&-	&1.000 	&0.000 \\
-Gompertz-logistic (MCMC; 1 generation/year) &
+Gompertz (MCMC; 1 generation/year) &
 8.315	&0.03044	&4.575	&0.60723	&&
 1.72224	&-	&5.70813	&0.10870	&&
 0.007	&-	&0.368		&0.000 \\
-Gompertz-logistic (MCMC; 2 generations/year) &
+Gompertz (MCMC; 2 generations/year) &
 9.969	&0.05405	&10.407	&0.50337	&&
 0.55084	&0.01697	&2.26087	&0.02318	&&
 0.921	&0.964	&0.967	&0.935 \\
@@ -312,7 +312,7 @@ Gompertz-logistic (MCMC; 2 generations/year) &
 
 \begin{figure}
 \caption{Histograms of 1000 parameter estimates for each of nine
-simulation cases with Ricker-logistic dynamics. The blue vertical lines are the 
+simulation cases with Ricker dynamics. The blue vertical lines are the 
 data-generating values.}
   \centering
   \includegraphics{../figs/rick_hists}
@@ -321,7 +321,7 @@ data-generating values.}
 
 \begin{figure}
 \caption{Histograms of 1000 parameter estimates for each of three
-simulation cases with Ricker-logistic + immigration dynamics. The blue vertical lines are the 
+simulation cases with Ricker + immigration dynamics. The blue vertical lines are the 
 data-generating values.}
   \centering
   \includegraphics[width=8.5in]{../figs/ricki_hists}
@@ -342,8 +342,8 @@ each age class had its own survival and fecundity parameters.}
 \end{figure}
 
 \begin{figure}
-\caption{Histograms of 1000 parameter estimates simulated with Gompertz-logistic dynamics, 
-two generations per year, fit with three different Gompertz-logistic models.
+\caption{Histograms of 1000 parameter estimates simulated with Gompertz dynamics, 
+two generations per year, fit with three different Gompertz models.
 The vertical lines are the data-generating values; changing the number of generations
 changes the meaning of $r$, so no data-generating values of it are provided for the 
 single generation per year cases.}

@@ -24,12 +24,12 @@
 \title{Improved state-space models for inference about 
 spatial and temporal variation in abundance from count data: Response to comments}
 
-\author{Jeffrey A. Hostetler\thanks{Migratory Bird Center, Smithsonian 
-Conservation Biology Institute, National Zoological Park, MRC 5503, 
-Washington, DC 20013-7012} \textsuperscript{,}\footnote{Email: \href{mailto:hostetlerj@si.edu}{hostetlerj@si.edu}}
-   \and Richard B. Chandler\footnote{USGS Patuxent Wildlife Research Center 
-        Laurel, MD 20708} \textsuperscript{,}\thanks{Current address: Warnell School of
-     Forestry and Natural Resources, University of Georgia}        
+\author{Jeffrey A. Hostetler%\thanks{Migratory Bird Center, Smithsonian 
+%Conservation Biology Institute, National Zoological Park, MRC 5503, 
+%Washington, DC 20013-7012} \textsuperscript{,}\footnote{Email: \href{mailto:hostetlerj@si.edu}{hostetlerj@si.edu}}
+   \and Richard B. Chandler%\footnote{USGS Patuxent Wildlife Research Center 
+%        Laurel, MD 20708} \textsuperscript{,}\thanks{Current address: Warnell School of
+%     Forestry and Natural Resources, University of Georgia}        
 }
 \date{} %remove date
 \begin{document}
@@ -98,9 +98,9 @@ had auxiliary data) sufficient to achieve good estimator properties?
 the exponential model were biased, and in the Gompertz-logistic simulation, all estimates from the single
 generation models were biased.  However, between the models presented in DM and here (including new 
 overdispersion models), we cover almost
-all cases of density-dependence and dispersion (see table).  Furthermore, AIC does a good job of distinguishing
+all cases of density-dependence and dispersion (see Table~\ref{tab:cases}).  Furthermore, AIC does a good job of distinguishing
 between Poisson distributed and underdispersed data.}
-\vspace{0.5cm}
+%\vspace{0.5cm}
 
 \begin{table}[t]
   \centering
@@ -109,17 +109,18 @@ between Poisson distributed and underdispersed data.}
     \hline
 Dispersion & Density-Independent & Density-Dependent  \\    
 \hline
-    Underdispersed	        &DM	&Not covered yet  \\
+    Underdispersed	        &DM	&Not covered well yet  \\
     Poisson-distributed	        &Here	&Here   \\
     Overdispersed		 &Here	&Here    \\
     \hline
   \end{tabular}
+  \label{tab:cases}
 \end{table}
 
 
 \section*{Specific Comments}
 
-1. Just pontificating here: I wonder if the use of the term “state-space" is becoming a little over-extended 
+1. Just pontificating here: I wonder if the use of the term ``state-space'' is becoming a little over-extended 
 in the ecological literature. For instance, the generic state space model written in Eq. 1 certainly is a 
 state space model in the sense it has Gaussian error and can be fitted using the Kalman filter. One could 
 argue that the de Valpine and Hastings (2002) model is analagous to a state space model, and they seem 
@@ -127,11 +128,11 @@ to have borrowed the terminology when naming their model. The models in the pres
 several features with state-space models: they are Markovian time series models with both process and 
 observation error. On the other hand, I'm not sure it makes sense to talk of the Kery et al. (2009) model 
 as a state space model at all. It doesn't have Gaussian error, can't be fit using a forward-backward type 
-algorithm, and doesn't even have serial dependence. When does a “state space” model just become a 
+algorithm, and doesn't even have serial dependence. When does a ``state space'' model just become a 
 hierarchical time series model??
 
 \vspace{0.5cm}
-\textit{We agree that some authors use the term ``state-space'' so broadly that its usefulness may be diminshed. However, we believe that the definition of state-space models that we provide in our introduction is sufficiently narrow to exclude many classes of hierarcical models. Having said that, we agree that the K\'{e}ry et al. model doesn't fit within our definition because it isn't Markovian. This is now mentioned in the introduction.}
+\textit{We agree that some authors use the term ``state-space'' so broadly that its usefulness may be diminshed. However, we believe that the definition of state-space models that we provide in our introduction is sufficiently narrow to exclude many classes of hierarchical models. Having said that, we agree that the K\'{e}ry et al. model doesn't fit within our definition because it isn't Markovian. This is now mentioned in the introduction (lines 106-108).}
 \vspace{0.5cm}
 
 2. Is there a justification for using the Poisson process error model in Eqn 5 and throughout the remainder 
@@ -144,7 +145,7 @@ probability is really small and the index is large. I'm just not seeing any real
 \textit{When we have compared our models to the DM models with real data, the estimates from our models
 are more plausible and the AIC lower.  That's our main justification - the data support the Poisson process error.
 In addition, we now present models that account for overdispersion, and the original DM models account for
-some degree of underdispersion (see table).}
+some degree of underdispersion (see Table~\ref{tab:cases}).}
 \vspace{0.5cm}
 
 3. Simulation study. There needs to be more detail here. Was process error included in simulations? If so, was it 
@@ -156,34 +157,34 @@ are simulated with a binomial survival model and a Poisson immigration model as 
 \vspace{0.5cm}
 \textit{Our ``proof of concept'' simulations did use Poisson process error.  We have added one of the original DM
 models to our robustness simulation section.}
-\vspace{0.5cm}
+%\vspace{0.5cm}
 
 \section*{Minor Comments/Typos}
-1. Equation 1. As written, lines 1 and 3 imply that ζ1 = 0 (no sampling error in year 1). Given that there are 
+1. Equation 1. As written, lines 1 and 3 imply that $\eta_1 = 0$ (no sampling error in year 1). Given that there are 
 other alternatives (e.g. the authors allude to using a stationarity assumption in year 1), would it make more 
 sense to just specify an initial condition like N1 = x0 and state what the choices of x0 can be later (e.g. lines 95-97)?
 
 \vspace{0.5cm}
-[Richard, what do you think?   Jeff, yes I think we should make this change. ]
+\textit{Thank you for the suggestion!  We have amended the equation and text (lines 66-68).}
 \vspace{0.5cm}
 
 2. Lines 83-84. Instead of speaking of elusiveness, it may be better to distinguish between availability 
 and detection probability given available as you do in the discussion- I think this way of looking at things is a little more general.
 
 \vspace{0.5cm}
-\textit{Thank you for the suggestion!  We have amended the text (lines X).}
+\textit{Thank you for the suggestion!  We have amended the text (lines 81-83).}
 \vspace{0.5cm}
 
 3. Line 91. Ignoring spatial variation (with respect to habitat covariates as well as spatial autocorrelation) has great potential for underestimating variances
 
 \vspace{0.5cm}
-\textit{This is a good point.  We have amended the text (lines X).} 
+\textit{This is a good point.  We have amended the text (lines 90-92).} 
 \vspace{0.5cm}
 
 4. Line 132. Denoted what?
 
 \vspace{0.5cm}
-\textit{Denoted Ni,1.  We have fixed this (line X).}
+\textit{Denoted Ni,1.  We have fixed this (line 132).}
 \vspace{0.5cm}
 
 5. Line 150. I think these types of models would benefit from adding spatial autocorrelation via random effects at this stage
@@ -195,19 +196,19 @@ and detection probability given available as you do in the discussion- I think t
 6. Line 192 'to in'
 
 \vspace{0.5cm}
-\textit{We have corrected this (line X).}
+\textit{We have corrected this (line 191).}
 \vspace{0.5cm}
 
 7. Line 240. `Three variations suggest themselves' - sounds like spontaneous generation!
 
 \vspace{0.5cm}
-\textit{We have taken ownership of these ideas (lines X).}
+\textit{We have taken ownership of these ideas (lines 241-242).}
 \vspace{0.5cm}
 
 8. Line 294 simulations not simulation
 
 \vspace{0.5cm}
-\textit{We have corrected this (line X).}
+\textit{We have corrected this (line 281).}
 \vspace{0.5cm}
 \end{flushleft}
 \end{spacing}
