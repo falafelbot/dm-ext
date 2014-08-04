@@ -9,13 +9,8 @@
 \usepackage{verbatim}
 \usepackage[format=plain,justification=raggedright,labelsep=period,font={stretch=1.9}]{caption}
 \usepackage[pdftex,hidelinks]{hyperref} 
-%\usepackage[compact]{titlesec}
-%\titleformat{\section}[display]{\normalfont\bfseries}{}{0em}{\centering}
-%\titleformat{\subsection}[display]{\normalfont\itshape}{}{0em}{\centering}
 \bibliographystyle{ecology}
-%\setlength{\bibsep}{0.0pt}
 \bibpunct{(}{)}{,}{a}{}{,}
-%\setlength{\jot}{-1.2ex}
 \usepackage{etoolbox}
 \AtBeginEnvironment{tabular}{\doublespacing}
 \makeatletter
@@ -24,14 +19,10 @@
 \title{Improved state-space models for inference about 
 spatial and temporal variation in abundance from count data: Response to comments}
 
-\author{Jeffrey A. Hostetler%\thanks{Migratory Bird Center, Smithsonian 
-%Conservation Biology Institute, National Zoological Park, MRC 5503, 
-%Washington, DC 20013-7012} \textsuperscript{,}\footnote{Email: \href{mailto:hostetlerj@si.edu}{hostetlerj@si.edu}}
-   \and Richard B. Chandler%\footnote{USGS Patuxent Wildlife Research Center 
-%        Laurel, MD 20708} \textsuperscript{,}\thanks{Current address: Warnell School of
-%     Forestry and Natural Resources, University of Georgia}        
+\author{Jeffrey A. Hostetler
+   \and Richard B. Chandler    
 }
-\date{} %remove date
+\date{} 
 \begin{document}
 \maketitle
 \vspace{-1cm}
@@ -100,7 +91,6 @@ generation models were biased.  However, between the models presented in DM and 
 overdispersion models), we cover almost
 all cases of density-dependence and dispersion (see Table~\ref{tab:cases}).  Furthermore, AIC does a good job of distinguishing
 between Poisson distributed and underdispersed data.}
-%\vspace{0.5cm}
 
 \begin{table}[t]
   \centering
@@ -157,7 +147,6 @@ are simulated with a binomial survival model and a Poisson immigration model as 
 \vspace{0.5cm}
 \textit{Our ``proof of concept'' simulations did use Poisson process error.  We have added one of the original DM
 models to our robustness simulation section.}
-%\vspace{0.5cm}
 
 \section*{Minor Comments/Typos}
 1. Equation 1. As written, lines 1 and 3 imply that $\eta_1 = 0$ (no sampling error in year 1). Given that there are 

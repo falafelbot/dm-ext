@@ -85,10 +85,8 @@ replicated counts) is lacking.
 }
 
 \textit{Key words}: abundance, Dail and Madsen model, density-dependence,
-detectability, Gompertz model, immigration, %-logistic
-population dynamics, Ricker model, zero-inflated %-logistic
-
-%\vspace{0.5cm}
+detectability, Gompertz model, immigration, 
+population dynamics, Ricker model, zero-inflated 
 
 \section*{Introduction}
 Models of population dynamics are vital in both theoretical and
@@ -99,14 +97,14 @@ spatial synchrony have been studied by comparing data from natural
 populations with theoretical models
 \citep{may:1975,turchin:1990,bjornstad_etal:1999}. 
 In applied contexts, population models are used for estimating extinction risk 
-\citep{nadeem_lele:2011,hostetler_etal:2012} and for predicting the %schoener_spiller:1992,
+\citep{nadeem_lele:2011,hostetler_etal:2012} and for predicting the 
 effects of future environmental conditions or conservation actions on
 population size \citep{jamieson_brooks:2004,hatfield_etal:2012}.
 
-Two challenges are routinely encountered when trying to fit models %Several
+Two challenges are routinely encountered when trying to fit models 
 of population dynamics to data from field studies. 
-First, deterministic models of population dynamics are generally inadequate due to process %virtually always
-variation, the stochasticity in demographic parameters and environmental % inherent
+First, deterministic models of population dynamics are generally inadequate due to process 
+variation, the stochasticity in demographic parameters and environmental 
 conditions \citep{bjornstad_grenfell:2001,saether_engen:2002}.
 Second, abundance---the natural state variable in studies
 of population dynamics---can rarely be observed perfectly in field
@@ -138,13 +136,13 @@ and random process variation denoted $\eta_t$.
 The growth model may be density-dependent, as in the case of the 
 Ricker-logistic model (henceforth Ricker model), or it might be 
 density-independent, such as when growth
-is exponential. %% Exponential or geometric?
+is exponential. 
 A generic model can be written: 
 \begin{linenomath*}
 \begin{gather}
   \label{eq:ss1}
   \begin{align}
-    N_1 &= x_0 \nonumber \\ %X_1
+    N_1 &= x_0 \nonumber \\ 
 N_t &= \mu(N_{t-1}) + \eta_{t-1} \quad \text{for} \; 
 t=2,\hdots,T  \\
 X_t &= N_t + \zeta_t \qquad \qquad \;\, \text{for} \;
@@ -207,8 +205,7 @@ population dynamics.
 Several extensions of state-space models have been proposed to
 overcome the limitations described above. \citet{devalpine_hastings:2002} and
 \citet{brooks_etal:2004} described methods for fitting models with non-Gaussian
-distributions for the process and observation errors. An observation model %with
-%more intuitive interpretations, such as those that 
+distributions for the process and observation errors. An observation model 
 explicitly modeling
 detection probability has been proposed by 
 \citet{kery_etal:2009}. \citet{lele_etal:1998} and 
@@ -330,13 +327,13 @@ is the recruitment rate, which can depend on $N_{i,t-1}$.
 \citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
 $G_{i,t} \sim \mathrm{Pois}(\gamma)$ where recruitment does not
-depend on $N_{i,t-1}$, and which simulates a ``propagule rain'' of new %
+depend on $N_{i,t-1}$, and which simulates a ``propagule rain'' of new 
 individuals; the autoregressive model, $G_{i,t} \sim
 \mathrm{Pois}(\gamma N_{i,t-1})$
 of geometric or density independent growth; and the
 no-trend model, $\gamma = (1-\omega)\Lambda$, which assumes the
 population is at equilibrium. Covariates of
-$\omega$ and $\gamma$ can be accommodated, e.g., % easily %for example
+$\omega$ and $\gamma$ can be accommodated, e.g., 
 using logit- and log-linear models respectively.
 
 
@@ -357,7 +354,6 @@ or occasion-specific covariates using, for example, a logit-linear model.
 \section*{Model Extensions}
 \label{sec:ext}
 \subsection*{Population growth models}
-%\begin{samepage}
 Partitioning population growth into survival and recruitment
 is useful  
 in terms of providing a mechanistic description of population
@@ -366,7 +362,7 @@ especially when the sites are not closed with respect to immigration
 and emigration. 
 When the mechanistic model is unrealistic, we suggest replacing it
 with classical population growth models that have a long history in ecology.
-The exponential growth model is the simplest: %% Should this geometric instead of exponential?
+The exponential growth model is the simplest: 
 $N_{i,t} = N_{i,t-1}e^r$ where $r$ is the intrinsic
 rate of increase. 
 To allow for demographic stochasticity, we can regard $N_{i,t}$ as a Poisson 
@@ -404,8 +400,6 @@ Ricker model. Because a single Poisson distribution controls
 the distribution of $N_{i,t}$ in each of these models, the discrete 
 convolution used by \citet{dail_madsen:2011} to construct the
 likelihood is not required, speeding up processing time.
-%\end{samepage}
-
 
 \subsection*{Immigration models}
 
@@ -478,13 +472,11 @@ The original DM models allows for demographic stochasticity --- variation in pop
 rate due to the randomness of birth and death processes --- 
 via the binomial and Poisson distributions for apparent survival and recruitment.  Our population
 growth extensions use a single Poisson distribution for abundance. 
-% NOTE: I would save this for the discussion
 Conceptually, this is an appropriate method of modeling demographic stochasticity 
  for semelparous organisms with one generation per sampling interval (year)
  \citep{bonsall_hastings:2004},
 and the DM models appropriate for modeling the demographic stochasticity of iteroparous organisms,
 if they are underdispersed compared to the Poisson (but see Discussion).
-% but may actually perform better for iteroparous organisms as well (see Discussion).  
  Dynamics of semelparous organisms with more than one generation per year 
  (many insects) may be overdispersed compared to the Poisson.  If the number of generations per
  year is known, then this can be accounted for in our models by adding extra $N$'s between each
@@ -492,7 +484,7 @@ if they are underdispersed compared to the Poisson (but see Discussion).
 
 One way to model environmental stochasticity --- variation in population growth
 rate due to stochastic environmental conditions --- is by explicitly
-modeling dynamic parameters as functions of environmental covariates. %, such as weather.  
+modeling dynamic parameters as functions of environmental covariates. 
 For example, in the Gompertz model (Eq.~\ref{eq:gomp}), $r$ could be a 
 function of temperature  
 and $K$ a function of rainfall. 
@@ -542,7 +534,7 @@ X_{i,j,t} \sim \mathrm{Bin}(N_{i,t}, p_j) \nonumber \\
 where $X_{i,j,t}$ is the number of individuals counted at site $i$ by
 observer $j$ in year $t$, $p_j$ is observer-specific detection probability,
 $\mu_p$ is the mean detection probability (on the logit scale), and $\sigma_p$ is
-the logit-scale standard deviation of the random observer effect. % (also on the logit scale). 
+the logit-scale standard deviation of the random observer effect. 
 
 \subsection*{Statistical inference}
 
@@ -565,9 +557,8 @@ a common usage of state-space models is to predict future
 population size, and this is easily accomplished using Bayesian
 methods.
 
-%In practice, 
 Simulation methods such as Markov chain Monte Carlo (MCMC)
-are used to estimate the posterior distributions. While time %simulate
+are used to estimate the posterior distributions. While time 
 consuming, MCMC may be the only viable approach for estimating
 parameters, especially for hierarchical models with many random
 effects.  
@@ -633,7 +624,7 @@ study can be found in Appendix A.
 We applied our model extensions to North American Breeding Bird Survey
 (BBS) data collected from 1966-2010 in 
 Maryland and Virginia. For our focal species, we selected the
-ovenbird (\textit{Seiurus aurocapilla}), an abundant, %and widespread,
+ovenbird (\textit{Seiurus aurocapilla}), an abundant, 
 forest-breeding migratory songbird with a stable or increasing trend
 in the region \citep{porneluzi_etal:2011}. 
 
@@ -734,11 +725,11 @@ estimated parameters well, with minimal bias and RMSE and nominal coverage.
 The negative binomial distribution was strongly supported for ovenbird
 initial abundance over the Poisson and zero-inflated Poisson
 (Table B1A in Appendix B). 
-The best supported model for $p$ included effects of wind speed %additive 
+The best supported model for $p$ included effects of wind speed  
 and an observer's first run of a route (Table B1B, model B.1). First run 
 and increasing wind speeds both decreased $p$. All dynamics models 
 with immigration were better supported than models without immigration 
-(Table B1C); the best supported was Ricker + immigration % of these the
+(Table B1C); the best supported was Ricker + immigration 
 (see Appendix B, Fig. B1 for estimates).
 Constant-recruitment dynamics models estimated unrealistically high
 survival probabilities ($\omega$ = 1 $\pm$ 1.3e-05), whereas 
@@ -806,9 +797,6 @@ Bayesian analysis existing estimates of demographic parameters
 could be used as informative priors, which might make it possible to
 seperate the effects of movement versus births and deaths.
 Alternatively, ecologists could combine count data with demographic data,
-%from, for example,
-%capture-recapture data. Models that are fitted to count data and
-%demographic data are 
 often referred to as an integrated population model
 \citep[IPM;][]{besbeas_etal:2002,schaub_etal:2007,chandler_clark:2014}.
 We believe that a DM modeling framework could work well in this context,
