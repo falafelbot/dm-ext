@@ -4,7 +4,7 @@
 \usepackage{soul}
 \usepackage{graphicx}
 \usepackage{amsmath}
-
+\usepackage{rotating}
 \usepackage{pdflscape}
 
 \begin{document}
@@ -67,6 +67,7 @@ and true values, and coverage
 based on percentage of 95\% credible intervals for parameters that overlap the true values.
 \newpage
 
+
 \begin{table}[t]
   \centering
 \caption{Changed parameter values, by series of simulations.  We
@@ -94,10 +95,9 @@ simulated low, medium, and high values of immigration rate ($\iota$).}
   \end{tabular}
 \end{table}
 
+%\begin{landscape}
 
-\begin{landscape}
-
-\begin{table}[htb]
+\begin{sidewaystable}[htb]
   \centering
   \footnotesize
   \caption{Simulation results from 27 cases of exponential dynamics with 1000 Monte Carlo replicates for each.}
@@ -144,10 +144,10 @@ simulated low, medium, and high values of immigration rate ($\iota$).}
   \hline
   \end{tabular}
   \label{tab:simexp}
-\end{table}
+\end{sidewaystable}
 \clearpage
 
-\begin{table}
+\begin{sidewaystable}
   \centering
   \footnotesize
   \caption{Simulation results from 9 cases of Ricker dynamics with 1000 Monte Carlo replicates for each.}
@@ -176,10 +176,10 @@ simulated low, medium, and high values of immigration rate ($\iota$).}
   \hline
   \end{tabular}
   \label{tab:simricker}
-\end{table}
+\end{sidewaystable}
 
 \clearpage
-\begin{table}
+\begin{sidewaystable}
   \centering
   \footnotesize
   \caption{Simulation results from 3 cases of Ricker and immigration dynamics with 1000 Monte Carlo replicates for each.}
@@ -202,10 +202,10 @@ simulated low, medium, and high values of immigration rate ($\iota$).}
   \hline
   \end{tabular}
   \label{tab:simricki}
-\end{table}
+\end{sidewaystable}
 \clearpage
 
-\begin{table}[htb]
+\begin{sidewaystable}[htb]
   \centering
   \footnotesize
   \caption{Parameters of geometric-recruitment simulation (1000 Monte Carlo replicates)
@@ -234,11 +234,11 @@ Geometric-recruitment &
   \multicolumn{18}{c}{$^{1}$ Derived parameter: $r = \log(\gamma + \omega)$.}
   \end{tabular}
   \label{tab:simgeom}
-\end{table}
+\end{sidewaystable}
 
 \clearpage
 
-\begin{table}[htb]
+\begin{sidewaystable}[htb]
   \centering
   \footnotesize
   \caption{Results of exponential and geometric-recruitment models fit to Leslie matrix simulation (1000 Monte Carlo replicates).}
@@ -264,10 +264,10 @@ Geometric-recruitment &
   \multicolumn{14}{c}{$^{1}$ Derived parameter: $r = \log(\gamma + \omega)$.}
   \end{tabular}
   \label{tab:simmat}
-\end{table}
+\end{sidewaystable}
 \clearpage
 
-\begin{table}[htb]
+\begin{sidewaystable}[htb]
   \centering
   \footnotesize
   \caption{Parameters of Gompertz simulation with two generation per year 
@@ -300,30 +300,30 @@ Gompertz (MCMC; 2 generations/year) &
   \hline
   \end{tabular}
   \label{tab:simgomp}
-\end{table}
+\end{sidewaystable}
 
 \clearpage
 
 
-\begin{figure}
+\begin{sidewaysfigure}
 \caption{Histograms of 1000 parameter estimates for each of nine
 simulation cases with Ricker dynamics. The blue vertical lines are the 
 data-generating values.}
   \centering
   \includegraphics{../figs/rick_hists}
 \label{fig:rick_hists}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
 \caption{Histograms of 1000 parameter estimates for each of three
 simulation cases with Ricker + immigration dynamics. The blue vertical lines are the 
 data-generating values.}
   \centering
   \includegraphics[width=8.5in]{../figs/ricki_hists}
 \label{fig:ricki_hists}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
 \caption{Histograms of 1000 parameter estimates for each of two
 simulation cases with geometric-recruitment or Leslie matrix dynamics, each fit with 
 exponential and geometric-recruitment models. The blue vertical lines are the 
@@ -334,9 +334,9 @@ each age class had its own survival and fecundity parameters.}
   \centering
   \includegraphics{../figs/geom_mat_hists}
 \label{fig:geom_mat_hists}
-\end{figure}
+\end{sidewaysfigure}
 
-\begin{figure}
+\begin{sidewaysfigure}
 \caption{Histograms of 1000 parameter estimates simulated with Gompertz dynamics, 
 two generations per year, fit with three different Gompertz models.
 The vertical lines are the data-generating values; changing the number of generations
@@ -345,7 +345,7 @@ single generation per year cases.}
   \centering
   \includegraphics{../figs/gomp_hists}
 \label{fig:gomp_hists}
-\end{figure}
-\end{landscape}
+\end{sidewaysfigure}
+%\end{landscape}
 
 \end{document}
