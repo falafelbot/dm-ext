@@ -1,0 +1,358 @@
+\documentclass[12pt,english]{article}
+\usepackage[letterpaper,hmargin={2.4cm,2.4cm},vmargin={2.4cm,2.4cm}]{geometry}
+\usepackage{setspace}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage[round,comma,authoryear]{natbib}
+\usepackage{color, soul}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage[format=plain,justification=raggedright,labelsep=period,font={stretch=1.9}]{caption}
+\usepackage[pdftex,hidelinks]{hyperref} 
+\bibliographystyle{ecology}
+\bibpunct{(}{)}{,}{a}{}{,}
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{\doublespacing}
+\makeatletter
+\let\@fnsymbol\@arabic
+\makeatother
+\title{Improved state-space models for inference about 
+spatial and temporal variation in abundance from count data: Response to revision comments}
+
+\author{Jeffrey A. Hostetler
+   \and Richard B. Chandler    
+}
+\date{} 
+\begin{document}
+\maketitle
+\vspace{-1cm}
+\begin{spacing}{1.9}
+\begin{flushleft}
+\renewcommand*\thetable{R\arabic{table}}
+\renewcommand*\thefigure{R\arabic{figure}}
+\renewcommand*\theequation{R\arabic{equation}}
+
+\section*{Reviewer 1 (Comments to Author):} 
+\label{sec:rev1}
+
+\subsection*{General Comments}
+In this paper, the authors propose to extend the \citet{dail_madsen:2011} model to 
+include classical models of population growth. They also propose extensions to 
+deal with zero-inflated data, immigration and variation in observation errors.
+
+This work is novel and important because it proposes to estimate population 
+growth characteristics by accounting for imperfect detection of individuals. Otherwise, 
+actually, population growth models are embedded in state-based models that assume 
+normally distributed errors, as a consequence probability of detection cannot be estimated. 
+Besides, in some models of population growth, the errors of observations are not taken 
+into account.
+
+The authors check for the reliability of their model to recover their parameters by using a 
+simulation study. The simulation study covers a large range of different population 
+dynamics as well as additional cases where the simulated data deviates from the assumption 
+of the model used for the analysis. In addition, to the simulation study, the models are 
+applied to real data.
+
+\vspace{0.5cm}
+\textit{Thank you for your positive comments!}
+\vspace{0.5cm}
+
+In a general way, effort should be put on tightening the text and better focus
+on the main goal of the paper, that is about including models of population
+growth in a framework that account for imperfect detection of individuals. The
+choice of the model of population growth might be subjective and/or motivated by
+the knowledge of the life history of the species under study. Even thought, some
+studies, proposed some procedures based on model selection to discriminate among
+the different models of population growth. Hence, the Ms would benefit of a
+better description of the underlying ecological assumptions of the different
+models of population growth. For example, the exponential model describes
+population growth in an unlimited environment, where $r$ is the maximum per capita
+of increase, etc… . In Ricker model, the density-dependence becomes stronger at
+higher densities, due to the exponential function relating to carrying capacity.
+The Gompertz model is similar to the Ricker model except that there is a
+constant linear decrease in the instantaneous growth rate ($r$) as the natural
+logarithm of population increase, etc…..
+
+\vspace{0.5cm}
+\textit{[I can do this.]}
+\vspace{0.5cm}
+
+\subsection*{Specific Comments}
+I am unclear about the title of the manuscript because it does not reflect the real aim of the
+paper, which is well stated by the authors, lines 417-418: ``one of the primary aims of our
+paper was to demonstrate how classical population growth models can be embedded in the
+DM model''.
+
+I find that basing the introduction upon the notion of state-based model is rather confusing
+regarding the real goal of the paper (see above). The Dail and Madsen model and statespace
+models are defined in two different ``statistical worlds''. On the one hand, the constant
+Dail and Madsen model (2011) has a Markov property so the variables can only take on a
+finite set of discrete values for a finite period of observation. The distinguish feature of
+Markov chains is that the conditional probability of $x_{t}$ given the entire past depends only on
+the immediately preceding variable $x_{t-1}$. In addition, the errors of observation are well
+identified because they are related to imperfect detection of individuals and expressed with
+a discrete probability distribution. On the other hand, the state-space model framework
+provides a structure for extending time-series models to handle both observation and
+process errors. The term ``state-space'' model refers to models where the process model has
+an autoregressive property and where the errors have a Gaussian distribution.
+Autoregressive model are defined for continuous variable, and so the errors are normally
+distributed. A space-state model, being given its properties, can be estimated by using a
+Kalman filter. The Kalman filter is an updating procedure whereby the prior estimate of the
+state is corrected by how well the next observation can be predicted.
+
+Even if the Dail and Madsen model also provides a structure to account for time dependence
+as well as for ``process errors'' through the birth and death process and for imperfect
+detection, the Dail and Madsen model and state-space models are defined in two different
+``statistical worlds''. Hence, the analytical results of the Dail and Madsen model and a state-space
+model would be different. That is why, in my point view, it is unclear and misleading to
+relate the Dail and Madsen model to a state-space model.
+
+\vspace{0.5cm}
+\textit{[Richard, can you address these three paragraphs?]}
+\vspace{0.5cm}
+
+Lines 118 - 174: the description of the model could be shortened (or moved in part in the
+appendices) because it has been described now in further publications.
+
+\vspace{0.5cm}
+\textit{[I can work on this.]}
+\vspace{0.5cm}
+
+Line 165: \textit{``propagule rain''} is not an appropriate term here; this term is used in
+Mainland/Island model to describe something like a continuous source of migrants which
+can colonise an empty site. A large stable mainland population provides migrants, which is
+not the case in Dail and Madsen model. Consistency with the original terminology defined in
+Dail and Madsen (2011) should be kept as much as possible.
+
+\vspace{0.5cm}
+\textit{[I can see the reviewer's point (there's no actual mainland), although I think it really
+behaves the same way.  Should I just cut/change this?]}
+\vspace{0.5cm}
+
+Line 165: \textit{``autoregressive''} model should be kept in quote as it is p. 580 of Dail and Madsen
+(2011).
+
+\vspace{0.5cm}
+\textit{We have made this change.}
+\vspace{0.5cm}
+
+Line 135: typography error in \textit{``The third process describes the relationships between''} should
+be \textit{``The third process describes the relationships between.''}
+
+\vspace{0.5cm}
+\textit{We have fixed the typographic error (surplus ``the'') here.}
+\vspace{0.5cm}
+
+Line 190: More explanations on the Gompertz model should be added here, especially on
+the link between the Ricker model and the Gompertz model. The original reference of the
+Gompertz logistic growth equation should be added here.
+
+\vspace{0.5cm}
+\textit{[I can do this.]}
+\vspace{0.5cm}
+
+Line 199: I am unclear about the meaning of \textit{``internal and external (immigration)
+contributions to population growth.''} Then, the authors proposed to account for immigration
+but they do not mention anything about emigration. In the Dail and Madsen model, the
+survival rate is a reduced demographic parameter that accounts for both death and
+emigration. Some words, in the discussion, about how emigration is (or not) handled in this
+novel extension would be welcome.
+
+\vspace{0.5cm}
+\textit{[I can work on this.]}
+\vspace{0.5cm}
+
+Line 225: I am unclear about \textit{``semelparous organisms with one generation per sampling
+interval (year).''} Semelparous refers to organisms that died after reproduction, (i.e. they can
+have solely one single reproduction event in their life because they die after this
+reproduction event). So, semelparous organisms cannot have ``one generation per sampling
+interval'' but only one generation.
+
+Lines 225 - 229 – This paragraph needs to be clarified – semelparous organisms cannot have
+more than one generation per year because they can have only one single reproduction
+event in their life (see above).
+
+\vspace{0.5cm}
+\textit{[I can work on these two.]}
+\vspace{0.5cm}
+
+Lines 281 - 296: The paragraph about the simulation of the data needs to be clarified to
+understand better how the data are simulated. Some references to the different equations
+of the model should help to clarify this section. For the simulation study, the time series
+which are simulated are rather long (40 years) and also the length of the time series of the
+application are about 40 years. If the time series were shorter, how the estimation of the
+parameters would be affected.
+
+\vspace{0.5cm}
+\textit{[I can work on this.  Should I just speculate in the discussion about fewer years
+of data?  I would think less precision would be the result.  Fewer than 10 years of data
+could especially be a problem for density-dependent models, but again that's speculation.]}
+\vspace{0.5cm}
+
+Discussion: The text of the discussion needs to be reduced and tightened. The authors
+should better focus on discussing the results of this study and relate them to other studies
+on models of population growth.
+
+\vspace{0.5cm}
+\textit{[I can work on this.  Not sure yet what we can/should cut though.]}
+\vspace{0.5cm}
+
+The figure A1 and A2 describe results of the simulation based on the Ricker and Gompertz
+models, and both are much more ``realistic'' than the model of exponential growth when
+applied to population ecology. So, the Fig. A1 and A2 represent core results of the
+manuscript and should be rather presented in the main text than in appendices.
+
+\vspace{0.5cm}
+\textit{[Between this comment and the one by the other reviewer, sounds like we should 
+put all three of these figures in the main text.  If we still have to keep it to 30 pages,
+that requires at least two pages of cutting, which is a lot.  Probably more, since we'll also 
+be adding a few things.  This reviewer suggests cutting
+text from DM model description and discussion.  I will work on those, but maybe we
+should also consider emailing Evan Cooch about the length limit.]}
+\vspace{0.5cm}
+
+
+\section*{Reviewer 2 (Comments to Author):} 
+\label{sec:rev2}
+\subsection*{General Comments}
+The authors build on hierarchical state-space models that describe population
+dynamics proposed by Dail and Madsen (2011). The paper is clear, well-written,
+and provides important advances and tests of the original DM formulation and
+extensions. The authors cover a lot of ground, but to me, the principal novel
+contribution of the paper is the embedding of classical population-growth and
+density-dependence functions into the population dynamics model, rather than
+relying on the original DM formulation that models population change as a
+function of demographic (survival and recruitment) parameters. The authors also
+propose a sort of hybrid set of models that combine a functional form for
+population growth with a parameter representing immigration from outside of the
+indexed spatial location. The paper also introduces negative binomial and
+zero-inflated versions of the state model as well as models that include
+demographic or environmental stochasticity. An important extension that
+the authors propose that would greatly enhance the practical utility of these
+models in ecological applications is the modeling of dynamics parameters as
+functions of site-time specific environmental covariates or random effects. The
+authors state that code will be provided for implementing models with maximum
+likelihood and Bayesian McMC methods using freely available software packages,
+which should facilitate the use of these models in the future. Overall, the
+paper advances the state of the art of this class of models in many directions,
+and the authors do a good job in highlighting both the potential and limitations
+of the various model flavors.
+
+\vspace{0.5cm}
+\textit{Thank you for your positive comments!}
+\vspace{0.5cm}
+
+\subsection*{Specific comments} 
+Model Extensions: Immigration models 
+The immigration models are an interesting idea, combining classical growth and
+density-dependence functions or the mechanistic geometric growth functions with
+an additional parameter that represents immigration. As the authors note, an
+important limitation of several proposed models without the immigration
+parameter (including Dail and Madsen's geometric growth model) is that they do
+not accommodate recovery following extinction, so the introduction of the
+immigration parameter would seem a critical component in those models in cases
+where local extinction is likely. I must admit, however, that I don't completely
+understand how the parameters of these models are informed. For example, in the
+exponential, Ricker, and Gompertz models, the r parameter includes a mixture of
+local apparent survival (i.e., site fidelity + true survival) + local
+recruitment (through birth processes) dynamics, while the iota parameter
+supposedly reflects immigration from outside the site. How is there
+information to separate recruitment components of r from immigration components
+of iota? Similarly, how are both gamma and iota identifiable in the geometric
+growth model? I suppose that somehow because the iota parameter does not depend
+on the any of the other population parameters, it can be estimated separately.
+But this is not entirely clear to me. Maybe a sentence or 2 could clarify this a
+bit?
+
+\vspace{0.5cm}
+\textit{[I can work on this.  Not sure yet what the answer is though.]}
+\vspace{0.5cm}
+
+Line 347-348: As re: memory requirements, why not do multiple single-chain runs
+(to yield multiple chains)?
+
+\vspace{0.5cm}
+\textit{[Will this work?  I should try it.]}
+\vspace{0.5cm}
+
+Results: Why present the graphical display of simulation results for the
+exponential models in the main text (Fig 1), but relegate all of the tables and
+graphical summaries for other models to Appendix A? I would prefer to see all of
+the summary tables (first choice) or all of the figures (but not both) in the
+main text.
+
+\vspace{0.5cm}
+\textit{[Between this comment and the one by the other reviewer, sounds like we should 
+put all three of these figures in the main text.]}
+\vspace{0.5cm}
+
+Fig. 1: for initial abundance on x-axis, replace little lambda with big lambda
+to match text.
+
+\vspace{0.5cm}
+\textit{[Richard, can you do this, and also increase the resolution of this figure?
+I don't have the simulation results from the exponential model.  Alternatively,
+you could send me the results and I can replot it (I think I have your plotting code).
+It looks like you used a file called process.RData to store the results.]}
+\vspace{0.5cm}
+
+Fig. 2 legend, in parentheses could replace ``mean and'' with +/-, given that it
+is already stated that the panel shows the mean.
+
+\vspace{0.5cm}
+\textit{We have made the suggested change.}
+\vspace{0.5cm}
+
+Line 358: replace 'inaccurate' with 'imprecise'.
+
+\vspace{0.5cm}
+\textit{These terms have multiple meanings and are defined differently in
+different places.  We like the definition of \citet{williams_etal:2002}:
+``Accuracy combines both bias and precision in an assessment of estimator
+performance.''  On the same page (45) those authors describe mean squared error 
+(MSE) as a measure of estimator accuracy.  Therefore root mean squared error (RMSE) and
+relative RMSE are best described as measures of accuracy as well.  
+In another case (line ?) we used the
+word ``imprecise'' when the RMSE was high, but only after we established that
+bias was low.  In this case, since bias is high, we feel it is more correct to describe
+the estimates as ``inaccurate.''}
+\vspace{0.5cm}
+
+Lines 424-429: Could difficulty in estimating vital rates derives from having
+survival and recruitment parameters taking similar values? For example many
+small songbirds have apparent survival rates of $\sim .5$; for a stable population,
+recruitment would be similar, which in lieu of direct information on vital
+rates, might make the 2 parameters difficult to separate. In the American Robin
+example in Dail and Madsen (2011), survival and recruitment were estimated at
+reasonable values of .7 and .5 (although precision was still fairly low). Could
+low detection probability have something to do with this problem? From the p
+estimates in Fig. B1, detection probabilities were $< .2$ (which seems low to me
+given that ovenbirds are loud and sing a lot, although I suppose it has to do
+with large sample radius). In the simulations in the Dail-Madsen paper, lowest
+coverage for gamma and omega was found at lowest p values (p = .25). I realize
+I'm stretching a bit here, but it was a little
+unsatisfying to me that the vital rates parameters could not be estimated, and
+the reason for why this was so wasn't too clear. The authors suggest individual
+heterogeneity might be an issue and suggest incorporating prior information or
+data via integrated population models to improve vital rate estimation. However,
+I wonder if some additional conjecture might be added here?
+
+\vspace{0.5cm}
+\textit{[Unsatisfying to us too!  I can work on this.  Richard, I seem to remember that 
+you had done some simulations on why $p$ estimates are so low from BBS data 
+(and it was exactly because of large radius).  Did you publish those results somewhere
+we can cite?  If not, maybe we should not address that point here.
+The additional speculations
+the reviewer provides seem possible, although in our robustness testing we tried
+DM simulations with $\omega = \gamma = 0.5$ and $p = 0.25$, and though the DM
+estimator didn't do perfect, they weren't nearly as bad as the real data.  Maybe 
+they would have been with a lower simulated $p$, but it seems more likely to me that
+the real data somehow came from a different process than the DM model assumes.]}
+\vspace{0.5cm}
+
+\bibliography{improved_state_space}
+
+
+\end{flushleft}
+\end{spacing}
+\end{document}
