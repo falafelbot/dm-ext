@@ -1,3 +1,35 @@
+################################################################################
+# Code supplement for Hostetler, J. A. and R. B. Chandler. In revision. 
+# Improved state-space models for inference about spatial and temporal variation
+# in abundance from count data. Ecology.
+# 
+# Our manuscript extends the open population N-mixture models developed by Dail 
+# and Madsen (2011; Biometrics) to include classical population growth and
+# density dependence models, immigration, zero-inflation, and random observer
+# effects.  It is implemented in extensions to the R package unmarked and 
+# in program JAGS.  
+#
+# This program reads in data and fits models in unmarked to ovenbird Maryland 
+# and Virginia BBS data.  Requires comma-delimited files oven3a.csv,
+# observers.csv, first.run.csv, and wind.factor.csv.  The procedure first
+# selects the lowest AIC mixture model for initial abundance, then the lowest
+# AIC model for detection probability, and then the lowest AIC model for
+# population dynamics.
+#
+# Code by Jeffrey A. Hostetler, last updated September 9, 2014
+################################################################################
+
+################################################################################
+# IMPORTANT NOTE:
+# The currently released version of unmarked does not yet include our extensions
+# for density dependence or immigration.  Therefore, this program will not work
+# with that version of the package.  If you would like to run this code, let
+# me know what version of R you are using and I will send you a zip file with
+# a version of unmarked that this code will work with, as well as the input 
+# files.  Also note that it will take a while to run.
+################################################################################
+
+
 library(unmarked)
 
 # Read in input files
@@ -27,7 +59,7 @@ bird.frame <- unmarkedFramePCO(ydata, obsCovs=obs4, numPrimary=45)
 
 # Run mixture models for initial abundance  
 mods1 <- rep('', 3)
-outputs1 = list()
+outputs1 <- vector("list", 3)
 for (i in 1:3) {
   mixture <- c('P','NB','ZIP')[i]
   dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[3]
@@ -73,7 +105,8 @@ mix.num
 
 # Run models for detection probability  
 mods2 <- c(mods1[mix.num], rep('', 3))
-outputs2 <- list(outputs1[[mix.num]])
+outputs2 <- vector("list", 4)
+outputs2[[1]] <- outputs1[[mix.num]]
 for (i in 2:4) {
   mixture <- c('P','NB','ZIP')[mix.num]
   dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[3]
@@ -106,7 +139,8 @@ p.num
 
 # Run models for population dynamics  
 mods3 <- c(mods2[p.num], rep('', 8))
-outputs3 <- list(outputs2[[p.num]])
+outputs3 <- vector("list", 9)
+outputs3[[1]] <- outputs2[[p.num]]
 # Constant dynamics
 mixture <- c('P','NB','ZIP')[mix.num]
 dynamics <- c("constant", "autoreg", "trend", "ricker", "gompertz")[1]
@@ -189,7 +223,8 @@ mod.name <- paste(gsub("\\*", ".", gsub(".stand", "", gsub("[ 1]", "",
 mods3[5] <- mod.name
 file.name <- paste(mod.name, 'gzip', sep='.')
 print(file.name)
-# Ricker and Gompertz generally seem to fail with default starting values, so we set them
+# Ricker and Gompertz generally seem to fail with default starting values, so
+# we set them
 starts <- coef(outputs2[[p.num]])
 starts <- c(starts[1], -2.35, starts[1]+0.3, starts[3:length(starts)])
 fm <- pcountOpen(data=bird.frame, gammaformula=gam.model, 
