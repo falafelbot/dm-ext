@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.5.23)  14 OCT 2014 16:25
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.5.23)  4 NOV 2014 11:38
 entering extended mode
 **C:/Users/hostetlerj/Documents/BirdClimate/Manuscripts/dm-ext/response*to*revi
 sion*comments.tex
@@ -382,18 +382,18 @@ Missing character: There is no “ in font cmr12!
 [10]
 ("C:\Users\hostetlerj\Documents\BirdClimate\Manuscripts\dm-ext\response to revi
 sion comments.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 358.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 370.
  [11]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 358.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 370.
 
 ("C:\Users\hostetlerj\Documents\BirdClimate\Manuscripts\dm-ext\response to revi
 sion comments.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 358.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 358.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 370.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 370.
 Package rerunfilecheck Info: File `response*to*revision*comments.out' has not c
 hanged.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 358.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 370.
  ) 
 Here is how much of TeX's memory you used:
  7763 strings out of 493706
@@ -412,7 +412,7 @@ ram Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program
 es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
  (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x
 86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on "response to revision comments.pdf" (11 pages, 129745 bytes).
+Output written on "response to revision comments.pdf" (11 pages, 130746 bytes).
 
 PDF statistics:
  106 PDF objects out of 1000 (max. 8388607)

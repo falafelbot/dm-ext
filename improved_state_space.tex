@@ -236,9 +236,9 @@ The DM model is an extension of the
 \citet{royle:2004biom} $N$-mixture model, which allows for inference about spatial
 variation in abundance when individuals cannot be detected with
 certainty. To estimate both abundance and detection parameters, 
-the original $N$-mixture model uses replicate
-observations at each site. The observations are collected during sufficiently
-short time intervals such that the population can safely be
+the $N$-mixture model uses replicate % original
+observations at each site. The observations are made during sufficiently
+short time intervals such that the population can be %safely
 assumed to be closed with respect to births, deaths, and movement. The DM
 model relaxes this closure assumption and includes explicit parameters
 describing population change over time.
@@ -257,8 +257,8 @@ three conditionally related processes corresponding to:
 abundance at site $i$ during the first primary period,
 denoted $N_{i,1}$, (2) abundance at time $t$ (for $t>1$) which depends upon
 abundance at $t-1$, and (3) the
-detection process \citep{dail_madsen:2011}.
-The first two processes describe the state process---the
+detection process. % \citep{dail_madsen:2011}.
+The first two processes describe the %the state process---
 variation in abundance in space and time. The third process 
 describes the relationship between
 abundance and the observed count data.
@@ -327,8 +327,8 @@ is the recruitment rate, which can depend on $N_{i,t-1}$.
 \citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
 $G_{i,t} \sim \mathrm{Pois}(\gamma)$ where recruitment does not
-depend on $N_{i,t-1}$, and which simulates a ``propagule rain'' of new 
-individuals; the ``autoregressive'' model, $G_{i,t} \sim
+depend on $N_{i,t-1}$; %and which simulates a ``propagule rain'' of new individuals; 
+the ``autoregressive'' model, $G_{i,t} \sim
 \mathrm{Pois}(\gamma N_{i,t-1})$
 of geometric or density independent growth; and the
 no-trend model, $\gamma = (1-\omega)\Lambda$, which assumes the
@@ -358,12 +358,13 @@ Partitioning population growth into survival and recruitment
 is useful  
 in terms of providing a mechanistic description of population
 dynamics, but this is not always possible using simple count data,
-especially when the sites are not closed with respect to immigration
-and emigration. 
+especially when the sites are not closed with respect to movement.
+%immigration and emigration. 
 When the mechanistic model is unrealistic, we suggest replacing it
 with classical population growth models that have a long history in ecology.
-The exponential growth model is the simplest: 
-$N_{i,t} = N_{i,t-1}e^r$ where $r$ is the intrinsic
+The exponential growth model, which describes population growth in an 
+unlimited environment, is the simplest: 
+$N_{i,t} = N_{i,t-1}e^r$ where $r$ is the intrinsic or maximum per capita
 rate of increase. 
 To allow for demographic stochasticity, we can regard $N_{i,t}$ as a Poisson 
 random variable, simplifying Eq.~\ref{eq:Nt} to:
@@ -386,9 +387,16 @@ where $K$ is the stable equilibrium of the population and $r$ is
 the instantaneous population growth rate at low population
 densities, and both parameters are constrained to be positive. This is
 a stochastic version of the 
-Ricker model \citep{ricker:1954}. Another option is a 
+Ricker model \citep{ricker:1954}. In the Ricker model, 
+density dependence becomes stronger as abundance increases well above $K$,
+leading to overcompensation    
+%due to the exponential function relating to carrying capacity 
+\citep[abundance goes from above $K$ to below it;][]{sabo_etal:2004}.
+Another option is a 
 modified Gompertz-logistic
-density-dependent model \citep[henceforth Gompertz model,][]{hart_gotelli:2011}:
+density-
+dependent model \citep[henceforth Gompertz model;][]{gompertz:1825,
+hart_gotelli:2011}:
 \begin{linenomath*}
 \begin{equation}
 N_{i,t} \sim \mathrm{Pois}(N_{i,t-1}\exp(r(1-\log(N_{i,t-1}+1)/\log(K+1))))
@@ -396,7 +404,11 @@ N_{i,t} \sim \mathrm{Pois}(N_{i,t-1}\exp(r(1-\log(N_{i,t-1}+1)/\log(K+1))))
 \end{equation}
 \end{linenomath*}
 Here the interpretations of $r$ and $K$ are similar to those in the
-Ricker model. Because a single Poisson distribution controls
+Ricker model, but dynamics can only be overcompensatory at high values of $r$
+(approximately $r > log(K)$).
+%population growth declines linearly with an increase in the natural logarithm of abundance,
+%rather than linearly with an increase in abundance. 
+Because a single Poisson distribution controls
 the distribution of $N_{i,t}$ in each of these models, the discrete 
 convolution used by \citet{dail_madsen:2011} to construct the
 likelihood is not required, speeding up processing time.
@@ -408,7 +420,7 @@ Ricker, and Gompertz versions of the DM models
 is that they include no mechanism for a local population to recover
 after extinction. 
 However, these models can be generalized 
-to include both internal and external (immigration) contributions
+to allow immigration to contribute
 to population growth. For example, an exponential plus immigration
 model is:
 \begin{linenomath*}
@@ -423,7 +435,10 @@ positive (this is equivalent to separate Poisson processes for
 growth and immigration).  
 The geometric-recruitment, Ricker,
 and Gompertz models can be extended to allow for immigration in the
-same way.   Deterministic versions of the Ricker + immigration and the 
+same way.  Because the population contribution from immigration does
+not depend on current abundance, $\iota$ and other growth parameters
+are separately estimable.
+ Deterministic versions of the Ricker + immigration and the 
 Gompertz + immigration do reach stable equilibriums, but the equilibriums 
 are not at $K$ and cannot be solved for analytically \citep{otto_day:2007}.  Therefore, we
 refer to $K$ in these models as the semi-equilibrium abundance.
@@ -473,11 +488,11 @@ rate due to the randomness of birth and death processes ---
 via the binomial and Poisson distributions for apparent survival and recruitment.  Our population
 growth extensions use a single Poisson distribution for abundance. 
 Conceptually, this is an appropriate method of modeling demographic stochasticity 
- for semelparous organisms with one generation per sampling interval (year)
+ for semelparous populations with one generation per sampling interval (year)
  \citep{bonsall_hastings:2004},
-and the DM models appropriate for modeling the demographic stochasticity of iteroparous organisms,
+and the DM models appropriate for modeling the demographic stochasticity of iteroparous populations,
 if they are underdispersed compared to the Poisson (but see Discussion).
- Dynamics of semelparous organisms with more than one generation per year 
+ Dynamics of semelparous populations with more than one generation per year 
  (many insects) may be overdispersed compared to the Poisson.  If the number of generations per
  year is known, then this can be accounted for in our models by adding extra $N$'s between each
  count (see Supplement 1).
@@ -579,18 +594,19 @@ each combination of parameter values.  All
 simulations assumed initial abundance was Poisson distributed
 and no covariates affected initial abundance, dynamics, or
 detection probability.  Our first series of simulations
-assumed dynamics were exponential.  We ran 
-each combination of low, medium, and high $\Lambda \in
+assumed dynamics were exponential (Eq.~\ref{eq:exp}).  We ran 
+each combination of low, medium, and high initial abundance, 
+growth rate, and detection probability ($\Lambda \in
 \{1,5,10\}$, $r \in \{-0.005, 0, 0.005\}$, and
-$p \in \{0.05, 0.25, 0.5\}$. 
+ $p \in \{0.05, 0.25, 0.5\}$). 
 Our second series of simulations changed dynamics to the Ricker
-model. We used an initial abundance of 10 and a detection probability
+model (Eq.~\ref{eq:rick}). We used $\Lambda$ of 10 and $p$
 of 0.25, and simulated low, medium, and high values of equilibrium
-abundance and maximum growth rate, (Table A1;
+abundance $(K)$ and $r$ (Table A1;
 9 total combinations). Our third series of simulations was based
 on the Ricker + immigration dynamics model; here we fixed all
 parameters the same as the Ricker model (with $r$ = 0.05 and $K$ = 10) and
-simulated low, medium, and high values of immigration rate (Table A1).
+simulated low, medium, and high values of immigration rate ($\iota$) (Table A1).
 
 We used the \textbf{R} package \texttt{unmarked} to estimate the parameters 
 for each simulation with the same
@@ -665,13 +681,12 @@ $\iota  \sim \mathrm{U}(0, 15)$, and logit-linear $p$ coefficients $\sim \mathrm
 We added random observer 
 effects and environmental stochasticity, modeled as lognormal
 variation in regional population growth rate, Eq.~\ref{eq:nuRand}.
-We tested for lack of convergence using
+We also used the random observer effects model to obtain route and 
+year specific abundance estimates.    
+We tested for lack of convergence using four or
 five Markov chains for each model \citep{gelman_rubin:1992}.
 For each chain, we drew at least 40,000 samples, 
 after at least 3,000 adaptation iterations.   
-We also used the random observer effects model to obtain route and 
-year specific abundance estimates.  Because of the memory requirements involved,
-we used a single chain.  
 
 \section*{Results}
 
@@ -749,15 +764,16 @@ estimate of the intercept for $p$ dropped.
 When environmental stochasticity was added, the estimate for $K$ increased. 
 The highest estimates of $\Lambda$ and $K$ came 
 from the model that included environmental stochasticity and random observer effects. 
-Gelman and Rubin diagnostics and visual examination of the chain trajectory and density plots
-provided little evidence of lack of convergence for any of the Bayesian models ran.  
 
 We estimated ovenbird abundance by route and year (and averaged over routes) 
 using the Bayesian model with random observer effects (Fig.~\ref{fig:oven_N}).  
 Estimated average abundance over time alternated between growing and stable periods.  
 Estimated ovenbird
 abundance was highest in western and eastern Maryland in 1970 and 1980, but became
-more evenly distributed by 2010.  
+more evenly distributed by 2010.  Gelman and Rubin diagnostics and visual 
+examination of the chain trajectory and density plots
+provided little evidence of lack of convergence for any of the Bayesian models ran.  
+
 
 \section*{Discussion}
 
@@ -790,32 +806,32 @@ models (J. Hostetler, unpublished analyses), suggesting that some process, possi
 individual heterogeneity \citep{vindenes_etal:2008}, is increasing variances
 above the levels expected from demographic stochasticity alone.
 
-One strategy for adhering to the original formulation of the
-model that included survival and recruitment parameters would be to
-use either prior information or additional data \citep{zipkin_etal:2014}. For example, in a 
-Bayesian analysis existing estimates of demographic parameters
-could be used as informative priors, which might make it possible to
-seperate the effects of movement versus births and deaths.
-Alternatively, ecologists could combine count data with demographic data,
-often referred to as an integrated population model
-\citep[IPM;][]{besbeas_etal:2002,schaub_etal:2007,chandler_clark:2014}.
-We believe that a DM modeling framework could work well in this context,
-and that the DM model could be viewed as a specific case of the
-IPM proposed by \citet{buckland_etal:2004}.
-However, we caution that when count data are affected by
-movement and vital rates, it would be unwise to ignore the movement
-processes.
-
-Integrated population models may be viewed as the gold standard in
-state-space modeling, but ecologists do not always have direct
-information about vital rates, especially at large spatial scales.
-Count data are much more common, relatively inexpensive to obtain, and
-are produced by many of the largest monitoring programs in the
-world, such as the BBS. 
-In the absence of direct information about demographic parameters, and
-when the original assumptions of the model do not hold, our extensions to the
-DM model can still be used for important purposes such as predicting future
-population size and changes in species distributions.
+%One strategy for adhering to the original formulation of the
+%model that included survival and recruitment parameters would be to
+%use either prior information or additional data \citep{zipkin_etal:2014}. For example, in a 
+%Bayesian analysis existing estimates of demographic parameters
+%could be used as informative priors, which might make it possible to
+%seperate the effects of movement versus births and deaths.
+%Alternatively, ecologists could combine count data with demographic data,
+%often referred to as an integrated population model
+%\citep[IPM;][]{besbeas_etal:2002,schaub_etal:2007,chandler_clark:2014}.
+%We believe that a DM modeling framework could work well in this context,
+%and that the DM model could be viewed as a specific case of the
+%IPM proposed by \citet{buckland_etal:2004}.
+%However, we caution that when count data are affected by
+%movement and vital rates, it would be unwise to ignore the movement
+%processes.
+%
+%Integrated population models may be viewed as the gold standard in
+%state-space modeling, but ecologists do not always have direct
+%information about vital rates, especially at large spatial scales.
+%Count data are much more common, relatively inexpensive to obtain, and
+%are produced by many of the largest monitoring programs in the
+%world, such as the BBS. 
+%In the absence of direct information about demographic parameters, and
+%when the original assumptions of the model do not hold, our extensions to the
+%DM model can still be used for important purposes such as predicting future
+%population size and changes in species distributions.
 
 DM models and our extensions are conceptually simple, but even in
 their most basic form they include many random effects (the $N$'s, which
@@ -865,9 +881,10 @@ extensions that we believe would be computationally prohibitive in many
 cases. Nonetheless, we will discuss one --- spatially-explicit models of
 immigration. 
 In our models, immigration is currently modeled as independent of
-population sizes in other sites. Several alternatives suggest
-themselves if we think about movement in a metapopulation
-context \citep{hanski:1998}: immigration conditional on total or mean
+population sizes in other sites, and emigration is included only
+as an implicit piece of apparent survival or population growth. 
+We suggest alternatives that put movement in a metapopulation
+context: immigration conditional on total or mean % \citep{hanski:1998}
 abundance across sites the previous time step; immigration
 conditional on abundance in nearby sites only; and immigration
 conditional on abundance at sites as a function of their distance
@@ -876,7 +893,8 @@ require that all sites in the metapopulation are sampled, or that abundance at
 unsampled locations can be estimated \citep{lele_etal:1998}. 
 Initial tests suggest that it would be
 possible to fit some or all of these models, at least in the
-Bayesian framework.
+Bayesian framework. It may also be possible to model an explicit emigration
+process or rate and tie immigration at nearby sites to this rate.
 
 Our models generally estimated parameters well in analysis of data simulated with the same model.
 Two exceptions were the estimates of instantaneous growth rate in exponential model when the 
@@ -887,6 +905,8 @@ Because a site that hits abundance 0 in this simulation stayed at 0, this provid
 which to estimate growth rate.  The failure of the second case is also reasonable: with very
 slow movement toward the equilibrium abundance comes little information for estimating
 that abundance or the rate of growth.  In other cases, bias was low and coverage nominal.
+However, we simulated 40 years of data; with fewer years of data these models might
+experience more problems.
 
 Our models generally did not estimate parameters well in simulations when data were underdispersed
 or overdispersed compared to the model assumptions.  However, we present models for
@@ -917,8 +937,7 @@ We gratefully acknowledge the U. S. National Park
 Service, the Smithsonian Institution, and USGS's Breeding Bird Survey program for funding support.
 We thank Keith Pardieck and David Ziolkowski for help with data acquisition. We are
 grateful for the numerous helpful suggestions for manuscript
-revision provided by J. Andrew Royle, T. Scott Sillett, and an anonymous
-referee.
+revision provided by J. Andrew Royle, T. Scott Sillett, and anonymous referees.
 
 \bibliography{improved_state_space}
 
@@ -956,7 +975,7 @@ Lower right panel depicts estimated mean route abundance by year
 \begin{figure}
 \caption{}
   \centering
-  \includegraphics[width=6.6in]{figs/OVEN_N_by_route_year6}
+  \includegraphics[width=6.6in]{figs/OVEN_N_by_route_year8}
 \label{fig:oven_N}
 \end{figure}
 \end{flushleft}
