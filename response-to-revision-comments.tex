@@ -109,7 +109,14 @@ model would be different. That is why, in my point view, it is unclear and misle
 relate the Dail and Madsen model to a state-space model.
 
 \vspace{0.5cm}
-\textit{[Richard, can you address these three paragraphs?]}
+Our definition of a state-space model is in agreement with the brand new
+book on the subject ``Modeling Population Dynamics: Model Formulation,
+Fittin, and Assessment Using State-Space Methods'' by Newman et
+al (2014, Springer). They cover many state-space models that have
+a first-order Markov state process and a non-Gaussian
+observation process. For this reason, we think that our title connects
+our work to the bigger picture, which is state-space
+models of count data.  
 \vspace{0.5cm}
 
 Lines 118 - 174: the description of the model could be shortened (or moved in part in the
@@ -120,7 +127,12 @@ appendices) because it has been described now in further publications.
 papers out now.  And this is almost 3 pages.  But I like what we've got here, and if we cut or
 move it we'd have to be careful, because we refer to this section a good deal in our extensions.
 How we shorten it may depend on how we respond to the DM model as state-space model critique.
-Please take a stab at this if you have time and ideas on how to shorten or move.]}
+Please take a stab at this if you have time and ideas on how to
+shorten or move.]}
+\textit{[Jeff, I don't think we should remove this, but I think we
+  could put equations 2 and 4 in the text, so as to save space. We
+  might also be to shorten some of the text related to covariate
+  effects.]}
 \vspace{0.5cm}
 
 Line 165: \textit{``propagule rain''} is not an appropriate term here; this term is used in
@@ -202,7 +214,11 @@ should better focus on discussing the results of this study and relate them to o
 on models of population growth.
 
 \vspace{0.5cm}
-\textit{[Richard, I commented out the two paragraphs on IPMs.  What do you think?]}
+\textit{[Richard, I commented out the two paragraphs on IPMs.  What do
+  you think?                
+
+Jeff, fine by me]}
+
 \vspace{0.5cm}
 
 The figure A1 and A2 describe results of the simulation based on the Ricker and Gompertz
@@ -215,7 +231,13 @@ manuscript and should be rather presented in the main text than in appendices.
 put all three of these figures in the main text.  If we still have to keep it to 30 pages,
 that requires a page and a half of additional cutting, which is a lot.  This reviewer suggests cutting
 text from DM model description and discussion.  I have worked on those (see above), but maybe we
-should also consider emailing Evan Cooch about the length limit.]}
+should also consider emailing Evan Cooch about the length limit.
+
+Jeff, I agree that we should ask Evan. If we have to modify something,
+I'm in favor of moving Fig. 1 to the appendix, and inserting a table that summarizes
+all the results.
+
+]}
 \vspace{0.5cm}
 
 
@@ -305,7 +327,13 @@ to match text.
 \textit{[Richard, can you do this, and also increase the resolution of this figure?
 I don't have the simulation results from the exponential model.  Alternatively,
 you could send me the results and I can replot it (I think I have your plotting code).
-It looks like you used a file called process.RData to store the results.]}
+It looks like you used a file called process.RData to store the
+results.
+
+Jeff, let's wait to hear back from Evan. If we move this to the
+appendix, I don't think these changes will be necessary.
+
+]}
 \vspace{0.5cm}
 
 Fig. 2 legend, in parentheses could replace ``mean and'' with +/-, given that it
@@ -359,7 +387,15 @@ the reviewer provides seem possible, although in our robustness testing we tried
 DM simulations with $\omega = \gamma = 0.5$ and $p = 0.25$, and though the DM
 estimator didn't do perfect, they weren't nearly as bad as the real data.  Maybe 
 they would have been with a lower simulated $p$, but it seems more likely to me that
-the real data somehow came from a different process than the DM model assumes.]}
+the real data somehow came from a different process than the DM model
+assumes.
+
+Jeff, I don't have any paper about this that we could cite. However,
+it seem intuitive and even necessary that p will decrease as sample
+area increases. A distance sampling observation model would be better
+here. Didn't we mention that in the paper?
+
+]}
 \vspace{0.5cm}
 
 \bibliography{improved_state_space}
