@@ -10,6 +10,7 @@ wind.factor[wind.factor==" 1"] <- "1"
 wind.factor[wind.factor==" 2"] <- "2"
 
 library(rjags)
+library(runjags)
 
 # Settings
 year1 <- 66
@@ -398,34 +399,40 @@ sink()
 dat.ricki5 <- list(nSites=nSites, nYears=nYears, y=ydata, wind1=wind1, 
   wind2=wind2, wind3=wind3, nObs=nObs, obsID=obs5, first=first,
   decades=as.integer(seq(5, 45, 10)))
-init.ricki5 <- function() list(lambda=runif(1, 10, 60), alpha=runif(1, 0, 60), 
+init.ricki5 <- function(chain) list(lambda=runif(1, 10, 60), alpha=runif(1, 0, 60), 
   r=runif(1), K=runif(1, 30, 120), iota=runif(1),
-  p0=rnorm(1, -1.5), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), p1st=rnorm(1), sigma.p=runif(1), N=N)
+  p0=rnorm(1, -1.5), p1=rnorm(1), p2=rnorm(1), p3=rnorm(1), p1st=rnorm(1), sigma.p=runif(1), 
+  N=N, .RNG.seed=chain, .RNG.name = c("base::Wichmann-Hill","base::Marsaglia-Multicarry",
+  "base::Super-Duper","base::Mersenne-Twister")[chain])
 pars.ricki5 <- c("lambda", "alpha", "r", "K", "p0", "p1", "p2", "p3", "p1st", 
   "sigma.p", "iota", "Nmean", "Ndecade")
 
-jm.ricki5 <- jags.model("dm.ricki5.txt", dat.ricki5, init.ricki5, n.chains=1, n.adapt=1000)
-update(jm.ricki5, n.iter=100000)
-jc.ricki5 <- coda.samples(jm.ricki5, pars.ricki5, n.iter=40000)
+jr.ricki5 <- run.jags("dm.ricki5.txt", data=dat.ricki5, inits=init.ricki5, 
+  n.chains=4, adapt=1000, burnin=99000, sample=40000, monitor=pars.ricki5, 
+  thin=2, method="parallel")
 
-# Summarize results
+print(jr.ricki5)
+save.image(file.name)
+
+jc.ricki5 <- as.mcmc(jr.ricki5)
 mat.ricki5 <- as.matrix(jc.ricki5)
 NmeanCols<- which(colnames(mat.ricki5)=="Nmean[1]") + 1:nYears - 1
 Nmean.frame<-data.frame(year=1966:2010, Mean=colMeans(mat.ricki5[,NmeanCols]), HPDinterval(jc.ricki5[,NmeanCols]))
 Nmean.frame
-mean.N1 <- colMeans(mat.ricki5[,2:(122*5+1)])
+NdecCols <- which(colnames(mat.ricki5)=="Ndecade[1,1]") + 1:(5*nSites) - 1
+mean.N1 <- colMeans(mat.ricki5[,NdecCols])
 mean.N1
 mean.N2 <- matrix(mean.N1, nrow=122, ncol=5)
 mean.N2
 colnames(mean.N2) <- paste("N", seq(1970,2010,10), sep="")
 max(mean.N2)
 max.plot <- round(max(mean.N2)/5, -1)*5
-mean.N2 <- with(rt2a, data.frame(statenum, Route, Lati, Longi, mean.N2))
-head(mean.N2)
+Ndec.frame <- with(rt2a, data.frame(statenum, Route, Lati, Longi, mean.N2))
+head(Ndec.frame)
 
 
 # Measures of variability
-sd.N1 <- apply(mat.ricki5[,2:(122*45+1)], 2, sd)
+sd.N1 <- apply(mat.ricki5[,NdecCols], 2, sd)
 sd.N1
 mean(sd.N1)
 mean(mean.N1)
@@ -449,34 +456,34 @@ states <- subset(all.states, region %in% c('maryland', 'virginia'))
 
 max.radius <- 4
 leg.sizes <- c(1, 10, 100, 250)
-gN.sp <- list()
-gN.sp[[1]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+gN.sp <- vector("list", 5)
+gN.sp[[1]] <- ggplot(Ndec.frame, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
   geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
-  geom_point(aes(size=N1970), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_point(aes(size=N1970), alpha=0.5, color="black")+scale_size_area(name="Abundance", max_size=max.radius, breaks=leg.sizes)+
   geom_text(x=-83.2, y=39.75, label="1970")
-gN.sp[[2]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+gN.sp[[2]] <- ggplot(Ndec.frame, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
   geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
-  geom_point(aes(size=N1980), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_point(aes(size=N1980), alpha=0.5, color="black")+scale_size_area(name="Abundance", max_size=max.radius, breaks=leg.sizes)+
   geom_text(x=-83.2, y=39.75, label="1980")
-gN.sp[[3]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+gN.sp[[3]] <- ggplot(Ndec.frame, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
   geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
-  geom_point(aes(size=N1990), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_point(aes(size=N1990), alpha=0.5, color="black")+scale_size_area(name="Abundance", max_size=max.radius, breaks=leg.sizes)+
   geom_text(x=-83.2, y=39.75, label="1990")
-gN.sp[[4]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+gN.sp[[4]] <- ggplot(Ndec.frame, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
   geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
-  geom_point(aes(size=N2000), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_point(aes(size=N2000), alpha=0.5, color="black")+scale_size_area(name="Abundance", max_size=max.radius, breaks=leg.sizes)+
   geom_text(x=-83.2, y=39.75, label="2000")
-gN.sp[[5]] <- ggplot(mean.N2, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
+gN.sp[[5]] <- ggplot(Ndec.frame, aes(x=Longi,y=Lati)) + theme_bw() + labs(x="", y="")+
   geom_polygon(data=states, aes(x=long, y=lat, group=group), color="black", fill="white") +
-  geom_point(aes(size=N2010), alpha=0.5, color="black")+scale_area(name="Abundance", range=c(1, max.radius), breaks=leg.sizes)+
+  geom_point(aes(size=N2010), alpha=0.5, color="black")+scale_size_area(name="Abundance", max_size=max.radius, breaks=leg.sizes)+
   geom_text(x=-83.2, y=39.75, label="2010")
 
-gN.mean <- ggplot(Nmean.frame.f, aes(x=year,y=Mean)) + theme_bw() + labs(x="Year",
+gN.mean <- ggplot(Nmean.frame, aes(x=year,y=Mean)) + theme_bw() + labs(x="Year",
   y="Mean Abundance")+
   geom_ribbon(aes(ymin=lower,ymax=upper),fill="black",
   alpha=0.5,colour=NA) + geom_line(colour="black", size=1) 
 
-png(filename = "OVEN_N_by_route_year6.png", height = 6.5, width = 6.5, units = "in", res=600)
+png(filename = "OVEN_N_by_route_year8.png", height = 6.5, width = 6.5, units = "in", res=600)
 print(arrangeGrob(gN.sp[[1]] + theme(legend.position=c(0.145, 0.56), 
   legend.background=element_blank(), axis.text=element_blank(), 
   axis.line=element_blank(), axis.ticks=element_blank(), panel.border=element_blank(),
