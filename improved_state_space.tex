@@ -129,13 +129,9 @@ ignored \citep{link_nichols:1994,shenk_etal:1998}.
 A simple state-space model can be described as follows.
 Let $N_t$ be the abundance of a species during year $t$, for
 $t=1,\hdots,T$, and let $X_t$ be the observed data. 
-%, which differs from $N_t$ due to observation error,
-%a random effect denoted $\zeta_t$. 
 Temporal variation in $N_t$ is
 modeled using a probability distribution whose expected value is
 determined by a population growth model, $\mu(N_{t-1}, {\bm \theta})$, such as 
-%and random process variation denoted $\eta_t$.
-%The growth model may be 
 a density-dependent Ricker-logistic model (henceforth Ricker model) or  
 a density-independent exponential model, with parameter vector $\bm
 \theta$. Such a model can be written:  
@@ -143,43 +139,24 @@ a density-independent exponential model, with parameter vector $\bm
 \begin{gather}
   \label{eq:ss1}
   \begin{align}
-%     N_1 &= x_0 \nonumber \\ 
-% N_t &= \mu(N_{t-1}) + \eta_{t-1} \quad \text{for} \; 
-% t=2,\hdots,T  \\
-% X_t &= N_t + \zeta_t \qquad \qquad \;\, \text{for} \;
-% t=1,\hdots,T. \nonumber 
-  N_1 &\sim \mathrm{Normal}(\mu_1, \sigma_0) \nonumber \\
-  N_t &\sim \mathrm{Normal}(\mu(N_{t-1}, {\bm \theta}), \sigma) \qquad
+  N_1 &\sim \mathrm{Normal}(\mu_1, \sigma^{2}_0) \nonumber \\
+  N_t &\sim \mathrm{Normal}(\mu(N_{t-1}, {\bm \theta}), \sigma^{2}) \qquad
   \; \text{for} \;  t=2,\hdots,T  \\
-  X_t &\sim \mathrm{Normal}(N_t, \tau) \qquad \qquad \quad \;\;\, \text{for} \;  t=1,\hdots,T  \nonumber
+  X_t &\sim \mathrm{Normal}(N_t, \tau^{2}) \qquad \qquad \quad \;\;\, \text{for} \;  t=1,\hdots,T  \nonumber
   \end{align}
 \end{gather}
 \end{linenomath*}
-%where $x_0$ is the distribution for initial abundance.  In classical
-%state-space models, the two sets of random effects
-%are assumed to be i.i.d. Gaussian variables: 
-%$\eta_t \sim \mathrm{N}(0, \sigma)$ and
-%$\zeta_t \sim \mathrm{N}(0, \tau)$. 
-where $\sigma_0$ and $\sigma$ are variance parameters of the
-underlying abundance process, and $\tau$ describes variation in 
+where $\sigma^{2}_0$ and $\sigma^{2}$ are variance parameters of the
+underlying abundance process, and $\tau^{2}$ describes variation in 
 observation error. 
-%Often, parameter estimation requires fixing $\sigma_0$ at zero or assuming
-%that initial abundance is an outcome of the theoretical stationary
-%distribution of the first-order Markov chain \citep{devalpine_hastings:2002}.  
-%The process variation associated with $N_1$ is often ignored ($x_0 = X_1$), or
-%the population is assumed to be at stochastic equilibrium such that the $x_0$ can
-%be regarded as an outcome of the equilibrium distribution \citep{devalpine_hastings:2002}.
 
 Even though state-space models such as that shown in Eq.~\ref{eq:ss1}
 overcome many of the limitations associated with the application of
 classical models of population dynamics, several problems exist. 
 The Gaussian assumptions 
-% that random effects are Gaussian distributed 
 make it easier to estimate parameters because methods such as the Kalman
 filter can be applied \citep{dennis_etal:2006}; however, 
 these models allow for implausible preditions such as 
-% assume that abundance can be take on any real value, and hence they
-% can predict 
 negative values of abundance. 
 Transforming the count data and the underlying abundance variables 
 do little to resolve these issues \citep{ohara_kotze:2010}.
@@ -248,9 +225,9 @@ The DM model is an extension of the
 \citet{royle:2004biom} $N$-mixture model, which allows for inference about spatial
 variation in abundance when individuals cannot be detected with
 certainty. To estimate both abundance and detection parameters, 
-the $N$-mixture model uses replicate % original
+the $N$-mixture model uses replicate 
 observations at each site. The observations are made during sufficiently
-short time intervals such that the population can be %safely
+short time intervals such that the population can be 
 assumed to be closed with respect to births, deaths, and movement. The DM
 model relaxes this closure assumption and includes explicit parameters
 describing population change over time.
@@ -269,8 +246,8 @@ three conditionally related processes corresponding to:
 abundance at site $i$ during the first primary period,
 denoted $N_{i,1}$, (2) abundance at time $t$ (for $t>1$) which depends upon
 abundance at $t-1$, and (3) the
-detection process. % \citep{dail_madsen:2011}.
-The first two processes describe the %the state process---
+detection process. 
+The first two processes describe the 
 variation in abundance in space and time. The third process 
 describes the relationship between
 abundance and the observed count data.
@@ -282,17 +259,6 @@ distribution for the initial time period
 is either the equilibrium
 distribution, or has zero variance.
 In contrast, \citet{dail_madsen:2011} proposed modeling $N_{i,1}$
-%as either a Poisson or negative binomial random variable:
-%\begin{linenomath*}
-%\begin{gather}
-%N_{i,1} \sim \mathrm{Pois}(\Lambda) \nonumber \\
-%\text{or} \nonumber \\
-%N_{i,1} \sim \mathrm{NB}(\Lambda, \alpha)
-%\label{eq:N1}
-%\end{gather}
-%\end{linenomath*}
-%where $\Lambda_i$ is the expected abundance at site $i$ during
-%year 1.
 as either a Poisson ($N_{i,1} \sim \mathrm{Pois}(\Lambda_i)$) or 
 negative binomial random variable ($N_{i,1} \sim \mathrm{NB}(\Lambda_i, \alpha)$),
 where $\Lambda_i$ is the expected abundance at site $i$ during
@@ -314,9 +280,7 @@ replicates resolve the
 problem of parameter non-identifiability that are common to
 standard state-space models because
 process variation and observation error can be estimated from
-spatially-replicated count data \citep{royle:2004biom}. %Hence, the first component of
-%the model addresses both the issues of spatial inference and
-%parameter identifiability discussed previously.
+spatially-replicated count data \citep{royle:2004biom}. 
 
 \subsection*{Abundance in subsequent time periods}
 
@@ -343,7 +307,7 @@ is the recruitment rate, which can depend on $N_{i,t-1}$.
 \citet{dail_madsen:2011} proposed three
 models for $\gamma$: the constant model,
 $G_{i,t} \sim \mathrm{Pois}(\gamma)$ where recruitment does not
-depend on $N_{i,t-1}$; %and which simulates a ``propagule rain'' of new individuals; 
+depend on $N_{i,t-1}$; 
 the ``autoregressive'' model, $G_{i,t} \sim
 \mathrm{Pois}(\gamma N_{i,t-1})$
 of geometric or density independent growth; and the
@@ -375,7 +339,6 @@ is useful
 in terms of providing a mechanistic description of population
 dynamics, but this is not always possible using simple count data,
 especially when the sites are not closed with respect to movement.
-%immigration and emigration. 
 When the mechanistic model is unrealistic, we suggest replacing it
 with classical population growth models that have a long history in ecology.
 The exponential growth model, which describes population growth in an 
@@ -406,7 +369,6 @@ a stochastic version of the
 Ricker model \citep{ricker:1954}. In the Ricker model, 
 density dependence becomes stronger as abundance increases well above $K$,
 leading to overcompensation    
-%due to the exponential function relating to carrying capacity 
 \citep[abundance goes from above $K$ to below it;][]{sabo_etal:2004}.
 Another option is a 
 modified Gompertz-logistic
@@ -422,8 +384,6 @@ N_{i,t} \sim \mathrm{Pois}(N_{i,t-1}\exp(r(1-\log(N_{i,t-1}+1)/\log(K+1))))
 Here the interpretations of $r$ and $K$ are similar to those in the
 Ricker model, but dynamics can only be overcompensatory at high values of $r$
 (approximately $r > log(K)$).
-%population growth declines linearly with an increase in the natural logarithm of abundance,
-%rather than linearly with an increase in abundance. 
 Because a single Poisson distribution controls
 the distribution of $N_{i,t}$ in each of these models, the discrete 
 convolution used by \citet{dail_madsen:2011} to construct the
@@ -531,7 +491,7 @@ N_{i,t} \sim
 \label{eq:nuRand}
 \end{equation}
 \end{linenomath*}
-where $\nu$ is a variable with a normal distribution, mean value of 0, and standard deviation $\sigma_\nu$.  
+where $\nu$ is a variable with a normal distribution, mean value of 0, and variance $\sigma^{2}_\nu$.  
 We suggest three variations for spatial variation in environmental stochasticity.  
 The first has independent environmental stochasticity 
 between sites, and might be appropriate where sites are widely dispersed.  In the second, 
@@ -558,14 +518,14 @@ Eq.~\ref{eq:p1} can be modified to:
 \begin{linenomath*}
 \begin{gather}
 X_{i,j,t} \sim \mathrm{Bin}(N_{i,t}, p_j) \nonumber \\
-\mathrm{logit}(p_j) \sim \mathrm{N}(\mu_p, \sigma_p)
+\mathrm{logit}(p_j) \sim \mathrm{Normal}(\mu_p, \sigma^{2}_p)
 \label{eq:pobs}
 \end{gather}
 \end{linenomath*}
 where $X_{i,j,t}$ is the number of individuals counted at site $i$ by
 observer $j$ in year $t$, $p_j$ is observer-specific detection probability,
-$\mu_p$ is the mean detection probability (on the logit scale), and $\sigma_p$ is
-the logit-scale standard deviation of the random observer effect. 
+$\mu_p$ is the mean detection probability (on the logit scale), and $\sigma^{2}_p$ is
+the logit-scale variance of the random observer effect. 
 
 \subsection*{Statistical inference}
 
@@ -822,35 +782,8 @@ models (J. Hostetler, unpublished analyses), suggesting that some process, possi
 individual heterogeneity \citep{vindenes_etal:2008}, is increasing variances
 above the levels expected from demographic stochasticity alone.  It
 is also possible that similar values for recruitment and survival rates in songbirds and low 
-detection probabilities for the BBS have contributed %from the large sample radii 
+detection probabilities for the BBS have contributed 
 to the DM model issues.
-
-%One strategy for adhering to the original formulation of the
-%model that included survival and recruitment parameters would be to
-%use either prior information or additional data \citep{zipkin_etal:2014}. For example, in a 
-%Bayesian analysis existing estimates of demographic parameters
-%could be used as informative priors, which might make it possible to
-%seperate the effects of movement versus births and deaths.
-%Alternatively, ecologists could combine count data with demographic data,
-%often referred to as an integrated population model
-%\citep[IPM;][]{besbeas_etal:2002,schaub_etal:2007,chandler_clark:2014}.
-%We believe that a DM modeling framework could work well in this context,
-%and that the DM model could be viewed as a specific case of the
-%IPM proposed by \citet{buckland_etal:2004}.
-%However, we caution that when count data are affected by
-%movement and vital rates, it would be unwise to ignore the movement
-%processes.
-%
-%Integrated population models may be viewed as the gold standard in
-%state-space modeling, but ecologists do not always have direct
-%information about vital rates, especially at large spatial scales.
-%Count data are much more common, relatively inexpensive to obtain, and
-%are produced by many of the largest monitoring programs in the
-%world, such as the BBS. 
-%In the absence of direct information about demographic parameters, and
-%when the original assumptions of the model do not hold, our extensions to the
-%DM model can still be used for important purposes such as predicting future
-%population size and changes in species distributions.
 
 DM models and our extensions are conceptually simple, but even in
 their most basic form they include many random effects (the $N$'s, which
@@ -903,7 +836,7 @@ In our models, immigration is currently modeled as independent of
 population sizes in other sites, and emigration is included only
 as an implicit piece of apparent survival or population growth. 
 We suggest alternatives that put movement in a metapopulation
-context: immigration conditional on total or mean % \citep{hanski:1998}
+context: immigration conditional on total or mean 
 abundance across sites the previous time step; immigration
 conditional on abundance in nearby sites only; and immigration
 conditional on abundance at sites as a function of their distance
