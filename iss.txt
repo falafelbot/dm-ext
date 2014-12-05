@@ -1,0 +1,6028 @@
+%0 
+%0 Journal Article
+%A Alho, J. M.
+%D 1990
+%T Logistic regression in capture-recapture models
+%E 
+%B Biometrics
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 623-635
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F alho:1990
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Alldredge, M. W.; Pollock, K. H.; Simons, T. R.; Collazo, J. A.; Shriner, S. A. & Johnson, D H
+%D 2007
+%T Time-of-detection method for estimating abundance from point-count surveys
+%E 
+%B The Auk
+%C 
+%I 
+%V 124
+%6
+%N 2
+%P 653-664
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F alldredge_etal:2007auk
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Alldredge, M. W.; Simons, T. R. & Pollock, K. H.
+%D 2007
+%T Factors affecting aural detections of songbirds
+%E 
+%B Ecological Applications
+%C 
+%I Eco Soc America
+%V 17
+%6
+%N 3
+%P 948-955
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F alldredge_etal:2007ea
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Alldredge, M. W.; Simons, T. R. & Pollock, K. H.
+%D 2007
+%T A field evaluation of distance measurement error in auditory avian point count surveys
+%E 
+%B The Journal of Wildlife Management
+%C 
+%I Wiley Online Library
+%V 71
+%6
+%N 8
+%P 2759-2766
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F alldredge_etal:2007jwm
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book Section
+%A Barker, R. J. & Sauer, J. R.
+%D 1992
+%T Modeling population change from time series data
+%E McCullough, D. R. & Barrett, R.
+%B Wildlife 2001: populations
+%C New York
+%I Elsevier
+%V 
+%6
+%N 
+%P 182-194
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 incollection
+%4 
+%# 
+%$ 
+%F barker_sauer:1992
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book Section
+%A Barker, R. J. & Sauer, J. R.
+%D 1995
+%T Statistical aspects of point count sampling
+%E Ralph, CJ; Sauer, JR & Droege, S.
+%B Monitoring Bird Populations by Point Counts
+%C 
+%I US Department of Agriculture, Forest Service General Technical Report PSW-GTR-149
+%V 
+%6
+%N 
+%P 125-130
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 incollection
+%4 
+%# 
+%$ 
+%F barker_sauer:1995
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bart, J.
+%D 2005
+%T Monitoring the abundance of bird populations
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 122
+%6
+%N 1
+%P 15-25
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bart:2005
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bart, J.; Droege, S.; Geissler, P.; Peterjohn, B. & Ralph, C. J.
+%D 2004
+%T Density estimation in wildlife surveys
+%E 
+%B Wildlife Society Bulletin
+%C 
+%I BioOne
+%V 32
+%6
+%N 4
+%P 1242-1247
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bart_etal:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Besbeas, P.; Freeman, S N; Morgan, B J T & Catchpole, E A
+%D 2002
+%T Integrating mark--recapture--recovery and census data to estimate animal abundance and demographic parameters
+%E 
+%B Biometrics
+%C 
+%I Wiley Online Library
+%V 58
+%6
+%N 3
+%P 540-547
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F besbeas_etal:2002
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bibby, C. J. & Buckland, S. T.
+%D 1987
+%T Bias of bird census results due to detectability varying with habitat
+%E 
+%B Acta Oecologia
+%C 
+%I 
+%V 8
+%6
+%N 2
+%P 103-112
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bibby_buckland:1987
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bj\o,rnstad, O. N.
+%D 2001
+%T Cycles and synchrony: two historical experiments and one experience
+%E 
+%B Journal of Animal Ecology
+%C 
+%I Wiley Online Library
+%V 69
+%6
+%N 5
+%P 869-873
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bjornstad:2001
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bj\o,rnstad, O. N. & Grenfell, B. T.
+%D 2001
+%T Noisy clockwork: time series analysis of population fluctuations in animals
+%E 
+%B Science
+%C 
+%I American Association for the Advancement of Science
+%V 293
+%6
+%N 5530
+%P 638-643
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bjornstad_grenfell:2001
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bj\o,rnstad, O. N.; Ims, R. A. & Lambin, X.
+%D 1999
+%T Spatial population dynamics: analyzing patterns and processes of population synchrony
+%E 
+%B Trends in Ecology \& Evolution
+%C 
+%I Elsevier
+%V 14
+%6
+%N 11
+%P 427-432
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bjornstad_etal:1999
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bled, F. & others
+%D 2012
+%T Impacts of Deepwater Horizon oil spill on avian population trends
+%E 
+%B Dont know
+%C 
+%I 
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bled_etal:2012
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bonsall, M. B. & Hastings, A.
+%D 2004
+%T Demographic and environmental stochasticity in predator--prey metapopulation dynamics
+%E 
+%B Journal of Animal Ecology
+%C 
+%I Wiley Online Library
+%V 73
+%6
+%N 6
+%P 1043-1055
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bonsall_hastings:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Borchers, D. L.
+%D 2012
+%T Unknown
+%E 
+%B Unknown
+%C 
+%I 
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F borchers:2012
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Borchers, D. L.; Zucchini, W. & Fewster, R. M.
+%D 1998
+%T Mark-recapture models for line transect surveys
+%E 
+%B Biometrics
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 1207-1220
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F borchers_etal:1998
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Boulinier, T.; Nichols, J. D.; Hines, J. E.; Sauer, J. R.; Flather, C. H. & Pollock, K. H.
+%D 2001
+%T Forest fragmentation and bird community dynamics: inference at regional scales
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 82
+%6
+%N 4
+%P 1159-1169
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F boulinier_etal:2001
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Brooks, SP; King, R & Morgan, BJT
+%D 2004
+%T A Bayesian approach to combining animal abundance and demographic data
+%E 
+%B Animal Biodiversity and Conservation
+%C 
+%I 
+%V 27
+%6
+%N 1
+%P 515-529
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F brooks_etal:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Buckland, S; Anderson, D; Burnham, K; Laake, J; Borcher, D & L, Thomas
+%D 2001
+%T Introduction to distance sampling: estimating abundance of biological populations
+%E 
+%B 
+%C Oxford, {UK}
+%I Oxford University Press
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! Introduction to distance sampling
+%Z 
+%@ 9780198509271
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F buckland_etal:2001
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Buckland, S T; Newman, K B; Thomas, L. & Koesters, N B
+%D 2004
+%T State-space models for the dynamics of wild animal populations
+%E 
+%B Ecological Modelling
+%C 
+%I Elsevier
+%V 171
+%6
+%N 1
+%P 157-175
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F buckland_etal:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Bulmer, M G
+%D 1975
+%T The statistical analysis of density dependence
+%E 
+%B Biometrics
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 901-911
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F bulmer:1975
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Burnham, K. P. & Overton, W. S.
+%D 1979
+%T Robust estimation of population size when capture probabilities vary among animals
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 60
+%6
+%N 5
+%P 927-936
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F burnham_overton:1979
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Campbell, M. & Francis, C. M
+%D 2011
+%T Using stereo-microphones to evaluate observer variation in North American Breeding Bird Survey point counts
+%E 
+%B The Auk
+%C 
+%I 
+%V 128
+%6
+%N 2
+%P 303-312
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F campbell_francis:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Carroll, R. J. & Lombard, F.
+%D 1985
+%T A note on N estimators for the binomial distribution
+%E 
+%B Journal of the American Statistical Association
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 423-426
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F carroll_lombard:1985
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Chandler, R; Royle, J & King, D
+%D 2011
+%T Inference about density and temporary emigration in unmarked populations
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 92
+%6
+%N 
+%P 1429-1435
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F chandler_etal:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Chandler, R. B.; King, D. I. & DeStefano, S.
+%D 2009
+%T Scrub-shrub bird habitat associations at multiple spatial scales in beaver meadows in Massachusetts
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 126
+%6
+%N 1
+%P 186-197
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F chandler_etal:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Clark, J. S. & Bj\o,rnstad, O. N.
+%D 2004
+%T Population time series: process variability, observation errors, missing values, lags, and hidden states
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 85
+%6
+%N 11
+%P 3140-3150
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F clark_bjornstad:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Cochran, W. G.
+%D 2007
+%T Sampling techniques
+%E 
+%B 
+%C 
+%I Wiley-India
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F cochran:2007
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book Section
+%A Confer, J. L.; Hartman, P. & Roth, A.
+%D 2011
+%T Golden-winged warbler (Vermivora chrysoptera)
+%E Poole, A.
+%B The Birds of North America Online
+%C Ithaca, New York
+%I Cornell Laboratory of Ornithology
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 incollection
+%4 
+%# 
+%$ 
+%F confer_etal:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Cook, R. D. & Jacobson, J. O.
+%D 1979
+%T A design for estimating visibility bias in aerial surveys
+%E 
+%B Biometrics
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 735-742
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F cook_jacobson:1979
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Dail, D & Madsen, L
+%D 2011
+%T Models for estimating abundance from repeated counts of an open metapopulation.
+%E 
+%B Biometrics
+%C 
+%I 
+%V 67
+%6
+%N 2
+%P 577-87
+%& 
+%Y 
+%S 
+%7
+%8 jun
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F dail_madsen:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Dennis, B.; Ponciano, J. M.; Lele, S. R.; Taper, M. L. & Staples, D. F.
+%D 2006
+%T Estimating density dependence, process noise, and observation error
+%E 
+%B Ecological Monographs
+%C 
+%I Eco Soc America
+%V 76
+%6
+%N 3
+%P 323-341
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F dennis_etal:2006
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Dennis, B. & Taper, M. L.
+%D 1994
+%T Density dependence in time series observations of natural populations: estimation and testing
+%E 
+%B Ecological Monographs
+%C 
+%I Eco Soc America
+%V 64
+%6
+%N 2
+%P 205-224
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F dennis_taper:1994
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Diefenbach, D. R.; Brauning, D. W.; Mattice, J. A. & Thompson III, F R
+%D 2003
+%T Variability in grassland bird counts related to observer differences and species detection rates
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 120
+%6
+%N 4
+%P 1168-1179
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F diefenbach_etal:2003
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Diefenbach, D. R.; Marshall, M. R.; Mattice, J. A.; Brauning, D. W. & Johnson, D H
+%D 2007
+%T Incorporating availability for detection in estimates of bird abundance
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 124
+%6
+%N 1
+%P 96-106
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F diefenbach_etal:2007
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Efford, M. G. & Dawson, D. K.
+%D 2009
+%T Effect of distance-related heterogeneity on population size estimates from point counts
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 126
+%6
+%N 1
+%P 100-111
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F efford_dawson:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Farnsworth, G L; Pollock, K H; Nichols, J D; Simons, T R; E., Hines J & R., Sauer J
+%D 2002
+%T A removal model for estimating detection probabilities from point-count surveys
+%E 
+%B The Auk
+%C 
+%I Ornithological Societies North America
+%V 119
+%6
+%N 2
+%P 414-425
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F farnsworth_etal:2002
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Fiske, I. & Chandler, R.
+%D 2011
+%T unmarked: An R package for fitting hierarchical models of wildlife occurrence and abundance
+%E 
+%B Journal of Statistical Software
+%C 
+%I 
+%V 43
+%6
+%N 10
+%P 1-23
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F fiske_chandler:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Flather, C. H. & Sauer, J. R.
+%D 1996
+%T Using landscape ecology to test hypotheses about large-scale abundance patterns in migratory birds
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 77
+%6
+%N 1
+%P 28-35
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F flather_sauer:1996
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Gelman, A. & Rubin, D. B.
+%D 1992
+%T Inference from iterative simulation using multiple sequences
+%E 
+%B Statistical Science
+%C 
+%I 
+%V 7
+%6
+%N 4
+%P 457-472
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F gelman_rubin:1992
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Gill, Jennifer A; Norris, Ken; Potts, Peter M; Gunnarsson, T\'o,mas Gr\'e,tar; Atkinson, Philip W & Sutherland, William J
+%D 2001
+%T The buffer effect and large-scale population regulation in migratory birds
+%E 
+%B Nature
+%C 
+%I Nature Publishing Group
+%V 412
+%6
+%N 6845
+%P 436-438
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F gill_etal:2001
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Gompertz, B.
+%D 1825
+%T On the nature of the function expressive of the law of human mortality, and on a new mode of determining the value of life contingencies
+%E 
+%B Philosophical transactions of the royal society of London
+%C 
+%I JSTOR
+%V 115
+%6
+%N 
+%P 513-583
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F gompertz:1825
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Griffith, E. H.; Sauer, J. R. & Royle, J. A.
+%D 2010
+%T Traffic effects on bird counts on North American Breeding Bird Survey routes
+%E 
+%B The Auk
+%C 
+%I JSTOR
+%V 127
+%6
+%N 2
+%P 387-393
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F griffith_etal:2010
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Hanski, I.
+%D 1998
+%T Metapopulation dynamics
+%E 
+%B Nature
+%C 
+%I 
+%V 396
+%6
+%N 6706
+%P 41-49
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F hanski:1998
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Hart, E. M. & Gotelli, N. J.
+%D 2011
+%T The effects of climate change on density-dependent population dynamics of aquatic invertebrates
+%E 
+%B Oikos
+%C 
+%I Wiley Online Library
+%V 120
+%6
+%N 8
+%P 1227-1234
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F hart_gotelli:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Hastings, A.
+%D 1991
+%T Structured models of metapopulation dynamics
+%E 
+%B Biological Journal of the Linnean Society
+%C 
+%I Wiley Online Library
+%V 42
+%6
+%N 1-2
+%P 57-71
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F hastings:1991
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Hatfield, J. S.; Reynolds, M. H.; Seavy, N. E. & Krause, C. M.
+%D 2012
+%T Population dynamics of Hawaiian seabird colonies vulnerable to sea-level rise
+%E 
+%B Conservation Biology
+%C 
+%I Wiley Online Library
+%V 26
+%6
+%N 4
+%P 667-678
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F hatfield_etal:2012
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Hostetler, J. A.; Onorato, D. P.; Jansen, D. & Oli, M. K.
+%D 2013
+%T A cat's tale: the impact of genetic restoration on Florida panther population dynamics and persistence
+%E 
+%B Journal of Animal Ecology
+%C 
+%I Wiley Online Library
+%V 82
+%6
+%N 
+%P 608-620
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F hostetler_etal:2012
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Huggins, R M
+%D 1989
+%T On the statistical analysis of capture experiments
+%E 
+%B Biometrika
+%C 
+%I Biometrika Trust
+%V 76
+%6
+%N 1
+%P 133
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F huggins:1989
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Jamieson, L E & Brooks, S P
+%D 2004
+%T Density dependence in North American ducks
+%E 
+%B Animal Biodiversity and Conservation
+%C 
+%I 
+%V 27
+%6
+%N 1
+%P 113-128
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F jamieson_brooks:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Johnson, D. H.
+%D 2008
+%T In defense of indices: the case of bird surveys
+%E 
+%B The Journal of Wildlife Management
+%C 
+%I Wiley Online Library
+%V 72
+%6
+%N 4
+%P 857-868
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F johnson:2008
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Johnson, D. S.; Laake, J. L. & Ver Hoef, J. M.
+%D 2010
+%T A Model-Based Approach for Making Ecological Inference from Distance Sampling Data
+%E 
+%B Biometrics
+%C 
+%I Wiley Online Library
+%V 66
+%6
+%N 1
+%P 310-318
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F johnson_etal:2010
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A K\'e,ry, M.
+%D 2008
+%T Estimating abundance from bird counts: binomial mixture models uncover complex covariate relationships
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 125
+%6
+%N 2
+%P 336-345
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F kery:2008
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A K\'e,ry, M. & Schmid, H.
+%D 2004
+%T Monitoring programs need to take into account imperfect species detectability
+%E 
+%B Basic and Applied Ecology
+%C 
+%I Elsevier
+%V 5
+%6
+%N 1
+%P 65-73
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F kery_schmid:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Kendall, W. L.; Peterjohn, B. G. & Sauer, J. R.
+%D 1996
+%T First-time observer effects in the North American Breeding Bird Survey
+%E 
+%B The Auk
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 823-829
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F kendall_etal:1996
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Kery, M.; Dorazio, R. M.; Soldaat, L.; Van Strien, A.; Zuiderwijk, A. & Royle, J. A.
+%D 2009
+%T Trend estimation in populations with imperfect detection
+%E 
+%B Journal of Applied Ecology
+%C 
+%I Wiley Online Library
+%V 46
+%6
+%N 6
+%P 1163-1172
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F kery_etal:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Kot, M. & Schaffer, W. M.
+%D 1986
+%T Discrete-time growth-dispersal models
+%E 
+%B Mathematical Biosciences
+%C 
+%I Elsevier
+%V 80
+%6
+%N 1
+%P 109-136
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F kot_schaffer:1986
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A LaDeau, S. L.; Kilpatrick, A. M. & Marra, P. P.
+%D 2007
+%T West Nile virus emergence and large-scale declines of North American bird populations
+%E 
+%B Nature
+%C 
+%I Nature Publishing Group
+%V 447
+%6
+%N 7145
+%P 710-713
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F ladeau_etal:2007
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Lele, S.; Taper, M. L. & Gage, S.
+%D 1998
+%T Statistical analysis of population dynamics in space and time using estimating functions
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 79
+%6
+%N 5
+%P 1489-1502
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F lele_etal:1998
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Link, W. A.
+%D 2003
+%T Nonidentifiability of Population Size from Capture-Recapture Data with Heterogeneous Detection Probabilities
+%E 
+%B Biometrics
+%C 
+%I Wiley Online Library
+%V 59
+%6
+%N 4
+%P 1123-1130
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F link:2003
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Link, William A. & Barker, Richard J.
+%D 2010
+%T Bayesian Inference: With Ecological Applications
+%E 
+%B 
+%C London, {UK}
+%I Academic Press
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! Bayesian Inference
+%Z 
+%@ 9780123748546
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F link_barker:2010
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Link, W. A.; Barker, R. J.; Sauer, J. R. & Droege, S.
+%D 1994
+%T Within-site variability in surveys of wildlife populations
+%E 
+%B Ecology
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 1097-1108
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F link_etal:1994
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Link, W. A. & Nichols, J. D.
+%D 1994
+%T On the importance of sampling variance to investigations of temporal variation in animal population size
+%E 
+%B Oikos
+%C 
+%I JSTOR
+%V 69
+%6
+%N 3
+%P 539-544
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F link_nichols:1994
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Link, W. A. & Sauer, J. R.
+%D 2002
+%T A hierarchical analysis of population change with application to Cerulean Warblers
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 83
+%6
+%N 10
+%P 2832-2840
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F link_sauer:2002
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Link, W. A. & Sauer, J. R.
+%D 1998
+%T Estimating population change from count data: application to the North American Breeding Bird Survey
+%E 
+%B Ecological Applications
+%C 
+%I Eco Soc America
+%V 8
+%6
+%N 2
+%P 258-268
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F link_sauer:1998
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A MacKenzie, D. I.; Nichols, J. D; Royle, J. A.; Pollock, K. H.; Bailey, L. L. & Hines, J. E.
+%D 2006
+%T Occupancy estimation and modeling: inferring patterns and dynamics of species occurrence
+%E 
+%B 
+%C 
+%I Academic Press
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F mackenzie_etal:2006
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Marques, T A; Buckland, S T; Borchers, D L; Tosh, D. & McDonald, R A
+%D 2010
+%T Point transect sampling along linear features
+%E 
+%B Biometrics
+%C 
+%I Wiley Online Library
+%V 66
+%6
+%N 4
+%P 1247-1255
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F marques_etal:2010
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Marsh, H. & Sinclair, D F
+%D 1989
+%T Correcting for visibility bias in strip transect aerial surveys of aquatic fauna
+%E 
+%B The Journal of wildlife management
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 1017-1024
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F marsh_sinclair:1989
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Matthews, S. N.; O'Conner, Raymond; Iverson, Louis R. & Prasad, Anantha
+%D 2004
+%T Atlas of climate change effects in 150 bird species of the Eastern United States
+%E 
+%B 
+%C 
+%I US Department of Agriculture, Forest Service, Northeastern Research Station
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F matthews_etal:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A May, R. M.
+%D 1975
+%T Biological populations obeying difference equations: stable points, stable cycles, and chaos
+%E 
+%B Journal of Theoretical Biology
+%C 
+%I Elsevier
+%V 51
+%6
+%N 2
+%P 511-524
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F may:1975
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A McShea, W J & Rappole, J H
+%D 1997
+%T Variable Song Rates in Three Species of Passerines and Implications for Estimating Bird Populations
+%E 
+%B Journal of Field Ornithology
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 367-375
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F mcshea_rappole:1997
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Melbourne, B. A. & Hastings, A.
+%D 2008
+%T Extinction risk depends strongly on factors contributing to stochasticity
+%E 
+%B Nature
+%C 
+%I Nature Publishing Group
+%V 454
+%6
+%N 7200
+%P 100-103
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F melbourne_hastings:2008
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Miller, David A; Nichols, James D; McClintock, Brett T; Grant, Evan H Campbell; Bailey, Larissa L & Weir, Linda A
+%D 2011
+%T Improving occupancy estimation when two types of observational error occur: non-detection and species misidentification
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 92
+%6
+%N 7
+%P 1422-1428
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F miller_etal:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Murdoch, William W
+%D 1994
+%T Population regulation in theory and practice
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 75
+%6
+%N 2
+%P 271-287
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F murdoch:1994
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Nadeem, K. & Lele, S. R.
+%D 2011
+%T Likelihood based population viability analysis in the presence of observation error
+%E 
+%B Oikos
+%C 
+%I Wiley Online Library
+%V 21
+%6
+%N 10
+%P 1656-1664
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F nadeem_lele:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Report
+%A NAWMP
+%D 1986
+%T North American waterfowl management plan: a strategy for cooperation
+%E 
+%B 
+%C 
+%I Canadian Wildlife Service and US Fish and Wildlife Service
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 techreport
+%4 
+%# 
+%$ 
+%F nawmp:1986
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A New, L. F.; Buckland, S. T.; Redpath, S. & Matthiopoulos, J.
+%D 2011
+%T Hen harrier management: insights from demographic models fitted to population data
+%E 
+%B Journal of Applied Ecology
+%C 
+%I Wiley Online Library
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F new_etal:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A New, L. F.; Matthiopoulos, J.; Redpath, S. & Buckland, S. T.
+%D 2009
+%T Fitting models of multiple hypotheses to partial population data: investigating the causes of cycles in red grouse
+%E 
+%B The American Naturalist
+%C 
+%I JSTOR
+%V 174
+%6
+%N 3
+%P 399-412
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F new_etal:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Nichols, J. D.; Hines, J. E.; Sauer, J. R.; Fallon, F. W.; Fallon, J. E. & Heglund, P. J.
+%D 2000
+%T A double-observer approach for estimating detection probability and abundance from point counts
+%E 
+%B The Auk
+%C 
+%I 
+%V 117
+%6
+%N 2
+%P 393-408
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F nichols_etal:2000
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book Section
+%A Nichols, J. D.; Thomas, L. & Conn, P. B.
+%D 2009
+%T Inferences about landbird abundance from count data: recent advances and future directions
+%E Thomson, D. L.; Cooch, E. G. & Conroy, M. J.
+%B Modeling Demographic Processes in Marked Populations
+%C New York, New York
+%I Springer
+%V 
+%6
+%N 
+%P 201-235
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 incollection
+%4 
+%# 
+%$ 
+%F nichols_etal:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Report
+%A North American Bird Conservation Initiative, U.S. Committee
+%D 2011
+%T The State of the Birds: Report on Public Lands and Waters
+%E 
+%B 
+%C Washington, DC.
+%I U.S. Department of Interior
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 techreport
+%4 
+%# 
+%$ 
+%F stateofbirds:2011
+%K 
+%X 
+%Z 48 pages
+
+
+%+
+%^
+
+%0 
+%0 Report
+%A North American Bird Conservation Initiative, U.S. Committee
+%D 2010
+%T The State of the Birds: Report on Climate Change
+%E 
+%B 
+%C Washington, DC.
+%I U.S. Department of Interior
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 techreport
+%4 
+%# 
+%$ 
+%F stateofbirds:2010
+%K 
+%X 
+%Z 32 pages
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A O'Hara, R. B. & Kotze, D. J.
+%D 2010
+%T Do not log-transform count data
+%E 
+%B Methods in Ecology and Evolution
+%C 
+%I Wiley Online Library
+%V 1
+%6
+%N 2
+%P 118-122
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F ohara_kotze:2010
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Otto, Sarah P & Day, Troy
+%D 2007
+%T A Biologist's Guide to Mathematical Modeling in Ecology and Evolution
+%E 
+%B 
+%C 
+%I Princeton University Press
+%V 13
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F otto_day:2007
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Pacifici, K.; Simons, T. R. & Pollock, K. H.
+%D 2008
+%T Effects of vegetation and background noise on the detection process in auditory avian point-count surveys
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 125
+%6
+%N 3
+%P 600-607
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F pacifici_etal:2008
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Computer Program
+%A Plummer, Martyn
+%D 2011
+%T rjags: Bayesian graphical models using MCMC
+%E
+%B 
+%C 
+%I 
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 manual
+%4 
+%# 
+%$ 
+%F plummer:2011
+%K 
+%X 
+%Z R package version 3-5
+%U http://CRAN.R-project.org/package=rjags
+
+%+
+%^
+
+%0 
+%0 Conference Proceedings
+%A Plummer, M.
+%D 2003
+%T JAGS: A program for analysis of Bayesian graphical models using Gibbs sampling
+%E 
+%B Proceedings of the 3rd International Workshop on Distributed Statistical Computing (DSC 2003). March
+%C 
+%I 
+%V 
+%6
+%N 
+%P 20-22
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 inproceedings
+%4 
+%# 
+%$ 
+%F plummer:2003
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Polansky, L.; De Valpine, P.; Lloyd-Smith, J. O. & Getz, W. M.
+%D 2009
+%T Likelihood ridges and multimodality in population growth rate models
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 90
+%6
+%N 8
+%P 2313-2320
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F polansky_etal:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Pollock, Kenneth H
+%D 1982
+%T A capture-recapture design robust to unequal probability of capture
+%E 
+%B The Journal of Wildlife Management
+%C 
+%I 
+%V 46
+%6
+%N 3
+%P 752-757
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F pollock:1982
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Pollock, K. H.; Hines, J. E. & Nichols, J. D.
+%D 1984
+%T The use of auxiliary variables in capture-recapture and removal experiments
+%E 
+%B Biometrics
+%C 
+%I 
+%V 
+%6
+%N 
+%P 329-340
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F pollock_etal:1984
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Pollock, K. H.; Nichols, J. D.; Simons, T. R.; Farnsworth, G. L.; Bailey, L. L. & Sauer, J. R.
+%D 2002
+%T Large scale wildlife monitoring studies: statistical methods for design and analysis
+%E 
+%B Environmetrics
+%C 
+%I Wiley Online Library
+%V 13
+%6
+%N 2
+%P 105-119
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F pollock_etal:2002
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book Section
+%A Porneluzi, P.; Van Horn, M. A. & Donovan, T. M.
+%D 2011
+%T Ovenbird (Seiurus aurocapilla)
+%E Poole, A.
+%B The Birds of North America Online
+%C Ithaca, New York
+%I Cornell Laboratory of Ornithology
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 incollection
+%4 
+%# 
+%$ 
+%F porneluzi_etal:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Pulliam, H Ronald
+%D 1988
+%T Sources, sinks, and population regulation
+%E 
+%B American Naturalist
+%C 
+%I JSTOR
+%V 
+%6
+%N 
+%P 652-661
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F pulliam:1988
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Computer Program
+%A R Development Core Team
+%D 2012
+%T R: A Language and Environment for Statistical Computing
+%E
+%B 
+%C Vienna, Austria
+%I R Foundation for Statistical Computing
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 manual
+%4 
+%# 
+%$ 
+%F R-2012
+%K 
+%X 
+%Z {ISBN} 3-900051-07-0
+%U http://www.R-project.org/
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Reijnen, Rien; Foppen, Ruud & Meeuwsen, Henk
+%D 1996
+%T The effects of traffic on the density of breeding birds in Dutch agricultural grasslands
+%E 
+%B Biological Conservation
+%C 
+%I 
+%V 75
+%6
+%N 3
+%P 255-260
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F reijnen_etal:1996
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Rich, T. & others
+%D 2004
+%T North American landbird conservation plan
+%E 
+%B 
+%C 
+%I Cornell Lab of Ornithology
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F rich_etal:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Ricker, W. E.
+%D 1954
+%T Stock and recruitment
+%E 
+%B Journal of the Fisheries Board of Canada
+%C 
+%I NRC Research Press
+%V 11
+%6
+%N 5
+%P 559-623
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F ricker:1954
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Riddle, J. D.; Mordecai, R. S.; Pollock, K. H. & Simons, T. R.
+%D 2010
+%T Effects of prior detections on estimates of detection probability, abundance, and occupancy
+%E 
+%B The Auk
+%C 
+%I JSTOR
+%V 127
+%6
+%N 1
+%P 94-99
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F riddle_etal:2010a
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Riddle, J. D.; Pollock, K. H. & Simons, T. R.
+%D 2010
+%T An unreconciled double-observer method for estimating detection probability and abundance
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 127
+%6
+%N 4
+%P 841-849
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F riddle_etal:2010b
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Riddle, J. D.; Stanislav, S. J.; Pollock, K. H.; Moorman, C. E. & Perkins, F. S.
+%D 2010
+%T Separating components of the detection process with combined methods: an example with northern bobwhite
+%E 
+%B The Journal of Wildlife Management
+%C 
+%I Wiley Online Library
+%V 74
+%6
+%N 6
+%P 1319-1325
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F riddle_etal:2010c
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Report
+%A Robbins, C. S.; Bystrak, D. & Geissler, P. H.
+%D 1986
+%T The Breeding Bird Survey: its first fifteen years, 1965-1979
+%E 
+%B 
+%C 
+%I US Fish and Wildlife Service
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 techreport
+%4 
+%# 
+%$ 
+%F robbins_etal:1986
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Robbins, C. S.; Sauer, J. R.; Greenberg, R. S. & Droege, S.
+%D 1989
+%T Population declines in North American birds that migrate to the Neotropics
+%E 
+%B Proceedings of the National Academy of Sciences
+%C 
+%I National Acad Sciences
+%V 86
+%6
+%N 19
+%P 7658
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F robbins_etal:1989
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Conference Proceedings
+%A Rosenberg, K. V. & Blancher, P. J.
+%D 2005
+%T Setting numerical population objectives for priority landbird species
+%E Ralph, CJ & Rich, TD
+%B Bird Conservation Implementation and Integration in the Americas: Proceedings of the Third International Partners in Flight Conference
+%C 
+%I US Department of Agriculture Forest Service, General Technical Report PSW-GTR-191
+%V 
+%6
+%N 
+%P 57-67
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 inproceedings
+%4 
+%# 
+%$ 
+%F rosenberg_blancher:2005
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Royama, T.
+%D 1977
+%T Population persistence and density dependence
+%E 
+%B Ecological Monographs
+%C 
+%I JSTOR
+%V 47
+%6
+%N 1
+%P 1-35
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F royama:1977
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Royle, J. A.
+%D 2004
+%T N-Mixture Models for Estimating Population Size from Spatially Replicated Counts
+%E 
+%B Biometrics
+%C 
+%I 
+%V 60
+%6
+%N 1
+%P 108-115
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F royle:2004biom
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Royle, J. A.; Dawson, D. K. & Bates, S.
+%D 2004
+%T Modeling abundance effects in distance sampling
+%E 
+%B Ecology
+%C 
+%I 
+%V 85
+%6
+%N 
+%P 1591-1597
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F royle_etal:2004
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Royle, J. A. & Dorazio, R. M.
+%D 2008
+%T Hierarchical modeling and inference in ecology: the analysis of data from populations, metapopulations and communities
+%E 
+%B 
+%C 
+%I Academic Press
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F royle_dorazio:2008
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Royle, J. A.; Nichols, J. D. & K\'e,ry, M.
+%D 2005
+%T Modelling occurrence and abundance of species when detection is imperfect
+%E 
+%B Oikos
+%C 
+%I Wiley Online Library
+%V 110
+%6
+%N 2
+%P 353-359
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F royle_etal:2005
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A S\ae,ther, B.E. & Engen, S.
+%D 2002
+%T Pattern of variation in avian population growth rates
+%E 
+%B Philosophical Transactions of the Royal Society of London. Series B: Biological Sciences
+%C 
+%I The Royal Society
+%V 357
+%6
+%N 1425
+%P 1185-1195
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F saether_engen:2002
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book Section
+%A Sauer, J.R.; Barker, R.J. & Geissler, P.H.
+%D 1994
+%T Statistical aspects of modeling population change from population size data
+%E Kendall, RJ & Lacher, TE
+%B Wildlife toxicology and population modeling
+%C Boca Raton, Florida
+%I Lewis
+%V 
+%6
+%N 
+%P 451-466
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 incollection
+%4 
+%# 
+%$ 
+%F sauer_etal:1994
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Sauer, J. R. & Link, W. A.
+%D 2011
+%T Analysis of the North American Breeding Bird Survey using hierarchical models
+%E 
+%B The Auk
+%C 
+%I BioOne
+%V 128
+%6
+%N 1
+%P 87-98
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F sauer_link:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Sauer, J. R.; Peterjohn, B. G. & Link, W. A.
+%D 1994
+%T Observer differences in the North American Breeding Bird Survey
+%E 
+%B The Auk
+%C 
+%I JSTOR
+%V 111
+%6
+%N 1
+%P 50-62
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F sauer_etal:1994auk
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Schaub, M.; Gimenez, O.; Sierro, A. & Arlettaz, R. E. L.
+%D 2007
+%T Use of integrated modeling to enhance estimates of population dynamics obtained from limited data
+%E 
+%B Conservation Biology
+%C 
+%I Wiley Online Library
+%V 21
+%6
+%N 4
+%P 945-955
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F schaub_etal:2007
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Schoener, T. W. & Spiller, D. A.
+%D 1992
+%T Is extinction rate related to temporal variability in population size? An empirical answer for orb spiders
+%E 
+%B American Naturalist
+%C 
+%I JSTOR
+%V 139
+%6
+%N 6
+%P 1176-1207
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F schoener_spiller:1992
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Seavy, N. E.; Reynolds, M. H.; Link, W.A. & Hatfield, J. S.
+%D 2009
+%T Postcatastrophe population dynamics and density dependence of an endemic island duck
+%E 
+%B The Journal of Wildlife Management
+%C 
+%I Wiley Online Library
+%V 73
+%6
+%N 3
+%P 414-418
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F seavy_etal:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Seber, G A F
+%D 1982
+%T The estimation of animal abundance and related parameters
+%E 
+%B 
+%C 
+%I Macmillan
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F seber:1982
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Shenk, T. M.; White, G. C. & Burnham, K. P.
+%D 1998
+%T Sampling-variance effects on detecting density dependence from temporal trends in natural populations
+%E 
+%B Ecological Monographs
+%C 
+%I Eco Soc America
+%V 68
+%6
+%N 3
+%P 445-463
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F shenk_etal:1998
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Sillett, S.; Chandler, R. B.; Royle, J. A.; K\'e,ry, M. & Morrison, S. A.
+%D 2012
+%T Hierarchical distance sampling models to estimate population size and habitat-specific abundance of an island endemic
+%E 
+%B Ecological Applications
+%C 
+%I 
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F sillett_etal:2012
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Simons, T. R.; Alldredge, M. W.; Pollock, K. H.; Wettroth, J. M. & Dufty Jr, A M
+%D 2007
+%T Experimental analysis of the auditory detection process on avian point counts
+%E 
+%B The Auk
+%C 
+%I 
+%V 124
+%6
+%N 3
+%P 986-999
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F simons_etal:2007
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Manuscript
+%A Simons, T. R; Pollock, K. & Riddle, J.
+%D 2010
+%T Incorporating estimates of detection probability into the Breeding Bird Survey potocol: assessment of current sampling methods
+%E
+%B 
+%C
+%I
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 November
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 unpublished
+%4 
+%# 
+%$ 
+%F simons_etal:2010
+%K 
+%X 
+%Z Research Work Order NC145
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Summers, P. D.; Cunnington, G. M. & Fahrig, L.
+%D 2011
+%T Are the negative effects of roads on breeding birds caused by traffic noise?
+%E 
+%B Journal of Applied Ecology
+%C 
+%I Wiley Online Library
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F summers_etal:2011
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Temple, S. A. & Wiens, J. A.
+%D 1989
+%T Bird populations and environmental changes: can birds be bio-indicators
+%E 
+%B American Birds
+%C 
+%I 
+%V 43
+%6
+%N 2
+%P 260-270
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F temple_wiens:1989
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Thomas, Andrew; O'Hara, Bob; Ligges, Uwe & Sturtz, Sibylle
+%D 2006
+%T Making BUGS Open
+%E 
+%B R News
+%C 
+%I 
+%V 6
+%6
+%N 
+%P 12-17
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F thomas_etal:2006
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Thomas, L.; Buckland, S. T.; Newman, K. B. & Harwood, J.
+%D 2005
+%T A unified framework for modelling wildlife population dynamics
+%E 
+%B Australian \& New Zealand Journal of Statistics
+%C 
+%I Wiley Online Library
+%V 47
+%6
+%N 1
+%P 19-34
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F thomas_etal:2005
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Turchin, P.
+%D 1990
+%T Rarity of density dependence or population regulation with lags?
+%E 
+%B Nature
+%C 
+%I Nature Publishing Group
+%V 344
+%6
+%N 6267
+%P 660-663
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F turchin:1990
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Turchin, P. & Taylor, A. D.
+%D 1992
+%T Complex dynamics in ecological time series
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 73
+%6
+%N 1
+%P 289-305
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F turchin_taylor:1992
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Report
+%A USGS
+%D 2007
+%T Strategic Plan for the North American Breeding Bird Survey: 2006--2007
+%E 
+%B 
+%C http://pubs.usgs.gov/circ/2007/1307/
+%I U.S. Geological Survey
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7
+%8 
+%9 Circular
+%? 
+%! 
+%Z 
+%@ 1307
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 techreport
+%4 
+%# 
+%$ 
+%F usgs:2007
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A de Valpine, P. & Hastings, A.
+%D 2002
+%T Fitting population models incorporating process noise and observation error
+%E 
+%B Ecological Monographs
+%C 
+%I Eco Soc America
+%V 72
+%6
+%N 1
+%P 57-76
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F devalpine_hastings:2002
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Viljugrein, H.; Stenseth, N. C.; Smith, G. W. & Steinbakk, G. H.
+%D 2005
+%T Density dependence in North American ducks
+%E 
+%B Ecology
+%C 
+%I Eco Soc America
+%V 86
+%6
+%N 1
+%P 245-254
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F viljugrein_etal:2005
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Vindenes, Yngvild; Engen, Steinar & S\ae,ther, Bernt-Erik
+%D 2008
+%T Individual heterogeneity in vital parameters and demographic stochasticity
+%E 
+%B The American Naturalist
+%C 
+%I JSTOR
+%V 171
+%6
+%N 4
+%P 455-467
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F vindenes_etal:2008
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book Section
+%A White, G. C.
+%D 2000
+%T Population viability analysis: data requirements and essential analyses
+%E Boitani, L & Fuller, TK
+%B Research Techniques in Animal Ecology: Controversies and Consequences
+%C New York, New York
+%I Columbia University Press
+%V 
+%6
+%N 
+%P 288-331
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9 
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 incollection
+%4 
+%# 
+%$ 
+%F white:2000
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Williams, B K; Nichols, J D & Conroy, M J
+%D 2002
+%T Analysis and management of animal populations: modeling, estimation, and decision making
+%E 
+%B 
+%C New York, New York
+%I Academic Press
+%V 
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F williams_etal:2002
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Yoccoz, N. G.; Nichols, J. D. & Boulinier, T.
+%D 2001
+%T Monitoring of biological diversity in space and time
+%E 
+%B Trends in Ecology \& Evolution
+%C 
+%I Elsevier
+%V 16
+%6
+%N 8
+%P 446-453
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F yoccoz_etal:2001
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Ziolkowski Jr., David J.; Parkieck, Keith L. & Sauer, John R.
+%D 2010
+%T The 2003-2008 summary of the North American Breeding Bird Survey
+%E 
+%B Bird Populations
+%C 
+%I 
+%V 10
+%6
+%N 
+%P 90-109
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F ziolkowski_etal:2010
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Journal Article
+%A Zippin, C
+%D 1958
+%T The removal method of population estimation
+%E 
+%B Journal of Wildlife Management
+%C 
+%I 
+%V 22
+%6
+%N 1
+%P 82-90
+%& 
+%Y 
+%S 
+%7
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 article
+%4 
+%# 
+%$ 
+%F zippin:1958
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
+%0 
+%0 Book
+%A Zucchini, W. & MacDonald, I.L.
+%D 2009
+%T Hidden Markov models for time series: an introduction using R
+%E 
+%B 
+%C 
+%I Chapman \& Hall/CRC
+%V 110
+%6
+%N 
+%P 
+%& 
+%Y 
+%S 
+%7 
+%8 
+%9
+%? 
+%! 
+%Z 
+%@ 
+%(
+%)
+%*
+%L
+%M
+
+
+%2 
+%3 book
+%4 
+%# 
+%$ 
+%F zucchini_macdonald:2009
+%K 
+%X 
+%Z 
+
+
+%+
+%^
+
